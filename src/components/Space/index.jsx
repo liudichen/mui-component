@@ -4,13 +4,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-05-09 10:32:50
+ * @LastEditTime: 2022-05-09 10:35:33
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Box } from '@mui/material';
 
-import { sx } from '../propTypes';
+import { sx } from '../../propTypes';
 
 const spaceSize = {
   small: 8,

@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 13:41:40
- * @LastEditTime: 2022-05-09 10:33:35
+ * @LastEditTime: 2022-05-09 10:35:32
  */
 import React from 'react';
 
-import { sxType } from '../types';
+import { sxType } from '../../types';
 
 type stringSize = 'small' | 'medium' | 'large';
 type sizeType = stringSize | number;
