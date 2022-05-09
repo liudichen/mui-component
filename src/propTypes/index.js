@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-05-09 10:32:22
+ * @LastEditTime: 2022-05-09 16:37:00
  */
 import PropTypes from 'prop-types';
 
@@ -40,6 +40,7 @@ const dataGridPropTypes = {
       description: PropTypes.string,
       align: PropTypes.oneOf([ 'left', 'center', 'right' ]),
       headerAlign: PropTypes.oneOf([ 'left', 'center', 'right' ]),
+      titleAlign: PropTypes.oneOf([ 'left', 'center', 'right' ]),
       width: PropTypes.number,
       minWidth: PropTypes.number,
       maxWidth: PropTypes.number,
@@ -84,7 +85,9 @@ const dataGridPropTypes = {
       renderCell: PropTypes.func, // params:{value,row,...} => ReactNode
       renderEditCell: PropTypes.func, // params:{value,row,...} => ReactNode
       renderHeader: PropTypes.func, // params:{value,row,...} => ReactNode
+      renderTitle: PropTypes.func, // params:{value,row,...} => ReactNode
       headerClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
+      titleClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
       cellClassName: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
       colSpan: PropTypes.oneOfType([
         PropTypes.number,
