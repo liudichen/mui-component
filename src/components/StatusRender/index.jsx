@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-05-09 20:17:34
+ * @LastEditTime: 2022-05-09 20:46:21
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -37,6 +37,7 @@ const StatusType = {
   审批中: TypeColor.process,
   到达: TypeColor.process,
   废弃: TypeColor.default,
+  已作废: TypeColor.default,
   作废: TypeColor.default,
   封存: TypeColor.default,
   等待: TypeColor.default,
@@ -54,7 +55,7 @@ const getColor = (color, status, type, statusColorConvert, statusTypeConvert) =>
     }
     return StatusType[status] ?? TypeColor.default;
   } else if (type) {
-    return StatusType[type] ?? TypeColor.default;
+    return TypeColor[type] ?? TypeColor.default;
   }
   return TypeColor.default;
 };
