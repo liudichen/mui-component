@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:47:54
- * @LastEditTime: 2022-05-09 16:53:39
+ * @LastEditTime: 2022-05-09 17:06:11
  */
 import React from 'react';
 import { BoxProps } from '@mui/material';
@@ -20,7 +20,15 @@ type columnType = GridColDef & {
 
 interface DataGridTableProps extends Omit<DataGridProps, 'columns'> {
   columns: columnType[],
+  /**
+   * field name of row's id
+   * @default 'id'
+   */
   rowKey?: string,
+  /**
+   * table's height only when autoHeight !== true
+   */
+  height?: number | string,
   height?: string | number,
   initialPageSize?: number,
   paginationProps?: DataGridPaginationProps,
