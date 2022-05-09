@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-05-09 19:48:36
+ * @LastEditTime: 2022-05-09 21:03:49
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,7 +17,7 @@ import { paginationPropTypes, dataGridPropTypes } from '../../propTypes';
 import StatusRender from '../StatusRender';
 
 export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
-  const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, ...restCol } = col;
+  const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert, ...restCol } = col;
   const initInfo = {
     ...(prefix || {}),
   };
@@ -31,6 +31,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
           statusColorConvert={statusColorConvert}
           statusTextConvert={statusTextConvert}
           statusTypeConvert={statusTypeConvert}
+          statusConvert={statusConvert}
         />
       );
     }
