@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:33:16
- * @LastEditTime: 2022-05-09 19:35:48
+ * @LastEditTime: 2022-05-09 19:55:32
  */
 import PropTypes from 'prop-types';
 
@@ -13,22 +13,6 @@ const sx = PropTypes.oneOfType([
   PropTypes.object,
 ]);
 
-const fieldWrapperPropTypes = {
-  fullWidth: PropTypes.bool,
-  error: PropTypes.bool,
-  required: PropTypes.bool,
-  label: PropTypes.node,
-  labelPosition: PropTypes.oneOf([ 'top', 'border' ]),
-  labelSx: sx,
-  labelProps: PropTypes.object,
-  tooltip: PropTypes.node,
-  helperText: PropTypes.node,
-  showHelperText: PropTypes.bool,
-  helperTextSx: PropTypes.object,
-  helperTextProps: PropTypes.object,
-  fieldSx: sx,
-  fieldProps: PropTypes.object,
-};
 
 const dataGridPropTypes = {
   rows: PropTypes.arrayOf(PropTypes.object),
@@ -696,7 +680,6 @@ const dialogPropTypes = {
 
 export {
   sx,
-  fieldWrapperPropTypes,
   dataGridPropTypes,
   paginationPropTypes,
   dialogPropTypes,
