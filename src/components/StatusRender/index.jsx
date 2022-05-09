@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-05-09 19:40:07
+ * @LastEditTime: 2022-05-09 20:17:34
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -50,8 +50,9 @@ const getColor = (color, status, type, statusColorConvert, statusTypeConvert) =>
       return statusColorConvert(status);
     }
     if (statusTypeConvert) {
-      return StatusType[statusTypeConvert(status)] ?? TypeColor.default;
+      return TypeColor[statusTypeConvert(status)] ?? TypeColor.default;
     }
+    return StatusType[status] ?? TypeColor.default;
   } else if (type) {
     return StatusType[type] ?? TypeColor.default;
   }
