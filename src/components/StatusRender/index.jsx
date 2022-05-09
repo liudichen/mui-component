@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-05-09 20:46:21
+ * @LastEditTime: 2022-05-09 20:59:56
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -44,8 +44,9 @@ const StatusType = {
   终止: TypeColor.default,
   确认: TypeColor.process,
 };
-const getColor = (color, status, type, statusColorConvert, statusTypeConvert) => {
+const getColor = (color, rawStatus, type, statusColorConvert, statusTypeConvert, statusConvert) => {
   if (color) { return color; }
+  const status = statusConvert ? statusConvert(rawStatus) : rawStatus;
   if (status) {
     if (statusColorConvert) {
       return statusColorConvert(status);
@@ -60,8 +61,14 @@ const getColor = (color, status, type, statusColorConvert, statusTypeConvert) =>
   return TypeColor.default;
 };
 
+const getText = (text, rawStatus, statusConvert, statusTextConvert) => {
+  if (text) { return text; }
+  const status = statusConvert ? statusConvert(rawStatus) : rawStatus;
+  return statusTextConvert?.(status) ?? (status || null);
+};
+
 const StatusRender = (props) => {
-  const { color, status, type, statusColorConvert, statusTypeConvert, text, statusTextConvert, textSpanStyle, dotSpanStyle } = props;
+  const { color, status, type, statusColorConvert, statusTypeConvert, text, statusTextConvert, textSpanStyle, dotSpanStyle, statusConvert } = props;
 
 
   return (
@@ -78,12 +85,12 @@ const StatusRender = (props) => {
           marginRight: '2px',
           verticalAlign: 'middle',
           borderRadius: '50%',
-          backgroundColor: getColor(color, status, type, statusColorConvert, statusTypeConvert),
+          backgroundColor: getColor(color, status, type, statusColorConvert, statusTypeConvert, statusConvert),
           ...(dotSpanStyle || {}),
         }}
       />
       <span style={textSpanStyle}>
-        { text ?? statusTextConvert?.(status) ?? status }
+        { getText(text, status, statusConvert, statusTextConvert) }
       </span>
     </span>
   );
@@ -101,6 +108,7 @@ StatusRender.propTypes = {
   statusColorConvert: PropTypes.func,
   statusTypeConvert: PropTypes.func,
   statusTextConvert: PropTypes.func,
+  statusConvert: PropTypes.func,
   textSpanStyle: PropTypes.object,
   dotSpanStyle: PropTypes.object,
 };
