@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 10:51:55
- * @LastEditTime: 2022-05-09 11:00:07
+ * @LastEditTime: 2022-05-09 14:37:33
  */
 import React from 'react';
 import { CardProps } from '@mui/material';
@@ -18,7 +18,6 @@ export interface ContentCardProps extends CardProps {
   secondary?: React.ReactNode,
   sx?: sxType,
   title?: React.ReactNode,
-  ref?: React.Ref,
   defaultCollapsed?: boolean,
   collapsible?: boolean,
   collapsed?: boolean,
@@ -30,6 +29,6 @@ export interface ContentCardProps extends CardProps {
   unmountOnExit?: boolean,
 }
 
-declare const ContentCard: React.FunctionComponent<ContentCardProps>;
+declare const ContentCard: React.ForwardRefRenderFunction<any, CardProps>;
 
 export default ContentCard;

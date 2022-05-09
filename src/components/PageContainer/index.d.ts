@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 10:39:55
- * @LastEditTime: 2022-05-09 10:48:20
+ * @LastEditTime: 2022-05-09 14:38:03
  */
 import React from 'react';
 import { CardProps } from '@mui/material';
@@ -21,9 +21,8 @@ export interface PageContainerProps extends CardProps {
   shadow?: string,
   sx?: sxType,
   title?: React.ReactNode,
-  ref?: React.Ref
 }
 
-declare const PageContainer: React.FunctionComponent<PageContainerProps>;
+declare const PageContainer: React.ForwardRefRenderFunction<any, PageContainerProps>;
 
 export default PageContainer;
