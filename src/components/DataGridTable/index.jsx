@@ -3,29 +3,43 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-05-09 16:48:36
+ * @LastEditTime: 2022-05-09 19:48:36
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
+import { Box } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
 
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
-
 import { paginationPropTypes, dataGridPropTypes } from '../../propTypes';
-import { Box } from '@mui/material';
+import StatusRender from '../StatusRender';
 
 export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
-  const { titleAlign, title, titleClassName, renderTitle } = col;
+  const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, ...restCol } = col;
   const initInfo = {
     ...(prefix || {}),
   };
+  if (type) {
+    if (type !== 'status') {
+      initInfo.type = type;
+    } else {
+      initInfo.renderCell = ({ value }) => (
+        <StatusRender
+          status={value}
+          statusColorConvert={statusColorConvert}
+          statusTextConvert={statusTextConvert}
+          statusTypeConvert={statusTypeConvert}
+        />
+      );
+    }
+  }
   if (titleAlign) { initInfo.headerAlign = titleAlign; }
   if (title) { initInfo.headerName = title; }
   if (titleClassName) { initInfo.headerName = titleClassName; }
   if (renderTitle) { initInfo.renderHeader = renderTitle; }
-  return { ...initInfo, ...col, ...(suffix || {}) };
+  return { ...initInfo, ...restCol, ...(suffix || {}) };
 };
 
 const DataGridTable = (props) => {

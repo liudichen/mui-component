@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:46
- * @LastEditTime: 2022-05-09 19:28:22
+ * @LastEditTime: 2022-05-09 19:48:13
  */
 import React from 'react';
 
@@ -15,7 +15,7 @@ export interface StatusRenderProps {
   type?: shownType,
   text?: React.ReactNode,
   statusColorConvert?: (status: string) => string,
-  statusTypeeConvert?: (status: string) => shownType,
+  statusTypeConvert?: (status: string) => shownType,
   statusTextConvert?: (status: string) => React.ReactNode,
   textSpanStyle?: object,
   dotSpanStyle?: object,
