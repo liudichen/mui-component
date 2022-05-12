@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-05-09 19:29:59
+ * @LastEditTime: 2022-05-12 14:38:02
 -->
 # mui-formfield
 
@@ -27,6 +27,9 @@ export { default as PageContainer, PageContainerProps } from './components/PageC
 export { default as Loading, LoadingProps } from './components/Loading';
 export { default as DataGridTable, DataGridPaginationProps, DataGridTableProps, columnType, initColumn } from './components/DataGridTable';
 export { default as StatusRender, StatusRenderProps } from './components/StatusRender';
+
+export { default as PopConfirm, PopConfirmProps } from './components/PopConfirm';
+
 
 export { default as Space, SpaceProps } from './components/Space';
 
