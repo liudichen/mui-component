@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -19,7 +19,7 @@
     "email": "liudichen@foxmail.com",
     "url": "https://www.iimm.ink"
   },
-  "description": "mui componets used by iimm",
+  "description": "some custom mui componets",
   "repository": {
     "url": "https://github.com/liudichen/mui-component",
     "type": "https"
@@ -32,11 +32,12 @@
     "iimm",
     "www.iimm.ink",
     "liudichen",
-    "Upload",
+    "popconfirm",
     "react",
     "@mui/material",
-    "layout",
-    "react"
+    "space",
+    "react",
+    "result"
   ],
   "license": "MIT",
   "gitHooks": {
@@ -56,8 +57,8 @@
   },
   "peerDependencies": {
     "@mui/material": "^5.6.4",
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
@@ -96,7 +97,7 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.11.1",
     "prop-types": "^15.8.1",
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   }
 }
