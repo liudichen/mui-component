@@ -3,20 +3,21 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-12 15:56:38
- * @LastEditTime: 2022-05-12 16:31:30
+ * @LastEditTime: 2022-05-12 16:39:32
  */
 import React from 'react';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton } from '@mui/x-data-grid';
 
-const GridToolbarFty = ({
-  showColumn = true,
-  showFilter = true,
-  showDensity = true,
-  showExport = false,
-  ExportRender = undefined,
-}) => {
-  return React.forwardRef((props = {}, ref) => (
-    <GridToolbarContainer ref={ref} {...props || {}}>
+const GridToolbarFty = (params) => {
+  const {
+    showColumn = true,
+    showFilter = true,
+    showDensity = true,
+    showExport = false,
+    ExportRender = undefined,
+  } = (params || {});
+  return () => (
+    <GridToolbarContainer >
       { showColumn && (
         <GridToolbarColumnsButton />
       )}
@@ -32,7 +33,7 @@ const GridToolbarFty = ({
         ) : <GridToolbarExport />
       )}
     </GridToolbarContainer>
-  ));
+  );
 };
 
 export default GridToolbarFty;
