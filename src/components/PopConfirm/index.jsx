@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-11 15:24:22
- * @LastEditTime: 2022-05-12 14:25:10
+ * @LastEditTime: 2022-05-12 14:43:42
  */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -172,6 +172,7 @@ const PopConfirm = React.forwardRef((props, ref) => {
 PopConfirm.defaultProps = {
   closeOnClickAway: true,
   preventOverflow: true,
+  arrow: true,
   transition: true,
   placement: 'top',
   timeout: 350,
