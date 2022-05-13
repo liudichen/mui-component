@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 10:36:54
- * @LastEditTime: 2022-05-09 10:52:43
+ * @LastEditTime: 2022-05-13 16:12:40
  */
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
@@ -22,7 +22,7 @@ const PageContainer = forwardRef((
     children,
     content = true,
     contentClass = '',
-    contentSX = {},
+    contentSx = {},
     darkTitle,
     secondary,
     shadow,
@@ -58,7 +58,7 @@ const PageContainer = forwardRef((
 
       {/* card content */}
       {content && (
-        <CardContent sx={contentSX} className={contentClass}>
+        <CardContent sx={contentSx} className={contentClass}>
           {children}
         </CardContent>
       )}
@@ -73,7 +73,7 @@ PageContainer.propTypes = {
   children: PropTypes.node,
   content: PropTypes.bool,
   contentClass: PropTypes.string,
-  contentSX: PropTypes.object,
+  contentSx: PropTypes.object,
   darkTitle: PropTypes.bool,
   /** 右上角action区域   */
   secondary: PropTypes.oneOfType([ PropTypes.node, PropTypes.string, PropTypes.object ]),
