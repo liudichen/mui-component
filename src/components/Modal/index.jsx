@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-05-15 22:14:01
+ * @LastEditTime: 2022-05-15 22:30:52
  */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -68,7 +68,7 @@ const Modal = (props) => {
                 color: (theme) => theme.palette.grey[500],
               }}
             >
-              <CloseIcon />
+              { CloseIcon }
             </IconButton>
           )}
         </DialogTitle>
