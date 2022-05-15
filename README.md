@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-05-12 16:32:07
+ * @LastEditTime: 2022-05-15 22:20:36
 -->
 # mui-formfield
 
@@ -30,6 +30,7 @@ export { default as GridToolbarFty, GridToolbarFtyParams, GridToolbar } from './
 export { default as StatusRender, StatusRenderProps } from './components/StatusRender';
 
 export { default as PopConfirm, PopConfirmProps } from './components/PopConfirm';
+export { default as Modal, ModalProps } from './components/Modal';
 
 
 export { default as Space, SpaceProps } from './components/Space';
