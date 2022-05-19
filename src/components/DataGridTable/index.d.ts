@@ -3,28 +3,30 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:47:54
- * @LastEditTime: 2022-05-09 21:02:57
+ * @LastEditTime: 2022-05-19 17:19:31
  */
 import React from 'react';
-import { BoxProps } from '@mui/material';
+import { BoxProps, TooltipProps } from '@mui/material';
 import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps } from '@mui/x-data-grid';
 
 import { DataGridPaginationProps } from './DataGridPagination';
 
-type columnType = GridColDef & {
-  title?: string,
-  titleClassName?: GridColumnHeaderClassNamePropType,
-  titleAlign?: GridAlignment,
-  renderTitle?: (params: GridColumnHeaderParams) => React.ReactNode,
-};
-
-interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'> {
-  columns: columnType[],
+type columnType = Omit<GridColDef, 'type'> & {
   type: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
   statusColorConvert: (status: string) => string, // 自定义的用于 type='status'
   statusTypeConvert: (status: string) => string, // 自定义的用于 type='status'
   statusTextConvert: (status: string) => React.ReactNode, // 自定义的用于 type='status'
   statusConvert: (status: string) => string, // 自定义的用于 type='status'
+  title?: string,
+  titleClassName?: GridColumnHeaderClassNamePropType,
+  titleAlign?: GridAlignment,
+  renderTitle?: (params: GridColumnHeaderParams) => React.ReactNode,
+  showTooltip?: boolean, // 如果为真则提供tooltip包裹
+  tooltipProps?: TooltipProps,
+};
+
+interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'> {
+  columns: columnType[],
   /**
    * field name of row's id
    * @default 'id'

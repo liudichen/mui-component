@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-05-09 21:03:49
+ * @LastEditTime: 2022-05-19 17:20:01
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
-import { Box } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
 
 import NoRowsOverlay from './NoRowsOverlay';
@@ -17,7 +17,7 @@ import { paginationPropTypes, dataGridPropTypes } from '../../propTypes';
 import StatusRender from '../StatusRender';
 
 export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
-  const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert, ...restCol } = col;
+  const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert, showTooltip, tooltipProps, ...restCol } = col;
   const initInfo = {
     ...(prefix || {}),
   };
@@ -40,6 +40,13 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
   if (title) { initInfo.headerName = title; }
   if (titleClassName) { initInfo.headerName = titleClassName; }
   if (renderTitle) { initInfo.renderHeader = renderTitle; }
+  if (showTooltip) {
+    initInfo.renderCell = ({ value }) => (
+      <Tooltip title={value} arrow placement='top' {...(tooltipProps || {})}>
+        <span>{value}</span>
+      </Tooltip>
+    );
+  }
   return { ...initInfo, ...restCol, ...(suffix || {}) };
 };
 
