@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-05-09 10:35:33
+ * @LastEditTime: 2022-05-20 14:18:35
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,6 +32,9 @@ const Space = (props) => {
       {...restProps}
     >
       {React.Children.map(children, (child, index) => {
+        if (!child) {
+          return null;
+        }
         let style = {};
         if (direction === 'column') {
           if (index < React.Children.count(children) - 1) {
