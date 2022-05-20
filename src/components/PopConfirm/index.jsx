@@ -3,26 +3,26 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-11 15:24:22
- * @LastEditTime: 2022-05-12 14:43:42
+ * @LastEditTime: 2022-05-20 18:22:12
  */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
-import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper } from '@mui/material';
+import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper, useTheme } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
-import { sx } from '../../propTypes';
 import Arrow from './Arrow';
 import Popper from './Popper';
 
 const PopConfirm = React.forwardRef((props, ref) => {
   const { children, triggerProps, disabled, rootProps,
-    onCancel, onConfirm, arrow, closeOnClickAway, placement, timeout, modifiers: modifiersProp,
+    onCancel, onConfirm, arrow, closeOnClickAway, placement, timeout, modifiers: modifiersProp, sx,
     maxWidth, width, preventOverflow,
     confirmProps, confirmText, showConfirm,
     cancelProps, cancelText, showCancel,
     showIcon, icon, showTitle, title, extraContent,
     ...restProps } = props;
+  const theme = useTheme();
   const [ anchorEl, setAnchorEl ] = useState(null);
   const [ open, setOpen ] = useState(false);
   const [ arrowRef, setArrowRef ] = useState(null);
@@ -84,7 +84,7 @@ const PopConfirm = React.forwardRef((props, ref) => {
   }, [ width, maxWidth, rootProps ]);
   return (
     <>
-      <Popper ref={ref} open={open} anchorEl={anchorEl} {...restProps}
+      <Popper ref={ref} open={open} anchorEl={anchorEl} sx={{ zIndex: theme.zIndex.modal, ...(sx || {}) }} {...restProps}
         placement={placement}
         arrow={arrow}
         modifiers={!modifiersProp ? [
@@ -231,7 +231,7 @@ PopConfirm.propTypes = {
     strategy: PropTypes.oneOf([ 'absolute', 'fixed' ]),
   }),
   popperRef: PropTypes.object,
-  sx,
+  sx: PropTypes.object,
   transition: PropTypes.bool,
 };
 
