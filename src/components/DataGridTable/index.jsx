@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-05-23 17:55:15
+ * @LastEditTime: 2022-05-24 09:08:12
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -42,9 +42,9 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
   if (renderTitle) { initInfo.renderHeader = renderTitle; }
   if (showTooltip) {
     initInfo.renderCell = ({ value }) => (
-      <Tooltip title={value ?? ''} arrow placement='top' {...(tooltipProps || {})}>
+      (value === null || value === undefined) ? <Tooltip title={value} arrow placement='top' {...(tooltipProps || {})}>
         <span>{value}</span>
-      </Tooltip>
+      </Tooltip> : null
     );
   }
   return { ...initInfo, ...restCol, ...(suffix || {}) };
