@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -93,7 +93,7 @@
     "@mui/styles": "^5.6.1",
     "@mui/x-data-grid": "^5.10.0",
     "@tabler/icons": "^1.64.0",
-    "ahooks": "^3.3.8",
+    "ahooks": "^3.4.0",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.1",
     "prop-types": "^15.8.1",
