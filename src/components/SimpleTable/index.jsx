@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-05-30 20:40:40
+ * @LastEditTime: 2022-05-30 20:52:18
  */
 import PropTypes from 'prop-types';
 import { useControllableValue, useCreation } from 'ahooks';
@@ -22,7 +22,6 @@ const SimpleTable = (props) => {
     expandable, showExpandColumn, expandIcon, expandRowByClick, expandColumnWidth, expandRowRender, getRowExpandable, unmountOnExit,
     ...restProps
   } = props;
-  console.log('tabeRender');
   const colSpans = useCreation(() => {
     let cols = columns?.length ?? 0;
     if (showExpandColumn) { cols += 1; }
