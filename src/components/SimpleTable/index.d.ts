@@ -3,34 +3,47 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-05-31 09:05:07
+ * @LastEditTime: 2022-05-31 09:42:22
  */
 import React from 'react';
 import { TableProps, BoxProps, TablePaginationProps } from '@mui/material';
 
+
+interface rowType {
+  [key: string]: any
+}
+
+interface getterParams {
+  row: rowType,
+  rowIndex: number,
+  field: string,
+  value: any
+}
+
+interface titleParams {
+  field: string
+}
+
 interface columnType {
   field?: string,
   title?: React.ReactNode,
-  renderTitle?: (parmas?: {field?: string}) => React.ReactNode,
+  renderTitle?: (parmas: titleParams) => React.ReactNode,
   titleAlign?: 'center' | 'left' | 'right',
   align?: 'center' | 'left' | 'right',
-  renderCell?: (params?: {row?: object, rowIndex?: number, field?: string, value?: any}) => React.ReactNode,
+  renderCell?: (params: getterParams) => React.ReactNode,
   type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status',
   width?: number | string,
   maxWidth?: number | string,
   minWidth?: number | string,
-  valueGetter?: (params?: {row?: object, rowIndex?: number, field?: string, value?: any}) => any,
-  getCellProps?: (params?: {row?: object, rowIndex?: number, field?: string, value?: any}) => object,
+  valueGetter?: (params: getterParams) => any,
+  getCellProps?: (params: getterParams) => object,
   ellipsis?: boolean,
   showTooltip?: boolean,
-}
-interface row {
-  [key: string]: any
 }
 
 export interface SimpleTableProps extends TableProps {
   tableContainerBoxProps?: BoxProps,
-  rows?: row[],
+  rows?: rowType[],
   rowKey?: string,
   columns?: columnType[],
   title?: React.ReactNode,
