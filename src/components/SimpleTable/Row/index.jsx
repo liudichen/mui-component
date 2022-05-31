@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:41:53
- * @LastEditTime: 2022-05-31 09:01:56
+ * @LastEditTime: 2022-05-31 09:47:25
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -50,7 +50,7 @@ const Row = (props) => {
             )}
           </TableCell>
         )}
-        { columns.map((item, index) => (
+        { columns?.map((item, index) => (
           <Cell
             key={index}
             row={row}
