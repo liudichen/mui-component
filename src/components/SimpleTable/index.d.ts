@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-05-30 20:44:59
+ * @LastEditTime: 2022-05-31 09:01:21
  */
 import React from 'react';
 import { TableProps, BoxProps, TablePaginationProps } from '@mui/material';
@@ -24,10 +24,13 @@ interface columnType {
   ellipsis?: boolean,
   showTooltip?: boolean,
 }
+interface row {
+  [key: string]: any
+}
 
 export interface SimpleTableProps extends TableProps {
   tableContainerBoxProps?: BoxProps,
-  rows?: object,
+  rows?: row[],
   rowKey?: string,
   columns?: columnType[],
   title?: React.ReactNode,
