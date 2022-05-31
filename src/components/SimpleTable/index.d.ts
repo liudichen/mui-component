@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-05-31 09:01:21
+ * @LastEditTime: 2022-05-31 09:05:07
  */
 import React from 'react';
 import { TableProps, BoxProps, TablePaginationProps } from '@mui/material';
@@ -56,6 +56,6 @@ export interface SimpleTableProps extends TableProps {
   unmountOnExit?: boolean,
 }
 
-declare const SimpleTable: React.FunctionComponent<TablePaginationProps>;
+declare const SimpleTable: React.FunctionComponent<SimpleTableProps>;
 
 export default SimpleTable;
