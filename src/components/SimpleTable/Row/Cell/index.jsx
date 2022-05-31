@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-05-31 09:45:34
+ * @LastEditTime: 2022-05-31 09:57:28
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -51,7 +51,7 @@ const Cell = (props) => {
     }
     return sx;
   }, [ width, rowIndex, maxWidth, minWidth, ellipsis, bordered, type, hideHeader ]);
-  const value = valueGetter?.({ row, rowIndex, field, value: row?.[field] }) ?? row?.[field] ?? '';
+  const value = rowIndex === -1 ? '' : (valueGetter?.({ row, rowIndex, field, value: row?.[field] }) ?? row?.[field] ?? '');
   const cellProps = getCellProps?.({ row, rowIndex, field, value }) ?? {};
   const item = rowIndex === -1 ? (renderTitle?.({ field }) ?? title ?? '') : (renderCell?.({ row, rowIndex, field, value }) ?? (type === 'status' ? (
     <StatusRender
