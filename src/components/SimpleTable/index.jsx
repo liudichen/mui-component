@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-05-31 10:31:38
+ * @LastEditTime: 2022-05-31 11:03:19
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -94,7 +94,7 @@ const SimpleTable = (props) => {
           })
           }
         </TableBody>
-        { !hideFooter && (
+        {(hideFooter === false || (hideFooter === undefined && (rows?.length || 0) > initPageSize)) && (
           <TableFooter>
             <TableRow>
               <TablePagination
