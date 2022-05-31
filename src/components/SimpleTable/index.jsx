@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-05-31 09:01:42
+ * @LastEditTime: 2022-05-31 10:31:38
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -19,7 +19,7 @@ const SimpleTable = (props) => {
     columns, rows, rowKey,
     // eslint-disable-next-line no-unused-vars
     total, current, pageSize, pageSizeOptions, onPageChange, onPageSizeChange, paginationProps, initPageSize,
-    hideHeader, title, titlePosition, titleStyle, bordered, hideFooter,
+    hideHeader, title, titlePosition, titleStyle, bordered, hideFooter, columnDefaultWidth,
     expandable, showExpandColumn, expandIcon, expandRowByClick, expandColumnWidth, expandRowRender, getRowExpandable, unmountOnExit,
     ...restProps
   } = props;
@@ -62,6 +62,7 @@ const SimpleTable = (props) => {
               showExpandColumn={showExpandColumn}
               expandColumnWidth={expandColumnWidth}
               bordered={bordered}
+              columnDefaultWidth={columnDefaultWidth}
             />
           </TableHead>
         )}
@@ -87,6 +88,7 @@ const SimpleTable = (props) => {
                 columns={columns}
                 hideHeader={hideHeader}
                 unmountOnExit={unmountOnExit}
+                columnDefaultWidth={columnDefaultWidth}
               />
             );
           })
@@ -122,6 +124,7 @@ SimpleTable.defaultProps = {
   pageSizeOptions: [ 10, 25, 50, 100, 200 ],
   showExpandColumn: true,
   expandColumnWidth: 45,
+  columnDefaultWidth: 100,
 };
 
 SimpleTable.propTypes = {
@@ -144,6 +147,7 @@ SimpleTable.propTypes = {
   titlePosition: PropTypes.oneOf([ 'top', 'bottom', 'inherit' ]),
 
   bordered: PropTypes.bool,
+  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
   expandable: PropTypes.bool,
   showExpandColumn: PropTypes.bool,

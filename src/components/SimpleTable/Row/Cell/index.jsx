@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-05-31 09:57:28
+ * @LastEditTime: 2022-05-31 10:32:36
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,7 +14,7 @@ import { StatusRender } from 'mui-component';
 import { columnPropType } from '../../common';
 
 const Cell = (props) => {
-  const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader } = props;
+  const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader, columnDefaultWidth } = props;
   const cellSx = useCreation(() => {
     const sx = { px: 0, tableLayout: 'fixed' };
     if (rowIndex === -1 || (rowIndex === 0 && hideHeader)) {
@@ -22,6 +22,8 @@ const Cell = (props) => {
         sx.width = width;
       } else if (type === 'status') {
         sx.width = 70;
+      } else {
+        sx.width = columnDefaultWidth;
       }
       if (maxWidth) { sx.maxWidth = maxWidth; }
       if (minWidth) { sx.minWidth = minWidth; }
@@ -50,7 +52,7 @@ const Cell = (props) => {
       }
     }
     return sx;
-  }, [ width, rowIndex, maxWidth, minWidth, ellipsis, bordered, type, hideHeader ]);
+  }, [ width, rowIndex, maxWidth, minWidth, ellipsis, bordered, type, hideHeader, columnDefaultWidth ]);
   const value = rowIndex === -1 ? '' : (valueGetter?.({ row, rowIndex, field, value: row?.[field] }) ?? row?.[field] ?? '');
   const cellProps = getCellProps?.({ row, rowIndex, field, value }) ?? {};
   const item = rowIndex === -1 ? (renderTitle?.({ field }) ?? title ?? '') : (renderCell?.({ row, rowIndex, field, value }) ?? (type === 'status' ? (
@@ -98,6 +100,7 @@ Cell.propTypes = {
   row: PropTypes.object,
   expandIcon: PropTypes.array,
   hideHeader: PropTypes.bool,
+  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default Cell;

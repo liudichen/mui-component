@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-05-31 09:42:22
+ * @LastEditTime: 2022-05-31 10:29:57
  */
 import React from 'react';
 import { TableProps, BoxProps, TablePaginationProps } from '@mui/material';
@@ -49,6 +49,9 @@ export interface SimpleTableProps extends TableProps {
   title?: React.ReactNode,
   titlePosition?: 'top' | 'bottom' | 'inherit',
   hideHeader?: boolean,
+
+  bordered?: boolean,
+  columnDefaultWidth?: number | string,
 
   hideFooter?: boolean,
   total?: number,

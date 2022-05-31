@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:41:53
- * @LastEditTime: 2022-05-31 09:47:25
+ * @LastEditTime: 2022-05-31 10:32:13
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,7 +15,7 @@ import Cell from './Cell';
 import { columnPropType } from '../common';
 
 const Row = (props) => {
-  const { columns, rowIndex, hideHeader, row, showExpandColumn, expandRowByClick, expandColumnWidth, expandRowRender, expandable, isExpandable, expandIcon, bordered, unmountOnExit } = props;
+  const { columns, rowIndex, hideHeader, row, showExpandColumn, expandRowByClick, expandColumnWidth, expandRowRender, expandable, isExpandable, expandIcon, bordered, unmountOnExit, columnDefaultWidth } = props;
   const [ open, setOpen ] = useSafeState(false);
   const colSpans = useCreation(() => {
     let cols = columns?.length ?? 0;
@@ -60,6 +60,7 @@ const Row = (props) => {
             expandRowByClick={isExpandable && expandRowByClick}
             setOpen={setOpen}
             expandIcon={expandIcon}
+            columnDefaultWidth={columnDefaultWidth}
             {...item}
           />
         ))
@@ -103,5 +104,6 @@ Row.propTypes = {
   expandIcon: PropTypes.array,
   bordered: PropTypes.bool,
   unmountOnExit: PropTypes.bool,
+  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 export default Row;
