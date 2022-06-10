@@ -3,13 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-05-24 09:11:56
+ * @LastEditTime: 2022-06-10 17:15:33
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
 import { Box, Tooltip } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
+import dayjs from 'dayjs';
 
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
@@ -22,9 +23,9 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
     ...(prefix || {}),
   };
   if (type) {
-    if (type !== 'status') {
+    if (![ 'status', 'date', 'dateTime' ].includes(type)) {
       initInfo.type = type;
-    } else {
+    } else if (type === 'status') {
       initInfo.renderCell = ({ value }) => (
         <StatusRender
           status={value}
@@ -34,6 +35,10 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
           statusConvert={statusConvert}
         />
       );
+    } else {
+      initInfo.type = type;
+      initInfo.width = type === 'date' ? 100 : 160;
+      initInfo.renderCell = ({ value }) => dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss');
     }
   }
   if (titleAlign) { initInfo.headerAlign = titleAlign; }
