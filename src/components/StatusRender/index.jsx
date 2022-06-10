@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-05-09 20:59:56
+ * @LastEditTime: 2022-06-10 17:20:36
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -69,7 +69,6 @@ const getText = (text, rawStatus, statusConvert, statusTextConvert) => {
 
 const StatusRender = (props) => {
   const { color, status, type, statusColorConvert, statusTypeConvert, text, statusTextConvert, textSpanStyle, dotSpanStyle, statusConvert } = props;
-
 
   return (
     <span
