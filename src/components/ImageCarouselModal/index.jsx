@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 11:50:10
+ * @LastEditTime: 2022-06-13 14:29:47
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -37,6 +37,7 @@ const ImageCarouselModal = (props) => {
             ...(triggerSx || {}),
           },
         }}
+        onClick={() => setOpen(true)}
       >
         { trigger }
       </Link>
