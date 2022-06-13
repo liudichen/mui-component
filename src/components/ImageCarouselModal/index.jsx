@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 18:08:02
+ * @LastEditTime: 2022-06-13 18:09:33
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -42,9 +42,11 @@ const ImageCarouselModal = (props) => {
         } else {
           setImages(imagesProps);
         }
+      } else {
+        setImages([]);
       }
-    } else if (imagesProps) {
-      setImages([ imagesProps ]);
+    } else {
+      setImages(imagesProps ? [ imagesProps ] : []);
     }
   });
   useDeepCompareEffect(() => fetchImages(), [ imagesProps ]);
