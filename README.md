@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-05-30 20:46:45
+ * @LastEditTime: 2022-06-13 11:11:50
 -->
 # mui-formfield
 
@@ -33,6 +33,7 @@ export { default as SimpleTable, SimpleTableProps } from './components/SimpleTab
 export { default as PopConfirm, PopConfirmProps } from './components/PopConfirm';
 export { default as Modal, ModalProps } from './components/Modal';
 
+export { default as ImageCarouselModal, ImageCarousel, ImageCarouselProps, ImageCarouselModalProps } from './components/ImageCarouselModal';
 
 export { default as Space, SpaceProps } from './components/Space';
 
