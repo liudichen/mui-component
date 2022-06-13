@@ -4,11 +4,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-15 16:07:25
- * @LastEditTime: 2022-06-13 11:03:07
+ * @LastEditTime: 2022-06-13 17:52:51
  */
 import React from 'react';
 
-interface imageItem {
+export interface imageItem {
   src?: string,
   title?: string,
   name?: string,
@@ -20,7 +20,7 @@ interface labels {
   item?: string,
 }
 
-interface carouselProps {
+export interface carouselProps {
   ariaLabel?: string, // Define the aria-label attribute for the root carousel element. The default is undefined, skipping the attribute from markup.
   axis?: 'horizontal' | 'vertical', // Define the direction of the slider, defaults to 'horizontal'.
   autoFocus?: boolean,

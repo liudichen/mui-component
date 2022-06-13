@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 14:29:47
+ * @LastEditTime: 2022-06-13 18:08:02
  */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useControllableValue } from 'ahooks';
+import { useControllableValue, useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
@@ -20,11 +20,34 @@ const ImageCarouselModal = (props) => {
     // eslint-disable-next-line no-unused-vars
     open: openProp, onClose,
     title,
-    children, images,
+    children, images: imagesProps,
     fullWidth, fullScreen, maxWidth,
     PaperProps, DialogProps,
     ...restProps
   } = props;
+  const [ images, setImages ] = useSafeState([]);
+  const fetchImages = useMemoizedFn(async () => {
+    if (typeof imagesProps === 'function') {
+      const res = await imagesProps();
+      setImages(res || []);
+    } else if (Array.isArray(imagesProps)) {
+      if (imagesProps.length) {
+        if (typeof imagesProps[0] === 'function') {
+          const imgs = [];
+          for (let i = 0; i < imagesProps.length; i++) {
+            const img = await imagesProps[i]();
+            imgs.push(img);
+          }
+          setImages(imgs);
+        } else {
+          setImages(imagesProps);
+        }
+      }
+    } else if (imagesProps) {
+      setImages([ imagesProps ]);
+    }
+  });
+  useDeepCompareEffect(() => fetchImages(), [ imagesProps ]);
   const [ open, setOpen ] = useControllableValue(props, { valuePropName: 'open', trigger: 'onClose', defaultValue: false });
   return (
     <>
@@ -104,12 +127,18 @@ ImageCarouselModal.propTypes = {
   PaperProps: PropTypes.object,
   title: PropTypes.node,
 
-  images: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    url: PropTypes.string,
-    name: PropTypes.string,
-  })),
+  images: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string,
+      title: PropTypes.string,
+      url: PropTypes.string,
+      name: PropTypes.string,
+    }
+    )),
+    PropTypes.arrayOf(PropTypes.func),
+    PropTypes.func,
+    PropTypes.object,
+  ]).isRequired,
 
   ...carousel,
 };
