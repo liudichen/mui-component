@@ -3,20 +3,21 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 18:09:33
+ * @LastEditTime: 2022-06-13 18:24:18
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link, IconButton } from '@mui/material';
 import { isMobile } from 'react-device-detect';
+import { IconX } from '@tabler/icons';
 
 import ImageCarousel from './ImageCarousel';
 import carousel from './ImageCarousel/propTypes';
 
 const ImageCarouselModal = (props) => {
   const {
-    trigger, triggerSx, triggerProps,
+    trigger, triggerSx, triggerProps, showCloseIcon, CloseIcon,
     // eslint-disable-next-line no-unused-vars
     open: openProp, onClose,
     title,
@@ -79,6 +80,20 @@ const ImageCarouselModal = (props) => {
       >
         <DialogTitle variant='h4' component='div'>
           { title }
+          { showCloseIcon && (
+            <IconButton
+              aria-label='close'
+              onClick={onClose}
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              { CloseIcon }
+            </IconButton>
+          )}
         </DialogTitle>
         <DialogContent>
           <ImageCarousel images={images} {...restProps}>
@@ -99,9 +114,13 @@ ImageCarouselModal.defaultProps = {
   maxWidth: 'md',
   title: '图片预览',
   fullScreen: isMobile,
+  CloseIcon: <IconX size='24px'/>,
+  showCloseIcon: true,
 };
 
 ImageCarouselModal.propTypes = {
+  showCloseIcon: PropTypes.bool,
+  CloseIcon: PropTypes.node,
   open: PropTypes.bool,
   onClose: PropTypes.func,
   trigger: PropTypes.node,
