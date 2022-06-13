@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-06-10 17:15:33
+ * @LastEditTime: 2022-06-13 10:14:37
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -38,7 +38,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
     } else {
       initInfo.type = type;
       initInfo.width = type === 'date' ? 100 : 160;
-      initInfo.renderCell = ({ value }) => dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss');
+      initInfo.renderCell = ({ value }) => (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-');
     }
   }
   if (titleAlign) { initInfo.headerAlign = titleAlign; }
