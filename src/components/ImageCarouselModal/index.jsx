@@ -3,27 +3,29 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 11:11:02
+ * @LastEditTime: 2022-06-13 11:50:10
  */
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useControllableValue } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
-import { useMergedState } from '../../../common';
 import ImageCarousel from './ImageCarousel';
 import carousel from './ImageCarousel/propTypes';
 
 const ImageCarouselModal = (props) => {
   const {
     trigger, triggerSx, triggerProps,
-    open: openProp, onClose, title,
+    // eslint-disable-next-line no-unused-vars
+    open: openProp, onClose,
+    title,
     children, images,
     fullWidth, fullScreen, maxWidth,
     PaperProps, DialogProps,
     ...restProps
   } = props;
-  const [ open, setOpen ] = useMergedState(false, { value: openProp, onChange: onClose, postState: (s) => !!s });
+  const [ open, setOpen ] = useControllableValue(props, { valuePropName: 'open', trigger: 'onClose', defaultValue: false });
   return (
     <>
       <Link
