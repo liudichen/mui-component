@@ -3,13 +3,14 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-05-31 11:15:55
+ * @LastEditTime: 2022-06-16 11:33:50
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { TableCell, Tooltip } from '@mui/material';
 import { StatusRender } from 'mui-component';
+import dayjs from 'dayjs';
 
 import { columnPropType } from '../../common';
 
@@ -20,8 +21,10 @@ const Cell = (props) => {
     if (rowIndex === -1 || (rowIndex === 0 && hideHeader)) {
       if (width) {
         sx.width = width;
-      } else if (type === 'status') {
+      } else if (type === 'status' || type === 'date') {
         sx.width = 70;
+      } else if (type === 'dateTime') {
+        sx.width = 138;
       } else {
         sx.width = columnDefaultWidth;
       }
@@ -59,7 +62,7 @@ const Cell = (props) => {
     <StatusRender
       status={value}
     />
-  ) : value));
+  ) : type === 'date' || type === 'dateTime' ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : value));
   const onClick = useMemoizedFn(async () => {
     if (expandRowByClick && rowIndex > -1 && type !== 'actions') {
       setOpen?.((s) => !s);
