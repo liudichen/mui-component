@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-06-16 11:33:50
+ * @LastEditTime: 2022-06-16 11:40:09
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -62,7 +62,7 @@ const Cell = (props) => {
     <StatusRender
       status={value}
     />
-  ) : type === 'date' || type === 'dateTime' ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : value));
+  ) : (type === 'date' || type === 'dateTime') ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : value));
   const onClick = useMemoizedFn(async () => {
     if (expandRowByClick && rowIndex > -1 && type !== 'actions') {
       setOpen?.((s) => !s);
