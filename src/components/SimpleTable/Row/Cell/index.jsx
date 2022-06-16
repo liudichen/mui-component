@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-06-16 11:40:09
+ * @LastEditTime: 2022-06-16 13:42:44
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -24,7 +24,7 @@ const Cell = (props) => {
       } else if (type === 'status' || type === 'date') {
         sx.width = 70;
       } else if (type === 'dateTime') {
-        sx.width = 138;
+        sx.width = 140;
       } else {
         sx.width = columnDefaultWidth;
       }
