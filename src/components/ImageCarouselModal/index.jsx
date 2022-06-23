@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-03-28 14:38:49
- * @LastEditTime: 2022-06-13 18:24:18
+ * @LastEditTime: 2022-06-23 15:18:34
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -83,7 +83,7 @@ const ImageCarouselModal = (props) => {
           { showCloseIcon && (
             <IconButton
               aria-label='close'
-              onClick={onClose}
+              onClick={() => setOpen(false)}
               sx={{
                 position: 'absolute',
                 right: 8,
