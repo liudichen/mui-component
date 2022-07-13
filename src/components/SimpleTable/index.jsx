@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /*
  * @Description:
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-13 16:22:53
+ * @LastEditTime: 2022-07-13 16:52:37
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -27,7 +28,6 @@ const SimpleTable = (props) => {
     columns,
     rows,
     rowKey,
-    // eslint-disable-next-line no-unused-vars
     total,
     current,
     pageSize,
@@ -141,7 +141,10 @@ const SimpleTable = (props) => {
             );
           })}
         </TableBody>
-        {hideFooter === false && (
+        {(hideFooter === false ||
+          (typeof hideFooter === 'undefined' &&
+            (total ?? rows?.length ?? 0) <= initPageSize &&
+            (total ?? rows?.length ?? 0) <= rowsPerPage)) && (
           <TableFooter>
             <TableRow>
               <TablePagination
@@ -167,7 +170,6 @@ const SimpleTable = (props) => {
 
 SimpleTable.defaultProps = {
   titlePosition: 'top',
-  hideFooter: false,
   initPageSize: 10,
   pageSizeOptions: [10, 25, 50, 100, 200],
   showExpandColumn: true,
