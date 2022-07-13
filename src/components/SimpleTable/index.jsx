@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-05-31 11:03:19
+ * @LastEditTime: 2022-07-13 16:21:43
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -34,8 +34,8 @@ const SimpleTable = (props) => {
     pageSizeOptions,
     onPageChange,
     onPageSizeChange,
-    paginationProps,
     initPageSize,
+    paginationProps,
     hideHeader,
     title,
     titlePosition,
@@ -71,10 +71,12 @@ const SimpleTable = (props) => {
     trigger: 'onPageSizeChange',
     defaultValue: 25,
   });
-  const dataSource =
-    typeof total !== 'undefined' || !rowsPerPage
-      ? rows
-      : rows?.slice(rowsPerPage * (pageNumber - 1), rowsPerPage * pageNumber);
+  const dataSource = useCreation(() => {
+    if (total === undefined || total === rows?.length) {
+      return rows?.slice(rowsPerPage * (pageNumber - 1), rowsPerPage * pageNumber);
+    }
+    return rows;
+  }, [rows, rowsPerPage, pageNumber, total]);
   return (
     <Box
       {...(tableContainerBoxProps || {})}
@@ -139,8 +141,7 @@ const SimpleTable = (props) => {
             );
           })}
         </TableBody>
-        {(hideFooter === false ||
-          (hideFooter === undefined && pageNumber === 1 && (rows?.length || 0) > initPageSize)) && (
+        {hideFooter === false && (
           <TableFooter>
             <TableRow>
               <TablePagination
@@ -166,6 +167,7 @@ const SimpleTable = (props) => {
 
 SimpleTable.defaultProps = {
   titlePosition: 'top',
+  hideFooter: false,
   initPageSize: 10,
   pageSizeOptions: [10, 25, 50, 100, 200],
   showExpandColumn: true,
