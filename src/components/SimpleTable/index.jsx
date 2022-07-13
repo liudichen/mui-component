@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-13 16:59:26
+ * @LastEditTime: 2022-07-13 17:03:46
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -145,8 +145,8 @@ const SimpleTable = (props) => {
         {(showFooter ||
           hideFooter === false ||
           (typeof hideFooter === 'undefined' &&
-            (total ?? rows?.length ?? 0) <= initPageSize &&
-            (total ?? rows?.length ?? 0) <= rowsPerPage)) && (
+            (total ?? rows?.length ?? 0) > initPageSize &&
+            (total ?? rows?.length ?? 0) > rowsPerPage)) && (
           <TableFooter>
             <TableRow>
               <TablePagination
