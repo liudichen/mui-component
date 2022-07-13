@@ -4,7 +4,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-13 16:52:37
+ * @LastEditTime: 2022-07-13 16:59:26
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -37,6 +37,7 @@ const SimpleTable = (props) => {
     initPageSize,
     paginationProps,
     hideHeader,
+    showFooter,
     title,
     titlePosition,
     titleStyle,
@@ -141,7 +142,8 @@ const SimpleTable = (props) => {
             );
           })}
         </TableBody>
-        {(hideFooter === false ||
+        {(showFooter ||
+          hideFooter === false ||
           (typeof hideFooter === 'undefined' &&
             (total ?? rows?.length ?? 0) <= initPageSize &&
             (total ?? rows?.length ?? 0) <= rowsPerPage)) && (
@@ -206,6 +208,7 @@ SimpleTable.propTypes = {
   unmountOnExit: PropTypes.bool,
 
   hideFooter: PropTypes.bool,
+  showFooter: PropTypes.bool,
   total: PropTypes.number,
   current: PropTypes.number,
   pageSize: PropTypes.number,
