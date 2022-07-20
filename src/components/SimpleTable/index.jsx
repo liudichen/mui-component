@@ -4,11 +4,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-20 09:13:47
+ * @LastEditTime: 2022-07-20 16:27:47
  */
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useControllableValue, useCreation } from 'ahooks';
+import PropTypes from "prop-types";
+import React from "react";
+import { useControllableValue, useCreation } from "ahooks";
 import {
   Box,
   Table,
@@ -17,10 +17,10 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from '@mui/material';
+} from "@mui/material";
 
-import { columnPropType } from './common';
-import Row from './Row';
+import { columnPropType } from "./common";
+import Row from "./Row";
 
 const SimpleTable = (props) => {
   const {
@@ -62,29 +62,32 @@ const SimpleTable = (props) => {
     return cols;
   }, [columns?.length, showExpandColumn]);
   const [pageNumber, setPageNumber] = useControllableValue(props, {
-    valuePropName: 'current',
-    trigger: 'onPageChange',
+    valuePropName: "current",
+    trigger: "onPageChange",
     defaultValue: 1,
   });
   const [rowsPerPage, setRowsPerPage] = useControllableValue(props, {
-    defaultValuePropName: 'initPageSize',
-    valuePropName: 'pageSize',
-    trigger: 'onPageSizeChange',
+    defaultValuePropName: "initPageSize",
+    valuePropName: "pageSize",
+    trigger: "onPageSizeChange",
     defaultValue: 25,
   });
   const dataSource = useCreation(() => {
     if (total === undefined || total === rows?.length) {
-      return rows?.slice(rowsPerPage * (pageNumber - 1), rowsPerPage * pageNumber);
+      return (
+        rows?.slice(rowsPerPage * (pageNumber - 1), rowsPerPage * pageNumber) ||
+        []
+      );
     }
-    return rows;
+    return rows || [];
   }, [rows, rowsPerPage, pageNumber, total]);
   return (
     <Box
       {...(tableContainerBoxProps || {})}
       sx={{
-        width: '100%',
+        width: "100%",
         px: 2,
-        overflow: 'auto',
+        overflow: "auto",
         ...(tableContainerBoxProps?.sx || {}),
       }}
     >
@@ -118,7 +121,7 @@ const SimpleTable = (props) => {
         <TableBody>
           {dataSource?.map((item, index) => {
             let isExpandable = true;
-            if (typeof getRowExpandable === 'function') {
+            if (typeof getRowExpandable === "function") {
               isExpandable = getRowExpandable(item, index) ?? true;
             }
             return (
@@ -144,7 +147,7 @@ const SimpleTable = (props) => {
         </TableBody>
         {(showFooter ||
           hideFooter === false ||
-          (typeof hideFooter === 'undefined' &&
+          (typeof hideFooter === "undefined" &&
             (total ?? rows?.length ?? 0) > initPageSize &&
             (total ?? rows?.length ?? 0) > rowsPerPage)) && (
           <TableFooter>
@@ -171,7 +174,7 @@ const SimpleTable = (props) => {
 };
 
 SimpleTable.defaultProps = {
-  titlePosition: 'top',
+  titlePosition: "top",
   initPageSize: 10,
   pageSizeOptions: [10, 25, 50, 100, 200],
   showExpandColumn: true,
@@ -182,8 +185,11 @@ SimpleTable.defaultProps = {
 SimpleTable.propTypes = {
   component: PropTypes.elementType,
   classes: PropTypes.object,
-  padding: PropTypes.oneOf(['normal', 'checkbox', 'none']),
-  size: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.string]),
+  padding: PropTypes.oneOf(["normal", "checkbox", "none"]),
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf(["medium", "small"]),
+    PropTypes.string,
+  ]),
   stickyHeader: PropTypes.bool,
   sx: PropTypes.oneOfType([PropTypes.array, PropTypes.func, PropTypes.object]),
 
@@ -193,7 +199,7 @@ SimpleTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape(columnPropType)),
   hideHeader: PropTypes.bool,
   title: PropTypes.node,
-  titlePosition: PropTypes.oneOf(['top', 'bottom', 'inherit']),
+  titlePosition: PropTypes.oneOf(["top", "bottom", "inherit"]),
 
   bordered: PropTypes.bool,
   columnDefaultWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

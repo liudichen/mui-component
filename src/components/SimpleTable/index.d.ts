@@ -3,10 +3,10 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-07-13 16:59:57
+ * @LastEditTime: 2022-07-20 16:31:57
  */
-import React from 'react';
-import { TableProps, BoxProps, TablePaginationProps } from '@mui/material';
+import React from "react";
+import { TableProps, BoxProps, TablePaginationProps } from "@mui/material";
 
 interface rowType {
   [key: string]: any;
@@ -27,10 +27,17 @@ interface columnType {
   field?: string;
   title?: React.ReactNode;
   renderTitle?: (parmas: titleParams) => React.ReactNode;
-  titleAlign?: 'center' | 'left' | 'right';
-  align?: 'center' | 'left' | 'right';
+  titleAlign?: "center" | "left" | "right";
+  align?: "center" | "left" | "right";
   renderCell?: (params: getterParams) => React.ReactNode;
-  type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime';
+  type?:
+    | "string"
+    | "number"
+    | "date"
+    | "select"
+    | "actions"
+    | "status"
+    | "dateTime";
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
@@ -46,7 +53,7 @@ export interface SimpleTableProps extends TableProps {
   rowKey?: string;
   columns?: columnType[];
   title?: React.ReactNode;
-  titlePosition?: 'top' | 'bottom' | 'inherit';
+  titlePosition?: "top" | "bottom" | "inherit";
   hideHeader?: boolean;
 
   bordered?: boolean;
@@ -63,12 +70,15 @@ export interface SimpleTableProps extends TableProps {
   paginationProps?: Omit<
     Omit<
       Omit<
-        Omit<Omit<Omit<Omit<TablePaginationProps, 'colSpan'>, 'count'>, 'page'>, 'rowsPerPage'>,
-        'rowsPerPageOptions'
+        Omit<
+          Omit<Omit<Omit<TablePaginationProps, "colSpan">, "count">, "page">,
+          "rowsPerPage"
+        >,
+        "rowsPerPageOptions"
       >,
-      'onPageChange'
+      "onPageChange"
     >,
-    'onRowsPerPageChange'
+    "onRowsPerPageChange"
   >;
 
   expandable?: boolean;
@@ -76,7 +86,11 @@ export interface SimpleTableProps extends TableProps {
   expandIcon?: [React.ReactNode, React.ReactNode];
   expandRowByClick?: boolean;
   expandColumnWidth?: number | string;
-  expandRowRender?: (row: object, index: number, open: boolean) => React.ReactNode;
+  expandRowRender?: (
+    row: object,
+    index: number,
+    open: boolean
+  ) => React.ReactNode;
   getRowExpandable?: (row: object, index: number) => boolean;
   unmountOnExit?: boolean;
 }
