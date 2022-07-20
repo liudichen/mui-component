@@ -4,11 +4,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-20 16:38:02
+ * @LastEditTime: 2022-07-20 16:39:35
  */
-import PropTypes from "prop-types";
-import React from "react";
-import { useControllableValue, useCreation } from "ahooks";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { useControllableValue, useCreation } from 'ahooks';
 import {
   Box,
   Table,
@@ -17,10 +17,10 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from "@mui/material";
+} from '@mui/material';
 
-import { columnPropType } from "./common";
-import Row from "./Row";
+import { columnPropType } from './common';
+import Row from './Row';
 
 const SimpleTable = (props) => {
   const {
@@ -60,16 +60,16 @@ const SimpleTable = (props) => {
       cols += 1;
     }
     return cols;
-  }, [columns?.length, showExpandColumn]);
-  const [pageNumber, setPageNumber] = useControllableValue(props, {
-    valuePropName: "current",
-    trigger: "onPageChange",
+  }, [ columns?.length, showExpandColumn ]);
+  const [ pageNumber, setPageNumber ] = useControllableValue(props, {
+    valuePropName: 'current',
+    trigger: 'onPageChange',
     defaultValue: 1,
   });
-  const [rowsPerPage, setRowsPerPage] = useControllableValue(props, {
-    defaultValuePropName: "initPageSize",
-    valuePropName: "pageSize",
-    trigger: "onPageSizeChange",
+  const [ rowsPerPage, setRowsPerPage ] = useControllableValue(props, {
+    defaultValuePropName: 'initPageSize',
+    valuePropName: 'pageSize',
+    trigger: 'onPageSizeChange',
     defaultValue: 25,
   });
   const dataSource = useCreation(() => {
@@ -80,14 +80,14 @@ const SimpleTable = (props) => {
       );
     }
     return rows || [];
-  }, [rows, rowsPerPage, pageNumber, total]);
+  }, [ rows, rowsPerPage, pageNumber, total ]);
   return (
     <Box
       {...(tableContainerBoxProps || {})}
       sx={{
-        width: "100%",
+        width: '100%',
         px: 2,
-        overflow: "auto",
+        overflow: 'auto',
         ...(tableContainerBoxProps?.sx || {}),
       }}
     >
@@ -121,7 +121,7 @@ const SimpleTable = (props) => {
         <TableBody>
           {dataSource?.map((item, index) => {
             let isExpandable = true;
-            if (typeof getRowExpandable === "function") {
+            if (typeof getRowExpandable === 'function') {
               isExpandable = getRowExpandable(item, index) ?? true;
             }
             return (
@@ -147,7 +147,7 @@ const SimpleTable = (props) => {
         </TableBody>
         {(showFooter ||
           hideFooter === false ||
-          (typeof hideFooter === "undefined" &&
+          (typeof hideFooter === 'undefined' &&
             (total ?? rows?.length ?? 0) > initPageSize &&
             (total ?? rows?.length ?? 0) > rowsPerPage)) && (
           <TableFooter>
@@ -174,9 +174,9 @@ const SimpleTable = (props) => {
 };
 
 SimpleTable.defaultProps = {
-  titlePosition: "top",
+  titlePosition: 'top',
   initPageSize: 10,
-  pageSizeOptions: [10, 25, 50, 100, 200],
+  pageSizeOptions: [ 10, 25, 50, 100, 200 ],
   showExpandColumn: true,
   expandColumnWidth: 45,
   columnDefaultWidth: 100,
@@ -185,13 +185,13 @@ SimpleTable.defaultProps = {
 SimpleTable.propTypes = {
   component: PropTypes.elementType,
   classes: PropTypes.object,
-  padding: PropTypes.oneOf(["normal", "checkbox", "none"]),
+  padding: PropTypes.oneOf([ 'normal', 'checkbox', 'none' ]),
   size: PropTypes.oneOfType([
-    PropTypes.oneOf(["medium", "small"]),
+    PropTypes.oneOf([ 'medium', 'small' ]),
     PropTypes.string,
   ]),
   stickyHeader: PropTypes.bool,
-  sx: PropTypes.oneOfType([PropTypes.array, PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([ PropTypes.array, PropTypes.func, PropTypes.object ]),
 
   tableContainerBoxProps: PropTypes.object,
   rows: PropTypes.array,
@@ -199,16 +199,16 @@ SimpleTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape(columnPropType)),
   hideHeader: PropTypes.bool,
   title: PropTypes.node,
-  titlePosition: PropTypes.oneOf(["top", "bottom", "inherit"]),
+  titlePosition: PropTypes.oneOf([ 'top', 'bottom', 'inherit' ]),
 
   bordered: PropTypes.bool,
-  columnDefaultWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 
   expandable: PropTypes.bool,
   showExpandColumn: PropTypes.bool,
   expandIcon: PropTypes.array,
   expandRowByClick: PropTypes.bool,
-  expandColumnWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  expandColumnWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   expandRowRender: PropTypes.func, // (row,index,open)=>ReactNode
   getRowExpandable: PropTypes.func, // (row,index) => boolean
   unmountOnExit: PropTypes.bool,
