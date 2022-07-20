@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-06-10 17:20:36
+ * @LastEditTime: 2022-07-20 09:13:33
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,8 +13,11 @@ const TypeColor = {
   success2: '#13c2c2',
   warning: '#faad14',
   error: '#ff4d4f',
+  process0: '#69c0ff',
   process: '#1890ff',
+  process2: '#0050b3',
   default: '#d9d9d9',
+  edit: '#e6f7ff',
 };
 const StatusType = {
   批准: TypeColor.success,
@@ -45,7 +48,9 @@ const StatusType = {
   确认: TypeColor.process,
 };
 const getColor = (color, rawStatus, type, statusColorConvert, statusTypeConvert, statusConvert) => {
-  if (color) { return color; }
+  if (color) {
+    return color;
+  }
   const status = statusConvert ? statusConvert(rawStatus) : rawStatus;
   if (status) {
     if (statusColorConvert) {
@@ -62,13 +67,26 @@ const getColor = (color, rawStatus, type, statusColorConvert, statusTypeConvert,
 };
 
 const getText = (text, rawStatus, statusConvert, statusTextConvert) => {
-  if (text) { return text; }
+  if (text) {
+    return text;
+  }
   const status = statusConvert ? statusConvert(rawStatus) : rawStatus;
   return statusTextConvert?.(status) ?? (status || null);
 };
 
 const StatusRender = (props) => {
-  const { color, status, type, statusColorConvert, statusTypeConvert, text, statusTextConvert, textSpanStyle, dotSpanStyle, statusConvert } = props;
+  const {
+    color,
+    status,
+    type,
+    statusColorConvert,
+    statusTypeConvert,
+    text,
+    statusTextConvert,
+    textSpanStyle,
+    dotSpanStyle,
+    statusConvert,
+  } = props;
 
   return (
     <span
@@ -84,25 +102,26 @@ const StatusRender = (props) => {
           marginRight: '2px',
           verticalAlign: 'middle',
           borderRadius: '50%',
-          backgroundColor: getColor(color, status, type, statusColorConvert, statusTypeConvert, statusConvert),
+          backgroundColor: getColor(
+            color,
+            status,
+            type,
+            statusColorConvert,
+            statusTypeConvert,
+            statusConvert,
+          ),
           ...(dotSpanStyle || {}),
         }}
       />
-      <span style={textSpanStyle}>
-        { getText(text, status, statusConvert, statusTextConvert) }
-      </span>
+      <span style={textSpanStyle}>{getText(text, status, statusConvert, statusTextConvert)}</span>
     </span>
   );
 };
 
-
 StatusRender.propTypes = {
   color: PropTypes.string,
-  status: PropTypes.oneOfType([
-    PropTypes.oneOf(Object.keys(StatusType)),
-    PropTypes.string,
-  ]),
-  type: PropTypes.oneOf([ 'success', 'success2', 'warning', 'error', 'process', 'default' ]),
+  status: PropTypes.oneOfType([PropTypes.oneOf(Object.keys(StatusType)), PropTypes.string]),
+  type: PropTypes.oneOf(['success', 'success2', 'warning', 'error', 'process', 'default']),
   text: PropTypes.node,
   statusColorConvert: PropTypes.func,
   statusTypeConvert: PropTypes.func,
