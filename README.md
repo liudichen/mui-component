@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-06-13 11:11:50
+ * @LastEditTime: 2022-07-22 11:35:45
 -->
 # mui-formfield
 
@@ -25,6 +25,7 @@ $ npm i mui-component
 export { default as ContentCard, ContentCardProps } from './components/ContentCard';
 export { default as PageContainer, PageContainerProps } from './components/PageContainer';
 export { default as Loading, LoadingProps } from './components/Loading';
+export { default as Pagination, PaginationProps } from './components/Pagination';
 export { default as DataGridTable, DataGridPaginationProps, DataGridTableProps, columnType, initColumn } from './components/DataGridTable';
 export { default as GridToolbarFty, GridToolbarFtyParams, GridToolbar } from './components/DataGridTable/GridToolbars';
 export { default as StatusRender, StatusRenderProps } from './components/StatusRender';

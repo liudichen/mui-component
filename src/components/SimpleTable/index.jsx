@@ -4,20 +4,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-20 16:39:35
+ * @LastEditTime: 2022-07-22 11:23:04
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation } from 'ahooks';
-import {
-  Box,
-  Table,
-  TableBody,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from '@mui/material';
+import { Box, Table, TableBody, TableFooter, TableHead } from '@mui/material';
+import Pagination from '../Pagination';
 
 import { columnPropType } from './common';
 import Row from './Row';
@@ -37,7 +30,8 @@ const SimpleTable = (props) => {
     initPageSize,
     paginationProps,
     hideHeader,
-    showFooter,
+    showFoot,
+    footRender, footProps, hidePagination,
     title,
     titlePosition,
     titleStyle,
@@ -82,93 +76,94 @@ const SimpleTable = (props) => {
     return rows || [];
   }, [ rows, rowsPerPage, pageNumber, total ]);
   return (
-    <Box
-      {...(tableContainerBoxProps || {})}
-      sx={{
-        width: '100%',
-        px: 2,
-        overflow: 'auto',
-        ...(tableContainerBoxProps?.sx || {}),
-      }}
-    >
-      <Table {...restProps}>
-        {!!title && (
-          <caption
-            style={{
-              ...{
-                padding: 0,
-                captionSide: titlePosition,
-                ...(titleStyle || {}),
-              },
-            }}
-          >
-            {title}
-          </caption>
-        )}
-        {!hideHeader && (
-          <TableHead>
-            <Row
-              rowIndex={-1}
-              columns={columns}
-              expandable={expandable}
-              showExpandColumn={showExpandColumn}
-              expandColumnWidth={expandColumnWidth}
-              bordered={bordered}
-              columnDefaultWidth={columnDefaultWidth}
-            />
-          </TableHead>
-        )}
-        <TableBody>
-          {dataSource?.map((item, index) => {
-            let isExpandable = true;
-            if (typeof getRowExpandable === 'function') {
-              isExpandable = getRowExpandable(item, index) ?? true;
-            }
-            return (
+    <Box>
+      <Box
+        {...(tableContainerBoxProps || {})}
+        sx={{
+          width: '100%',
+          px: 2,
+          overflow: 'auto',
+          ...(tableContainerBoxProps?.sx || {}),
+        }}
+      >
+        <Table {...restProps}>
+          {!!title && (
+            <caption
+              style={{
+                ...{
+                  padding: 0,
+                  captionSide: titlePosition,
+                  ...(titleStyle || {}),
+                },
+              }}
+            >
+              {title}
+            </caption>
+          )}
+          {!hideHeader && (
+            <TableHead>
               <Row
-                key={item?.[rowKey] ?? index}
-                row={item}
-                rowIndex={index}
-                expandable={expandable}
-                isExpandable={expandable && isExpandable}
-                expandColumnWidth={expandColumnWidth}
-                expandIcon={expandIcon}
-                expandRowByClick={expandRowByClick}
-                expandRowRender={expandRowRender}
-                showExpandColumn={showExpandColumn}
-                bordered={bordered}
+                rowIndex={-1}
                 columns={columns}
-                hideHeader={hideHeader}
-                unmountOnExit={unmountOnExit}
+                expandable={expandable}
+                showExpandColumn={showExpandColumn}
+                expandColumnWidth={expandColumnWidth}
+                bordered={bordered}
                 columnDefaultWidth={columnDefaultWidth}
               />
-            );
-          })}
-        </TableBody>
-        {(showFooter ||
-          hideFooter === false ||
-          (typeof hideFooter === 'undefined' &&
+            </TableHead>
+          )}
+          <TableBody>
+            {dataSource?.map((item, index) => {
+              let isExpandable = true;
+              if (typeof getRowExpandable === 'function') {
+                isExpandable = getRowExpandable(item, index) ?? true;
+              }
+              return (
+                <Row
+                  key={item?.[rowKey] ?? index}
+                  row={item}
+                  rowIndex={index}
+                  expandable={expandable}
+                  isExpandable={expandable && isExpandable}
+                  expandColumnWidth={expandColumnWidth}
+                  expandIcon={expandIcon}
+                  expandRowByClick={expandRowByClick}
+                  expandRowRender={expandRowRender}
+                  showExpandColumn={showExpandColumn}
+                  bordered={bordered}
+                  columns={columns}
+                  hideHeader={hideHeader}
+                  unmountOnExit={unmountOnExit}
+                  columnDefaultWidth={columnDefaultWidth}
+                />
+              );
+            })}
+          </TableBody>
+          {showFoot && !!footRender && (
+            <TableFooter {...(footProps || {})}>
+              {footRender}
+            </TableFooter>
+          )}
+        </Table>
+      </Box>
+      <Box>
+        {(hidePagination === false ||
+          (typeof hidePagination === 'undefined' &&
             (total ?? rows?.length ?? 0) > initPageSize &&
             (total ?? rows?.length ?? 0) > rowsPerPage)) && (
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                labelRowsPerPage="每页行数:"
-                showFirstButton
-                showLastButton
-                {...(paginationProps || {})}
-                colSpan={colSpans}
-                count={total ?? rows?.length ?? 0}
-                page={pageNumber - 1}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={pageSizeOptions}
-                onPageChange={(e, v) => setPageNumber(v + 1)}
-                onRowsPerPageChange={(e) => setRowsPerPage(e.target.value)}
-              />
-            </TableRow>
-          </TableFooter>
+          <Pagination
+            total={total ?? rows?.length ?? 0}
+            current={pageNumber}
+            onPageChange={setPageNumber}
+            pageSize={rowsPerPage}
+            onPageSizeChange={setRowsPerPage}
+            color='secondary'
+            pageSizeOptions={pageSizeOptions}
+            {...(paginationProps || {})}
+          />
         )}
-      </Table>
+      </Box>
     </Box>
   );
 };
@@ -213,8 +208,9 @@ SimpleTable.propTypes = {
   getRowExpandable: PropTypes.func, // (row,index) => boolean
   unmountOnExit: PropTypes.bool,
 
-  hideFooter: PropTypes.bool,
-  showFooter: PropTypes.bool,
+  showFoot: PropTypes.bool,
+  footRender: PropTypes.node,
+  footProps: PropTypes.object,
   total: PropTypes.number,
   current: PropTypes.number,
   pageSize: PropTypes.number,
@@ -222,6 +218,7 @@ SimpleTable.propTypes = {
   onPageChange: PropTypes.func,
   onPageSizeChange: PropTypes.func,
   paginationProps: PropTypes.object,
+  hidePagination: PropTypes.bool,
 };
 
 export default SimpleTable;

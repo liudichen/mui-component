@@ -3,10 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-07-20 16:31:57
+ * @LastEditTime: 2022-07-22 11:31:02
  */
-import React from "react";
-import { TableProps, BoxProps, TablePaginationProps } from "@mui/material";
+import React from 'react';
+import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
+import { PaginationProps } from '../Pagination';
 
 interface rowType {
   [key: string]: any;
@@ -27,17 +28,10 @@ interface columnType {
   field?: string;
   title?: React.ReactNode;
   renderTitle?: (parmas: titleParams) => React.ReactNode;
-  titleAlign?: "center" | "left" | "right";
-  align?: "center" | "left" | "right";
+  titleAlign?: 'center' | 'left' | 'right';
+  align?: 'center' | 'left' | 'right';
   renderCell?: (params: getterParams) => React.ReactNode;
-  type?:
-    | "string"
-    | "number"
-    | "date"
-    | "select"
-    | "actions"
-    | "status"
-    | "dateTime";
+  type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime';
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
@@ -53,33 +47,23 @@ export interface SimpleTableProps extends TableProps {
   rowKey?: string;
   columns?: columnType[];
   title?: React.ReactNode;
-  titlePosition?: "top" | "bottom" | "inherit";
+  titlePosition?: 'top' | 'bottom' | 'inherit';
   hideHeader?: boolean;
 
   bordered?: boolean;
   columnDefaultWidth?: number | string;
 
-  hideFooter?: boolean;
-  showFooter?: boolean;
+  hideFoot?: boolean;
+  footProps?: TableFooterProps,
+  footRender?: React.ReactNode | React.FunctionComponent | React.Component,
+  hidePagination?: boolean,
   total?: number;
   current?: number;
   pageSize?: number;
   pageSizeOptions?: number[];
   onPageChange?: (current: number) => void;
   onPageSizeChange?: (pageSize: number) => void;
-  paginationProps?: Omit<
-    Omit<
-      Omit<
-        Omit<
-          Omit<Omit<Omit<TablePaginationProps, "colSpan">, "count">, "page">,
-          "rowsPerPage"
-        >,
-        "rowsPerPageOptions"
-      >,
-      "onPageChange"
-    >,
-    "onRowsPerPageChange"
-  >;
+  paginationProps?: Omit< Omit< Omit<Omit<Omit<PaginationProps, 'total'>, 'current'>, 'onPageChange'>, 'onPageSizeChange' >, 'pageSizeOptions' >;
 
   expandable?: boolean;
   showExpandColumn?: boolean;
