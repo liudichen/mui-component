@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-06-16 13:42:44
+ * @LastEditTime: 2022-07-23 16:07:49
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -75,7 +75,7 @@ const Cell = (props) => {
       {...cellProps}
       sx={{ ...cellSx, ...(cellProps?.sx || {}) }}
     >
-      { showTooltip ? (
+      { (showTooltip && (typeof showTooltip === 'boolean' || (typeof showTooltip === 'function' && !!showTooltip({ value, row, rowIndex, field })))) ? (
         <Tooltip title={value} arrow placement='top'>
           <span
             onClick={onClick}

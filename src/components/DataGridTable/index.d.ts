@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:47:54
- * @LastEditTime: 2022-05-19 17:19:31
+ * @LastEditTime: 2022-07-23 16:13:41
  */
 import React from 'react';
 import { BoxProps, TooltipProps } from '@mui/material';
-import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps } from '@mui/x-data-grid';
+import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams } from '@mui/x-data-grid';
 
 import { DataGridPaginationProps } from './DataGridPagination';
 
@@ -21,7 +21,7 @@ type columnType = Omit<GridColDef, 'type'> & {
   titleClassName?: GridColumnHeaderClassNamePropType,
   titleAlign?: GridAlignment,
   renderTitle?: (params: GridColumnHeaderParams) => React.ReactNode,
-  showTooltip?: boolean, // 如果为真则提供tooltip包裹
+  showTooltip?: boolean | ((params:GridValueGetterParams) => boolean), // 如果为真则提供tooltip包裹
   tooltipProps?: TooltipProps,
 };
 

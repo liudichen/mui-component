@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-06-13 10:14:37
+ * @LastEditTime: 2022-07-23 16:20:27
  */
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -46,11 +46,23 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
   if (titleClassName) { initInfo.headerName = titleClassName; }
   if (renderTitle) { initInfo.renderHeader = renderTitle; }
   if (showTooltip) {
-    initInfo.renderCell = ({ value }) => (
-      (value !== null && value !== undefined) ? <Tooltip title={value} arrow placement='top' {...(tooltipProps || {})}>
-        <span>{value}</span>
-      </Tooltip> : null
-    );
+    if (showTooltip === true) {
+      initInfo.renderCell = ({ value }) => (
+        (value !== null && value !== undefined) ? <Tooltip title={value} arrow placement='top' {...(tooltipProps || {})}>
+          <span>{value}</span>
+        </Tooltip> : null
+      );
+    } else if (typeof showTooltip === 'function') {
+      initInfo.renderCell = (params) => {
+        if (showTooltip(params)) {
+          const { value } = params;
+          return (value !== null && value !== undefined) ? <Tooltip title={`${value}`} arrow placement='top' {...(tooltipProps || {})}>
+            <span>{value}</span>
+          </Tooltip> : null;
+        }
+        return params.value;
+      };
+    }
   }
   return { ...initInfo, ...restCol, ...(suffix || {}) };
 };

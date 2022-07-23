@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-07-22 11:31:02
+ * @LastEditTime: 2022-07-23 16:10:19
  */
 import React from 'react';
 import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
@@ -14,10 +14,10 @@ interface rowType {
 }
 
 interface getterParams {
-  row: rowType;
-  rowIndex: number;
-  field: string;
-  value: any;
+  row?: rowType;
+  rowIndex?: number;
+  field?: string;
+  value?: any;
 }
 
 interface titleParams {
@@ -38,7 +38,7 @@ interface columnType {
   valueGetter?: (params: getterParams) => any;
   getCellProps?: (params: getterParams) => object;
   ellipsis?: boolean;
-  showTooltip?: boolean;
+  showTooltip?: boolean | ((params:getterParams) => boolean);
 }
 
 export interface SimpleTableProps extends TableProps {

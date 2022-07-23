@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 14:15:51
- * @LastEditTime: 2022-06-16 11:34:42
+ * @LastEditTime: 2022-07-23 16:09:25
  */
 import { string, node, bool, number, func, oneOf, oneOfType } from 'prop-types';
 const columnPropType = {
@@ -19,7 +19,7 @@ const columnPropType = {
   width: oneOfType([ number, string ]),
   maxWidth: oneOfType([ number, string ]),
   minWidth: oneOfType([ number, string ]),
-  showTooltip: bool,
+  showTooltip: oneOfType([ bool, func ]),
   valueGetter: func, // ({isHeader,row,rowIndex,field}) => any
 };
 
