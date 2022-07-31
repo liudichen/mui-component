@@ -4,20 +4,21 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-07-22 09:33:14
- * @LastEditTime: 2022-07-22 10:48:39
+ * @LastEditTime: 2022-07-31 10:55:00
  */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useUpdateEffect } from 'ahooks';
-import { Pagination as MuiPagination, Box, Stack, Select, MenuItem } from '@mui/material';
+import { Pagination as MuiPagination, Box, Stack, Select, MenuItem, Typography } from '@mui/material';
 import { sx } from '../../propTypes';
 
 
 const Pagination = (props) => {
-  const { paginationBoxProps, paginationStackProps, showPageSize, pageSizeOptions, pageSizeSelectProps, page, count, onChange, onPageChange: onPageChangeProp, onPageSizeChange: onPageSizeChangeProp, pageSize: pageSizeProp, total: totalProp,
+  const { paginationBoxProps, paginationStackProps, showPageSize, pageSizeOptions, pageSizeSelectProps, page, count, onChange, onPageChange: onPageChangeProp, onPageSizeChange: onPageSizeChangeProp, pageSize: pageSizeProp, total: totalProp, showItemRange,
     ...restProps } = props;
   const [ current, onPageChange ] = useControllableValue(props, { valuePropName: 'current', trigger: 'onPageChange', defaultValue: 1, defaultValuePropName: 'defaultPage' });
   const [ pageSize, onPageSizeChange ] = useControllableValue(props, { valuePropName: 'pageSize', trigger: 'onPageSizeChange', defaultValuePropName: 'defaultPageSize', defaultValue: pageSizeOptions[0] });
+  // 这里 total是指总页数，而totalProp是指总条目数
   const total = useCreation(() => Math.ceil((totalProp || 0) / (pageSize || 1)), [ totalProp, pageSize ]);
   const resetPageSize = useMemoizedFn(() => {
     if ((current - 1) * pageSize >= total) {
@@ -38,6 +39,13 @@ const Pagination = (props) => {
         spacing={0.5}
         {...(paginationStackProps || {})}
       >
+        {showItemRange && !!totalProp && (
+          <Typography
+            variant='h5'
+          >
+            第{(current - 1) * pageSize + 1}-{Math.min(totalProp, current * pageSize)}项/共{totalProp}项&ensp;
+          </Typography>
+        )}
         {showPageSize && (
           <Select
             size='small'
@@ -69,6 +77,7 @@ const Pagination = (props) => {
 
 Pagination.defaultProps = {
   showPageSize: true,
+  showItemRange: true,
   pageSizeOptions: [ 10, 25, 50, 100, 200 ],
   siblingCount: 0,
   size: 'small',
@@ -83,6 +92,7 @@ Pagination.propTypes = {
   paginationStackProps: PropTypes.object,
   pageSizeSelectProps: PropTypes.object,
   showPageSize: PropTypes.bool,
+  showItemRange: PropTypes.bool,
   total: PropTypes.number,
   current: PropTypes.number,
   defaultPage: PropTypes.number,

@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-07-22 10:46:33
- * @LastEditTime: 2022-07-22 11:14:14
+ * @LastEditTime: 2022-07-31 10:18:11
  */
 import React from 'react';
 import { BoxProps, StackProps, SelectProps, PaginationProps as MuiPaginationProps } from '@mui/material';
@@ -17,6 +17,7 @@ export interface PaginationProps extends Omit<Omit< Omit<MuiPaginationProps, 'on
   pageSize?: number,
   defaultPageSize?: number,
   showPageSize?: boolean,
+  showItemRange?: boolean,
   onPageChange?: (current: number) => void,
   onPageSizeChange?: (pageSize: number) => void,
   pageSizeOptions?: number[],
