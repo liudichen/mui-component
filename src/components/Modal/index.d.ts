@@ -3,12 +3,13 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 22:12:22
- * @LastEditTime: 2022-05-15 22:19:26
+ * @LastEditTime: 2022-08-07 19:18:28
  */
 import React from 'react';
 import { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsProps, LinkProps, ButtonProps } from '@mui/material';
 
 export interface ModalProps extends DialogProps {
+  showActions?: boolean,
   showCloseIcon?: boolean,
   CloseIcon?: React.ReactNode,
   showCancel?: boolean,

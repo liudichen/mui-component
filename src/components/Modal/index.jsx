@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-08-07 08:24:49
+ * @LastEditTime: 2022-08-07 19:19:27
  */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -15,7 +15,7 @@ import { dialogPropTypes, sx } from '../../propTypes';
 
 const Modal = (props) => {
   const {
-    trigger, triggerProps, onConfirm: onConfirmProp, onCancel: onCancelProp, cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions, showCloseIcon, CloseIcon,
+    trigger, triggerProps, onConfirm: onConfirmProp, onCancel: onCancelProp, cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions, showCloseIcon, CloseIcon, showActions,
     title, titleProps, contentProps, actionsProps, open: openProp, onClose: onCloseProp,
     children,
     ...restProps
@@ -47,7 +47,7 @@ const Modal = (props) => {
           underline: 'none',
           sx: { cursor: 'pointer' },
           ...(triggerProps || {}),
-          onClick: () => { setOpen(true); triggerProps?.onClick?.(); },
+          onClick: (e) => { setOpen(true); triggerProps?.onClick?.(e); },
         }
         }
       >
@@ -78,29 +78,31 @@ const Modal = (props) => {
         <DialogContent {...(contentProps || {})}>
           {children}
         </DialogContent>
-        <DialogActions {...(actionsProps || {})}>
-          { !!extraActions && (extraActions)}
-          { showCancel && (
-            <Button
-              variant='outlined'
-              color='secondary'
-              {...(cancelProps || {})}
-              onClick={onCancel}
-            >
-              { cancelText }
-            </Button>
-          )}
-          { showConfirm && (
-            <Button
-              variant='contained'
-              color='primary'
-              {...(confirmProps || {})}
-              onClick={onConfirm}
-            >
-              { confirmText }
-            </Button>
-          )}
-        </DialogActions>
+        { showActions && (
+          <DialogActions {...(actionsProps || {})}>
+            { !!extraActions && (extraActions)}
+            { showCancel && (
+              <Button
+                variant='outlined'
+                color='secondary'
+                {...(cancelProps || {})}
+                onClick={onCancel}
+              >
+                { cancelText }
+              </Button>
+            )}
+            { showConfirm && (
+              <Button
+                variant='contained'
+                color='primary'
+                {...(confirmProps || {})}
+                onClick={onConfirm}
+              >
+                { confirmText }
+              </Button>
+            )}
+          </DialogActions>
+        )}
       </Dialog>
     </>
   );
@@ -113,10 +115,12 @@ Modal.defaultProps = {
   cancelText: '取消',
   showConfirm: true,
   confirmText: '确认',
+  showActions: true,
 };
 
 Modal.propTypes = {
   showCloseIcon: PropTypes.bool,
+  showActions: PropTypes.bool,
   CloseIcon: PropTypes.node,
   showCancel: PropTypes.bool,
   onCancel: PropTypes.func,
