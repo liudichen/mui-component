@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-05-15 22:30:52
+ * @LastEditTime: 2022-08-07 08:24:49
  */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -43,10 +43,13 @@ const Modal = (props) => {
   return (
     <>
       <Link
-        underline='none'
-        sx={{ cursor: 'pointer' }}
-        {...(triggerProps || {})}
-        onClick={() => setOpen(true)}
+        {...{
+          underline: 'none',
+          sx: { cursor: 'pointer' },
+          ...(triggerProps || {}),
+          onClick: () => { setOpen(true); triggerProps?.onClick?.(); },
+        }
+        }
       >
         {trigger}
       </Link>
