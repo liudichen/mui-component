@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-09 11:03:55
- * @LastEditTime: 2022-05-09 11:06:58
+ * @LastEditTime: 2022-09-28 09:59:34
  */
 import PropTypes from 'prop-types';
 import { Stack } from '@mui/material';
@@ -26,7 +26,7 @@ const iconMap = {
 };
 
 const Result = (props) => {
-  const { icon, title, subTitle, status, actions, sx, ...restProps } = props;
+  const { icon, title, subTitle, status, actions, sx, children, ...restProps } = props;
   return (
     <ContentCard
       sx={{
@@ -75,6 +75,11 @@ const Result = (props) => {
             }}
           >
             {subTitle}
+          </div>
+        )}
+        { !!children && (
+          <div>
+            {children}
           </div>
         )}
         { !!actions && (

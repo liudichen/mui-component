@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { TableCell, Tooltip } from '@mui/material';
+import { IconCheck, IconX } from '@tabler/icons';
 import { StatusRender } from 'mui-component';
 import dayjs from 'dayjs';
 
@@ -62,7 +63,9 @@ const Cell = (props) => {
     <StatusRender
       status={value}
     />
-  ) : (type === 'date' || type === 'dateTime') ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : value));
+  ) : (type === 'date' || type === 'dateTime') ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : type === 'boolean' ? (
+    value ? <IconCheck size='1.5em'/> : <IconX size='1.5em'/>
+  ) : value));
   const onClick = useMemoizedFn(async () => {
     if (expandRowByClick && rowIndex > -1 && type !== 'actions') {
       setOpen?.((s) => !s);

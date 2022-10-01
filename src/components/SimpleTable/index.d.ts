@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-30 20:21:16
- * @LastEditTime: 2022-07-23 16:10:19
+ * @LastEditTime: 2022-09-30 16:58:16
  */
 import React from 'react';
 import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
@@ -31,7 +31,7 @@ interface columnType {
   titleAlign?: 'center' | 'left' | 'right';
   align?: 'center' | 'left' | 'right';
   renderCell?: (params: getterParams) => React.ReactNode;
-  type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime';
+  type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime' | 'boolean';
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
@@ -53,7 +53,7 @@ export interface SimpleTableProps extends TableProps {
   bordered?: boolean;
   columnDefaultWidth?: number | string;
 
-  hideFoot?: boolean;
+  showFoot?: boolean;
   footProps?: TableFooterProps,
   footRender?: React.ReactNode | React.FunctionComponent | React.Component,
   hidePagination?: boolean,
