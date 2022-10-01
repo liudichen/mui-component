@@ -3,16 +3,16 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-10-01 19:16:54
+ * @LastEditTime: 2022-10-01 19:27:14
  */
 import PropTypes from 'prop-types';
+import { useImperativeHandle } from 'react';
 import { useState, forwardRef } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link } from '@mui/material';
 import { IconX } from '@tabler/icons';
 
 import { dialogPropTypes, sx } from '../../propTypes';
-import { useImperativeHandle } from 'react';
 
 const Modal = forwardRef((props, ref) => {
   const {
@@ -28,7 +28,7 @@ const Modal = forwardRef((props, ref) => {
       setOpen(false);
     }
   });
-  useImperativeHandle(ref, () => { onClose; });
+  useImperativeHandle(ref, () => ({ onClose }));
   const onConfirm = useMemoizedFn(async () => {
     const res = await onConfirmProp?.();
     if (res !== false) {
