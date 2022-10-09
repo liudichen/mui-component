@@ -3,17 +3,18 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-08-07 19:19:27
+ * @LastEditTime: 2022-10-01 19:27:14
  */
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useImperativeHandle } from 'react';
+import { useState, forwardRef } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link } from '@mui/material';
 import { IconX } from '@tabler/icons';
 
 import { dialogPropTypes, sx } from '../../propTypes';
 
-const Modal = (props) => {
+const Modal = forwardRef((props, ref) => {
   const {
     trigger, triggerProps, onConfirm: onConfirmProp, onCancel: onCancelProp, cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions, showCloseIcon, CloseIcon, showActions,
     title, titleProps, contentProps, actionsProps, open: openProp, onClose: onCloseProp,
@@ -27,6 +28,7 @@ const Modal = (props) => {
       setOpen(false);
     }
   });
+  useImperativeHandle(ref, () => ({ onClose }));
   const onConfirm = useMemoizedFn(async () => {
     const res = await onConfirmProp?.();
     if (res !== false) {
@@ -106,7 +108,7 @@ const Modal = (props) => {
       </Dialog>
     </>
   );
-};
+});
 
 Modal.defaultProps = {
   CloseIcon: <IconX size='24px'/>,
