@@ -3,12 +3,12 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-10-01 19:27:14
+ * @LastEditTime: 2022-10-10 14:34:27
  */
 import PropTypes from 'prop-types';
 import { useImperativeHandle } from 'react';
-import { useState, forwardRef } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import { forwardRef } from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link } from '@mui/material';
 import { IconX } from '@tabler/icons';
 
@@ -21,7 +21,7 @@ const Modal = forwardRef((props, ref) => {
     children,
     ...restProps
   } = props;
-  const [ open, setOpen ] = useState(false);
+  const [ open, setOpen ] = useSafeState(false);
   const onClose = useMemoizedFn(() => {
     onCloseProp?.();
     if (trigger) {

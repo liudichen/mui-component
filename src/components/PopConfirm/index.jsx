@@ -3,11 +3,11 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-11 15:24:22
- * @LastEditTime: 2022-05-20 18:22:12
+ * @LastEditTime: 2022-10-10 14:37:07
  */
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useCreation, useMemoizedFn } from 'ahooks';
+import React from 'react';
+import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper, useTheme } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -23,10 +23,10 @@ const PopConfirm = React.forwardRef((props, ref) => {
     showIcon, icon, showTitle, title, extraContent,
     ...restProps } = props;
   const theme = useTheme();
-  const [ anchorEl, setAnchorEl ] = useState(null);
-  const [ open, setOpen ] = useState(false);
-  const [ arrowRef, setArrowRef ] = useState(null);
-  const [ loading, setLoading ] = useState(false);
+  const [ anchorEl, setAnchorEl ] = useSafeState(null);
+  const [ open, setOpen ] = useSafeState(false);
+  const [ arrowRef, setArrowRef ] = useSafeState(null);
+  const [ loading, setLoading ] = useSafeState(false);
   const handleClose = useMemoizedFn(() => {
     if (open) {
       setOpen(false);
