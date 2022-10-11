@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-10-10 14:34:27
+ * @LastEditTime: 2022-10-11 16:28:48
  */
 import PropTypes from 'prop-types';
 import { useImperativeHandle } from 'react';
@@ -22,9 +22,9 @@ const Modal = forwardRef((props, ref) => {
     ...restProps
   } = props;
   const [ open, setOpen ] = useSafeState(false);
-  const onClose = useMemoizedFn(() => {
-    onCloseProp?.();
-    if (trigger) {
+  const onClose = useMemoizedFn(async (e, reason) => {
+    const res = await onCloseProp?.(e, reason);
+    if (trigger && res !== false) {
       setOpen(false);
     }
   });
