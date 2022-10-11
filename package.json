@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
