@@ -39,7 +39,7 @@ const ContentCard = forwardRef(({
         <IconButton
           onClick={typeof collapsed === 'undefined' ? toggle : handleCollapse}
           style={{
-            transform: (typeof collapsed === 'undefined' ? expand : collapsed) ? 'rotate(180deg)' : 'rotate(0deg)',
+            transform: (typeof collapsed === 'undefined' ? !expand : collapsed) ? 'rotate(180deg)' : 'rotate(0deg)',
           }}
           sx={{
             mb: -1,
