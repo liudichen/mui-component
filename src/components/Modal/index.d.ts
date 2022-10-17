@@ -27,6 +27,7 @@ export interface ModalProps extends DialogProps {
   titleProps?: DialogTitleProps,
   contentProps?: DialogContentProps,
   actionsProps?: DialogActionsProps,
+  disabled?: boolean,
 }
 
 interface IRefValue {

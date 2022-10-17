@@ -3,7 +3,7 @@
  * @Author: 柳涤尘 https://www.iimm.ink
  * @LastEditors: 柳涤尘 liudichen@foxmail.com
  * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-10-11 16:28:48
+ * @LastEditTime: 2022-10-17 17:13:05
  */
 import PropTypes from 'prop-types';
 import { useImperativeHandle } from 'react';
@@ -18,7 +18,7 @@ const Modal = forwardRef((props, ref) => {
   const {
     trigger, triggerProps, onConfirm: onConfirmProp, onCancel: onCancelProp, cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions, showCloseIcon, CloseIcon, showActions,
     title, titleProps, contentProps, actionsProps, open: openProp, onClose: onCloseProp,
-    children,
+    children, disabled,
     ...restProps
   } = props;
   const [ open, setOpen ] = useSafeState(false);
@@ -44,17 +44,23 @@ const Modal = forwardRef((props, ref) => {
 
   return (
     <>
-      <Link
-        {...{
-          underline: 'none',
-          sx: { cursor: 'pointer' },
-          ...(triggerProps || {}),
-          onClick: (e) => { setOpen(true); triggerProps?.onClick?.(e); },
-        }
-        }
-      >
-        {trigger}
-      </Link>
+      {!!trigger && (
+        <Link
+          {...{
+            underline: 'none',
+            sx: { cursor: 'pointer' },
+            ...(triggerProps || {}),
+            onClick: (e) => {
+              if (disabled) return;
+              setOpen(true);
+              triggerProps?.onClick?.(e);
+            },
+          }
+          }
+        >
+          {trigger}
+        </Link>
+      )}
       <Dialog
         {...restProps}
         open={trigger ? open : openProp}
