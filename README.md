@@ -1,11 +1,7 @@
-<!--
- * @Description: 
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-14 11:01:55
- * @LastEditTime: 2022-07-22 11:35:45
--->
 # mui-formfield
+
+[![NPM version](https://img.shields.io/npm/v/mui-componenti.svg?style=flat)](https://npmjs.org/package/mui-componenti)
+[![NPM downloads](http://img.shields.io/npm/dm/mui-componenti.svg?style=flat)](https://npmjs.org/package/mui-componenti)
 
 一些自用的组件。
 
