@@ -1,4 +1,4 @@
-# mui-formfield
+# mui-component
 
 [![NPM version](https://img.shields.io/npm/v/mui-componenti.svg?style=flat)](https://npmjs.org/package/mui-componenti)
 [![NPM downloads](http://img.shields.io/npm/dm/mui-componenti.svg?style=flat)](https://npmjs.org/package/mui-componenti)
