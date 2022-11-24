@@ -1,0 +1,22 @@
+// from @mui/utils@5.10.14
+
+const defaultGenerator = (componentName: string) => componentName;
+
+const createClassNameGenerator = () => {
+  let generate = defaultGenerator;
+  return {
+    configure(generator: typeof generate) {
+      generate = generator;
+    },
+    generate(componentName: string) {
+      return generate(componentName);
+    },
+    reset() {
+      generate = defaultGenerator;
+    },
+  };
+};
+
+export const ClassNameGenerator = createClassNameGenerator();
+
+export default ClassNameGenerator;
