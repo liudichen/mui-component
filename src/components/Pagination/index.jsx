@@ -1,20 +1,13 @@
-/* eslint-disable no-unused-vars */
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-07-22 09:33:14
- * @LastEditTime: 2022-07-31 10:55:00
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useUpdateEffect } from 'ahooks';
 import { Pagination as MuiPagination, Box, Stack, Select, MenuItem, Typography } from '@mui/material';
-import { sx } from '../../propTypes';
 
 
 const Pagination = (props) => {
-  const { paginationBoxProps, paginationStackProps, showPageSize, pageSizeOptions, pageSizeSelectProps, page, count, onChange, onPageChange: onPageChangeProp, onPageSizeChange: onPageSizeChangeProp, pageSize: pageSizeProp, total: totalProp, showItemRange,
+  const { paginationBoxProps, paginationStackProps, showPageSize, pageSizeOptions, pageSizeSelectProps,
+    // eslint-disable-next-line no-unused-vars
+    page, count, onChange, onPageChange: onPageChangeProp, onPageSizeChange: onPageSizeChangeProp, pageSize: pageSizeProp,
+    total: totalProp, showItemRange,
     ...restProps } = props;
   const [ current, onPageChange ] = useControllableValue(props, { valuePropName: 'current', trigger: 'onPageChange', defaultValue: 1, defaultValuePropName: 'defaultPage' });
   const [ pageSize, onPageSizeChange ] = useControllableValue(props, { valuePropName: 'pageSize', trigger: 'onPageSizeChange', defaultValuePropName: 'defaultPageSize', defaultValue: pageSizeOptions[0] });
@@ -79,46 +72,12 @@ Pagination.defaultProps = {
   showPageSize: true,
   showItemRange: true,
   pageSizeOptions: [ 10, 25, 50, 100, 200 ],
-  siblingCount: 0,
+  siblingCount: 1,
   size: 'small',
   boundaryCount: 1,
   hideNextButton: true,
   hidePrevButton: true,
   variant: 'outlined',
-};
-
-Pagination.propTypes = {
-  paginationBoxProps: PropTypes.object,
-  paginationStackProps: PropTypes.object,
-  pageSizeSelectProps: PropTypes.object,
-  showPageSize: PropTypes.bool,
-  showItemRange: PropTypes.bool,
-  total: PropTypes.number,
-  current: PropTypes.number,
-  defaultPage: PropTypes.number,
-  pageSize: PropTypes.number,
-  defaultPageSize: PropTypes.number,
-  onPageChange: PropTypes.func,
-  onPageSizeChange: PropTypes.func,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-  boundaryCount: PropTypes.number,
-  classes: PropTypes.object,
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  getItemAriaLabel: PropTypes.func,
-  hideNextButton: PropTypes.bool,
-  hidePrevButton: PropTypes.bool,
-  renderItem: PropTypes.func,
-  shape: PropTypes.oneOf([ 'circular', 'rounded' ]),
-  showFirstButton: PropTypes.bool,
-  showLastButton: PropTypes.bool,
-  siblingCount: PropTypes.number,
-  size: PropTypes.string,
-  sx,
-  variant: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'outlined', 'text' ]),
-    PropTypes.string,
-  ]),
 };
 
 export default Pagination;
