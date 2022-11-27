@@ -5,7 +5,6 @@
  * @Date: 2022-05-09 10:36:54
  * @LastEditTime: 2022-05-13 16:12:40
  */
-import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
@@ -66,20 +65,5 @@ const PageContainer = forwardRef((
     </Card>
   );
 });
-
-PageContainer.propTypes = {
-  border: PropTypes.bool,
-  boxShadow: PropTypes.bool,
-  children: PropTypes.node,
-  content: PropTypes.bool,
-  contentClass: PropTypes.string,
-  contentSx: PropTypes.object,
-  darkTitle: PropTypes.bool,
-  /** 右上角action区域   */
-  secondary: PropTypes.oneOfType([ PropTypes.node, PropTypes.string, PropTypes.object ]),
-  shadow: PropTypes.string,
-  sx: PropTypes.object,
-  title: PropTypes.oneOfType([ PropTypes.node, PropTypes.string, PropTypes.object ]),
-};
 
 export default PageContainer;
