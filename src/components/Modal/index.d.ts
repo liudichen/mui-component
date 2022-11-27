@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-15 22:12:22
- * @LastEditTime: 2022-10-01 19:18:44
- */
 import React from 'react';
 import { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsProps, LinkProps, ButtonProps } from '@mui/material';
 

@@ -1,18 +1,8 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-15 21:40:05
- * @LastEditTime: 2022-10-17 17:13:05
- */
-import PropTypes from 'prop-types';
 import { useImperativeHandle } from 'react';
 import { forwardRef } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link } from '@mui/material';
 import { IconX } from '@tabler/icons';
-
-import { dialogPropTypes, sx } from '../../propTypes';
 
 const Modal = forwardRef((props, ref) => {
   const {
@@ -124,53 +114,6 @@ Modal.defaultProps = {
   showConfirm: true,
   confirmText: '确认',
   showActions: true,
-};
-
-Modal.propTypes = {
-  showCloseIcon: PropTypes.bool,
-  showActions: PropTypes.bool,
-  CloseIcon: PropTypes.node,
-  showCancel: PropTypes.bool,
-  onCancel: PropTypes.func,
-  cancelText: PropTypes.node,
-  cancelProps: PropTypes.object,
-  showConfirm: PropTypes.bool,
-  onConfirm: PropTypes.func,
-  confirmText: PropTypes.node,
-  confirmProps: PropTypes.object,
-  extraActions: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  triggerProps: PropTypes.shape({
-    sx: PropTypes.object,
-    style: PropTypes.object,
-    underline: PropTypes.oneOf([ 'none', 'always', 'hover' ]),
-  }),
-  trigger: PropTypes.node,
-  title: PropTypes.node,
-  titleProps: PropTypes.shape({
-    classes: PropTypes.object,
-    sx,
-    style: PropTypes.object,
-    className: PropTypes.string,
-  }),
-  contentProps: PropTypes.shape({
-    classes: PropTypes.object,
-    dividers: PropTypes.bool,
-    sx,
-    style: PropTypes.object,
-    className: PropTypes.string,
-  }),
-  actionsProps: PropTypes.shape({
-    classes: PropTypes.object,
-    sx,
-    style: PropTypes.object,
-    className: PropTypes.string,
-    disableSpacing: PropTypes.bool,
-  }),
-  open: PropTypes.bool,
-  ...dialogPropTypes,
 };
 
 export default Modal;
