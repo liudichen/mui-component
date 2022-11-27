@@ -1,19 +1,10 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-30 14:55:53
- * @LastEditTime: 2022-07-23 16:07:49
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { TableCell, Tooltip } from '@mui/material';
 import { IconCheck, IconX } from '@tabler/icons';
-import { StatusRender } from 'mui-component';
 import dayjs from 'dayjs';
 
-import { columnPropType } from '../../common';
+import { StatusRender } from '../../../StatusRender';
 
 const Cell = (props) => {
   const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader, columnDefaultWidth } = props;
@@ -95,18 +86,6 @@ const Cell = (props) => {
       )}
     </TableCell>
   );
-};
-
-Cell.propTypes = {
-  ...columnPropType,
-  expandRowByClick: PropTypes.bool,
-  setOpen: PropTypes.func,
-  rowIndex: PropTypes.number,
-  bordered: PropTypes.bool,
-  row: PropTypes.object,
-  expandIcon: PropTypes.array,
-  hideHeader: PropTypes.bool,
-  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 };
 
 export default Cell;

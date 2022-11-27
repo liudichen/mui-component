@@ -1,18 +1,9 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-30 14:41:53
- * @LastEditTime: 2022-05-31 10:32:13
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useSafeState } from 'ahooks';
 import { Collapse, TableCell, TableRow } from '@mui/material';
 import { IconSquarePlus as OpenIcon, IconSquareMinus as CloseIcon } from '@tabler/icons';
 
 import Cell from './Cell';
-import { columnPropType } from '../common';
 
 const Row = (props) => {
   const { columns, rowIndex, hideHeader, row, showExpandColumn, expandRowByClick, expandColumnWidth, expandRowRender, expandable, isExpandable, expandIcon, bordered, unmountOnExit, columnDefaultWidth } = props;
@@ -90,20 +81,4 @@ const Row = (props) => {
   );
 };
 
-Row.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape(columnPropType)),
-  rowIndex: PropTypes.number,
-  hideHeader: PropTypes.bool,
-  row: PropTypes.object,
-  expandable: PropTypes.bool,
-  isExpandable: PropTypes.bool,
-  showExpandColumn: PropTypes.bool,
-  expandRowByClick: PropTypes.bool,
-  expandColumnWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  expandRowRender: PropTypes.func,
-  expandIcon: PropTypes.array,
-  bordered: PropTypes.bool,
-  unmountOnExit: PropTypes.bool,
-  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-};
 export default Row;

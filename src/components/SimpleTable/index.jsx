@@ -1,18 +1,8 @@
-/* eslint-disable no-unused-vars */
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-30 11:22:55
- * @LastEditTime: 2022-07-22 11:23:04
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useControllableValue, useCreation } from 'ahooks';
 import { Box, Table, TableBody, TableFooter, TableHead } from '@mui/material';
 import Pagination from '../Pagination';
 
-import { columnPropType } from './common';
 import Row from './Row';
 
 const SimpleTable = (props) => {
@@ -175,50 +165,6 @@ SimpleTable.defaultProps = {
   showExpandColumn: true,
   expandColumnWidth: 45,
   columnDefaultWidth: 100,
-};
-
-SimpleTable.propTypes = {
-  component: PropTypes.elementType,
-  classes: PropTypes.object,
-  padding: PropTypes.oneOf([ 'normal', 'checkbox', 'none' ]),
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'medium', 'small' ]),
-    PropTypes.string,
-  ]),
-  stickyHeader: PropTypes.bool,
-  sx: PropTypes.oneOfType([ PropTypes.array, PropTypes.func, PropTypes.object ]),
-
-  tableContainerBoxProps: PropTypes.object,
-  rows: PropTypes.array,
-  rowKey: PropTypes.string,
-  columns: PropTypes.arrayOf(PropTypes.shape(columnPropType)),
-  hideHeader: PropTypes.bool,
-  title: PropTypes.node,
-  titlePosition: PropTypes.oneOf([ 'top', 'bottom', 'inherit' ]),
-
-  bordered: PropTypes.bool,
-  columnDefaultWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-
-  expandable: PropTypes.bool,
-  showExpandColumn: PropTypes.bool,
-  expandIcon: PropTypes.array,
-  expandRowByClick: PropTypes.bool,
-  expandColumnWidth: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  expandRowRender: PropTypes.func, // (row,index,open)=>ReactNode
-  getRowExpandable: PropTypes.func, // (row,index) => boolean
-  unmountOnExit: PropTypes.bool,
-
-  showFoot: PropTypes.bool,
-  footRender: PropTypes.node,
-  footProps: PropTypes.object,
-  total: PropTypes.number,
-  current: PropTypes.number,
-  pageSize: PropTypes.number,
-  pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-  onPageChange: PropTypes.func,
-  onPageSizeChange: PropTypes.func,
-  paginationProps: PropTypes.object,
-  hidePagination: PropTypes.bool,
 };
 
 export default SimpleTable;
