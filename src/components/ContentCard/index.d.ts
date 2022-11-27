@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 10:51:55
- * @LastEditTime: 2022-06-13 10:16:11
- */
 import React from 'react';
 import { CardProps } from '@mui/material';
 
@@ -20,7 +13,9 @@ export interface ContentCardProps extends CardProps {
   title?: React.ReactNode,
   defaultCollapsed?: boolean,
   collapsible?: boolean,
+  /** 受控属性 ，与handleCollapse配合使用*/
   collapsed?: boolean,
+  /** 受控属性 ，与collapsed配合使用*/
   handleCollapse?: () => void,
   headerSx?: sxType,
   contentSx?: sxType,

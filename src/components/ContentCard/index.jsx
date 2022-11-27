@@ -1,5 +1,4 @@
 // this component origin from https://berrydashboard.io
-import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { useToggle } from 'ahooks';
 
@@ -89,25 +88,6 @@ const ContentCard = forwardRef(({
     </Card>
   );
 });
-
-ContentCard.propTypes = {
-  children: PropTypes.node,
-  content: PropTypes.bool,
-  contentClass: PropTypes.string,
-  darkTitle: PropTypes.bool,
-  secondary: PropTypes.oneOfType([ PropTypes.node, PropTypes.string, PropTypes.object ]),
-  sx: PropTypes.object,
-  title: PropTypes.oneOfType([ PropTypes.node, PropTypes.string, PropTypes.object ]),
-  defaultCollapsed: PropTypes.bool,
-  collapsible: PropTypes.bool,
-  collapsed: PropTypes.bool, // 受控属性
-  handleCollapse: PropTypes.func, // 受控属性
-  headerSx: PropTypes.object,
-  contentSx: PropTypes.object,
-  iconColor: PropTypes.string,
-  unmountOnExit: PropTypes.bool,
-  CollapseIcon: PropTypes.oneOfType([ PropTypes.element, PropTypes.func, PropTypes.object, PropTypes.node ]),
-};
 
 ContentCard.defaultProps = {
   collapsible: false,
