@@ -1,16 +1,6 @@
 /* eslint-disable no-unused-vars */
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-03-26 15:08:09
- * @LastEditTime: 2022-05-20 14:18:35
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Box } from '@mui/material';
-
-import { sx } from '../../propTypes';
 
 const spaceSize = {
   small: 8,
@@ -68,19 +58,6 @@ Space.defaultProps = {
   alignItems: 'center',
   display: 'flex',
   sx: { justifyContent: 'center' },
-};
-
-Space.propTypes = {
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'small', 'medium', 'large' ]),
-    PropTypes.arrayOf(PropTypes.oneOf([ 'small', 'medium', 'large' ])),
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number),
-  ]),
-  direction: PropTypes.oneOf([ 'row', 'column' ]),
-  split: PropTypes.node,
-  display: PropTypes.string,
-  sx,
 };
 
 export default Space;

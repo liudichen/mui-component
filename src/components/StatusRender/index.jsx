@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 18:55:56
- * @LastEditTime: 2022-10-09 11:46:29
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const TypeColor = {
@@ -116,19 +108,6 @@ const StatusRender = (props) => {
       <span style={textSpanStyle}>{getText(text, status, statusConvert, statusTextConvert)}</span>
     </span>
   );
-};
-
-StatusRender.propTypes = {
-  color: PropTypes.string,
-  status: PropTypes.oneOfType([ PropTypes.oneOf(Object.keys(StatusType)), PropTypes.string ]),
-  type: PropTypes.oneOf([ 'success', 'success2', 'warning', 'error', 'process', 'default' ]),
-  text: PropTypes.node,
-  statusColorConvert: PropTypes.func,
-  statusTypeConvert: PropTypes.func,
-  statusTextConvert: PropTypes.func,
-  statusConvert: PropTypes.func,
-  textSpanStyle: PropTypes.object,
-  dotSpanStyle: PropTypes.object,
 };
 
 export default StatusRender;

@@ -4,7 +4,7 @@ import { TableCell, Tooltip } from '@mui/material';
 import { IconCheck, IconX } from '@tabler/icons';
 import dayjs from 'dayjs';
 
-import { StatusRender } from '../../../StatusRender';
+import StatusRender from '../../../StatusRender';
 
 const Cell = (props) => {
   const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader, columnDefaultWidth } = props;
