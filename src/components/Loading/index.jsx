@@ -1,14 +1,4 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 11:14:17
- * @LastEditTime: 2022-05-09 11:22:16
- */
-import PropTypes from 'prop-types';
 import { CircularProgress, Box, Typography } from '@mui/material';
-
-import { sx } from '../../propTypes';
 
 const Loading = (props) => {
   const { label, value, color, size, variant, sx, containerSx } = props;
@@ -59,21 +49,6 @@ Loading.defaultProps = {
   boxSx: {},
   label: '',
   variant: 'indeterminate',
-};
-
-Loading.propTypes = {
-  label: PropTypes.node,
-  value: PropTypes.number,
-  size: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf([ 'primary', 'secondary', 'error', 'info', 'success', 'warning', 'inherit' ]),
-    PropTypes.string,
-  ]),
-  disableShrink: PropTypes.bool,
-  variant: PropTypes.oneOf([ 'indeterminate', 'determinate' ]),
-  thickness: PropTypes.number,
-  sx,
-  containerSx: sx,
 };
 
 export default Loading;
