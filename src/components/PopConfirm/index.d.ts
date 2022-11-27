@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-12 14:07:28
- * @LastEditTime: 2022-05-12 14:24:30
- */
 import React from 'react';
 import { PopperProps, ButtonProps, PaperProps, LinkProps } from '@mui/material';
 

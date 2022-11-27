@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-11 15:24:22
- * @LastEditTime: 2022-10-10 14:37:07
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper, useTheme } from '@mui/material';
@@ -183,56 +175,6 @@ PopConfirm.defaultProps = {
   icon: <InfoIcon color='warning' sx={{ fontSize: '1.25rem' }} />,
   cancelText: '取消',
   confirmText: '确认',
-};
-
-PopConfirm.propTypes = {
-  arrow: PropTypes.bool,
-  preventOverflow: PropTypes.bool,
-  triggerProps: PropTypes.object,
-  rootProps: PropTypes.object,
-
-  disabled: PropTypes.bool,
-  closeOnClickAway: PropTypes.bool,
-
-  showConfirm: PropTypes.bool,
-  confirmText: PropTypes.node,
-  confirmProps: PropTypes.object,
-  onConfirm: PropTypes.func,
-  showCancel: PropTypes.bool,
-  cancelText: PropTypes.node,
-  cancelProps: PropTypes.object,
-  onCancel: PropTypes.func,
-  showTitle: PropTypes.bool,
-  title: PropTypes.node,
-  showIcon: PropTypes.bool,
-  icon: PropTypes.node,
-  extraContent: PropTypes.node,
-
-  timeout: PropTypes.number,
-
-  disablePortal: PropTypes.bool,
-  keepMounted: PropTypes.bool,
-  placement: PropTypes.oneOf([ 'auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top' ]),
-  modifiers: PropTypes.arrayOf(PropTypes.shape({
-    data: PropTypes.object,
-    effect: PropTypes.func,
-    enabled: PropTypes.bool,
-    fn: PropTypes.func,
-    name: PropTypes.any,
-    options: PropTypes.object,
-    phase: PropTypes.oneOf([ 'afterMain', 'afterRead', 'afterWrite', 'beforeMain', 'beforeRead', 'beforeWrite', 'main', 'read', 'write' ]),
-    requires: PropTypes.arrayOf(PropTypes.string),
-    requiresIfExists: PropTypes.arrayOf(PropTypes.string),
-  })),
-  popperOptions: PropTypes.shape({
-    modifiers: PropTypes.array,
-    onFirstUpdate: PropTypes.func,
-    placement: PropTypes.oneOf([ 'auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top' ]),
-    strategy: PropTypes.oneOf([ 'absolute', 'fixed' ]),
-  }),
-  popperRef: PropTypes.object,
-  sx: PropTypes.object,
-  transition: PropTypes.bool,
 };
 
 export default PopConfirm;
