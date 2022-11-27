@@ -13,15 +13,20 @@ import { DataGridPaginationProps } from './DataGridPagination';
 
 type columnType = Omit<GridColDef, 'type'> & {
   type: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
-  statusColorConvert: (status: string) => string, // 自定义的用于 type='status'
-  statusTypeConvert: (status: string) => string, // 自定义的用于 type='status'
-  statusTextConvert: (status: string) => React.ReactNode, // 自定义的用于 type='status'
-  statusConvert: (status: string) => string, // 自定义的用于 type='status'
+  /** 自定义的用于 type='status */
+  statusColorConvert: (status: string) => string,
+  /** 自定义的用于 type='status'*/
+  statusTypeConvert: (status: string) => string,
+  /** 自定义的用于 type='status'*/
+  statusTextConvert: (status: string) => React.ReactNode,
+  /** 自定义的用于 type='status'*/
+  statusConvert: (status: string) => string,
   title?: string,
   titleClassName?: GridColumnHeaderClassNamePropType,
   titleAlign?: GridAlignment,
   renderTitle?: (params: GridColumnHeaderParams) => React.ReactNode,
-  showTooltip?: boolean | ((params:GridValueGetterParams) => boolean), // 如果为真则提供tooltip包裹
+  /** 如果为真则提供tooltip包裹 */
+  showTooltip?: boolean | ((params:GridValueGetterParams) => boolean),
   tooltipProps?: TooltipProps,
 };
 

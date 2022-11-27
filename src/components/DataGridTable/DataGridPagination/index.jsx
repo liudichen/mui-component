@@ -1,17 +1,8 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 15:47:59
- * @LastEditTime: 2022-05-09 15:50:08
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { MenuItem, Pagination as MuiPagination, Select, Box, Stack } from '@mui/material';
 import { useGridApiContext, useGridSelector, gridPageCountSelector, gridPageSizeSelector, gridPageSelector, gridRowCountSelector } from '@mui/x-data-grid';
-import useId from '@mui/material/utils/useId';
 
-import { paginationPropTypes } from '../../../propTypes';
+import { useId } from '../../../hooks';
 
 const DataGridPagination = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -69,13 +60,6 @@ DataGridPagination.defaultProps = {
   size: 'small',
   variant: 'outlined',
   color: 'secondary',
-};
-
-DataGridPagination.propTypes = {
-  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-  onPageSizeChange: PropTypes.func,
-
-  ...paginationPropTypes,
 };
 
 export default DataGridPagination;

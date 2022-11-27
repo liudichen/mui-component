@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 15:46:09
- * @LastEditTime: 2022-07-23 16:20:27
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useCreation } from 'ahooks';
 import { Box, Tooltip } from '@mui/material';
@@ -14,7 +6,6 @@ import dayjs from 'dayjs';
 
 import NoRowsOverlay from './NoRowsOverlay';
 import DataGridPagination from './DataGridPagination';
-import { paginationPropTypes, dataGridPropTypes } from '../../propTypes';
 import StatusRender from '../StatusRender';
 
 export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
@@ -130,16 +121,6 @@ DataGridTable.defaultProps = {
   disableSelectionOnClick: true,
   autoHeight: true,
   initialPageSize: 10,
-};
-
-DataGridTable.propTypes = {
-  initialPageSize: PropTypes.number,
-  height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
-  paginationProps: PropTypes.shape(paginationPropTypes),
-  rootProps: PropTypes.object,
-  rowKey: PropTypes.string,
-
-  ...dataGridPropTypes,
 };
 
 export default DataGridTable;
