@@ -1,13 +1,7 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-15 16:25:04
- * @LastEditTime: 2022-06-13 18:24:46
- */
 import React from 'react';
-import { ImageCarouselProps, carouselProps, imageItem } from './ImageCarousel';
 import { DialogProps, LinkProps, PaperProps } from '@mui/material';
+
+import { ImageCarouselProps, carouselProps, imageItem } from './ImageCarousel';
 
 type maxWidthString = 'sm' | 'xs' |' md' | 'lg' | 'xl';
 

@@ -1,16 +1,6 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-04-11 22:33:46
- * @LastEditTime: 2022-06-13 18:06:33
- */
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
-import carousel from './propTypes';
 
 const ImageCarousel = (props) => {
   const { images, children, ...restProps } = props;
@@ -33,16 +23,6 @@ const ImageCarousel = (props) => {
 
 ImageCarousel.defaultProps = {
 
-};
-
-ImageCarousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    name: PropTypes.string,
-    url: PropTypes.string,
-  })),
-  ...carousel,
 };
 
 export default ImageCarousel;
