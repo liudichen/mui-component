@@ -1,15 +1,13 @@
 import React from 'react';
-import { CardProps } from '@mui/material';
-
-import { colorType, sxType } from '../../types';
+import { CardProps, SxProps } from '@mui/material';
 
 export interface ContentCardProps extends CardProps {
   content?: boolean, // true
   contentClass?: string,
-  contentSx?: sxType,
+  contentSx?: SxProps,
   darkTitle?: boolean,
   secondary?: React.ReactNode,
-  sx?: sxType,
+  sx?: SxProps,
   title?: React.ReactNode,
   defaultCollapsed?: boolean,
   collapsible?: boolean,
@@ -17,9 +15,9 @@ export interface ContentCardProps extends CardProps {
   collapsed?: boolean,
   /** 受控属性 ，与collapsed配合使用*/
   handleCollapse?: () => void,
-  headerSx?: sxType,
-  contentSx?: sxType,
-  iconColor?: colorType,
+  headerSx?: SxProps,
+  contentSx?: SxProps,
+  iconColor?: 'primary'| 'default' | 'secondary' | 'error' | 'info' | 'success' |'warning',
   CollapseIcon?: React.Component | React.FunctionComponent | React.ReactNode,
   unmountOnExit?: boolean,
 }
