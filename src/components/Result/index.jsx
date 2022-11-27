@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 11:03:55
- * @LastEditTime: 2022-09-28 09:59:34
- */
-import PropTypes from 'prop-types';
 import { Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReportIcon from '@mui/icons-material/Report';
@@ -15,7 +7,6 @@ import BlockIcon from '@mui/icons-material/Block';
 
 import ContentCard from '../ContentCard';
 import Space from '../Space';
-import { sx } from '../../propTypes';
 
 const iconMap = {
   success: <CheckCircleIcon color='success' sx={{ fontSize: 70 }} />,
@@ -94,18 +85,6 @@ const Result = (props) => {
 
 Result.defaultProps = {
   status: 'info',
-};
-
-Result.propTypes = {
-  icon: PropTypes.node,
-  title: PropTypes.node,
-  subTitle: PropTypes.node,
-  actions: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  status: PropTypes.oneOf([ 'success', 'error', 'info', 'warning', '404' ]),
-  sx,
 };
 
 export default Result;
