@@ -1,13 +1,16 @@
+import React from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
 
 const Loading = (props) => {
-  const { label, value, color, size, variant, sx, containerSx } = props;
+  const { label, value, color, size, variant, sx, containerSx, containerProps, labelBoxProps, labelTypographyProps, children, ...restProps } = props;
   return (
     <Box
+      position='relative'
+      display='inline-block'
+      {...(containerProps || {})}
       sx={{
-        position: 'relative',
-        display: 'inline-flex',
-        ...containerSx,
+        ...(containerProps?.sx || {}),
+        ...(containerSx || {}),
       }}
     >
       <CircularProgress
@@ -16,22 +19,22 @@ const Loading = (props) => {
         variant={variant}
         size={size}
         sx={sx}
+        {...restProps}
       />
       <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position='absolute'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        {...(labelBoxProps || {})}
       >
-        { (typeof value !== 'undefined' || !!label) && (
-          <Typography variant='caption' component='div' color='GrayText.sendary'>
-            { typeof value === 'undefined' ? label : (
+        { (typeof value !== 'undefined' || !!label || !!children) && (
+          <Typography variant='caption' component='div' color='GrayText.secondary' {...(labelTypographyProps || {})}>
+            { typeof value === 'undefined' ? (label || children) : (
               `${Math.round(value)}%`
             )}
           </Typography>
@@ -45,8 +48,6 @@ Loading.defaultProps = {
   color: 'secondary',
   size: 40,
   thickness: 3.6,
-  sx: {},
-  boxSx: {},
   label: '',
   variant: 'indeterminate',
 };
