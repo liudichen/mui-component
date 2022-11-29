@@ -15,10 +15,13 @@ export interface StatusRenderProps {
   statusTextConvert?: (status: string) => React.ReactNode,
   /** 状态转换（原始状态转化为内置的状态） */
   statusConvert?: (status: string) => string,
+  /** 状态文本的span的style */
   textSpanStyle?: React.CSSProperties,
+  /** 状态文本前的点的span的style */
   dotSpanStyle?: React.CSSProperties,
 }
 
-declare const StatusRender: React.FunctionComponent<StatusRenderProps>;
+/** 类似于antd的状态显示 */
+declare const StatusRender: React.FC<StatusRenderProps>;
 
 export default StatusRender;
