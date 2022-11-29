@@ -1,16 +1,29 @@
-import { useImperativeHandle } from 'react';
-import { forwardRef } from 'react';
+import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link } from '@mui/material';
-import { IconX } from '@tabler/icons';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, Paper, useMediaQuery, Tooltip } from '@mui/material';
+import Close from '@mui/icons-material/Close';
+import Draggable from 'react-draggable';
+import classNames from 'classnames';
 
-const Modal = forwardRef((props, ref) => {
+import { useId } from '../../hooks';
+
+const Modal = (props) => {
   const {
-    trigger, triggerProps, onConfirm: onConfirmProp, onCancel: onCancelProp, cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions, showCloseIcon, CloseIcon, showActions,
-    title, titleProps, contentProps, actionsProps, open: openProp, onClose: onCloseProp,
+    trigger, triggerProps,
+    onConfirm: onConfirmProp, onCancel: onCancelProp,
+    cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions,
+    showCloseIcon,
+    CloseIcon,
+    showActions,
+    title, titleProps,
+    contentProps, actionsProps, open: openProp, onClose: onCloseProp,
     children, disabled,
+    PaperComponent, fullScreen, draggable, responsive, breakpoint,
     ...restProps
   } = props;
+  const theme = useTheme();
+  const down = useMediaQuery(theme.breakpoints.down(breakpoint));
+  const titleId = useId();
   const [ open, setOpen ] = useSafeState(false);
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
@@ -18,7 +31,6 @@ const Modal = forwardRef((props, ref) => {
       setOpen(false);
     }
   });
-  useImperativeHandle(ref, () => ({ onClose }));
   const onConfirm = useMemoizedFn(async () => {
     const res = await onConfirmProp?.();
     if (res !== false) {
@@ -31,46 +43,59 @@ const Modal = forwardRef((props, ref) => {
       onClose();
     }
   });
-
+  const DraggablePaper = useMemoizedFn((props) => {
+    const { handle = `.${titleId}`, cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
+    return (
+      <Draggable handle={handle} cancel={cancel}>
+        <Paper {...restProps} />
+      </Draggable>
+    );
+  });
   return (
     <>
       {!!trigger && (
         <Link
-          {...{
-            underline: 'none',
-            sx: { cursor: 'pointer' },
-            ...(triggerProps || {}),
-            onClick: (e) => {
-              if (disabled) return;
+          underline='none'
+          {...(triggerProps || {})}
+          sx={{ cursor: 'pointer', ...(triggerProps?.sx || {}) }}
+          onClick={(e) => {
+            if (!disabled) {
               setOpen(true);
               triggerProps?.onClick?.(e);
-            },
-          }
-          }
+            }
+          } }
         >
           {trigger}
         </Link>
       )}
       <Dialog
         {...restProps}
-        open={trigger ? open : openProp}
+        fullScreen={fullScreen ?? (responsive ? down : undefined)}
+        PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
+        open={trigger ? open : !!openProp}
         onClose={onClose}
       >
-        <DialogTitle {...{ ...(titleProps || {}), sx: { fontSize: '16px', ...(titleProps?.sx || {}) } }}>
+        <DialogTitle
+          {...(titleProps || {})}
+          className={classNames(titleId, titleProps?.className)}
+          sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }}
+        >
           { title }
           { showCloseIcon && (
-            <IconButton
-              aria-label='close'
-              onClick={onClose}
-              sx={{
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              { CloseIcon }
-            </IconButton>
+            <Tooltip arrow placement='top' title='关闭'>
+              <IconButton
+                aria-label='close'
+                onClick={onClose}
+                sx={{
+                  position: 'absolute',
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                { CloseIcon || <Close /> }
+              </IconButton>
+            </Tooltip>
           )}
         </DialogTitle>
         <DialogContent {...(contentProps || {})}>
@@ -78,42 +103,41 @@ const Modal = forwardRef((props, ref) => {
         </DialogContent>
         { showActions && (
           <DialogActions {...(actionsProps || {})}>
-            { !!extraActions && (extraActions)}
+            { extraActions }
             { showCancel && (
               <Button
                 variant='outlined'
                 color='secondary'
+                children={cancelText}
                 {...(cancelProps || {})}
                 onClick={onCancel}
-              >
-                { cancelText }
-              </Button>
+              />
             )}
             { showConfirm && (
               <Button
                 variant='contained'
                 color='primary'
+                children={confirmText}
                 {...(confirmProps || {})}
                 onClick={onConfirm}
-              >
-                { confirmText }
-              </Button>
+              />
             )}
           </DialogActions>
         )}
       </Dialog>
     </>
   );
-});
+};
 
 Modal.defaultProps = {
-  CloseIcon: <IconX size='24px'/>,
+  fullWidth: true,
   showCloseIcon: true,
   showCancel: true,
   cancelText: '取消',
   showConfirm: true,
   confirmText: '确认',
   showActions: true,
+  breakpoint: 'md',
 };
 
 export default Modal;
