@@ -1,3 +1,4 @@
+import React from 'react';
 import { Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReportIcon from '@mui/icons-material/Report';
@@ -17,7 +18,7 @@ const iconMap = {
 };
 
 const Result = (props) => {
-  const { icon, title, subTitle, status, actions, sx, children, ...restProps } = props;
+  const { icon, title, subTitle, status, actions, sx, children, spaceProps, ...restProps } = props;
   return (
     <ContentCard
       sx={{
@@ -74,7 +75,7 @@ const Result = (props) => {
           </div>
         )}
         { !!actions && (
-          <Space>
+          <Space {...(spaceProps || {})}>
             { actions }
           </Space>
         )}
