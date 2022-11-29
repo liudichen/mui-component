@@ -1,16 +1,25 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
+import { SxProps, BoxProps } from '@mui/material';
 
 type stringSize = 'small' | 'medium' | 'large';
 type sizeType = stringSize | number;
 type sizeProp = sizeType | [sizeType, sizeType];
 
-export interface SpaceProps {
+export interface SpaceProps extends Omit<BoxProps, 'flexDirection'> {
+  /** 最多接受2个值(横向间距\竖向间距)
+   * @example
+   * ```
+   * size=8
+   * size='small'
+   * size=[8,'large']
+   * size=[16,24]
+   * size=['small','medium']
+   * ```
+  */
   size?: sizeProp;
+  /** 子元素排列方向 */
   direction?: 'row' | 'column';
-  flexDirection?: any;
   split?: React.ReactNode;
-  display?: string,
   /**
    * sx add to root Box
    * @default {justifyContent:'center'}
@@ -18,6 +27,6 @@ export interface SpaceProps {
   sx: SxProps,
 }
 
-declare const Space: React.FunctionComponent<SpaceProps>;
+declare const Space: React.FC<React.PropsWithChildren<SpaceProps>>;
 
 export default Space;

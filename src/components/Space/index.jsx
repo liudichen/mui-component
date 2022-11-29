@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Box } from '@mui/material';
 
@@ -9,6 +8,7 @@ const spaceSize = {
 };
 
 const Space = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const { size, direction, children, flexDirection, split, ...restProps } = props;
   if (children === null || children === undefined) {
     return null;
