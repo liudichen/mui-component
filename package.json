@@ -40,9 +40,6 @@
     "result"
   ],
   "license": "MIT",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "files": [
     "es",
     "lib"
