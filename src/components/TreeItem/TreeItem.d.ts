@@ -7,7 +7,7 @@ import { TreeItemContentProps } from './TreeItemContent';
 import { TreeItemClasses } from './treeItemClasses';
 
 export interface TreeItemProps
-  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
+  extends React.PropsWithChildren<StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'>> {
   /**
    * The content of the component.
    */

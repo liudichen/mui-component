@@ -24,6 +24,6 @@ export interface PopConfirmProps extends PopperProps {
   extraContent?: React.ReactNode | React.ReactNode[],
 }
 
-declare const PopConfirm: React.ForwardRefRenderFunction<any, PopConfirmProps>;
+declare const PopConfirm: React.ForwardRefExoticComponent<React.PropsWithChildren<PopConfirmProps>>;
 
 export default PopConfirm;

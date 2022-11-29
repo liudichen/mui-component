@@ -5,7 +5,7 @@ import { SxProps } from '@mui/system';
 
 import { TreeViewClasses } from './treeViewClasses';
 
-export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
+export interface TreeViewPropsBase extends React.PropsWithChildren<StandardProps<React.HTMLAttributes<HTMLUListElement>>> {
   /**
    * The content of the component.
    */

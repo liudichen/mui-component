@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 15:47:54
- * @LastEditTime: 2022-07-23 16:13:41
- */
 import React from 'react';
 import { BoxProps, TooltipProps } from '@mui/material';
 import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams } from '@mui/x-data-grid';
