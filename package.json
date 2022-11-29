@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -97,7 +97,6 @@
     "ahooks": "^3.6.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.3",
-    "react-device-detect": "^2.2.2",
     "react-draggable": "^4.4.5",
     "react-responsive-carousel": "^3.2.23"
   }

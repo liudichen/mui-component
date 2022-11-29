@@ -30,7 +30,6 @@ specifiers:
   lint-staged: ^10.0.7
   prettier: ^2.2.1
   react: ^18.2.0
-  react-device-detect: ^2.2.2
   react-dom: ^18.2.0
   react-draggable: ^4.4.5
   react-responsive-carousel: ^3.2.23
@@ -42,7 +41,6 @@ dependencies:
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
   dayjs: 1.11.6
-  react-device-detect: 2.2.2_biqbaboplfbrettd7655fr4n2y
   react-draggable: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-responsive-carousel: 3.2.23
 
@@ -13743,17 +13741,6 @@ packages:
     resolution: {integrity: sha512-dSxo2Mn6Zx4HajeCeQNLefwEO4kNtV/0E682R1+ZTyFRPqxDa5zYb5qM/ocqw9Bxr/kFQO0IUiqdV7wdHw+Cdg==}
     dev: true
 
-  /react-device-detect/2.2.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-zSN1gIAztUekp5qUT/ybHwQ9fmOqVT1psxpSlTn1pe0CO+fnJHKRLOWWac5nKxOxvOpD/w84hk1I+EydrJp7SA==}
-    peerDependencies:
-      react: '>= 0.14.0'
-      react-dom: '>= 0.14.0'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      ua-parser-js: 1.0.32
-    dev: false
-
   /react-docgen-typescript-dumi-tmp/1.22.1-0_typescript@4.9.3:
     resolution: {integrity: sha512-wjuAm1yj+ZZucovow2VF0MXkH2SGZ+squZxfNdnam3oyUbHy/xZaU1ZabCn7rY+13ZFx0/NLda+ZuBgF3g8vBA==}
     peerDependencies:
@@ -16024,10 +16011,6 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
-
-  /ua-parser-js/1.0.32:
-    resolution: {integrity: sha512-dXVsz3M4j+5tTiovFVyVqssXBu5HM47//YSOeZ9fQkdDKkfzv2v3PP1jmH6FUyPW+yCSn7aBVK1fGGKNhowdDA==}
-    dev: false
 
   /uglify-js/2.8.29:
     resolution: {integrity: sha512-qLq/4y2pjcU3vhlhseXGGJ7VbFO4pBANu0kwl8VCa9KEI0V8VfZIx2Fy3w01iSTA/pGwKZSmu/+I4etLNDdt5w==}
