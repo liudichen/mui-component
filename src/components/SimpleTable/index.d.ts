@@ -2,43 +2,43 @@ import React from 'react';
 import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
 import { PaginationProps } from '../Pagination';
 
-interface rowType {
+interface RowItem {
   [key: string]: any;
 }
 
-interface getterParams {
-  row?: rowType;
+interface IGetterParams {
+  row?: RowItem;
   rowIndex?: number;
   field?: string;
   value?: any;
 }
 
-interface titleParams {
-  field: string;
+interface ITitleRenderParams {
+  field?: string;
 }
 
-interface columnType {
+interface IColumnType {
   field?: string;
   title?: React.ReactNode;
-  renderTitle?: (parmas: titleParams) => React.ReactNode;
+  renderTitle?: (parmas: ITitleRenderParams) => React.ReactNode;
   titleAlign?: 'center' | 'left' | 'right';
   align?: 'center' | 'left' | 'right';
-  renderCell?: (params: getterParams) => React.ReactNode;
+  renderCell?: (params: IGetterParams) => React.ReactNode;
   type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime' | 'boolean';
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
-  valueGetter?: (params: getterParams) => any;
-  getCellProps?: (params: getterParams) => object;
+  valueGetter?: (params: IGetterParams) => any;
+  getCellProps?: (params: IGetterParams) => object;
   ellipsis?: boolean;
-  showTooltip?: boolean | ((params:getterParams) => boolean);
+  showTooltip?: boolean | ((params: IGetterParams) => boolean);
 }
 
 export interface SimpleTableProps extends TableProps {
   tableContainerBoxProps?: BoxProps;
-  rows?: rowType[];
+  rows?: RowItem[];
   rowKey?: string;
-  columns?: columnType[];
+  columns?: IColumnType[];
   title?: React.ReactNode;
   titlePosition?: 'top' | 'bottom' | 'inherit';
   hideHeader?: boolean;
@@ -72,6 +72,6 @@ export interface SimpleTableProps extends TableProps {
   unmountOnExit?: boolean;
 }
 
-declare const SimpleTable: React.FunctionComponent<SimpleTableProps>;
+declare const SimpleTable: React.FC<SimpleTableProps>;
 
 export default SimpleTable;

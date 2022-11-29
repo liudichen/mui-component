@@ -1,10 +1,4 @@
-/*
- * @Description: this component origin from https://berrydashboard.io
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 10:36:54
- * @LastEditTime: 2022-05-13 16:12:40
- */
+
 import React, { forwardRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';

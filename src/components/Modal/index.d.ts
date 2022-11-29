@@ -50,6 +50,6 @@ interface IRefValue {
   onClose: () => void,
 }
 
-declare const Modal: React.FC<ModalProps>;
+declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;
 
 export default Modal;

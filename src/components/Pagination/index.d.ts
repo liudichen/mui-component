@@ -14,6 +14,7 @@ export interface PaginationProps extends Omit<Omit< Omit<MuiPaginationProps, 'on
   total?: number,
   pageSize?: number,
   defaultPageSize?: number,
+  /** 显示选择每页多少行的选择框 */
   showPageSize?: boolean,
   showItemRange?: boolean,
   onPageChange?: (current: number) => void,

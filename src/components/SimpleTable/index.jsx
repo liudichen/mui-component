@@ -1,8 +1,8 @@
 import React from 'react';
 import { useControllableValue, useCreation } from 'ahooks';
 import { Box, Table, TableBody, TableFooter, TableHead } from '@mui/material';
-import Pagination from '../Pagination';
 
+import Pagination from '../Pagination';
 import Row from './Row';
 
 const SimpleTable = (props) => {
@@ -12,11 +12,9 @@ const SimpleTable = (props) => {
     rows,
     rowKey,
     total,
-    current,
-    pageSize,
+    // eslint-disable-next-line no-unused-vars
+    current, pageSize, onPageChange, onPageSizeChange,
     pageSizeOptions,
-    onPageChange,
-    onPageSizeChange,
     initPageSize,
     paginationProps,
     hideHeader,
@@ -26,7 +24,6 @@ const SimpleTable = (props) => {
     titlePosition,
     titleStyle,
     bordered,
-    hideFooter,
     columnDefaultWidth,
     expandable,
     showExpandColumn,
@@ -38,13 +35,6 @@ const SimpleTable = (props) => {
     unmountOnExit,
     ...restProps
   } = props;
-  const colSpans = useCreation(() => {
-    let cols = columns?.length ?? 0;
-    if (showExpandColumn) {
-      cols += 1;
-    }
-    return cols;
-  }, [ columns?.length, showExpandColumn ]);
   const [ pageNumber, setPageNumber ] = useControllableValue(props, {
     valuePropName: 'current',
     trigger: 'onPageChange',
