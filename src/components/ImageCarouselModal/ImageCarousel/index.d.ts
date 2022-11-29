@@ -1,20 +1,14 @@
 import React from 'react';
+import { CarouselProps as ICarouselProps } from 'react-responsive-carousel';
 
-export interface imageItem {
+export interface ImageItem {
   src?: string,
   title?: string,
   name?: string,
   url?: string,
 }
-interface labels {
-  leftArrow?: string,
-  rightArrow?: string,
-  item?: string,
-}
 
-type ClickHandlerFn = () => void;
-
-export interface carouselProps {
+export interface CarouselProps extends ICarouselProps {
   /** Define the aria-label attribute for the root carousel element. The default is undefined, skipping the attribute from markup. */
   ariaLabel?: string,
   /** Define the direction of the slider
@@ -40,31 +34,38 @@ export interface carouselProps {
   /** Apply aria-label on carousel with an object with the properties leftArrow, rightArrow and item.
    * @default {leftArrow: 'previous slide / item', rightArrow: 'next slide / item', item: 'slide item'}
    */
-  labels?: labels,
+  labels?: {
+    leftArrow?: string,
+    rightArrow?: string,
+    item?: string,
+  },
   /** Callback to handle a click event on a slide, receives the current index and item as arguments */
-  onClickItem?: (index: number, item: any) => void,
+  onClickItem?: (index: number, item: React.ReactNode) => void,
   /** Callback to handle a click event on a thumb, receives the current index and item as arguments. */
-  onClickThumb?: (index: number, item: any) => void,
+  onClickThumb?: (index: number, item: React.ReactNode) => void,
   /** Callback to handle every time the selected item changes, receives the current index and item as arguments. */
-  onChange?: (index: number, item: any) => void,
+  onChange?: (index: number, item: React.ReactNode) => void,
   /** Callback to handle when the swipe starts, receives a touch event as argument */
-  onSwipeStart?: (e:Event) => void,
+  onSwipeStart?: (event: React.TouchEvent) => void,
   /** Callback to handle when the swipe ends, receives a touch event as argument. */
-  onSwipeEnd?: (e:Event) => void,
+  onSwipeEnd?: (event: React.TouchEvent) => void,
   /** Callback triggered on every movement while swiping, receives a touch event as argument */
-  onSwipeMove?: (e:Event) => void,
+  onSwipeMove?: (event: React.TouchEvent) => void,
   /** Don't let the carousel scroll until the user swipe to the value specified on swipeScrollTolerance */
   preventMovementUntilSwipeScrollTolerance?: boolean,
   /** Render custom previous arrow. Receives a click handler, a boolean that shows if there's a previous item, and the accessibility label as arguments. */
-  renderArrowPrev?: (clickHandler: ClickHandlerFn, hasPrevious: boolean, label: any) => React.ReactNode,
+  renderArrowPrev?: (clickHandler: () => void, hasPrevious: boolean, label: string) => React.ReactNode,
   /** Render custom previous arrow. Receives a click handler, a boolean that shows if there's a next item, and the accessibility label as arguments. */
-  renderArrowNext?: (clickHandler: ClickHandlerFn, hasNext: boolean, label: any) => React.ReactNode,
+  renderArrowNext?: (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode,
   /** Render custom indicator. Receives a click handler, a boolean that shows if the item is selected, the item index, and the accessibility label as arguments.*/
-  renderIndicator?: (clickHandler: ClickHandlerFn, selected: boolean, index:number, label: any) => React.ReactNode,
+  renderIndicator?: (clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void, isSelected: boolean, index: number, label: string) => React.ReactNode,
   /** Render a custom item. Receives an item of the carousel, and an object with the isSelected property as arguments. */
-  renderItem?: (item: any, selectedObject: object) => React.ReactNode,
+  renderItem?: (item: React.ReactNode, options?: {
+    isSelected: boolean;
+    isPrevious: boolean;
+  }) => React.ReactNode,
   /** Render prop to show the thumbs, receives the carousel items as argument. Get the img tag of each item of the slider, and render it by default. */
-  renderThumbs?: (items: any[]) => any,
+  renderThumbs?: (children: React.ReactChild[]) => React.ReactChild[],
   /** Set the selected item
    * @default 0
    */
@@ -86,7 +87,7 @@ export interface carouselProps {
    */
   showThumbs?: boolean,
   /** Formatter that returns the status as a string, receives the current item and the total count as arguments. Defaults to {currentItem} of {total} format.*/
-  statusFormatter?: (item: any, total:number) => any,
+  statusFormatter?: (currentItem: number, total: number) => string,
   /** The slide will not change by autoPlay on hover
    * @default true
    */
@@ -114,10 +115,12 @@ export interface carouselProps {
   width?: number | string,
 }
 
-export interface ImageCarouselProps extends carouselProps {
-  images: imageItem[],
+export interface ImageCarouselProps extends CarouselProps {
+  /** images的优先级低于children */
+  images?: ImageItem[],
 }
 
-declare const ImageCarousel: React.FunctionComponent<ImageCarouselProps>;
+/** */
+declare const ImageCarousel: React.FC<React.PropsWithChildren<ImageCarouselProps>>;
 
 export default ImageCarousel;

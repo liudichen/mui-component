@@ -1,34 +1,18 @@
 import React from 'react';
-import { DialogProps, LinkProps, PaperProps } from '@mui/material';
 
-import { ImageCarouselProps, carouselProps, imageItem } from './ImageCarousel';
+import { CarouselProps, ImageItem } from './ImageCarousel';
+import { ModalProps } from '../Modal';
 
-type maxWidthString = 'sm' | 'xs' |' md' | 'lg' | 'xl';
-
-interface ImageCarouselModalProps extends carouselProps {
-  open?: boolean,
-  onClose?: () => void,
-  trigger?: React.ReactNode,
-  triggerSx?: object,
-  triggerProps?: Omit<LinkProps, 'sx'>
-  fullWidth?: boolean,
-  fullScreen?: boolean,
-  maxWidth?: maxWidthString | string,
-  DialogProps?: Omit<Omit<DialogProps, 'open'>, 'onClose'>,
-  PaperProps?: PaperProps,
-  title?: React.ReactNode,
-  images: imageItem[] | (() => imageItem[]) | (()=>imageItem)[] | imageItem,
-  showCloseIcon?: boolean,
-  CloseIcon?: React.ReactNode,
+export interface ImageCarouselModalProps extends CarouselProps, Pick<ModalProps, 'trigger' | 'triggerProps' | 'open' | 'onClose' | 'showCloseIcon' | 'CloseIcon' | 'maxWidth' | 'draggable' | 'responsive' | 'breakpoint' | 'fullScreen' | 'fullWidth' | 'title' | 'titleProps'> {
+  modalProps?: ModalProps,
+  /**
+   * @deprecated 不再使用,请使用modalProps
+   */
+  DialogProps?: ModalProps,
+  /** images的优先级低于children */
+  images?: ImageItem[] | (() => ImageItem[]) | (()=>ImageItem)[] | ImageItem,
 }
 
-declare const ImageCarousel:React.FunctionComponent<ImageCarouselProps>;
-declare const ImageCarouselModal:React.FunctionComponent<ImageCarouselModalProps>;
-
-export {
-  ImageCarousel,
-  ImageCarouselProps,
-  ImageCarouselModalProps,
-};
+declare const ImageCarouselModal: React.FC<React.PropsWithChildren<ImageCarouselModalProps>>;
 
 export default ImageCarouselModal;

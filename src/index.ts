@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 10:29:43
- * @LastEditTime: 2022-07-22 11:35:30
- */
 export { default as ContentCard, ContentCardProps } from './components/ContentCard';
 export { default as PageContainer, PageContainerProps } from './components/PageContainer';
 export { default as Loading, LoadingProps } from './components/Loading';
@@ -17,7 +10,8 @@ export { default as SimpleTable, SimpleTableProps } from './components/SimpleTab
 export { default as PopConfirm, PopConfirmProps } from './components/PopConfirm';
 export { default as Modal, ModalProps } from './components/Modal';
 
-export { default as ImageCarouselModal, ImageCarousel, ImageCarouselProps, ImageCarouselModalProps } from './components/ImageCarouselModal';
+export { default as ImageCarouselModal, ImageCarouselModalProps } from './components/ImageCarouselModal';
+export { default as ImageCarousel, ImageCarouselProps } from './components/ImageCarouselModal/ImageCarousel';
 
 export { default as Space, SpaceProps } from './components/Space';
 

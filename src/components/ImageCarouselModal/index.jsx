@@ -1,20 +1,17 @@
 import React from 'react';
-import { useControllableValue, useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Link, IconButton } from '@mui/material';
-import { isMobile } from 'react-device-detect';
-import { IconX } from '@tabler/icons';
+import { useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
 
 import ImageCarousel from './ImageCarousel';
+import Modal from '../Modal';
 
 const ImageCarouselModal = (props) => {
   const {
-    trigger, triggerSx, triggerProps, showCloseIcon, CloseIcon,
-    // eslint-disable-next-line no-unused-vars
-    open: openProp, onClose,
-    title,
-    children, images: imagesProps,
+    trigger, triggerProps, showCloseIcon, CloseIcon,
     fullWidth, fullScreen, maxWidth,
-    PaperProps, DialogProps,
+    draggable, responsive, breakpoint, title, titleProps,
+    modalProps, DialogProps,
+    open, onClose,
+    images: imagesProps,
     ...restProps
   } = props;
   const [ images, setImages ] = useSafeState([]);
@@ -42,71 +39,39 @@ const ImageCarouselModal = (props) => {
     }
   });
   useDeepCompareEffect(() => fetchImages(), [ imagesProps ]);
-  const [ open, setOpen ] = useControllableValue(props, { valuePropName: 'open', trigger: 'onClose', defaultValue: false });
   return (
-    <>
-      <Link
-        {...{
-          underline: 'none',
-          ...(triggerProps || {}),
-          sx: {
-            cursor: 'pointer',
-            ...(triggerSx || {}),
-          },
-        }}
-        onClick={() => setOpen(true)}
-      >
-        { trigger }
-      </Link>
-      <Dialog
-        {...{
-          PaperProps,
-          fullWidth,
-          maxWidth,
-          fullScreen,
-          ...(DialogProps || {}),
-          open,
-          onClose: () => setOpen(false),
-        }}
-      >
-        <DialogTitle variant='h4' component='div'>
-          { title }
-          { showCloseIcon && (
-            <IconButton
-              aria-label='close'
-              onClick={() => setOpen(false)}
-              sx={{
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              { CloseIcon }
-            </IconButton>
-          )}
-        </DialogTitle>
-        <DialogContent>
-          <ImageCarousel images={images} {...restProps}>
-            { children }
-          </ImageCarousel>
-        </DialogContent>
-        <DialogActions>
-          <Button variant='outlined' onClick={() => setOpen(false)}>
-            关闭
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    <Modal
+      title={title}
+      titleProps={titleProps}
+      trigger={trigger}
+      triggerProps={triggerProps}
+      fullScreen={fullScreen}
+      fullWidth={fullWidth}
+      open={open}
+      onClose={onClose}
+      showCloseIcon={showCloseIcon}
+      CloseIcon={CloseIcon}
+      maxWidth={maxWidth}
+      draggable={draggable}
+      responsive={responsive}
+      breakpoint={breakpoint}
+      showConfirm={false}
+      cancelText='关闭'
+      {...((modalProps ?? DialogProps) || {})}
+    >
+      <ImageCarousel
+        images={images}
+        {...restProps}
+      />
+    </Modal>
   );
 };
 ImageCarouselModal.defaultProps = {
   fullWidth: true,
   maxWidth: 'md',
   title: '图片预览',
-  fullScreen: isMobile,
-  CloseIcon: <IconX size='24px'/>,
-  showCloseIcon: true,
+  titleProps: { variant: 'h4', component: 'div', fontSize: undefined },
+  responsive: true,
 };
 
 export {
