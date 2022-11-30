@@ -9,6 +9,7 @@
 
 # production
 /es
+/lib
 /docs-dist
 
 # misc
@@ -24,9 +25,5 @@
 # ide
 /.vscode
 /.idea
-
-lib
-es
-
 
 package-lock.json
