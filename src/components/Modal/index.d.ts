@@ -46,10 +46,6 @@ export interface ModalProps extends DialogProps {
   breakpoint?: 'xs' | 'sml' | 'md' | 'lg' | 'xl',
 }
 
-interface IRefValue {
-  onClose: () => void,
-}
-
 declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;
 
 export default Modal;
