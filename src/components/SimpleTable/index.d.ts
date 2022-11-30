@@ -36,8 +36,10 @@ interface IColumnType {
 }
 
 export interface SimpleTableProps extends TableProps {
+  /** table外包裹的Box组件的props */
   tableContainerBoxProps?: BoxProps;
   rows?: RowItem[];
+  /** 行数据key的Id */
   rowKey?: string;
   columns?: IColumnType[];
   /** 表格的caption标题内容 */
@@ -46,8 +48,10 @@ export interface SimpleTableProps extends TableProps {
    * @default 'top'
    */
   titlePosition?: 'top' | 'bottom' | 'inherit';
+  /** 隐藏表头? */
   hideHeader?: boolean;
 
+  /** 显示表格框线? */
   bordered?: boolean;
   /** 设定表格列的默认宽度
    * @default 100
