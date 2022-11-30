@@ -18,8 +18,8 @@ const SimpleTable = (props) => {
     initPageSize,
     paginationProps,
     hideHeader,
-    showFoot,
-    footRender, footProps, hidePagination,
+    showTabelFooter,
+    tableFooter, tableFooterProps, hidePagination: hidePaginationProp, autoHidePagination,
     title,
     titlePosition,
     titleStyle,
@@ -55,6 +55,14 @@ const SimpleTable = (props) => {
     }
     return rows || [];
   }, [ rows, rowsPerPage, pageNumber, total ]);
+  const counts = total ?? rows?.length ?? 0;
+  const hidePagination = useCreation(() => {
+    if (typeof hidePaginationProp !== 'undefined') return !!hidePaginationProp;
+    if (autoHidePagination) {
+      return !(counts > initPageSize && counts > rowsPerPage);
+    }
+    return false;
+  }, [ hidePaginationProp, autoHidePagination, counts, initPageSize, rowsPerPage ]);
   return (
     <Box>
       <Box
@@ -120,18 +128,15 @@ const SimpleTable = (props) => {
               );
             })}
           </TableBody>
-          {showFoot && !!footRender && (
-            <TableFooter {...(footProps || {})}>
-              {footRender}
+          {showTabelFooter && !!tableFooter && (
+            <TableFooter {...(tableFooterProps || {})}>
+              {tableFooter}
             </TableFooter>
           )}
         </Table>
       </Box>
       <Box>
-        {(hidePagination === false ||
-          (typeof hidePagination === 'undefined' &&
-            (total ?? rows?.length ?? 0) > initPageSize &&
-            (total ?? rows?.length ?? 0) > rowsPerPage)) && (
+        {!hidePagination && (
           <Pagination
             total={total ?? rows?.length ?? 0}
             current={pageNumber}
