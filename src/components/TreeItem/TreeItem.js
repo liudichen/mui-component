@@ -254,7 +254,6 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
         unMapFirstChar(nodeId);
       };
     }
-    return undefined;
   }, [ mapFirstChar, unMapFirstChar, nodeId, label ]);
 
   let ariaSelected;

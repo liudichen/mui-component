@@ -136,14 +136,12 @@ export const DateRangePickerInput = React.forwardRef(function DateRangePickerInp
   const classes = useUtilityClasses(props);
 
   React.useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    if (currentlySelectingRangeEnd === 'start') {
-      startRef.current?.focus();
-    } else if (currentlySelectingRangeEnd === 'end') {
-      endRef.current?.focus();
+    if (open) {
+      if (currentlySelectingRangeEnd === 'start') {
+        startRef.current?.focus();
+      } else if (currentlySelectingRangeEnd === 'end') {
+        endRef.current?.focus();
+      }
     }
   }, [ currentlySelectingRangeEnd, open ]);
 

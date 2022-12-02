@@ -191,11 +191,9 @@ function DateRangePickerViewRaw<TInputDate, TDate>(
   };
 
   React.useEffect(() => {
-    if (disableAutoMonthSwitching || !open) {
-      return;
+    if (!disableAutoMonthSwitching && open) {
+      scrollToDayIfNeeded(currentlySelectingRangeEnd === 'start' ? start : end);
     }
-
-    scrollToDayIfNeeded(currentlySelectingRangeEnd === 'start' ? start : end);
   }, [currentlySelectingRangeEnd, parsedValue]); // eslint-disable-line
 
   const handleSelectedDayChange = React.useCallback<DayPickerProps<TDate>['onSelectedDaysChange']>(
