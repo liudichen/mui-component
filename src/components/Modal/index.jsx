@@ -1,9 +1,9 @@
 import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, Paper, useMediaQuery, Tooltip } from '@mui/material';
-import Close from '@mui/icons-material/Close';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, Paper, useMediaQuery, Tooltip } from '@mui/material';
 import Draggable from 'react-draggable';
 import classNames from 'classnames';
+import { IconCircleX } from '@tabler/icons';
 
 import { useId } from '../../hooks';
 
@@ -12,13 +12,13 @@ const Modal = (props) => {
     trigger, triggerProps,
     onConfirm: onConfirmProp, onCancel: onCancelProp,
     cancelText, confirmText, showConfirm, showCancel, cancelProps, confirmProps, extraActions,
-    showCloseIcon,
-    CloseIcon,
+    showCloseIcon, closeIconButtonProps, CloseIcon,
     showActions,
-    title, titleProps,
+    title, titleProps, titleBoxProps,
     contentProps, actionsProps, open: openProp, onClose: onCloseProp,
-    children, disabled,
-    PaperComponent, fullScreen, draggable, responsive, breakpoint,
+    children, disabled, content,
+    PaperComponent,
+    fullScreen, draggable, responsive, breakpoint,
     ...restProps
   } = props;
   const theme = useTheme();
@@ -63,7 +63,7 @@ const Modal = (props) => {
               setOpen(true);
               triggerProps?.onClick?.(e);
             }
-          } }
+          }}
         >
           {trigger}
         </Link>
@@ -75,36 +75,39 @@ const Modal = (props) => {
         open={trigger ? open : !!openProp}
         onClose={onClose}
       >
-        <DialogTitle
-          {...(titleProps || {})}
-          className={classNames(titleId, titleProps?.className)}
-          sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }}
-        >
-          { title }
-          { showCloseIcon && (
-            <Tooltip arrow placement='top' title='关闭'>
-              <IconButton
-                aria-label='close'
-                onClick={onClose}
-                sx={{
-                  position: 'absolute',
-                  right: 8,
-                  top: 8,
-                  color: (theme) => theme.palette.grey[500],
-                }}
-              >
-                { CloseIcon || <Close /> }
-              </IconButton>
-            </Tooltip>
-          )}
-        </DialogTitle>
+        { (!!title || showCloseIcon) && (
+          <DialogTitle
+            display='flex'
+            alignItems='start'
+            bgcolor='#f5f5f5'
+            {...(titleProps || {})}
+            className={classNames(titleId, titleProps?.className)}
+            sx={{ padding: 0, ...(titleProps?.sx || {}) }}
+          >
+            <Box flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5} {...(titleBoxProps || {})}>
+              {title}
+            </Box>
+            {showCloseIcon && (
+              <Tooltip arrow placement='top' title='关闭'>
+                <IconButton
+                  sx={{ px: 0.25, py: 0.5 }}
+                  {...(closeIconButtonProps || {})}
+                  aria-label='close'
+                  onClick={onClose}
+                >
+                  {CloseIcon || <IconCircleX size='1.5em' stroke='1.5px' color='#8c8c8c'/>}
+                </IconButton>
+              </Tooltip>
+            )}
+          </DialogTitle>
+        )}
         <DialogContent {...(contentProps || {})}>
-          {children}
+          {content ?? children}
         </DialogContent>
-        { showActions && (
+        {showActions && (
           <DialogActions {...(actionsProps || {})}>
-            { extraActions }
-            { showCancel && (
+            {extraActions}
+            {showCancel && (
               <Button
                 variant='outlined'
                 color='secondary'
@@ -113,7 +116,7 @@ const Modal = (props) => {
                 onClick={onCancel}
               />
             )}
-            { showConfirm && (
+            {showConfirm && (
               <Button
                 variant='contained'
                 color='primary'
