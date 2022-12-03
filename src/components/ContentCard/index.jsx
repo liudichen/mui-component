@@ -1,13 +1,9 @@
 // this component origin from https://berrydashboard.io
 import React, { forwardRef } from 'react';
 import { useToggle } from 'ahooks';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
-
-// ==============================|| CUSTOM SUB CARD ||============================== //
 
 const ContentCard = forwardRef(({
   children,
