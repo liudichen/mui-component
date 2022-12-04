@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import { useControllableValue, useMemoizedFn } from 'ahooks';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, useMediaQuery, Tooltip } from '@mui/material';
 import classNames from 'classnames';
 import { IconCircleX } from '@tabler/icons';
@@ -14,7 +14,9 @@ const Modal = (props) => {
     showCloseIcon, closeIconButtonProps, CloseIcon,
     showActions,
     title, titleProps, titleBoxProps,
-    contentProps, actionsProps, open: openProp, onClose: onCloseProp,
+    contentProps, actionsProps,
+    // eslint-disable-next-line no-unused-vars
+    open: openProp, onClose: onCloseProp,
     children, disabled, content, withDialogContentWrapper,
     PaperComponent,
     fullScreen: fullScreenProp, draggable: draggableProp, responsive, breakpoint,
@@ -24,10 +26,11 @@ const Modal = (props) => {
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   const draggable = draggableProp && !fullScreen;
-  const [ open, setOpen ] = useSafeState(false);
+  const [ open, setOpen ] = useControllableValue(props, { defaultValue: false, valuePropName: 'open', trigger: 'onClose' });
   const onClose = useMemoizedFn(async (e, reason) => {
-    const res = await onCloseProp?.(e, reason);
-    if (trigger && res !== false) {
+    if (typeof open !== 'undefined') {
+      await onCloseProp?.(e, reason);
+    } else {
       setOpen(false);
     }
   });
@@ -64,7 +67,7 @@ const Modal = (props) => {
         {...restProps}
         fullScreen={fullScreen}
         PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
-        open={trigger ? open : !!openProp}
+        open={!!open}
         onClose={onClose}
       >
         {(!!title || showCloseIcon) && (
@@ -97,7 +100,7 @@ const Modal = (props) => {
             )}
           </DialogTitle>
         )}
-        { withDialogContentWrapper ? (
+        {withDialogContentWrapper ? (
           <DialogContent {...(contentProps || {})}>
             {content ?? children}
           </DialogContent>

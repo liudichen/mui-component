@@ -24,7 +24,7 @@ export interface ModalProps extends DialogProps {
   confirmText?: React.ReactNode | React.ReactNode[],
   /** 确认按钮的Props? */
   confirmProps?: Omit<ButtonProps, 'onClick'>,
-  /** 底部额外的按钮等,会显示在取消按钮左侧   */
+  /** 底部额外的按钮等,会显示在取消/重置按钮左侧   */
   extraActions?: React.ReactNode | React.ReactNode[],
   /** 点击触发弹窗打开的ReactNode，如果不传递此prop，则open使用外部受控模式 */
   trigger?: React.ReactNode,
