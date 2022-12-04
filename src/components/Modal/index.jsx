@@ -5,8 +5,6 @@ import Draggable from 'react-draggable';
 import classNames from 'classnames';
 import { IconCircleX } from '@tabler/icons';
 
-import { useId } from '../../hooks';
-
 const Modal = (props) => {
   const {
     trigger, triggerProps,
@@ -16,14 +14,13 @@ const Modal = (props) => {
     showActions,
     title, titleProps, titleBoxProps,
     contentProps, actionsProps, open: openProp, onClose: onCloseProp,
-    children, disabled, content,
+    children, disabled, content, withDialogContentWrapper,
     PaperComponent,
-    fullScreen, draggable, responsive, breakpoint,
+    fullScreen: fullScreenProp, draggable, responsive, breakpoint,
     ...restProps
   } = props;
   const theme = useTheme();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
-  const titleId = useId();
   const [ open, setOpen ] = useSafeState(false);
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
@@ -44,13 +41,14 @@ const Modal = (props) => {
     }
   });
   const DraggablePaper = useMemoizedFn((props) => {
-    const { handle = `.${titleId}`, cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
+    const { handle = '.dialog-draggable-title', cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
     return (
       <Draggable handle={handle} cancel={cancel}>
         <Paper {...restProps} />
       </Draggable>
     );
   });
+  const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   return (
     <>
       {!!trigger && (
@@ -70,18 +68,18 @@ const Modal = (props) => {
       )}
       <Dialog
         {...restProps}
-        fullScreen={fullScreen ?? (responsive ? down : undefined)}
-        PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
+        fullScreen={fullScreen}
+        PaperComponent={PaperComponent ?? (draggable && !fullScreen ? DraggablePaper : undefined)}
         open={trigger ? open : !!openProp}
         onClose={onClose}
       >
-        { (!!title || showCloseIcon) && (
+        {(!!title || showCloseIcon) && (
           <DialogTitle
             display='flex'
             alignItems='start'
             bgcolor='#f5f5f5'
             {...(titleProps || {})}
-            className={classNames(titleId, titleProps?.className)}
+            className={classNames('dialog-draggable-title', titleProps?.className)}
             sx={{ padding: 0, ...(titleProps?.sx || {}) }}
           >
             <Box flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5} {...(titleBoxProps || {})}>
@@ -95,15 +93,19 @@ const Modal = (props) => {
                   aria-label='close'
                   onClick={onClose}
                 >
-                  {CloseIcon || <IconCircleX size='1.5em' stroke='1.5px' color='#8c8c8c'/>}
+                  {CloseIcon || <IconCircleX size='1.5em' stroke='1.5px' color='#8c8c8c' />}
                 </IconButton>
               </Tooltip>
             )}
           </DialogTitle>
         )}
-        <DialogContent {...(contentProps || {})}>
-          {content ?? children}
-        </DialogContent>
+        { withDialogContentWrapper ? (
+          <DialogContent {...(contentProps || {})}>
+            {content ?? children}
+          </DialogContent>
+        ) : (
+          content ?? children
+        )}
         {showActions && (
           <DialogActions {...(actionsProps || {})}>
             {extraActions}
@@ -141,6 +143,7 @@ Modal.defaultProps = {
   confirmText: '确认',
   showActions: true,
   breakpoint: 'md',
+  withDialogContentWrapper: true,
 };
 
 export default Modal;

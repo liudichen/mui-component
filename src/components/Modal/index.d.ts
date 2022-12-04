@@ -40,6 +40,10 @@ export interface ModalProps extends DialogProps {
    * @default 初始状态{flex:1,fontSize:'16px',height:'100%',alignSelf:'center',marginLeft:1.5,marginY:0.5}
    */
   titleBoxProps?: BoxProps,
+  /** 内容使用DialogContent包裹?
+   * @default true
+   */
+  withDialogContentWrapper?: boolean,
   /** 内容区包裹的DialogContent的props */
   contentProps?: DialogContentProps,
   /** 底部按钮区包裹的DialogActions的props */
