@@ -9,6 +9,7 @@ export { default as SimpleTable, SimpleTableProps } from './components/SimpleTab
 
 export { default as PopConfirm, PopConfirmProps } from './components/PopConfirm';
 export { default as Modal, ModalProps } from './components/Modal';
+export { DraggablePaper, DraggablePaperProps } from './components/Modal/DraggablePaper';
 
 export { default as ImageCarouselModal, ImageCarouselModalProps } from './components/ImageCarouselModal';
 export { default as ImageCarousel, ImageCarouselProps } from './components/ImageCarouselModal/ImageCarousel';

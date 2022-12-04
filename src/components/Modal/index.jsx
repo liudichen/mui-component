@@ -1,9 +1,10 @@
 import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, Paper, useMediaQuery, Tooltip } from '@mui/material';
-import Draggable from 'react-draggable';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, useMediaQuery, Tooltip } from '@mui/material';
 import classNames from 'classnames';
 import { IconCircleX } from '@tabler/icons';
+
+import { DraggablePaper } from './DraggablePaper';
 
 const Modal = (props) => {
   const {
@@ -16,11 +17,13 @@ const Modal = (props) => {
     contentProps, actionsProps, open: openProp, onClose: onCloseProp,
     children, disabled, content, withDialogContentWrapper,
     PaperComponent,
-    fullScreen: fullScreenProp, draggable, responsive, breakpoint,
+    fullScreen: fullScreenProp, draggable: draggableProp, responsive, breakpoint,
     ...restProps
   } = props;
   const theme = useTheme();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
+  const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
+  const draggable = draggableProp && !fullScreen;
   const [ open, setOpen ] = useSafeState(false);
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
@@ -40,15 +43,6 @@ const Modal = (props) => {
       onClose();
     }
   });
-  const DraggablePaper = useMemoizedFn((props) => {
-    const { handle = '.dialog-draggable-title', cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
-    return (
-      <Draggable handle={handle} cancel={cancel}>
-        <Paper {...restProps} />
-      </Draggable>
-    );
-  });
-  const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   return (
     <>
       {!!trigger && (
@@ -69,7 +63,7 @@ const Modal = (props) => {
       <Dialog
         {...restProps}
         fullScreen={fullScreen}
-        PaperComponent={PaperComponent ?? (draggable && !fullScreen ? DraggablePaper : undefined)}
+        PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
         open={trigger ? open : !!openProp}
         onClose={onClose}
       >
@@ -82,7 +76,11 @@ const Modal = (props) => {
             className={classNames('dialog-draggable-title', titleProps?.className)}
             sx={{ padding: 0, ...(titleProps?.sx || {}) }}
           >
-            <Box flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5} {...(titleBoxProps || {})}>
+            <Box
+              flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5}
+              {...(titleBoxProps || {})}
+              sx={draggable ? ({ cursor: 'move', ...(titleBoxProps?.sx || {}) }) : titleBoxProps?.sx}
+            >
               {title}
             </Box>
             {showCloseIcon && (
