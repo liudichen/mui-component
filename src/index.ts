@@ -1,4 +1,4 @@
-export { default as ContentCard, ContentCardProps } from './components/ContentCard';
+export * from './components/ContentCard';
 export { default as PageContainer, PageContainerProps } from './components/PageContainer';
 export { default as Loading, LoadingProps } from './components/Loading';
 export { default as Pagination, PaginationProps } from './components/Pagination';

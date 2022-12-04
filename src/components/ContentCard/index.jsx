@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
-const ContentCard = forwardRef(({
+export const ContentCard = forwardRef(({
   children,
   content,
   contentClass,
@@ -95,5 +95,3 @@ ContentCard.defaultProps = {
   iconColor: 'secondary',
   CollapseIcon: ExpandCircleDownOutlinedIcon,
 };
-
-export default ContentCard;

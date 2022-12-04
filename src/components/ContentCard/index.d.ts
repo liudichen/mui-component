@@ -22,6 +22,4 @@ export interface ContentCardProps extends CardProps {
   unmountOnExit?: boolean,
 }
 
-declare const ContentCard: React.FC<React.PropsWithChildren<ContentCardProps>>;
-
-export default ContentCard;
+export declare const ContentCard: React.FC<React.PropsWithChildren<ContentCardProps>>;
