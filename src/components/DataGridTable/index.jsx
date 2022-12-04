@@ -4,7 +4,7 @@ import { Box, Tooltip } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 
-import NoRowsOverlay from './NoRowsOverlay';
+import { NoData as NoRowsOverlay } from '../NoData';
 import DataGridPagination from './DataGridPagination';
 import StatusRender from '../StatusRender';
 
@@ -75,7 +75,7 @@ const DataGridTable = (props) => {
     >
       <DataGrid
         columns={columns}
-        getRowId={getRowId ?? ((row) => row[rowKey]) }
+        getRowId={getRowId ?? ((row) => row[rowKey])}
         paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
         autoHeight={height ? false : autoHeight}
         components={{

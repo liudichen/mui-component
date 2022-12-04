@@ -18,6 +18,8 @@ export { default as Space, SpaceProps } from './components/Space';
 
 export { default as Result, ResultProps } from './components/Result';
 
+export * from './components/NoData';
+
 /** 来自Mui的组件： */
 export * from './components/DateRangePicker';
 export * from './components/LoadingButton';

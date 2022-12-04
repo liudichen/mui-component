@@ -25,15 +25,17 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
   },
 }));
 
-const NoRowsOverlay = () => {
+export const NoData = (props) => {
+  const { noDateText, children, svgProps, ...restProps } = props;
   return (
-    <StyledGridOverlay>
+    <StyledGridOverlay {...restProps}>
       <svg
         width="120"
         height="100"
         viewBox="0 0 184 152"
         aria-hidden
         focusable="false"
+        {...(svgProps || {})}
       >
         <g fill="none" fillRule="evenodd">
           <g transform="translate(24 31.67)">
@@ -67,9 +69,7 @@ const NoRowsOverlay = () => {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>No Data</Box>
+      <Box sx={{ mt: 1 }}>{noDateText ?? children}</Box>
     </StyledGridOverlay>
   );
 };
-
-export default NoRowsOverlay;
