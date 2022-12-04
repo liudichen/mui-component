@@ -2,8 +2,7 @@ import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useUpdateEffect } from 'ahooks';
 import { Pagination as MuiPagination, Box, Stack, Select, MenuItem, Typography } from '@mui/material';
 
-
-const Pagination = (props) => {
+export const Pagination = (props) => {
   const { paginationBoxProps, paginationStackProps, showPageSize, pageSizeOptions, pageSizeSelectProps,
     // eslint-disable-next-line no-unused-vars
     page, count, onChange, onPageChange: onPageChangeProp, onPageSizeChange: onPageSizeChangeProp, pageSize: pageSizeProp,
@@ -79,5 +78,3 @@ Pagination.defaultProps = {
   hidePrevButton: true,
   variant: 'outlined',
 };
-
-export default Pagination;

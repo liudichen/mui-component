@@ -22,6 +22,5 @@ export interface StatusRenderProps {
 }
 
 /** 类似于antd的状态显示 */
-declare const StatusRender: React.FC<StatusRenderProps>;
+export declare const StatusRender: React.FC<StatusRenderProps>;
 
-export default StatusRender;

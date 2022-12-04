@@ -66,7 +66,7 @@ const getText = (text, rawStatus, statusConvert, statusTextConvert) => {
   return statusTextConvert?.(status) ?? (status || null);
 };
 
-const StatusRender = (props) => {
+export const StatusRender = (props) => {
   const {
     color,
     status,
@@ -109,5 +109,3 @@ const StatusRender = (props) => {
     </span>
   );
 };
-
-export default StatusRender;

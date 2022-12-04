@@ -25,6 +25,5 @@ export interface PaginationProps extends Omit<Omit< Omit<MuiPaginationProps, 'on
   pageSizeOptions?: number[],
 }
 
-declare const Pagination: React.FunctionComponent<PaginationProps>;
+export declare const Pagination: React.FC<PaginationProps>;
 
-export default Pagination;
