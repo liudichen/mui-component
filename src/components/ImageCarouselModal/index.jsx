@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
 
-import ImageCarousel from './ImageCarousel';
-import Modal from '../Modal';
+import { ImageCarousel } from './ImageCarousel';
+import { Modal } from '../Modal';
 
 const ImageCarouselModal = (props) => {
   const {
@@ -76,6 +76,6 @@ ImageCarouselModal.defaultProps = {
 
 export {
   ImageCarousel,
+  ImageCarouselModal,
 };
 
-export default ImageCarouselModal;

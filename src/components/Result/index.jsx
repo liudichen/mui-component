@@ -6,8 +6,8 @@ import DangerousIcon from '@mui/icons-material/Dangerous';
 import WarningIcon from '@mui/icons-material/Warning';
 import BlockIcon from '@mui/icons-material/Block';
 
-import ContentCard from '../ContentCard';
-import Space from '../Space';
+import { ContentCard } from '../ContentCard';
+import { Space } from '../Space';
 
 const iconMap = {
   success: <CheckCircleIcon color='success' sx={{ fontSize: 70 }} />,
@@ -17,8 +17,8 @@ const iconMap = {
   404: <BlockIcon color='secondary' sx={{ fontSize: 70 }}/>,
 };
 
-const Result = (props) => {
-  const { icon, title, subTitle, status, actions, sx, children, spaceProps, ...restProps } = props;
+export const Result = (props) => {
+  const { icon, title, subTitle, status, actions, sx, content, children, spaceProps, ...restProps } = props;
   return (
     <ContentCard
       sx={{
@@ -69,9 +69,9 @@ const Result = (props) => {
             {subTitle}
           </div>
         )}
-        { !!children && (
+        { (typeof content !== 'undefined' || !!children) && (
           <div>
-            {children}
+            {content ?? children}
           </div>
         )}
         { !!actions && (
@@ -87,5 +87,3 @@ const Result = (props) => {
 Result.defaultProps = {
   status: 'info',
 };
-
-export default Result;

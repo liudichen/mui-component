@@ -7,7 +7,7 @@ const headerSX = {
   '& .MuiCardHeader-action': { mr: 0 },
 };
 
-const PageContainer = forwardRef((
+export const PageContainer = forwardRef((
   {
     border = true,
     boxShadow,
@@ -58,5 +58,3 @@ const PageContainer = forwardRef((
     </Card>
   );
 });
-
-export default PageContainer;

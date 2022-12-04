@@ -20,6 +20,4 @@ export interface PageContainerProps extends CardProps {
   title?: React.ReactNode,
 }
 
-declare const PageContainer: React.FC<React.PropsWithChildren<PageContainerProps>>;
-
-export default PageContainer;
+export declare const PageContainer: React.FC<React.PropsWithChildren<PageContainerProps>>;

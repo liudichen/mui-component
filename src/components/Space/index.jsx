@@ -7,7 +7,7 @@ const spaceSize = {
   large: 24,
 };
 
-const Space = (props) => {
+export const Space = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { size, direction, children, flexDirection, split, ...restProps } = props;
   if (children === null || children === undefined) {
@@ -59,5 +59,3 @@ Space.defaultProps = {
   display: 'flex',
   sx: { justifyContent: 'center' },
 };
-
-export default Space;

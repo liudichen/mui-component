@@ -1,13 +1,6 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-12 14:23:01
- * @LastEditTime: 2022-05-12 14:23:14
- */
 import { Popper as MuiPopper, styled } from '@mui/material';
 
-const Popper = styled(MuiPopper, {
+export const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',
 })(({ theme, arrow }) => ({
   zIndex: theme.zIndex.drawer,
@@ -81,5 +74,3 @@ const Popper = styled(MuiPopper, {
     },
   },
 }));
-
-export default Popper;

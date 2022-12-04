@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 import { NoData as NoRowsOverlay } from '../NoData';
 import DataGridPagination from './DataGridPagination';
-import StatusRender from '../StatusRender';
+import { StatusRender } from '../StatusRender';
 
 export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
   const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert, showTooltip, tooltipProps, ...restCol } = col;
@@ -58,7 +58,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
   return { ...initInfo, ...restCol, ...(suffix || {}) };
 };
 
-const DataGridTable = (props) => {
+export const DataGridTable = (props) => {
   const {
     columns: columnsProp, paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, getRowId,
     height, rowKey, rootProps,
@@ -122,5 +122,3 @@ DataGridTable.defaultProps = {
   autoHeight: true,
   initialPageSize: 10,
 };
-
-export default DataGridTable;

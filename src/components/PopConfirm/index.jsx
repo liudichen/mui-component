@@ -3,10 +3,10 @@ import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper, useTheme } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
-import Arrow from './Arrow';
-import Popper from './Popper';
+import { Arrow } from './Arrow';
+import { Popper } from './Popper';
 
-const PopConfirm = React.forwardRef((props, ref) => {
+export const PopConfirm = React.forwardRef((props, ref) => {
   const { children, triggerProps, disabled, rootProps,
     onCancel, onConfirm, arrow, closeOnClickAway, placement, timeout, modifiers: modifiersProp, sx,
     maxWidth, width, preventOverflow,
@@ -176,6 +176,4 @@ PopConfirm.defaultProps = {
   cancelText: '取消',
   confirmText: '确认',
 };
-
-export default PopConfirm;
 

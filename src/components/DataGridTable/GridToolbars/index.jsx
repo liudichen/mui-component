@@ -29,8 +29,7 @@ const GridToolbarFty = (params) => {
   );
 };
 
-export default GridToolbarFty;
-
 export {
   GridToolbar,
+  GridToolbarFty,
 };

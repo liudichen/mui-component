@@ -62,6 +62,4 @@ export interface ModalProps extends DialogProps {
   content?: React.ReactNode | React.ReactNode[],
 }
 
-declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;
-
-export default Modal;
+export declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;

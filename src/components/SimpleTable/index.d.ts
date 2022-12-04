@@ -111,6 +111,4 @@ export interface SimpleTableProps extends TableProps {
   unmountOnExit?: boolean;
 }
 
-declare const SimpleTable: React.FC<SimpleTableProps>;
-
-export default SimpleTable;
+export declare const SimpleTable: React.FC<SimpleTableProps>;

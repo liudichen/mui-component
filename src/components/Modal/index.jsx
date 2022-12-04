@@ -6,7 +6,7 @@ import { IconCircleX } from '@tabler/icons';
 
 import { DraggablePaper } from './DraggablePaper';
 
-const Modal = (props) => {
+export const Modal = (props) => {
   const {
     trigger, triggerProps,
     onConfirm: onConfirmProp, onCancel: onCancelProp,
@@ -146,5 +146,3 @@ Modal.defaultProps = {
   breakpoint: 'md',
   withDialogContentWrapper: true,
 };
-
-export default Modal;

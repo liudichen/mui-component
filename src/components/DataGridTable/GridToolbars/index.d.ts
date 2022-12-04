@@ -1,7 +1,7 @@
 import React from 'react';
 import { GridToolbar as MuiGridToolbar, GridToolbarExport } from '@mui/x-data-grid';
 
-interface GridToolbarFtyParams {
+export interface GridToolbarFtyParams {
   showColumn?: boolean,
   showFilter?: boolean,
   showDensity?: boolean,
@@ -9,12 +9,9 @@ interface GridToolbarFtyParams {
   ExportRender?: React.FunctionComponent | React.Component | typeof GridToolbarExport,
 }
 
-declare const GridToolbarFty: (params?: GridToolbarFtyParams) => typeof MuiGridToolbar;
-declare const GridToolbar: typeof MuiGridToolbar;
+/** 生成自定义GridToolbar的函数 */
+export declare const GridToolbarFty: (params?: GridToolbarFtyParams) => typeof MuiGridToolbar;
 
-export default GridToolbarFty;
+/** 来自@mui/x-data-grid的原始GridToolbar */
+export declare const GridToolbar: typeof MuiGridToolbar;
 
-export {
-  GridToolbar,
-  GridToolbarFtyParams,
-};

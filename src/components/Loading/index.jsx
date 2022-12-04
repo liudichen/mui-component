@@ -1,7 +1,7 @@
 import React from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
 
-const Loading = (props) => {
+export const Loading = (props) => {
   const { label, value, color, size, variant, sx, containerSx, containerProps, labelBoxProps, labelTypographyProps, children, ...restProps } = props;
   return (
     <Box
@@ -52,4 +52,3 @@ Loading.defaultProps = {
   variant: 'indeterminate',
 };
 
-export default Loading;

@@ -3,9 +3,9 @@ import { useCreation, useSafeState } from 'ahooks';
 import { Collapse, TableCell, TableRow } from '@mui/material';
 import { IconSquarePlus as OpenIcon, IconSquareMinus as CloseIcon } from '@tabler/icons';
 
-import Cell from './Cell';
+import { Cell } from './Cell';
 
-const Row = (props) => {
+export const Row = (props) => {
   const { columns, rowIndex, hideHeader, row, showExpandColumn, expandRowByClick, expandColumnWidth, expandRowRender, expandable, isExpandable, expandIcon, bordered, unmountOnExit, columnDefaultWidth } = props;
   const [ open, setOpen ] = useSafeState(false);
   const colSpans = useCreation(() => {
@@ -80,5 +80,3 @@ const Row = (props) => {
     </>
   );
 };
-
-export default Row;

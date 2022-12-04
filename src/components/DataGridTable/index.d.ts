@@ -4,16 +4,17 @@ import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColum
 
 import { DataGridPaginationProps } from './DataGridPagination';
 
-type columnType = Omit<GridColDef, 'type'> & {
-  type: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
+/** 自定义的GridTableColumn条目类型 */
+export type GridTableColumnType = Omit<GridColDef, 'type'> & {
+  type?: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
   /** 自定义的用于 type='status */
-  statusColorConvert: (status: string) => string,
+  statusColorConvert?: (status: string) => string,
   /** 自定义的用于 type='status'*/
-  statusTypeConvert: (status: string) => string,
+  statusTypeConvert?: (status: string) => string,
   /** 自定义的用于 type='status'*/
-  statusTextConvert: (status: string) => React.ReactNode,
+  statusTextConvert?: (status: string) => React.ReactNode,
   /** 自定义的用于 type='status'*/
-  statusConvert: (status: string) => string,
+  statusConvert?: (status: string) => string,
   title?: string,
   titleClassName?: GridColumnHeaderClassNamePropType,
   titleAlign?: GridAlignment,
@@ -24,7 +25,7 @@ type columnType = Omit<GridColDef, 'type'> & {
 };
 
 interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'> {
-  columns: columnType[],
+  columns: GridTableColumnType[],
   /**
    * field name of row's id
    * @default 'id'
@@ -40,15 +41,21 @@ interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'
   rootProps?: BoxProps,
 }
 
-declare const initColumn: (col: columnType, prefix?: columnType, suffix?: columnType) => columnType;
+/** 自定义的columns内容初始化转化func
+ * @param col 输入的columns条目
+ * @param prefix={align: 'center', headerAlign: 'center'} 初始配置
+ * @param suffix 后置补充配置
+*/
+declare const initColumn: (col: GridTableColumnType, prefix?: GridTableColumnType, suffix?: GridTableColumnType) => GridTableColumnType;
 
-declare const DataGridTable: React.FunctionComponent<DataGridTableProps>;
+/** 进行了一些自定义设置的@mui/x-data-grid表格组件 */
+declare const DataGridTable: React.FC<DataGridTableProps>;
 
 export {
   DataGridPaginationProps,
+  DataGridTable,
   DataGridTableProps,
   initColumn,
-  columnType,
+  GridTableColumnType,
 };
 
-export default DataGridTable;

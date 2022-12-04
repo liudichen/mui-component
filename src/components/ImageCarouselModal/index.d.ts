@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CarouselProps, ImageItem } from './ImageCarousel';
+import { CarouselProps, ImageItem, ImageCarouselProps } from './ImageCarousel';
 import { ModalProps } from '../Modal';
 
 export interface ImageCarouselModalProps extends CarouselProps, Pick<ModalProps, 'trigger' | 'triggerProps' | 'open' | 'onClose' | 'showCloseIcon' | 'CloseIcon' | 'maxWidth' | 'draggable' | 'responsive' | 'breakpoint' | 'fullScreen' | 'fullWidth' | 'title' | 'titleProps'> {
@@ -13,6 +13,7 @@ export interface ImageCarouselModalProps extends CarouselProps, Pick<ModalProps,
   images?: ImageItem[] | (() => ImageItem[]) | (()=>ImageItem)[] | ImageItem,
 }
 
-declare const ImageCarouselModal: React.FC<React.PropsWithChildren<ImageCarouselModalProps>>;
+export declare const ImageCarousel: React.FC<React.PropsWithChildren<ImageCarouselProps>>;
 
-export default ImageCarouselModal;
+export declare const ImageCarouselModal: React.FC<React.PropsWithChildren<ImageCarouselModalProps>>;
+

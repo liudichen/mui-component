@@ -120,7 +120,5 @@ export interface ImageCarouselProps extends CarouselProps {
   images?: ImageItem[],
 }
 
-/** */
-declare const ImageCarousel: React.FC<React.PropsWithChildren<ImageCarouselProps>>;
-
-export default ImageCarousel;
+/** 图片展示组件 */
+export declare const ImageCarousel: React.FC<React.PropsWithChildren<ImageCarouselProps>>;

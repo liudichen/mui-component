@@ -13,8 +13,8 @@ export interface ResultProps extends ContentCardProps {
   status?: 'success' | 'error' | 'info' | 'warning' | '404',
   sx?: SxProps,
   spaceProps?: SpaceProps,
+  /** children的别名，优先级高于children */
+  content?: React.ReactNode,
 }
 
-declare const Result: React.FC<React.PropsWithChildren<ResultProps>>;
-
-export default Result;
+export declare const Result: React.FC<React.PropsWithChildren<ResultProps>>;

@@ -23,6 +23,4 @@ export interface LoadingProps extends CircularProgressProps {
   labelTypographyProps?: TypographyProps,
 }
 
-declare const Loading: React.FC<React.PropsWithChildren<LoadingProps>>;
-
-export default Loading;
+export declare const Loading: React.FC<React.PropsWithChildren<LoadingProps>>;

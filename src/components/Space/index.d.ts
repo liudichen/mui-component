@@ -27,6 +27,4 @@ export interface SpaceProps extends Omit<BoxProps, 'flexDirection'> {
   sx: SxProps,
 }
 
-declare const Space: React.FC<React.PropsWithChildren<SpaceProps>>;
-
-export default Space;
+export declare const Space: React.FC<React.PropsWithChildren<SpaceProps>>;

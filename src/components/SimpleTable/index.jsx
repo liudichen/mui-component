@@ -2,10 +2,10 @@ import React from 'react';
 import { useControllableValue, useCreation } from 'ahooks';
 import { Box, Table, TableBody, TableFooter, TableHead } from '@mui/material';
 
-import Pagination from '../Pagination';
-import Row from './Row';
+import { Pagination } from '../Pagination';
+import { Row } from './Row';
 
-const SimpleTable = (props) => {
+export const SimpleTable = (props) => {
   const {
     tableContainerBoxProps,
     columns,
@@ -162,4 +162,3 @@ SimpleTable.defaultProps = {
   columnDefaultWidth: 100,
 };
 
-export default SimpleTable;
