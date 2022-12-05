@@ -26,7 +26,7 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
 }));
 
 export const NoData = (props) => {
-  const { noDateText, children, svgProps, ...restProps } = props;
+  const { noDataText, children, svgProps, ...restProps } = props;
   return (
     <StyledGridOverlay {...restProps}>
       <svg
@@ -69,7 +69,7 @@ export const NoData = (props) => {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>{noDateText ?? children ?? 'No Data'}</Box>
+      <Box sx={{ mt: 1 }}>{noDataText ?? children ?? 'No Data'}</Box>
     </StyledGridOverlay>
   );
 };
