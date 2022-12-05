@@ -25,6 +25,8 @@ export * from './components/Result';
 
 export { NoData, NoDataProps } from './components/NoData';
 
+export * from './components/PdfModalViewer';
+
 /** 来自Mui的组件： */
 export * from './components/DateRangePicker';
 export * from './components/LoadingButton';
