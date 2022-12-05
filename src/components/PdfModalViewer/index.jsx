@@ -3,7 +3,7 @@ import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery } from '@mui/material';
 import { Document, pdfjs } from 'react-pdf';
 import { FirstPage, LastPage, NavigateBefore, NavigateNext, Rotate90DegreesCcwOutlined, Rotate90DegreesCwTwoTone, CloudDownloadOutlined, RestartAlt, ZoomInMapOutlined, ZoomOutMapOutlined, ZoomInOutlined, ZoomOutOutlined, Cached } from '@mui/icons-material';
-import { useId, generateFileDownload, scrollToElement } from '@iimm/shared';
+import { useGlobalId, generateFileDownload, scrollToElement } from '@iimm/shared';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
@@ -32,7 +32,7 @@ export const PdfModalViewer = (props) => {
   const inViewRef = useRef({});
   const contentRef = useRef();
   const shouldReloadRef = useRef(0);
-  const id = useId().replace(/:/g, '_');
+  const id = useGlobalId();
   const [ key, setKey ] = useSafeState(0);
   const [ open, setOpen ] = useSafeState(false);
   const [ fetchLoading, setFetchLoading ] = useSafeState(false);
