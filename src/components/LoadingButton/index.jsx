@@ -3,9 +3,9 @@ import React from 'react';
 import { capitalize } from '@mui/material/utils';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { Button, CircularProgress } from '@mui/material';
+import { useId } from '@iimm/shared';
 
 import { composeClasses } from '../mui-utils';
-import { useId } from '../../hooks';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -49,12 +49,12 @@ const LoadingButtonRoot = styled(Button, {
   },
 })(({ ownerState, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-    {
-      transition: theme.transitions.create([ 'opacity' ], {
-        duration: theme.transitions.duration.short,
-      }),
-      opacity: 0,
-    },
+  {
+    transition: theme.transitions.create([ 'opacity' ], {
+      duration: theme.transitions.duration.short,
+    }),
+    opacity: 0,
+  },
   ...(ownerState.loadingPosition === 'center' && {
     transition: theme.transitions.create([ 'background-color', 'box-shadow', 'border-color' ], {
       duration: theme.transitions.duration.short,
@@ -66,24 +66,24 @@ const LoadingButtonRoot = styled(Button, {
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.fullWidth && {
     [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-        {
-          transition: theme.transitions.create([ 'opacity' ], {
-            duration: theme.transitions.duration.short,
-          }),
-          opacity: 0,
-          marginRight: -8,
-        },
+    {
+      transition: theme.transitions.create([ 'opacity' ], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+      marginRight: -8,
+    },
   }),
   ...(ownerState.loadingPosition === 'end' &&
     ownerState.fullWidth && {
     [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
-        {
-          transition: theme.transitions.create([ 'opacity' ], {
-            duration: theme.transitions.duration.short,
-          }),
-          opacity: 0,
-          marginLeft: -8,
-        },
+    {
+      transition: theme.transitions.create([ 'opacity' ], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+      marginLeft: -8,
+    },
   }),
 }));
 

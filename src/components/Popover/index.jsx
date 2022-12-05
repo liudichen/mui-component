@@ -1,8 +1,7 @@
 import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
-
-import { useId } from '../../hooks';
+import { useId } from '@iimm/shared';
 
 export const Popover = React.forwardRef((props, ref) => {
   const {

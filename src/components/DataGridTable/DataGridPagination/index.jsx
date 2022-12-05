@@ -1,8 +1,7 @@
 import React from 'react';
 import { MenuItem, Pagination as MuiPagination, Select, Box, Stack } from '@mui/material';
 import { useGridApiContext, useGridSelector, gridPageCountSelector, gridPageSizeSelector, gridPageSelector, gridRowCountSelector } from '@mui/x-data-grid';
-
-import { useId } from '../../../hooks';
+import { useId } from '@iimm/shared';
 
 const DataGridPagination = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -36,7 +35,7 @@ const DataGridPagination = (props) => {
             onPageSizeChange?.(ps);
           }}
         >
-          { rowsPerPageOptions.map((item) => (
+          {rowsPerPageOptions.map((item) => (
             <MenuItem value={item} key={item}>
               {item}
             </MenuItem>

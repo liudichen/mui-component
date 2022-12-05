@@ -33,4 +33,3 @@ export * from './components/TreeView';
 export * from './components/TreeItem';
 
 // =============utinls===============
-export * from './utils';

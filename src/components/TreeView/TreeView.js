@@ -4,17 +4,13 @@ import React from 'react';
 import clsx from 'classnames';
 import PropTypes from 'prop-types';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
-import {
-  useControlled,
-  useForkRef,
-  ownerDocument,
-} from '@mui/material/utils';
+import { useControlled, useForkRef, ownerDocument } from '@mui/material/utils';
+import { useId } from '@iimm/shared';
 
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 import { getTreeViewUtilityClass } from './treeViewClasses';
 import { composeClasses } from '../mui-utils';
-import { useId } from '../../hooks';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
