@@ -16,7 +16,7 @@ export const Modal = (props) => {
     title, titleProps, titleBoxProps,
     contentProps, actionsProps,
     // eslint-disable-next-line no-unused-vars
-    open: openProp, onClose: onCloseProp,
+    open: openProp, onClose: onCloseProp, setOpen: setOpenProp,
     children, disabled, content, withDialogContentWrapper,
     PaperComponent,
     fullScreen: fullScreenProp, draggable: draggableProp, responsive, breakpoint,
@@ -26,13 +26,10 @@ export const Modal = (props) => {
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   const draggable = draggableProp && !fullScreen;
-  const [ open, setOpen ] = useControllableValue(props, { defaultValue: false, valuePropName: 'open', trigger: 'onClose' });
+  const [ open, setOpen ] = useControllableValue(props, { defaultValue: false, valuePropName: 'open', trigger: 'setOpen' });
   const onClose = useMemoizedFn(async (e, reason) => {
-    if (typeof open !== 'undefined') {
-      await onCloseProp?.(e, reason);
-    } else {
-      setOpen(false);
-    }
+    const res = await onCloseProp?.(e, reason);
+    if (res !== false) { setOpen(false); }
   });
   const onConfirm = useMemoizedFn(async () => {
     const res = await onConfirmProp?.();

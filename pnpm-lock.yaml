@@ -61,7 +61,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.45.0_77fvizpdb3y4icyeo2mf4eo7em
   '@umijs/fabric': 2.14.0
   '@umijs/test': 3.5.35
-  dumi: 1.1.49_lb6bm2fj37kaaevwizt7ovd5b4
+  dumi: 1.1.49_7wqjsj34ec6yojrqlpzxhwivgm
   eslint: 7.32.0
   eslint-config-egg: 12.1.0_77fvizpdb3y4icyeo2mf4eo7em
   eslint-plugin-react: 7.31.11_eslint@7.32.0
@@ -3445,6 +3445,11 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: true
 
+  /@remix-run/router/1.0.4:
+    resolution: {integrity: sha512-gTL8H5USTAKOyVA4xczzDJnC3HMssdFa3tRlwBicXynx9XfiXwneHnYQogwSKpdCkjXISrEKSTtX62rLpNEVQg==}
+    engines: {node: '>=14'}
+    dev: true
+
   /@rollup/plugin-babel/5.3.1_xqgxu46vmt6jfc6v3442ues2di:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
@@ -3949,6 +3954,14 @@ packages:
       '@types/react-router': 5.1.19
     dev: true
 
+  /@types/react-router-config/5.0.6:
+    resolution: {integrity: sha512-db1mx37a1EJDf1XeX8jJN7R3PZABmJQXR8r28yUjVMFSjkmnQo6X6pOEEmNl+Tp2gYQOGPdYbFIipBtdElZ3Yg==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.26
+      '@types/react-router': 5.1.19
+    dev: true
+
   /@types/react-router-dom/5.1.7:
     resolution: {integrity: sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==}
     dependencies:
@@ -4269,12 +4282,49 @@ packages:
       '@umijs/utils': 3.5.35
     dev: true
 
+  /@umijs/bundler-utils/3.5.35_awq4v465iskdkhugdbztr4qzcu:
+    resolution: {integrity: sha512-qPA+aUbM2g1r2kHSK37V2JHzttew4QHiAASCO706+YmPfaWURE+0s8GNayUDvt3GOpHYJ9mrLX9etr4A1xJYNQ==}
+    dependencies:
+      '@umijs/babel-preset-umi': 3.5.35
+      '@umijs/types': 3.5.35_awq4v465iskdkhugdbztr4qzcu
+      '@umijs/utils': 3.5.35
+    transitivePeerDependencies:
+      - react
+      - react-dom
+      - react-router
+    dev: true
+
   /@umijs/bundler-utils/3.5.35_hflg5r6ml7trnjm7sh3tgaza54:
     resolution: {integrity: sha512-qPA+aUbM2g1r2kHSK37V2JHzttew4QHiAASCO706+YmPfaWURE+0s8GNayUDvt3GOpHYJ9mrLX9etr4A1xJYNQ==}
     dependencies:
       '@umijs/babel-preset-umi': 3.5.35
       '@umijs/types': 3.5.35_hflg5r6ml7trnjm7sh3tgaza54
       '@umijs/utils': 3.5.35
+    transitivePeerDependencies:
+      - react
+      - react-dom
+      - react-router
+    dev: true
+
+  /@umijs/bundler-webpack/3.5.35_awq4v465iskdkhugdbztr4qzcu:
+    resolution: {integrity: sha512-h8yZcTqB1BkOLwiMVLwgYIjmL1SKet1B0cq4BGSVY4GcAW3nAwqjfQ+K02pZd2MxFbxGDqJsmuul8fQqH0MR6A==}
+    hasBin: true
+    dependencies:
+      '@umijs/bundler-utils': 3.5.35_awq4v465iskdkhugdbztr4qzcu
+      '@umijs/case-sensitive-paths-webpack-plugin': 1.0.1
+      '@umijs/deps': 3.5.35
+      '@umijs/types': 3.5.35_awq4v465iskdkhugdbztr4qzcu
+      '@umijs/utils': 3.5.35
+      jest-worker: 26.6.2
+      node-libs-browser: 2.2.1
+      normalize-url: 1.9.1
+      postcss: 7.0.32
+      postcss-flexbugs-fixes: 4.2.1
+      postcss-loader: 3.0.0
+      postcss-preset-env: 6.7.0
+      postcss-safe-parser: 4.0.2
+      terser: 5.14.2
+      webpack-chain: 6.5.1
     transitivePeerDependencies:
       - react
       - react-dom
@@ -4376,7 +4426,7 @@ packages:
     peerDependencies:
       umi: 3.x
     dependencies:
-      umi: 3.5.35_react-router@5.2.0
+      umi: 3.5.35_react-router@6.4.4
     dev: true
 
   /@umijs/preset-built-in/3.5.35_wcqkhtmu7mswc6yz4uyexck3ty:
@@ -4406,7 +4456,7 @@ packages:
       mime: 1.4.1
       react: 16.14.0
       react-refresh: 0.10.0
-      react-router: 5.2.0_react@18.2.0
+      react-router: 5.2.0_react@16.14.0
       react-router-config: 5.1.1_6flbfkch6crntn4ac2g723iqde
       react-router-dom: 5.2.0_react@16.14.0
       regenerator-runtime: 0.13.5
@@ -4415,7 +4465,7 @@ packages:
       - react-dom
     dev: true
 
-  /@umijs/preset-dumi/1.1.49_coysgqg3iqhhfhfont6rcndmhu:
+  /@umijs/preset-dumi/1.1.49_4aqm3djxidancj7he3x4obwrqq:
     resolution: {integrity: sha512-Pvu7ZE+5B2WBHm/8pvLDszlR2ZebKS0MDQCiGbWqv10n6y7ywmCYE4EU4XXm1OTxJA2ssR4E5GtRzG9aFt4kpg==}
     peerDependencies:
       umi: ^3.0.0
@@ -4430,7 +4480,7 @@ packages:
       '@umijs/core': 3.5.35
       '@umijs/plugin-analytics': 0.2.3_umi@3.5.35
       '@umijs/runtime': 3.5.35_react@18.2.0
-      '@umijs/types': 3.5.35_r2jggmk3i5ygztb6jtd24c3zsa
+      '@umijs/types': 3.5.35_hdzv4s7xrzdoby62erdixu4dxq
       '@umijs/utils': 3.5.35
       codesandbox: 2.2.3
       copy-text-to-clipboard: 2.2.0
@@ -4463,7 +4513,7 @@ packages:
       sitemap: 6.4.0
       slash2: 2.0.0
       terser: 5.16.1
-      umi: 3.5.35_react-router@5.2.0
+      umi: 3.5.35_react-router@6.4.4
       unified: 8.4.2
       unist-util-visit: 2.0.3
       unist-util-visit-parents: 3.1.1
@@ -4491,6 +4541,40 @@ packages:
       react-dom: 16.14.0_react@16.14.0
     dev: true
 
+  /@umijs/renderer-react/3.5.35_awq4v465iskdkhugdbztr4qzcu:
+    resolution: {integrity: sha512-2s7dx5RtTNX42JzPYMDErRwAswatXiG6mK6ittdisPtr0TP3uXG3B0TwThqtEsHlE8yMTDrWgRmTOvwmsYHaMA==}
+    peerDependencies:
+      react: 16.x || 17.x
+      react-dom: 16.x || 17.x
+    dependencies:
+      '@types/react': 16.14.34
+      '@types/react-dom': 16.9.17
+      '@types/react-router-config': 5.0.6
+      '@umijs/runtime': 3.5.35_react@16.14.0
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-router-config: 5.1.1_mwi267rg322exvwqyfeszm3zry
+    transitivePeerDependencies:
+      - react-router
+    dev: true
+
+  /@umijs/renderer-react/3.5.35_hdzv4s7xrzdoby62erdixu4dxq:
+    resolution: {integrity: sha512-2s7dx5RtTNX42JzPYMDErRwAswatXiG6mK6ittdisPtr0TP3uXG3B0TwThqtEsHlE8yMTDrWgRmTOvwmsYHaMA==}
+    peerDependencies:
+      react: 16.x || 17.x
+      react-dom: 16.x || 17.x
+    dependencies:
+      '@types/react': 16.14.34
+      '@types/react-dom': 16.9.17
+      '@types/react-router-config': 5.0.6
+      '@umijs/runtime': 3.5.35_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router-config: 5.1.1_u2u5yw6l2ynhmqgstdbkagejyy
+    transitivePeerDependencies:
+      - react-router
+    dev: true
+
   /@umijs/renderer-react/3.5.35_hflg5r6ml7trnjm7sh3tgaza54:
     resolution: {integrity: sha512-2s7dx5RtTNX42JzPYMDErRwAswatXiG6mK6ittdisPtr0TP3uXG3B0TwThqtEsHlE8yMTDrWgRmTOvwmsYHaMA==}
     peerDependencies:
@@ -4499,28 +4583,11 @@ packages:
     dependencies:
       '@types/react': 16.14.34
       '@types/react-dom': 16.9.17
-      '@types/react-router-config': 5.0.2
+      '@types/react-router-config': 5.0.6
       '@umijs/runtime': 3.5.35_react@16.14.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       react-router-config: 5.1.1_6flbfkch6crntn4ac2g723iqde
-    transitivePeerDependencies:
-      - react-router
-    dev: true
-
-  /@umijs/renderer-react/3.5.35_r2jggmk3i5ygztb6jtd24c3zsa:
-    resolution: {integrity: sha512-2s7dx5RtTNX42JzPYMDErRwAswatXiG6mK6ittdisPtr0TP3uXG3B0TwThqtEsHlE8yMTDrWgRmTOvwmsYHaMA==}
-    peerDependencies:
-      react: 16.x || 17.x
-      react-dom: 16.x || 17.x
-    dependencies:
-      '@types/react': 16.14.34
-      '@types/react-dom': 16.9.17
-      '@types/react-router-config': 5.0.2
-      '@umijs/runtime': 3.5.35_react@18.2.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-router-config: 5.1.1_cngu5vvr3qrvleghcym2mjf55u
     transitivePeerDependencies:
       - react-router
     dev: true
@@ -4583,13 +4650,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@umijs/types/3.5.35_hflg5r6ml7trnjm7sh3tgaza54:
+  /@umijs/types/3.5.35_awq4v465iskdkhugdbztr4qzcu:
     resolution: {integrity: sha512-hjFHnAghxZOQsj8rdTHHfkHGsyhpFnvDAK8TX4u6UPL6ugleyzg8wxXZmU/SNkSyzqM4U/18Azt6oG39bAV8UQ==}
     dependencies:
       '@umijs/babel-preset-umi': 3.5.35
       '@umijs/core': 3.5.35
       '@umijs/deps': 3.5.35
-      '@umijs/renderer-react': 3.5.35_hflg5r6ml7trnjm7sh3tgaza54
+      '@umijs/renderer-react': 3.5.35_awq4v465iskdkhugdbztr4qzcu
       '@umijs/server': 3.5.35
       '@umijs/utils': 3.5.35
       webpack-chain: 6.5.1
@@ -4599,13 +4666,29 @@ packages:
       - react-router
     dev: true
 
-  /@umijs/types/3.5.35_r2jggmk3i5ygztb6jtd24c3zsa:
+  /@umijs/types/3.5.35_hdzv4s7xrzdoby62erdixu4dxq:
     resolution: {integrity: sha512-hjFHnAghxZOQsj8rdTHHfkHGsyhpFnvDAK8TX4u6UPL6ugleyzg8wxXZmU/SNkSyzqM4U/18Azt6oG39bAV8UQ==}
     dependencies:
       '@umijs/babel-preset-umi': 3.5.35
       '@umijs/core': 3.5.35
       '@umijs/deps': 3.5.35
-      '@umijs/renderer-react': 3.5.35_r2jggmk3i5ygztb6jtd24c3zsa
+      '@umijs/renderer-react': 3.5.35_hdzv4s7xrzdoby62erdixu4dxq
+      '@umijs/server': 3.5.35
+      '@umijs/utils': 3.5.35
+      webpack-chain: 6.5.1
+    transitivePeerDependencies:
+      - react
+      - react-dom
+      - react-router
+    dev: true
+
+  /@umijs/types/3.5.35_hflg5r6ml7trnjm7sh3tgaza54:
+    resolution: {integrity: sha512-hjFHnAghxZOQsj8rdTHHfkHGsyhpFnvDAK8TX4u6UPL6ugleyzg8wxXZmU/SNkSyzqM4U/18Azt6oG39bAV8UQ==}
+    dependencies:
+      '@umijs/babel-preset-umi': 3.5.35
+      '@umijs/core': 3.5.35
+      '@umijs/deps': 3.5.35
+      '@umijs/renderer-react': 3.5.35_hflg5r6ml7trnjm7sh3tgaza54
       '@umijs/server': 3.5.35
       '@umijs/utils': 3.5.35
       webpack-chain: 6.5.1
@@ -6834,8 +6917,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /decimal.js/10.4.2:
-    resolution: {integrity: sha512-ic1yEvwT6GuvaYwBLLY6/aFFgjZdySKTE8en/fkU3QICTmRtgtSlFn0u0BXN06InZwtfCelR7j8LRiDI/02iGA==}
+  /decimal.js/10.4.3:
+    resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
     dev: true
 
   /decode-uri-component/0.2.2:
@@ -7059,7 +7142,7 @@ packages:
       '@umijs/preset-dumi': 1.x
       react: ^16.13.1 || ^17.0.0
     dependencies:
-      '@umijs/preset-dumi': 1.1.49_coysgqg3iqhhfhfont6rcndmhu
+      '@umijs/preset-dumi': 1.1.49_4aqm3djxidancj7he3x4obwrqq
       lodash.throttle: 4.1.1
       prism-react-renderer: 1.3.5_react@18.2.0
       prismjs: 1.29.0
@@ -7072,12 +7155,12 @@ packages:
       - react-dom
     dev: true
 
-  /dumi/1.1.49_lb6bm2fj37kaaevwizt7ovd5b4:
+  /dumi/1.1.49_7wqjsj34ec6yojrqlpzxhwivgm:
     resolution: {integrity: sha512-dxC38re6FDxo9x8GLXT3Pss+uuhX9n5QYWJ05tOJpkJpNxUuJG/oAtTVhr0fq3b7AvBImdEnVK0CTOcjoqV9gA==}
     hasBin: true
     dependencies:
-      '@umijs/preset-dumi': 1.1.49_coysgqg3iqhhfhfont6rcndmhu
-      umi: 3.5.35_react-router@5.2.0
+      '@umijs/preset-dumi': 1.1.49_4aqm3djxidancj7he3x4obwrqq
+      umi: 3.5.35_react-router@6.4.4
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -10536,7 +10619,7 @@ packages:
       cssom: 0.4.4
       cssstyle: 2.3.0
       data-urls: 2.0.0
-      decimal.js: 10.4.2
+      decimal.js: 10.4.3
       domexception: 2.0.1
       escodegen: 2.0.0
       form-data: 3.0.1
@@ -13823,10 +13906,21 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       react: 16.14.0
-      react-router: 5.2.0_react@18.2.0
+      react-router: 5.2.0_react@16.14.0
     dev: true
 
-  /react-router-config/5.1.1_cngu5vvr3qrvleghcym2mjf55u:
+  /react-router-config/5.1.1_mwi267rg322exvwqyfeszm3zry:
+    resolution: {integrity: sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==}
+    peerDependencies:
+      react: '>=15'
+      react-router: '>=5'
+    dependencies:
+      '@babel/runtime': 7.20.6
+      react: 16.14.0
+      react-router: 6.4.4_react@18.2.0
+    dev: true
+
+  /react-router-config/5.1.1_u2u5yw6l2ynhmqgstdbkagejyy:
     resolution: {integrity: sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==}
     peerDependencies:
       react: '>=15'
@@ -13834,7 +13928,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       react: 18.2.0
-      react-router: 5.2.0_react@18.2.0
+      react-router: 6.4.4_react@18.2.0
     dev: true
 
   /react-router-dom/5.2.0_react@16.14.0:
@@ -13901,6 +13995,16 @@ packages:
       react-is: 16.13.1
       tiny-invariant: 1.3.1
       tiny-warning: 1.0.3
+    dev: true
+
+  /react-router/6.4.4_react@18.2.0:
+    resolution: {integrity: sha512-SA6tSrUCRfuLWeYsTJDuriRqfFIsrSvuH7SqAJHegx9ZgxadE119rU8oOX/rG5FYEthpdEaEljdjDlnBxvfr+Q==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.4
+      react: 18.2.0
     dev: true
 
   /react-transition-group/4.4.5_biqbaboplfbrettd7655fr4n2y:
@@ -16022,16 +16126,16 @@ packages:
     dev: true
     optional: true
 
-  /umi/3.5.35_react-router@5.2.0:
+  /umi/3.5.35_react-router@6.4.4:
     resolution: {integrity: sha512-xGEAu3i+3x/VFuSLi3qBLXQavcMJRPf0vtg07359rI4SzTv2V87Vh7gj7GktBc1n9K20C1KtEsPpDodbbalR6w==}
     hasBin: true
     dependencies:
-      '@umijs/bundler-webpack': 3.5.35_hflg5r6ml7trnjm7sh3tgaza54
+      '@umijs/bundler-webpack': 3.5.35_awq4v465iskdkhugdbztr4qzcu
       '@umijs/core': 3.5.35
       '@umijs/deps': 3.5.35
       '@umijs/preset-built-in': 3.5.35_wcqkhtmu7mswc6yz4uyexck3ty
       '@umijs/runtime': 3.5.35_react@16.14.0
-      '@umijs/types': 3.5.35_hflg5r6ml7trnjm7sh3tgaza54
+      '@umijs/types': 3.5.35_awq4v465iskdkhugdbztr4qzcu
       '@umijs/utils': 3.5.35
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0

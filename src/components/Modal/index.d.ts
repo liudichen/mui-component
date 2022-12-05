@@ -60,6 +60,8 @@ export interface ModalProps extends DialogProps {
   breakpoint?: 'xs' | 'sml' | 'md' | 'lg' | 'xl',
   /** 内容，优先级高于children */
   content?: React.ReactNode | React.ReactNode[],
+  /** 受控属性 */
+  setOpen?: (open: boolean) => void,
 }
 
 export declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;
