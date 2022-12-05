@@ -69,7 +69,7 @@ export const NoData = (props) => {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>{noDateText ?? children}</Box>
+      <Box sx={{ mt: 1 }}>{noDateText ?? children ?? 'No Data'}</Box>
     </StyledGridOverlay>
   );
 };
