@@ -42,6 +42,7 @@ export interface ModalProps extends DialogProps {
   titleBoxProps?: BoxProps,
   /** 内容使用DialogContent包裹?
    * @default true
+   * 不包裹的话还可以使用使用多个DialogContent
    */
   withDialogContentWrapper?: boolean,
   /** 内容区包裹的DialogContent的props */
