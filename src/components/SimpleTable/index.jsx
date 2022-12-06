@@ -18,7 +18,7 @@ export const SimpleTable = (props) => {
     initPageSize,
     paginationProps,
     hideHeader,
-    showTabelFooter,
+    showTableFooter,
     tableFooter, tableFooterProps, hidePagination: hidePaginationProp, autoHidePagination,
     title,
     titlePosition,
@@ -128,7 +128,7 @@ export const SimpleTable = (props) => {
               );
             })}
           </TableBody>
-          {showTabelFooter && !!tableFooter && (
+          {showTableFooter && !!tableFooter && (
             <TableFooter {...(tableFooterProps || {})}>
               {tableFooter}
             </TableFooter>
