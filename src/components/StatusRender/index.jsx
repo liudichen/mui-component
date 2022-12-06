@@ -78,9 +78,10 @@ export const StatusRender = (props) => {
     textSpanStyle,
     dotSpanStyle,
     statusConvert,
+    noStatusText = '-',
   } = props;
-
-  return (
+  const txt = getText(text, status, statusConvert, statusTextConvert);
+  return txt ? (
     <span
       style={{
         verticalAlign: 'baseline',
@@ -105,7 +106,7 @@ export const StatusRender = (props) => {
           ...(dotSpanStyle || {}),
         }}
       />
-      <span style={textSpanStyle}>{getText(text, status, statusConvert, statusTextConvert)}</span>
+      <span style={textSpanStyle}>{txt}</span>
     </span>
-  );
+  ) : noStatusText;
 };

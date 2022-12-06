@@ -19,6 +19,10 @@ export interface StatusRenderProps {
   textSpanStyle?: React.CSSProperties,
   /** 状态文本前的点的span的style */
   dotSpanStyle?: React.CSSProperties,
+  /** 当不存在status文本时显示的内容
+   * @default '-''
+   */
+  noStatusText?: React.ReactNode,
 }
 
 /** 类似于antd的状态显示 */
