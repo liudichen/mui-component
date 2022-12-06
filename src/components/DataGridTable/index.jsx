@@ -34,7 +34,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
   }
   if (titleAlign) { initInfo.headerAlign = titleAlign; }
   if (title) { initInfo.headerName = title; }
-  if (titleClassName) { initInfo.headerName = titleClassName; }
+  if (titleClassName) { initInfo.headerClassName = titleClassName; }
   if (renderTitle) { initInfo.renderHeader = renderTitle; }
   if (showTooltip) {
     if (showTooltip === true) {
