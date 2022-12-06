@@ -6,7 +6,7 @@ import { IconCircleX } from '@tabler/icons';
 
 import { DraggablePaper } from './DraggablePaper';
 
-export const Modal = (props) => {
+export const Modal = React.forwardRef((props, ref) => {
   const {
     trigger, triggerProps,
     onConfirm: onConfirmProp, onCancel: onCancelProp,
@@ -43,6 +43,7 @@ export const Modal = (props) => {
       onClose();
     }
   });
+  React.useImperativeHandle(ref, () => ({ onClose }), [ onClose ]);
   return (
     <>
       {!!trigger && (
@@ -130,7 +131,7 @@ export const Modal = (props) => {
       </Dialog>
     </>
   );
-};
+});
 
 Modal.defaultProps = {
   fullWidth: true,

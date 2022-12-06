@@ -65,4 +65,4 @@ export interface ModalProps extends DialogProps {
   setOpen?: (open: boolean) => void,
 }
 
-export declare const Modal: React.FC<React.PropsWithChildren<ModalProps>>;
+export declare const Modal: React.ForwardRefRenderFunction<{onClose: () => void}, React.PropsWithChildren<ModalProps>>;
