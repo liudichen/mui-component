@@ -1,6 +1,6 @@
 // this component origin from https://berrydashboard.io
-import React, { forwardRef } from 'react';
-import { useToggle } from 'ahooks';
+import React, { forwardRef, useEffect } from 'react';
+import { useSafeState } from 'ahooks';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
@@ -25,14 +25,18 @@ export const ContentCard = forwardRef(({
   ...others
 }, ref) => {
   const theme = useTheme();
-  const [ expand, { toggle }] = useToggle(collapsible ? !defaultCollapsed : true);
+  const [ expand, setExpand ] = useSafeState(collapsible ? !defaultCollapsed : true);
+  useEffect(() => {
+    setExpand(!defaultCollapsed);
+  }, [ !defaultCollapsed ]);
+
   const renderAction = (
     <>
       {secondary ?? null}
       {!!collapsible && <>&nbsp;</>}
       { !!collapsible && (
         <IconButton
-          onClick={typeof collapsed === 'undefined' ? toggle : handleCollapse}
+          onClick={typeof collapsed === 'undefined' ? () => setExpand((s) => !s) : handleCollapse}
           style={{
             transform: (typeof collapsed === 'undefined' ? !expand : collapsed) ? 'rotate(180deg)' : 'rotate(0deg)',
           }}
