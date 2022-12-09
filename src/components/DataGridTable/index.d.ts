@@ -39,6 +39,13 @@ interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'
   initialPageSize?: number,
   paginationProps?: DataGridPaginationProps,
   rootProps?: BoxProps,
+
+  /** getRowHeight : () => 'auto'的快捷props，并会自动添加行py */
+  autoRowHeight?: boolean,
+  /** 使用原始分页组件?
+   * @default false
+   */
+  useDefaultPagination?: boolean,
 }
 
 /** 自定义的columns内容初始化转化func

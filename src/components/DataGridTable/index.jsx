@@ -61,7 +61,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
 export const DataGridTable = (props) => {
   const {
     columns: columnsProp, paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, getRowId,
-    height, rowKey, rootProps,
+    height, rowKey, rootProps, sx, autoRowHeight, getRowHeight, useDefaultPagination,
     ...restProps
   } = props;
   const { toolbar, pagination, ...restComponentsProps } = (componentsProps || {});
@@ -78,12 +78,27 @@ export const DataGridTable = (props) => {
         getRowId={getRowId ?? ((row) => row[rowKey])}
         paginationMode={paginationMode ?? (typeof props.rowCount === 'undefined' ? 'client' : 'server')}
         autoHeight={height ? false : autoHeight}
-        components={{
+        getRowHeight={(!autoRowHeight || typeof getRowHeight !== 'undefined') ? getRowHeight : () => 'auto'}
+        components={useDefaultPagination ? {
+          NoRowsOverlay,
+          ...(components || {}),
+        } : {
           Pagination: DataGridPagination,
           NoRowsOverlay,
           ...(components || {}),
         }}
-        componentsProps={{
+        componentsProps={useDefaultPagination ? {
+          toolbar: {
+            csvOptions: {
+              utf8WithBom: true,
+            },
+            printOptions: {
+              disableToolbarButton: true, // 不显示打印按钮
+            },
+            ...(toolbar || {}),
+          },
+          ...restComponentsProps,
+        } : {
           toolbar: {
             csvOptions: {
               utf8WithBom: true,
@@ -106,6 +121,12 @@ export const DataGridTable = (props) => {
           ...(initialPageSize ? { pagination: { pageSize: initialPageSize } } : {}),
           ...(initialState || {}),
         }}
+        sx={autoRowHeight ? {
+          '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '8px' },
+          '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '15px' },
+          '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '22px' },
+          ...(sx || {}),
+        } : sx}
         {...restProps}
       />
     </Box>
