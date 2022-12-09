@@ -8,10 +8,10 @@
     white-space: nowrap;
     align-items: center;
     justify-content: center;
-    border: 1px solid green;
+    border-bottom: 1px solid #b8b8b8;
     overflow-y: hidden;
-    min-height: 45px;
-    max-height: 50px;
+    min-height: 35px;
+    max-height: 40px;
 
     .pdf-viewer-toolbar-pages {
       display: flex;
