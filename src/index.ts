@@ -34,4 +34,6 @@ export * from './components/Popover';
 export * from './components/TreeView';
 export * from './components/TreeItem';
 
-// =============utinls===============
+// =============icon===============
+
+export * from './icons';
