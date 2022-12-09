@@ -11,12 +11,15 @@ export declare const pdfjs: {
   }
 };
 
-export interface PdfModalViewerProps extends Omit<ModalProps, 'content' | 'withDialogContentWrapper'> {
+export interface PdfModalViewerProps extends Omit<ModalProps, 'content' | 'withDialogContentWrapper' | 'fullScreen'> {
   /** 必要，传入的文件,支持url/base64/File/ArrayBuffer */
   file: string | File | Blob | ArrayBuffer,
 
   /** 手动指定的文件名(用于标题展示和下载) */
   fileName?: string,
+
+  /** 全屏（仅初始值有效,改变不会更新,应由内部工具栏控制）?  */
+  fullScreen?: string,
 
   /** 获取内部setOpen操作方法的ref */
   setOpenRef?: React.MutableRefObject<{setOpen: (open: boolean) => void}>,

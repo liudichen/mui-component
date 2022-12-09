@@ -19,7 +19,7 @@ export { pdfjs };
 export const PdfModalViewer = (props) => {
   const { file, fileName: fileNameProp, trigger, title,
     showToolbar, toolbarClassName,
-    showFullScreen, defaultFullScreen: fullScreenProp, responsive, breakpoint,
+    showFullScreen, defaultFullScreen: fullScreenProp, responsive, breakpoint, fullWidth,
     showRotate, onRotateChange, defaultRotate,
     showScale, onScaleChange, maxScale, minScale, defaultScale, showScaleStep,
     showReset, onReset,
@@ -59,7 +59,6 @@ export const PdfModalViewer = (props) => {
       setFullScreen(false);
     }
   });
-  useEffect(() => { setFullScreen(fullScreenProp); }, [ fullScreenProp ]);
   useEffect(() => { handleResponsive(down); }, [ down ]);
   const handleRotate = useMemoizedFn((direction) => {
     let newRotate = rotate;
@@ -214,6 +213,7 @@ export const PdfModalViewer = (props) => {
   return (
     <Modal
       open={open}
+      fullWidth={fullWidth}
       fullScreen={fullScreen}
       setOpen={setOpen}
       title={title ?? `文件查看:${fileName || ''}`}
@@ -408,7 +408,7 @@ PdfModalViewer.defaultProps = {
   responsive: true,
   breakpoint: 'sm',
   updatePageOnScroll: true,
-  fullScreen: false,
+  fullWidth: true,
   showConfirm: false,
   cancelText: '关闭',
 };
