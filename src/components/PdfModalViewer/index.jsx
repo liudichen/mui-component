@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import React, { useEffect, useRef, useImperativeHandle } from 'react';
+import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery } from '@mui/material';
 import { Document, pdfjs } from 'react-pdf';
 import { FirstPage, LastPage, NavigateBefore, NavigateNext, Rotate90DegreesCcwOutlined, Rotate90DegreesCwTwoTone, CloudDownloadOutlined, RestartAlt, ZoomInMapOutlined, ZoomOutMapOutlined, ZoomInOutlined, ZoomOutOutlined, Cached } from '@mui/icons-material';
 import { useGlobalId, generateFileDownload, scrollToElement } from '@iimm/shared';
+import classNames from 'classnames';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
@@ -17,7 +18,7 @@ export { pdfjs };
 
 export const PdfModalViewer = (props) => {
   const { file, fileName: fileNameProp, trigger, title,
-    showToolbar,
+    showToolbar, toolbarClassName,
     showFullScreen, defaultFullScreen: fullScreenProp, responsive, breakpoint,
     showRotate, onRotateChange, defaultRotate,
     showScale, onScaleChange, maxScale, minScale, defaultScale, showScaleStep,
@@ -26,6 +27,8 @@ export const PdfModalViewer = (props) => {
     showDownload, onDownloadSuccess, onDownloadFail,
     defaultPageNumber, showPagination, showFirstPage, showLastPage, showPageStep, updatePageOnScroll, onPageNumberChange, onPdfLoadSuccess, onPdfFetchError,
     documentProps,
+    // eslint-disable-next-line no-unused-vars
+    open: openProp, setOpen: setOpenProp, setOpenRef,
     ...restProps
   } = props;
   const theme = useTheme();
@@ -34,7 +37,7 @@ export const PdfModalViewer = (props) => {
   const shouldReloadRef = useRef(0);
   const id = useGlobalId();
   const [ key, setKey ] = useSafeState(0);
-  const [ open, setOpen ] = useSafeState(false);
+  const [ open, setOpen ] = useControllableValue(props, { defaultValue: false, valuePropName: 'open', trigger: 'setOpen' });
   const [ fetchLoading, setFetchLoading ] = useSafeState(false);
   const [ pdf, setPdf ] = useSafeState(null);
   const [ fileName, setFileName ] = useSafeState(fileNameProp);
@@ -44,6 +47,7 @@ export const PdfModalViewer = (props) => {
   const [ fullScreen, setFullScreen ] = useSafeState(fullScreenProp);
   const [ rotate, setRotate ] = useSafeState(defaultRotate || 0);
   const [ scale, setScale ] = useSafeState(defaultScale || 1);
+  useImperativeHandle(setOpenRef, () => ({ setOpen }), [ setOpen ]);
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const handleResponsive = useMemoizedFn((down) => {
     if (!responsive) return;
@@ -215,11 +219,11 @@ export const PdfModalViewer = (props) => {
       trigger={trigger}
       withDialogContentWrapper={false}
       responsive={false}
-      PaperProps={{ className: 'pdf-viewer-modal-paper' }}
+      PaperProps={{ className: classNames({ 'pdf-viewer-modal-paper': !fullScreen }) }}
       {...restProps}
     >
       {showToolbar && !fetchLoading && (
-        <DialogContent className='pdf-viewer-toolbar'>
+        <DialogContent className={classNames('pdf-viewer-toolbar', toolbarClassName)}>
           {showFirstPage && !down && !!numPages && (
             <Tooltip arrow placement='top' title='跳转到首页'>
               <IconButton
@@ -403,4 +407,6 @@ PdfModalViewer.defaultProps = {
   responsive: true,
   breakpoint: 'sm',
   updatePageOnScroll: true,
+  showConfirm: false,
+  cancelText: '关闭',
 };

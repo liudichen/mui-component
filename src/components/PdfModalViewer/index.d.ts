@@ -17,12 +17,16 @@ export interface PdfModalViewerProps extends ModalProps {
   /** 手动指定的文件名(用于标题展示和下载) */
   fileName?: string,
 
+  /** 获取内部setOpen操作方法的ref */
+  setOpenRef?: React.MutableRefObject<{setOpen: (open: boolean) => void}>,
   /** 传递给react-pdf的Document组件的props */
   documentProps?: DocumentProps,
   /** 显示顶部工具条?
    * @default true
    */
   showToolbar?: boolean,
+  /** 传递给toolbar顶层的className(拥有1个默认cls:pdf-viewer-toolbar) */
+  toolbarClassName?: string,
   /** 显示控制全屏的按钮?
    * @default true
    */
