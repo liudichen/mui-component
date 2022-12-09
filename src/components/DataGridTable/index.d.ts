@@ -3,18 +3,11 @@ import { BoxProps, TooltipProps } from '@mui/material';
 import { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams } from '@mui/x-data-grid';
 
 import { DataGridPaginationProps } from './DataGridPagination';
+import { IStatusConvertRelateProps } from '../StatusRender';
 
 /** 自定义的GridTableColumn条目类型 */
-export type GridTableColumnType = Omit<GridColDef, 'type'> & {
+export interface GridTableColumnType extends Omit<GridColDef, 'type'>, IStatusConvertRelateProps {
   type?: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
-  /** 自定义的用于 type='status */
-  statusColorConvert?: (status: string) => string,
-  /** 自定义的用于 type='status'*/
-  statusTypeConvert?: (status: string) => string,
-  /** 自定义的用于 type='status'*/
-  statusTextConvert?: (status: string) => React.ReactNode,
-  /** 自定义的用于 type='status'*/
-  statusConvert?: (status: string) => string,
   title?: string,
   titleClassName?: GridColumnHeaderClassNamePropType,
   titleAlign?: GridAlignment,
@@ -22,7 +15,7 @@ export type GridTableColumnType = Omit<GridColDef, 'type'> & {
   /** 如果为真则提供tooltip包裹 */
   showTooltip?: boolean | ((params:GridValueGetterParams) => boolean),
   tooltipProps?: TooltipProps,
-};
+}
 
 interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'> {
   columns: GridTableColumnType[],

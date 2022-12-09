@@ -26,6 +26,7 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
           statusConvert={statusConvert}
         />
       );
+      if (typeof initInfo.width === 'undefined') { initInfo.width = 70; }
     } else {
       initInfo.type = type;
       initInfo.width = type === 'date' ? 100 : 160;
