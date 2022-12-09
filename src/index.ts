@@ -36,4 +36,3 @@ export * from './components/TreeItem';
 
 // =============icon===============
 
-export * from './icons';
