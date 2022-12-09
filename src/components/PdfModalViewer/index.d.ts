@@ -1,6 +1,7 @@
 import React from 'react';
-import { DocumentProps } from 'react-pdf';
-import { ModalProps } from '@mui/material';
+import { DocumentProps } from '@types/react-pdf';
+
+import { ModalProps } from '../Modal';
 
 type IPdf = string | File | Blob | ArrayBuffer;
 
@@ -10,7 +11,7 @@ export declare const pdfjs: {
   }
 };
 
-export interface PdfModalViewerProps extends ModalProps {
+export interface PdfModalViewerProps extends Omit<ModalProps, 'content' | 'withDialogContentWrapper'> {
   /** 必要，传入的文件,支持url/base64/File/ArrayBuffer */
   file: string | File | Blob | ArrayBuffer,
 

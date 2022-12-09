@@ -26,9 +26,11 @@ export const PdfModalViewer = (props) => {
     showReload, onReload, shouldReload,
     showDownload, onDownloadSuccess, onDownloadFail,
     defaultPageNumber, showPagination, showFirstPage, showLastPage, showPageStep, updatePageOnScroll, onPageNumberChange, onPdfLoadSuccess, onPdfFetchError,
-    documentProps,
+    documentProps, contentProps,
     // eslint-disable-next-line no-unused-vars
     open: openProp, setOpen: setOpenProp, setOpenRef,
+    // eslint-disable-next-line no-unused-vars
+    content, children, withDialogContentWrapper,
     ...restProps
   } = props;
   const theme = useTheme();
@@ -57,9 +59,8 @@ export const PdfModalViewer = (props) => {
       setFullScreen(false);
     }
   });
-  useEffect(() => {
-    handleResponsive(down);
-  }, [ down ]);
+  useEffect(() => { setFullScreen(fullScreenProp); }, [ fullScreenProp ]);
+  useEffect(() => { handleResponsive(down); }, [ down ]);
   const handleRotate = useMemoizedFn((direction) => {
     let newRotate = rotate;
     if (direction === 'reset') {
@@ -360,7 +361,7 @@ export const PdfModalViewer = (props) => {
           )}
         </DialogContent>
       )}
-      <DialogContent flex={1} ref={contentRef}>
+      <DialogContent {...contentProps} sx={{ px: 0, py: '8px', ...(contentProps?.sx || {}) }} flex={1} ref={contentRef}>
         {pdf ? (
           <Document {...(documentProps || {})} key={key} file={pdf} onLoadSuccess={onLoadSuccess} rotate={rotate}>
             <Box className='pdf-pages-container'>
@@ -407,6 +408,7 @@ PdfModalViewer.defaultProps = {
   responsive: true,
   breakpoint: 'sm',
   updatePageOnScroll: true,
+  fullScreen: false,
   showConfirm: false,
   cancelText: '关闭',
 };
