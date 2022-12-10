@@ -6,7 +6,8 @@ specifiers:
   '@babel/preset-react': ^7.18.6
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
-  '@iimm/shared': ^1.1.0
+  '@iimm/icons': ^1.0.2
+  '@iimm/shared': ^1.1.1
   '@mui/icons-material': ^5.10.16
   '@mui/material': ^5.10.17
   '@mui/x-data-grid': ^5.17.14
@@ -38,10 +39,12 @@ specifiers:
   react-pdf: ^6.2.0
   react-responsive-carousel: ^3.2.23
   typescript: ^4.9.4
+  video-react: ^0.16.0
   yorkie: ^2.0.0
 
 dependencies:
-  '@iimm/shared': 1.1.0_react@18.2.0
+  '@iimm/icons': 1.0.2_react@18.2.0
+  '@iimm/shared': 1.1.1_react@18.2.0
   '@tabler/icons': 1.116.1_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
@@ -49,6 +52,7 @@ dependencies:
   react-draggable: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-pdf: 6.2.0_biqbaboplfbrettd7655fr4n2y
   react-responsive-carousel: 3.2.23
+  video-react: 0.16.0_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@babel/eslint-parser': 7.19.1_q7hszagzy73il6awuziitdhqxe
@@ -2848,8 +2852,16 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iimm/shared/1.1.0_react@18.2.0:
-    resolution: {integrity: sha512-Tw9XzaomHmnAUQbznXaTlXezz9NojEbYOxmOaCQVwFyvQ6G4IqI9Q5KLTlK3TigGgs50gVkkxn6EgV45A5xpjw==}
+  /@iimm/icons/1.0.2_react@18.2.0:
+    resolution: {integrity: sha512-yEBkpRiy6qQ01wv6NONgsAmm23HJd4zt+clhHEtcWyq/9fpxfvYjcoy+5F2XiLtXtontWxw4eyEWm6NRChaWjg==}
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@iimm/shared/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-ENiZROrFrFIPA1H9i48eAy55VDlU49tkko9xdjepVZTbotkHL7cxbt8sfdXjN5g0X/fgSvpGOjID9xP4THyckg==}
     peerDependencies:
       react: '>=16.8'
     peerDependenciesMeta:
@@ -4442,7 +4454,7 @@ packages:
       mime: 1.4.1
       react: 16.14.0
       react-refresh: 0.10.0
-      react-router: 5.2.0_react@16.14.0
+      react-router: 5.2.0_react@18.2.0
       react-router-config: 5.1.1_6flbfkch6crntn4ac2g723iqde
       react-router-dom: 5.2.0_react@16.14.0
       regenerator-runtime: 0.13.5
@@ -11020,7 +11032,6 @@ packages:
 
   /lodash.throttle/4.1.1:
     resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
-    dev: true
 
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
@@ -14113,6 +14124,12 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /redux/4.2.0:
+    resolution: {integrity: sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==}
+    dependencies:
+      '@babel/runtime': 7.20.6
+    dev: false
+
   /regenerate-unicode-properties/10.0.1:
     resolution: {integrity: sha512-vn5DU6yg6h8hP/2OkQo3K7uVILvY4iu0oI4t3HFa81UPkhGJwkRwM10JEc3upjdhHjs/k8GJY1sRBhk5sr69Bw==}
     engines: {node: '>=4'}
@@ -16555,6 +16572,21 @@ packages:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
     dev: true
+
+  /video-react/0.16.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-138NHPS8bmgqCYVCdbv2GVFhXntemNHWGw9AN8iJSzr3jizXMmWJd2LTBppr4hZJUbyW1A1tPZ3CQXZUaexMVA==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      classnames: 2.3.2
+      lodash.throttle: 4.1.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      redux: 4.2.0
+    dev: false
 
   /vinyl-fs/3.0.3:
     resolution: {integrity: sha512-vIu34EkyNyJxmP0jscNzWBSygh7VWhqun6RmqVfXePrOwi9lhvRs//dOaGOTRUQr4tx7/zd26Tk5WeSVZitgng==}

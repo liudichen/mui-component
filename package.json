@@ -95,13 +95,15 @@
     "yorkie": "^2.0.0"
   },
   "dependencies": {
-    "@iimm/shared": "^1.1.0",
+    "@iimm/icons": "^1.0.2",
+    "@iimm/shared": "^1.1.1",
     "@tabler/icons": "^1.116.1",
     "ahooks": "^3.7.2",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "react-draggable": "^4.4.5",
     "react-pdf": "^6.2.0",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "video-react": "^0.16.0"
   }
 }

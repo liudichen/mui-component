@@ -1,0 +1,14 @@
+.attachmentViewer-container {
+
+  .attachmentViewer-itemBar {
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding-left: 4px;
+  }
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
