@@ -1,7 +1,11 @@
 import React from 'react';
 import { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsProps, LinkProps, ButtonProps, IconButtonProps, BoxProps } from '@mui/material';
 
-export interface ModalProps extends DialogProps {
+export interface ModalProps extends Omit<DialogProps, 'open'> {
+  /** 受控属性,控制是否开启 */
+  open?: boolean,
+  /** 受控属性 */
+  setOpen?: (open: boolean) => void,
   /** 显示底部按钮区域? */
   showActions?: boolean,
   /** 显示右上角的关闭按钮? */
@@ -61,8 +65,6 @@ export interface ModalProps extends DialogProps {
   breakpoint?: 'xs' | 'sml' | 'md' | 'lg' | 'xl',
   /** 内容，优先级高于children */
   content?: React.ReactNode | React.ReactNode[],
-  /** 受控属性 */
-  setOpen?: (open: boolean) => void,
 }
 
 export declare const Modal: React.ForwardRefRenderFunction<{onClose: () => void}, React.PropsWithChildren<ModalProps>>;
