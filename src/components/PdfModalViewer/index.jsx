@@ -24,7 +24,7 @@ export const PdfModalViewer = (props) => {
     showScale, onScaleChange, maxScale, minScale, defaultScale, showScaleStep,
     showReset, onReset,
     showReload, onReload, shouldReload,
-    showDownload, onDownloadSuccess, onDownloadFail,
+    showDownload, onDownloadSuccess, onDownloadFail, onDownloadStart,
     defaultPageNumber, showPagination, showFirstPage, showLastPage, showPageStep, updatePageOnScroll, onPageNumberChange, onPdfLoadSuccess, onPdfFetchError,
     documentProps, contentProps,
     // eslint-disable-next-line no-unused-vars
@@ -326,7 +326,7 @@ export const PdfModalViewer = (props) => {
             <Tooltip arrow placement='top' title='文档下载'>
               <IconButton
                 size='small' color='primary'
-                onClick={() => generateFileDownload(pdf, fileName, '.pdf', onDownloadSuccess, onDownloadFail)}
+                onClick={() => generateFileDownload(pdf, fileName, '.pdf', { onDownloadSuccess, onDownloadFail, onDownloadStart })}
               >
                 <CloudDownloadOutlined />
               </IconButton>

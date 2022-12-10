@@ -128,9 +128,11 @@ export interface PdfModalViewerProps extends Omit<ModalProps, 'content' | 'withD
    */
   showDownload?: boolean,
   /** 下载成功时触发 */
-  onDownloadSuccess?: (pdf: IPdf, fileName?: string) => void,
+  onDownloadSuccess?: (pdf: IPdf, fileName?: string) => void | Promise<void>,
   /** 现在失败时触发 */
-  onDownloadFail?: (pdf: IPdf, fileName?: string) => void,
+  onDownloadFail?: (pdf: IPdf, fileName?: string) => void | Promise<void>,
+  /** 点击下载开始时触发,可以处理一些消息提醒之类的(如果返回值是false则不会开始下载) */
+  onDownloadStart?: (pdf: IPdf, fileName?: string) => void | boolean,
 
   /** React-pdf的Document加载成功后触发，可以用来处理记录文件已阅等操作 */
   onPdfLoadSuccess?: (pdf: IPdf, fileName?: string) => void,
