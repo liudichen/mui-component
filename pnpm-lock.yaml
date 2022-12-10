@@ -16,6 +16,7 @@ specifiers:
   '@types/react': ^18.0.26
   '@types/react-dom': ^18.0.9
   '@types/react-pdf': ^6.2.0
+  '@types/video-react': ^0.15.1
   '@typescript-eslint/eslint-plugin': ^5.46.0
   '@typescript-eslint/parser': ^5.46.0
   '@umijs/fabric': ^2.14.0
@@ -63,6 +64,7 @@ devDependencies:
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
   '@types/react-pdf': 6.2.0
+  '@types/video-react': 0.15.1
   '@typescript-eslint/eslint-plugin': 5.46.0_l52la46dpi4tczwpdnr6onopbi
   '@typescript-eslint/parser': 5.46.0_yfqovispp7u7jaktymfaqwl2py
   '@umijs/fabric': 2.14.0
@@ -3788,7 +3790,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: true
 
   /@types/eslint/7.29.0:
@@ -3801,7 +3803,7 @@ packages:
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
@@ -4053,6 +4055,12 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
+    dev: true
+
+  /@types/video-react/0.15.1:
+    resolution: {integrity: sha512-OFndW9sVCX7yTHnt6cGWE88IAVMm6RcS4YN15N+i0o5yYDFQhPc3ChmiyNkQXk6HuBBLQDu6Fyy5FH3Dv/F5IA==}
+    dependencies:
+      '@types/react': 18.0.26
     dev: true
 
   /@types/yargs-parser/21.0.0:
@@ -4434,7 +4442,7 @@ packages:
       mime: 1.4.1
       react: 16.14.0
       react-refresh: 0.10.0
-      react-router: 5.2.0_react@18.2.0
+      react-router: 5.2.0_react@16.14.0
       react-router-config: 5.1.1_6flbfkch6crntn4ac2g723iqde
       react-router-dom: 5.2.0_react@16.14.0
       regenerator-runtime: 0.13.5
