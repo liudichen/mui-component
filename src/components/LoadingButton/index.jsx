@@ -182,3 +182,5 @@ export const LoadingButton = React.forwardRef(function LoadingButton(inProps, re
 });
 
 export default LoadingButton;
+
+LoadingButton.displayName = 'iimm.Mui.LoadingButton';

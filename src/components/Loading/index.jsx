@@ -52,3 +52,4 @@ Loading.defaultProps = {
   variant: 'indeterminate',
 };
 
+Loading.displayName = 'iimm.Mui.Loading';

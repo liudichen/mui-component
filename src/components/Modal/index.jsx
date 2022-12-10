@@ -144,3 +144,5 @@ Modal.defaultProps = {
   breakpoint: 'md',
   withDialogContentWrapper: true,
 };
+
+Modal.displayName = 'iimm.Mui.Modal';
