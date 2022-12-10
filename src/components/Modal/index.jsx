@@ -78,7 +78,7 @@ export const Modal = React.forwardRef((props, ref) => {
             sx={{ padding: 0, ...(titleProps?.sx || {}) }}
           >
             <Box
-              flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5}
+              flex={1} fontSize='16px' height='100%' alignSelf='center' maxHeight='60px' marginLeft={1.5} marginY={0.5}
               {...(titleBoxProps || {})}
               sx={draggable ? ({ cursor: 'move', ...(titleBoxProps?.sx || {}) }) : titleBoxProps?.sx}
             >

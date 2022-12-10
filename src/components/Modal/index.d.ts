@@ -41,7 +41,7 @@ export interface ModalProps extends Omit<DialogProps, 'open'> {
   */
   titleProps?: DialogTitleProps,
   /** 包裹title内容的Box的props
-   * @default 初始状态{flex:1,fontSize:'16px',height:'100%',alignSelf:'center',marginLeft:1.5,marginY:0.5}
+   * @default 初始状态{flex:1,fontSize:'16px',height:'100%',alignSelf:'center',marginLeft:1.5,marginY:0.5,maxHeight:'60px'}
    */
   titleBoxProps?: BoxProps,
   /** 内容使用DialogContent包裹?
