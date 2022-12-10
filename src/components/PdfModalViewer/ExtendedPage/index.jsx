@@ -40,3 +40,5 @@ export const ExtendedPage = (props) => {
     />
   );
 };
+
+ExtendedPage.displayName = 'iimm.Mui.PdfModalViewer.ExtendedPage';

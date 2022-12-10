@@ -87,3 +87,5 @@ export const Result = (props) => {
 Result.defaultProps = {
   status: 'info',
 };
+
+Result.displayName = 'iimm.Mui.Result';

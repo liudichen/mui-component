@@ -177,3 +177,4 @@ PopConfirm.defaultProps = {
   confirmText: '确认',
 };
 
+PopConfirm.displayName = 'iimm.Mui.PopConfirm';

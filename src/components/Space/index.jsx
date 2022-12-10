@@ -59,3 +59,5 @@ Space.defaultProps = {
   display: 'flex',
   sx: { justifyContent: 'center' },
 };
+
+Space.displayName = 'iimm.Mui.Space';

@@ -25,3 +25,5 @@ export const JumpToPage = (props) => {
     </Modal>
   );
 };
+
+JumpToPage.displayName = 'iimm.Mui.PdfModalViewer.JumpToPage';

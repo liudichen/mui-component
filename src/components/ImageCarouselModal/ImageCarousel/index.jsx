@@ -21,4 +21,6 @@ export const ImageCarousel = (props) => {
   );
 };
 
+ImageCarousel.displayName = 'iimm.Mui.ImageCarousel';
+
 ImageCarousel.defaultProps = {};

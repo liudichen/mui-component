@@ -78,3 +78,5 @@ Pagination.defaultProps = {
   hidePrevButton: true,
   variant: 'outlined',
 };
+
+Pagination.displayName = 'iimm.Mui.Pagination';

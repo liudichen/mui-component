@@ -74,6 +74,8 @@ ImageCarouselModal.defaultProps = {
   responsive: true,
 };
 
+ImageCarouselModal.displayName = 'iimm.Mui.ImageCarouselModal';
+
 export {
   ImageCarousel,
   ImageCarouselModal,

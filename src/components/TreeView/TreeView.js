@@ -837,6 +837,8 @@ export const TreeView = React.forwardRef(function TreeView(inProps, ref) {
   );
 });
 
+TreeView.displayName = 'MuiTreeView';
+
 TreeView.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

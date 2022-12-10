@@ -162,3 +162,4 @@ SimpleTable.defaultProps = {
   columnDefaultWidth: 100,
 };
 
+SimpleTable.displayName = 'iimm.Mui.SimpleTable';

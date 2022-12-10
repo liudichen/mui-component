@@ -336,6 +336,8 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
   );
 });
 
+TreeItem.displayName = 'MuiTreeItem';
+
 TreeItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

@@ -99,3 +99,5 @@ ContentCard.defaultProps = {
   iconColor: 'secondary',
   CollapseIcon: ExpandCircleDownOutlinedIcon,
 };
+
+ContentCard.displayName = 'iimm.Mui.ContentCard';

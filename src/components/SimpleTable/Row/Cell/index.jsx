@@ -87,3 +87,5 @@ export const Cell = (props) => {
     </TableCell>
   );
 };
+
+Cell.displayName = 'iimm.Mui.SimpleTable.Cell';

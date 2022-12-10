@@ -110,3 +110,5 @@ export const StatusRender = (props) => {
     </span>
   ) : noStatusText;
 };
+
+StatusRender.displayName = 'iimm.Mui.StatusRender';

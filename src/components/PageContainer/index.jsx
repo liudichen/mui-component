@@ -58,3 +58,5 @@ export const PageContainer = forwardRef((
     </Card>
   );
 });
+
+PageContainer.displayName = 'iimm.Mui.PageContainer';

@@ -390,6 +390,8 @@ export const PdfModalViewer = (props) => {
   );
 };
 
+PdfModalViewer.displayName = 'iimm.Mui.PdfModalViewer';
+
 PdfModalViewer.defaultProps = {
   showToolbar: true,
   showFullScreen: true,

@@ -60,3 +60,5 @@ Popover.defaultProps = {
   PaperProps: { sx: { p: 0.5, borderRadius: 2 } },
   triggerType: 'hover',
 };
+
+Popover.displayName = 'iimm.Mui.Popover';

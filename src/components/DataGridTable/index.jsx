@@ -144,3 +144,5 @@ DataGridTable.defaultProps = {
   autoHeight: true,
   initialPageSize: 10,
 };
+
+DataGridTable.displayName = 'iimm.Mui.DataGridTable';

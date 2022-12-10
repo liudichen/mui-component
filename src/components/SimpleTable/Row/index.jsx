@@ -80,3 +80,5 @@ export const Row = (props) => {
     </>
   );
 };
+
+Row.displayName = 'iimm.Mui.SimpleTable.Row';

@@ -61,4 +61,7 @@ DataGridPagination.defaultProps = {
   color: 'secondary',
 };
 
+DataGridPagination.displayName = 'iimm.Mui.DataGridTable.DataGridPagination';
+
 export default DataGridPagination;
+
