@@ -38,6 +38,7 @@ specifiers:
   react-draggable: ^4.4.5
   react-pdf: ^6.2.0
   react-responsive-carousel: ^3.2.23
+  sass: ^1.56.2
   typescript: ^4.9.4
   video-react: ^0.16.0
   yorkie: ^2.0.0
@@ -83,6 +84,7 @@ devDependencies:
   prettier: 2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  sass: 1.56.2
   typescript: 4.9.4
   yorkie: 2.0.0
 
@@ -4454,7 +4456,7 @@ packages:
       mime: 1.4.1
       react: 16.14.0
       react-refresh: 0.10.0
-      react-router: 5.2.0_react@18.2.0
+      react-router: 5.2.0_react@16.14.0
       react-router-config: 5.1.1_6flbfkch6crntn4ac2g723iqde
       react-router-dom: 5.2.0_react@16.14.0
       regenerator-runtime: 0.13.5
@@ -9359,6 +9361,10 @@ packages:
       queue: 6.0.1
     dev: true
 
+  /immutable/4.1.0:
+    resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
+    dev: true
+
   /import-cwd/2.1.0:
     resolution: {integrity: sha512-Ew5AZzJQFqrOV5BTW3EIoHAnoie1LojZLXKcCQ/yTRyVZosBhK1x1ViYjHGf5pAFOq8ZyChZp6m/fSN7pJyZtg==}
     engines: {node: '>=4'}
@@ -13179,7 +13185,7 @@ packages:
     resolution: {integrity: sha512-Uw6ekxSWNLCPesSv/cmqf2bY/77z11O7jZGPax3ycZMFU/oi2DMH9i89AdHc1tRwFg/arFoEwX0IS3LCUxJh1g==}
     engines: {node: '>=6.0.0'}
     dependencies:
-      postcss: 7.0.39
+      postcss: 7.0.32
     dev: true
 
   /postcss-sass/0.4.4:
@@ -14749,6 +14755,16 @@ packages:
       walker: 1.0.8
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /sass/1.56.2:
+    resolution: {integrity: sha512-ciEJhnyCRwzlBCB+h5cCPM6ie/6f8HrhZMQOf5vlU60Y1bI1rx5Zb0vlDZvaycHsg/MqFfF1Eq2eokAa32iw8w==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
     dev: true
 
   /sax/1.2.4:

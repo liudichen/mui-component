@@ -1,6 +1,8 @@
 import React from 'react';
+import { Alert, Button } from '@mui/material';
+import { Download } from '@mui/icons-material';
 
-import { ModalProps } from '../../../Modal';
+import { Modal, ModalProps } from '../../../Modal';
 import { PdfModalViewer } from '../../../PdfModalViewer';
 import { VideoModalViewer } from '../../../VideoModalViewer';
 import { ImageModalViewer } from '../../../ImageModalViewer';
@@ -17,11 +19,40 @@ export interface FileViewRenderProps {
   modalProps?: ModalProps
 }
 
-const ViewList = [ 'pdf', 'image', 'video' ];
+// const ViewList = [ 'pdf', 'image', 'video' ];
+
+const FalldownModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) => {
+  const { fileSrc, fileName, trigger, showDownload, onFileDownload, onFileDownloadStart, modalProps } = props;
+  return (
+    <Modal
+      trigger={trigger}
+      title={fileName}
+      fullWidth
+      responsive
+      extraActions={showDownload ? (
+        <Button
+          variant="outlined"
+          startIcon={<Download />}
+          // @ts-ignore
+          onClick={() => generateFileDownload(fileSrc, undefined, undefined, { onDownloadSuccess: onFileDownload, onDownloadStart: onFileDownloadStart })}
+        >
+          下载
+        </Button>
+      ) : undefined}
+      {...modalProps}
+    >
+      <Alert severity='info'>
+        此文件格式暂不支持预览
+      </Alert>
+    </Modal>
+  );
+};
+
+FalldownModalViewer.displayName = 'iimm.Mui.AttachmentViewer.FalldownModalViewer';
 
 export const FileViewRender = (props: FileViewRenderProps) => {
   const { fileSrc, fileName, view, trigger, type, showDownload, onFileDownload, onFileDownloadStart, modalProps } = props;
-  if (!view || !ViewList.includes(type)) return null;
+  if (!view) return null;
   if (type === 'pdf') {
     return (
       <PdfModalViewer
@@ -56,10 +87,23 @@ export const FileViewRender = (props: FileViewRenderProps) => {
         fileSrc={fileSrc}
         fileName={fileName}
         modalProps={modalProps}
+        onFileDownload={onFileDownload}
+        onFileDownloadStart={onFileDownloadStart}
       />
     );
   }
-  return null;
+  return (
+    <FalldownModalViewer
+      trigger={trigger}
+      showDownload={showDownload}
+      fileSrc={fileSrc}
+      fileName={fileName}
+      modalProps={modalProps}
+      onFileDownload={onFileDownload}
+      onFileDownloadStart={onFileDownloadStart}
+    />
+  );
+
 };
 
 FileViewRender.displayName = 'iimm.Mui.attachmentViewer.ItemBar.FileViewRender';
