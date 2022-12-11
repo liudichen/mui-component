@@ -6,7 +6,9 @@ import { AttachmentViewer, AttachmentViewerProps } from '../AttachmentViewer';
 
 export interface AttachmentModalViewerProps extends ModalProps, AttachmentViewerProps {
   /** urls中每条 url路径前缀 */
-  urlPrefix?: string
+  urlPrefix?: string,
+  /** 当 urls列表为空时，显示的内容 */
+  falldown?: React.ReactNode,
 }
 
 export const AttachmentModalViewer = (props: AttachmentModalViewerProps) => {
@@ -18,9 +20,10 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps) => {
     FilePreviewRender, previewModalProps,
     urls,
     fileListBoxProps, fileListBoxClassName,
-    urlPrefix,
+    urlPrefix, falldown,
     ...restProps
   } = props;
+  if (typeof falldown !== 'undefined' && (!urls || !urls?.length)) return falldown;
   return (
     <Modal
       {...restProps}
