@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { Download } from '@mui/icons-material';
-import { Player } from 'video-react';
+import { Player, PlayerProps } from 'video-react';
 import { generateFileDownload } from '@iimm/shared';
 import 'video-react/dist/video-react.css';
 
 import { Modal, ModalProps } from '../Modal';
-import { PlayerProps } from './video-react';
 
 export interface VideoModalViewerProps extends PlayerProps {
   showDownload?: boolean,
