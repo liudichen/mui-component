@@ -23,7 +23,7 @@ export * from './components/Space';
 
 export * from './components/Result';
 
-export { NoData, NoDataProps } from './components/NoData';
+export * from './components/NoData';
 
 /** 来自Mui的组件： */
 export * from './components/DateRangePicker';
