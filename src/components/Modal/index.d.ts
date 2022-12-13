@@ -62,7 +62,7 @@ export interface ModalProps extends Omit<DialogProps, 'open'> {
   /** 响应式全屏的断点
    * @default 'md'
   */
-  breakpoint?: 'xs' | 'sml' | 'md' | 'lg' | 'xl',
+  breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number,
   /** 内容，优先级高于children */
   content?: React.ReactNode | React.ReactNode[],
 }

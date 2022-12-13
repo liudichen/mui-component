@@ -6,12 +6,18 @@ module.exports = {
   plugins: [
     'react',
   ],
+  parserOptions: {
+    sourceType: 'module',
+    requireConfigFile: false,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   overrides: [
     {
       files: [ '*.ts', '*.tsx' ],
       extends: 'eslint-config-egg/typescript',
       rules: {
-
         '@typescript-eslint/ban-ts-comment': 'off',
         'react/jsx-uses-react': 2,
         'react/jsx-uses-vars': 'error',
