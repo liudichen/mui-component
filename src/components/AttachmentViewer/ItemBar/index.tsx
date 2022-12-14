@@ -141,4 +141,4 @@ export const ItemBar = (props: ItemBarProps) => {
   );
 };
 
-ItemBar.displayName = 'iimm.Mui.attachmentViewer.ItemBar';
+ItemBar.displayName = 'iimm.Mui.AttachmentViewer.ItemBar';

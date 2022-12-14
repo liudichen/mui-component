@@ -106,4 +106,4 @@ export const FileViewRender = (props: FileViewRenderProps) => {
 
 };
 
-FileViewRender.displayName = 'iimm.Mui.attachmentViewer.ItemBar.FileViewRender';
+FileViewRender.displayName = 'iimm.Mui.AttachmentViewer.ItemBar.FileViewRender';
