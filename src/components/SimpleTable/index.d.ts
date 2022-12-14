@@ -2,6 +2,7 @@ import React from 'react';
 import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
 
 import { PaginationProps } from '../Pagination';
+import { IStatusConvertRelateProps } from '../StatusRender';
 
 interface RowItem {
   [key: string]: any;
@@ -18,7 +19,7 @@ interface ITitleRenderParams {
   field?: string;
 }
 
-interface IColumnType {
+interface IColumnType extends IStatusConvertRelateProps {
   field?: string;
   title?: React.ReactNode;
   renderTitle?: (parmas: ITitleRenderParams) => React.ReactNode;

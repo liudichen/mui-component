@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { StatusRender } from '../../../StatusRender';
 
 export const Cell = (props) => {
-  const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader, columnDefaultWidth } = props;
+  const { field, title, titleAlign, align, ellipsis, width, maxWidth, minWidth, type, renderCell, renderTitle, valueGetter, expandRowByClick, setOpen, row, rowIndex, bordered, getCellProps, showTooltip, hideHeader, columnDefaultWidth, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert } = props;
   const cellSx = useCreation(() => {
     const sx = { px: 0, tableLayout: 'fixed' };
     if (rowIndex === -1 || (rowIndex === 0 && hideHeader)) {
@@ -53,6 +53,10 @@ export const Cell = (props) => {
   const item = rowIndex === -1 ? (renderTitle?.({ field }) ?? title ?? field ?? '') : (renderCell?.({ row, rowIndex, field, value }) ?? (type === 'status' ? (
     <StatusRender
       status={value}
+      statusColorConvert={statusColorConvert}
+      statusConvert={statusConvert}
+      statusTextConvert={statusTextConvert}
+      statusTypeConvert={statusTypeConvert}
     />
   ) : (type === 'date' || type === 'dateTime') ? (value ? dayjs(value).format(type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM-DD HH:mm:ss') : '-') : type === 'boolean' ? (
     value ? <IconCheck size='1.5em'/> : <IconX size='1.5em'/>
