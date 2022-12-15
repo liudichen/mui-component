@@ -21,7 +21,7 @@ export interface FileViewRenderProps {
 
 // const ViewList = [ 'pdf', 'image', 'video' ];
 
-const FalldownModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) => {
+const FallbackModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) => {
   const { fileSrc, fileName, trigger, showDownload, onFileDownload, onFileDownloadStart, modalProps } = props;
   return (
     <Modal
@@ -48,7 +48,7 @@ const FalldownModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) 
   );
 };
 
-FalldownModalViewer.displayName = 'iimm.Mui.AttachmentViewer.FalldownModalViewer';
+FallbackModalViewer.displayName = 'iimm.Mui.AttachmentViewer.FallbackModalViewer';
 
 export const FileViewRender = (props: FileViewRenderProps) => {
   const { fileSrc, fileName, view, trigger, type, showDownload, onFileDownload, onFileDownloadStart, modalProps } = props;
@@ -93,7 +93,7 @@ export const FileViewRender = (props: FileViewRenderProps) => {
     );
   }
   return (
-    <FalldownModalViewer
+    <FallbackModalViewer
       trigger={trigger}
       showDownload={showDownload}
       fileSrc={fileSrc}
