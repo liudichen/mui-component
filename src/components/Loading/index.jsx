@@ -7,6 +7,7 @@ export const Loading = (props) => {
     <Box
       position='relative'
       display='inline-block'
+      overflow='hidden'
       {...(containerProps || {})}
       sx={{
         ...(containerProps?.sx || {}),

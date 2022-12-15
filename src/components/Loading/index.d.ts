@@ -8,7 +8,7 @@ export interface LoadingProps extends CircularProgressProps {
    */
   containerSx?: SxProps,
   /** 包裹在最外层的Box组件的props
-   * @default {position:'relative',display:'inline-block'}
+   * @default {position:'relative',display:'inline-block',overflow:'hidden'}
   */
   containerProps?: BoxProps,
   /** CircularProgress组件中心的文本label(优先级：value>label>children)*/
