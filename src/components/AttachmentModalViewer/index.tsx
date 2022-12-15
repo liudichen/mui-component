@@ -64,7 +64,7 @@ AttachmentModalViewer.defaultProps = {
     </Tooltip>
   ),
   title: '附件列表',
-  fallback: '-',
+  fallback: <span>-</span>,
 };
 
 AttachmentModalViewer.displayName = 'iimm.Mui.AttachmentModalViewer';
