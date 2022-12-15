@@ -31,7 +31,7 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps) => {
       {...restProps}
     >
       <AttachmentViewer
-        urls={urlPrefix ? urls.map((ele) => `${urlPrefix}${ele}`) : urls}
+        urls={urlPrefix ? urls?.map((ele) => `${urlPrefix}${ele}`) : urls}
         fileListBoxClassName={fileListBoxClassName}
         fileListBoxProps={fileListBoxProps}
         fileTypeIconSize={fileTypeIconSize}

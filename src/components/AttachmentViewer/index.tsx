@@ -25,7 +25,7 @@ export const AttachmentViewer = (props: AttachmentViewerProps) => {
       {...(fileListBoxProps || {})}
       className={clsx('attachmentViewer-container', fileListBoxClassName)}
     >
-      {urls.map((ele, i) => (
+      {urls?.map((ele, i) => (
         <ItemBar
           key={i}
           file={ele}
