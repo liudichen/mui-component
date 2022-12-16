@@ -19,7 +19,7 @@ export interface PdfModalViewerProps extends Omit<ModalProps, 'content' | 'withD
   fileName?: string,
 
   /** 全屏（仅初始值有效,改变不会更新,应由内部工具栏控制）?  */
-  fullScreen?: string,
+  fullScreen?: boolean,
 
   /** 获取内部setOpen操作方法的ref */
   setOpenRef?: React.MutableRefObject<{setOpen: (open: boolean) => void}>,
