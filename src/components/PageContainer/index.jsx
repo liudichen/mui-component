@@ -2,11 +2,6 @@ import React, { forwardRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 
-// constant
-const headerSX = {
-  '& .MuiCardHeader-action': { mr: 0 },
-};
-
 export const PageContainer = forwardRef((
   {
     border = true,
@@ -20,12 +15,13 @@ export const PageContainer = forwardRef((
     shadow,
     sx = {},
     title,
+    headerSx: headerSxProps,
     ...otherProps
   },
   ref
 ) => {
   const theme = useTheme();
-
+  const headerSx = { '& .MuiCardHeader-action': { mr: 0 }, ...(headerSxProps || {}) };
   return (
     <Card
       ref={ref}
@@ -40,13 +36,13 @@ export const PageContainer = forwardRef((
       }}
     >
       {/* card header and action */}
-      {!darkTitle && title && <CardHeader sx={headerSX} title={title} action={secondary} />}
-      {darkTitle && title && (
-        <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
+      {!darkTitle && !!title && <CardHeader sx={headerSx} title={title} action={secondary} />}
+      {darkTitle && !!title && (
+        <CardHeader sx={headerSx} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
       )}
 
       {/* content & header divider */}
-      {title && <Divider />}
+      {!!title && <Divider />}
 
       {/* card content */}
       {content && (
