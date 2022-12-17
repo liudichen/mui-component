@@ -123,9 +123,9 @@ export const DataGridTable = (props) => {
           ...(initialState || {}),
         }}
         sx={autoRowHeight ? {
-          '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '8px' },
-          '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '15px' },
-          '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '22px' },
+          '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '4px' },
+          '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '12px' },
+          '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '20px' },
           ...(sx || {}),
         } : sx}
         {...restProps}
