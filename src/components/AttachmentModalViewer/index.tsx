@@ -13,7 +13,7 @@ export interface AttachmentModalViewerProps extends ModalProps, AttachmentViewer
   fallback?: React.ReactNode,
 }
 
-export const AttachmentModalViewer = (props: AttachmentModalViewerProps) => {
+export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.Element => {
   const {
     fileTypeIconSize, showFileTypeIcon, itemBarBoxProps, fileInfoParser, itemBarClassName, fileNameWrap,
     onFileDownload, onFileDownloadStart,
@@ -25,7 +25,7 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps) => {
     urlPrefix, fallback,
     ...restProps
   } = props;
-  if (typeof fallback !== 'undefined' && (!urls || !urls?.length)) return fallback;
+  if (!urls || !urls?.length) return (fallback || <span>-</span>) as JSX.Element;
   return (
     <Modal
       {...restProps}
