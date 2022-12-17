@@ -24,7 +24,7 @@ export interface SpaceProps extends Omit<BoxProps, 'flexDirection'> {
    * sx add to root Box
    * @default {justifyContent:'center'}
    */
-  sx: SxProps,
+  sx?: SxProps,
 }
 
 export declare const Space: React.FC<React.PropsWithChildren<SpaceProps>>;
