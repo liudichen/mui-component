@@ -13,7 +13,7 @@ export interface FileViewRenderProps {
   view?: boolean,
   trigger: React.ReactNode,
   type: 'pdf' | 'image' | 'video' | string,
-  showDownload: boolean,
+  showDownload?: boolean,
   onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
   onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
   modalProps?: ModalProps

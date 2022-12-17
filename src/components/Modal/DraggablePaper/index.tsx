@@ -30,4 +30,4 @@ DraggablePaper.defaultProps = {
   },
 };
 
-DraggablePaper.displayName = 'iimm.Mui.DraggablePaper'
+DraggablePaper.displayName = 'iimm.Mui.DraggablePaper';
