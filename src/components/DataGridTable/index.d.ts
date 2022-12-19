@@ -19,6 +19,10 @@ export interface GridTableColumnType extends Omit<GridColDef, 'type'>, IStatusCo
 
 interface DataGridTableProps extends Omit<Omit<DataGridProps, 'columns'>, 'type'> {
   columns: GridTableColumnType[],
+  /** 初始化所有列的可排序性
+   * @default undefined
+   */
+  sortable?: boolean,
   /**
    * field name of row's id
    * @default 'id'

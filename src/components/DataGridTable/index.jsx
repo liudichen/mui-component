@@ -8,9 +8,10 @@ import { NoData as NoRowsOverlay } from '../NoData';
 import DataGridPagination from './DataGridPagination';
 import { StatusRender } from '../StatusRender';
 
-export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center' }, suffix = {}) => {
+export const initColumn = (col, prefix = {}, suffix = {}) => {
   const { titleAlign, title, titleClassName, renderTitle, type, statusColorConvert, statusTypeConvert, statusTextConvert, statusConvert, showTooltip, tooltipProps, ...restCol } = col;
   const initInfo = {
+    align: 'center', headerAlign: 'center',
     ...(prefix || {}),
   };
   if (type) {
@@ -62,11 +63,11 @@ export const initColumn = (col, prefix = { align: 'center', headerAlign: 'center
 export const DataGridTable = (props) => {
   const {
     columns: columnsProp, paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, getRowId,
-    height, rowKey, rootProps, sx, autoRowHeight, getRowHeight, useDefaultPagination,
+    height, rowKey, rootProps, sx, autoRowHeight, getRowHeight, useDefaultPagination, sortable,
     ...restProps
   } = props;
   const { toolbar, pagination, ...restComponentsProps } = (componentsProps || {});
-  const columns = useCreation(() => (columnsProp || []).map((item) => initColumn(item)), [ columnsProp ]);
+  const columns = useCreation(() => (columnsProp || []).map((item) => initColumn(item, typeof sortable === 'undefined' ? {} : { sortable: !!sortable })), [ columnsProp, sortable ]);
   return (
     <Box
       {...{
