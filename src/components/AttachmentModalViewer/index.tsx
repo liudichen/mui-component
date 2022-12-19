@@ -28,6 +28,11 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
   if (!urls || !urls?.length) return (fallback || <span>-</span>) as JSX.Element;
   return (
     <Modal
+      trigger={ (
+        <Tooltip arrow placement='top' title='附件列表'>
+          <span>附件{urls?.length ? ` * ${urls.length}` : ''}</span>
+        </Tooltip>
+      )}
       {...restProps}
     >
       <AttachmentViewer
@@ -58,11 +63,6 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
 AttachmentModalViewer.defaultProps = {
   fullWidth: true,
   responsive: true,
-  trigger: (
-    <Tooltip arrow placement='top' title='附件列表'>
-      <span>附件</span>
-    </Tooltip>
-  ),
   title: '附件列表',
   fallback: <span>-</span>,
 };
