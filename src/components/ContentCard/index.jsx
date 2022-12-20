@@ -1,33 +1,33 @@
 // this component origin from https://berrydashboard.io
 import React, { forwardRef, useEffect } from 'react';
-import { useSafeState } from 'ahooks';
+import { useControllableValue } from 'ahooks';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
-export const ContentCard = forwardRef(({
-  children,
-  content,
-  contentClass,
-  darkTitle,
-  secondary,
-  sx,
-  contentSx,
-  headerSx,
-  collapsed,
-  handleCollapse,
-  collapsible,
-  iconColor,
-  defaultCollapsed,
-  unmountOnExit,
-  title,
-  CollapseIcon,
-  ...others
-}, ref) => {
+export const ContentCard = forwardRef((props, ref) => {
+  const {
+    children,
+    content,
+    contentClass,
+    darkTitle,
+    secondary,
+    sx,
+    contentSx,
+    headerSx,
+    // eslint-disable-next-line no-unused-vars
+    collapsed: collapsedProp, setCollapsed: setCollapsedProp, defaultCollapsed,
+    collapsible,
+    iconColor,
+    unmountOnExit,
+    title,
+    CollapseIcon,
+    ...others
+  } = props;
   const theme = useTheme();
-  const [ expand, setExpand ] = useSafeState(collapsible ? !defaultCollapsed : true);
+  const [ collapsed, setCollapsed ] = useControllableValue(props, { valuePropName: 'collapsed', trigger: 'setCollapsed', defaultValue: false, defaultValuePropName: 'defaultCollapsed' });
   useEffect(() => {
-    setExpand(!defaultCollapsed);
+    setCollapsed(!!defaultCollapsed);
   }, [ !defaultCollapsed ]);
 
   const renderAction = (
@@ -36,9 +36,9 @@ export const ContentCard = forwardRef(({
       {!!collapsible && <>&nbsp;</>}
       { !!collapsible && (
         <IconButton
-          onClick={typeof collapsed === 'undefined' ? () => setExpand((s) => !s) : handleCollapse}
+          onClick={() => setCollapsed((s) => !s)}
           style={{
-            transform: (typeof collapsed === 'undefined' ? !expand : collapsed) ? 'rotate(180deg)' : 'rotate(0deg)',
+            transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
           }}
           sx={{
             mb: -1,
@@ -66,7 +66,7 @@ export const ContentCard = forwardRef(({
       {/* card header and action */}
       {!darkTitle && title && <CardHeader sx={{ p: 1.5, ...headerSx }} title={<Typography variant="h5">{title}</Typography>} action={renderAction} />}
       {darkTitle && title && <CardHeader sx={{ p: 1.5, ...headerSx }} title={<Typography variant="h4">{title}</Typography>} action={renderAction} />}
-      <Collapse in={typeof collapsed === 'undefined' ? expand : !collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
+      <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
         {/* content & header divider */}
         {title && (
           <Divider

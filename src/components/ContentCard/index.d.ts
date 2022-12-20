@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, FC, Dispatch, SetStateAction, ComponentType, PropsWithChildren } from 'react';
 import { CardProps, SxProps } from '@mui/material';
 
 export interface ContentCardProps extends CardProps {
@@ -6,20 +6,20 @@ export interface ContentCardProps extends CardProps {
   contentClass?: string,
   contentSx?: SxProps,
   darkTitle?: boolean,
-  secondary?: React.ReactNode,
+  secondary?: ReactNode,
   sx?: SxProps,
-  title?: React.ReactNode,
+  title?: ReactNode,
   defaultCollapsed?: boolean,
   collapsible?: boolean,
-  /** 受控属性 ，与handleCollapse配合使用*/
+  /** 受控属性 ，与setCollapsed配合使用*/
   collapsed?: boolean,
   /** 受控属性 ，与collapsed配合使用*/
-  handleCollapse?: () => void,
+  setCollapsed?: Dispatch<SetStateAction<boolean>>,
   headerSx?: SxProps,
   contentSx?: SxProps,
   iconColor?: 'primary'| 'default' | 'secondary' | 'error' | 'info' | 'success' |'warning',
-  CollapseIcon?: React.Component | React.FunctionComponent | React.ReactNode,
+  CollapseIcon?: ComponentType,
   unmountOnExit?: boolean,
 }
 
-export declare const ContentCard: React.FC<React.PropsWithChildren<ContentCardProps>>;
+export declare const ContentCard: FC<PropsWithChildren<ContentCardProps>>;
