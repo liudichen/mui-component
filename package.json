@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -77,8 +77,8 @@
     "@types/react-dom": "^18.0.9",
     "@types/react-pdf": "^6.2.0",
     "@types/video-react": "^0.15.1",
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "@umijs/fabric": "^2.14.0",
     "@umijs/test": "^3.5.35",
     "dumi": "^1.1.50",
@@ -91,7 +91,7 @@
     "prettier": "^2.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.57.0",
+    "sass": "^1.57.1",
     "typescript": "^4.9.4",
     "yorkie": "^2.0.0"
   },
@@ -99,7 +99,7 @@
     "@iimm/icons": "^1.0.2",
     "@iimm/shared": "^1.1.2",
     "@tabler/icons": "^1.117.0",
-    "ahooks": "^3.7.2",
+    "ahooks": "^3.7.3",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "react-draggable": "^4.4.5",
