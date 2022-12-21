@@ -40,6 +40,8 @@ export * from './components/NoData';
 export * from './components/Space';
 
 export * from './components/GridLayout';
+
+export * from './components/ScrollToTop';
 // ==========================
 
 
