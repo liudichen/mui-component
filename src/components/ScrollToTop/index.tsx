@@ -3,7 +3,7 @@ import { Box, Fab, useScrollTrigger, Zoom } from '@mui/material';
 import type { SxProps } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-export interface ScrollTopTopProps {
+export interface ScrollToTopProps {
   /** 锚点元素的 id,如果不设置则默认回到页头 */
   anchorId?: string,
   window?: (() => Node) | (() => Window),
@@ -29,7 +29,7 @@ export interface ScrollTopTopProps {
 }
 
 /** 回到顶部组件(通过sx属性可以控制位置) */
-export const ScrollTopTop = (props: ScrollTopTopProps) => {
+export const ScrollToTop = (props: ScrollToTopProps) => {
   const { sx, anchorId, threshold, content } = props;
   const trigger = useScrollTrigger({
     target: props.window ? props.window() : undefined,
