@@ -39,6 +39,8 @@ interface IColumnType extends IStatusConvertRelateProps {
 export interface SimpleTableProps extends TableProps {
   /** table外包裹的Box组件的props */
   tableContainerBoxProps?: BoxProps;
+  /** 初始每页行数 */
+  initPageSize?: number,
   rows?: RowItem[];
   /** 行数据key的Id */
   rowKey?: string;
