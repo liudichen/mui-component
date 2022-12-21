@@ -8,8 +8,8 @@ interface RowItem {
   [key: string]: any;
 }
 
-interface IGetterParams {
-  row?: RowItem;
+interface IGetterParams<R extends RowItem = any> {
+  row?: R;
   rowIndex?: number;
   field?: string;
   value?: any;
@@ -19,32 +19,32 @@ interface ITitleRenderParams {
   field?: string;
 }
 
-interface IColumnType extends IStatusConvertRelateProps {
+interface IColumnType<R extends RowItem = any> extends IStatusConvertRelateProps {
   field?: string;
   title?: React.ReactNode;
   renderTitle?: (parmas: ITitleRenderParams) => React.ReactNode;
   titleAlign?: 'center' | 'left' | 'right';
   align?: 'center' | 'left' | 'right';
-  renderCell?: (params: IGetterParams) => React.ReactNode;
+  renderCell?: (params: IGetterParams<R>) => React.ReactNode;
   type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime' | 'boolean';
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
-  valueGetter?: (params: IGetterParams) => any;
-  getCellProps?: (params: IGetterParams) => object;
+  valueGetter?: (params: IGetterParams<R>) => any;
+  getCellProps?: (params: IGetterParams<R>) => object;
   ellipsis?: boolean;
-  showTooltip?: boolean | ((params: IGetterParams) => boolean);
+  showTooltip?: boolean | ((params: IGetterParams<R>) => boolean);
 }
 
-export interface SimpleTableProps extends TableProps {
+export interface SimpleTableProps<R extends RowItem = any> extends TableProps {
   /** table外包裹的Box组件的props */
   tableContainerBoxProps?: BoxProps;
   /** 初始每页行数 */
   initPageSize?: number,
-  rows?: RowItem[];
+  rows?: R[];
   /** 行数据key的Id */
   rowKey?: string;
-  columns?: IColumnType[];
+  columns?: IColumnType<R>[];
   /** 表格的caption标题内容 */
   title?: React.ReactNode;
   /** 表格标题caption的位置
@@ -103,11 +103,11 @@ export interface SimpleTableProps extends TableProps {
    */
   expandColumnWidth?: number | string;
   expandRowRender?: (
-    row: object,
-    index: number,
-    open: boolean
+    row: R,
+    index?: number,
+    open?: boolean
   ) => React.ReactNode;
-  getRowExpandable?: (row: object, index: number) => boolean;
+  getRowExpandable?: (row: R, index?: number) => boolean;
   /** 展开行内容关闭时卸载组件?
    * @default false
   */
