@@ -73,7 +73,7 @@ export const ScrollToTop = (props: ScrollToTopProps) => {
   );
 };
 
-ScrollTopTop.defaultProps = {
+ScrollToTop.defaultProps = {
   content: (
     <Fab
       color='secondary'
