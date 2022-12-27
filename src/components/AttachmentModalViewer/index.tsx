@@ -65,6 +65,10 @@ AttachmentModalViewer.defaultProps = {
   responsive: true,
   title: '附件列表',
   fallback: <span>-</span>,
+  showConfirm: false,
+  cancelText: '关闭',
+  contentProps: { sx: { p: 0.5 } },
+  fileListBoxProps: { mt: 0.5 },
 };
 
 AttachmentModalViewer.displayName = 'iimm.Mui.AttachmentModalViewer';
