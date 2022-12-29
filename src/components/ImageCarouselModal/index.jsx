@@ -38,7 +38,7 @@ const ImageCarouselModal = (props) => {
       setImages(imagesProps ? [ imagesProps ] : []);
     }
   });
-  useDeepCompareEffect(() => fetchImages(), [ imagesProps ]);
+  useDeepCompareEffect(() => { fetchImages(); }, [ imagesProps ]);
   return (
     <Modal
       title={title}
