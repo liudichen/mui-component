@@ -11,6 +11,8 @@ export interface AttachmentModalViewerProps extends ModalProps, AttachmentViewer
    * @default '-''
   */
   fallback?: React.ReactNode,
+  triggerTooltip?: React.ReactNode,
+  triggerText?: React.ReactNode,
 }
 
 export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.Element => {
@@ -22,15 +24,15 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
     FilePreviewRender, previewModalProps,
     urls,
     fileListBoxProps, fileListBoxClassName,
-    urlPrefix, fallback,
+    urlPrefix, fallback, triggerTooltip, triggerText,
     ...restProps
   } = props;
   if (!urls || !urls?.length) return (fallback || <span>-</span>) as JSX.Element;
   return (
     <Modal
       trigger={ (
-        <Tooltip arrow placement='top' title='附件列表'>
-          <span>附件{urls?.length ? ` * ${urls.length}` : ''}</span>
+        <Tooltip arrow placement='top' title={triggerTooltip || '附件列表'}>
+          <span>{triggerText || '附件'}{urls?.length ? ` * ${urls.length}` : ''}</span>
         </Tooltip>
       )}
       {...restProps}
