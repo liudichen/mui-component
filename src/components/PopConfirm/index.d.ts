@@ -1,7 +1,7 @@
 import React from 'react';
 import { PopperProps, ButtonProps, PaperProps, LinkProps } from '@mui/material';
 
-export interface PopConfirmProps extends PopperProps {
+export interface PopConfirmProps extends Omit<PopperProps, 'open'> {
   arrow?: boolean,
   timeout?: number,
   preventOverflow?: boolean,
