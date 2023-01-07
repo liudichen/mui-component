@@ -53,6 +53,7 @@ export * from './components/ImageModalViewer';
 export * from './components/VideoModalViewer';
 
 export * from './components/AttachmentViewer';
+export * from './components/AttachmentViewer/ItemBar/FileViewRender';
 
 export * from './components/AttachmentModalViewer';
 // =========================================
