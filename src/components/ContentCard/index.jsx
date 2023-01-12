@@ -105,7 +105,7 @@ export const ContentCard = forwardRef((props, ref) => {
 
       {!collapsible && !!title && (
         <Divider
-          sx={{ opacity: 1, borderColor: theme.primary.light }}
+          sx={{ opacity: 1, borderColor: theme.palette.primary.light }}
           {...(dividerProps || {})}
         />
       )}
