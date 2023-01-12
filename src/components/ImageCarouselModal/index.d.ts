@@ -3,7 +3,7 @@ import React from 'react';
 import { CarouselProps, ImageItem, ImageCarouselProps } from './ImageCarousel';
 import { ModalProps } from '../Modal';
 
-export interface ImageCarouselModalProps extends CarouselProps, Pick<ModalProps, 'trigger' | 'triggerProps' | 'open' | 'onClose' | 'showCloseIcon' | 'CloseIcon' | 'maxWidth' | 'draggable' | 'responsive' | 'breakpoint' | 'fullScreen' | 'fullWidth' | 'title' | 'titleProps'> {
+export interface ImageCarouselModalProps extends Partial<CarouselProps>, Pick<ModalProps, 'trigger' | 'triggerProps' | 'open' | 'onClose' | 'showCloseIcon' | 'CloseIcon' | 'maxWidth' | 'draggable' | 'responsive' | 'breakpoint' | 'fullScreen' | 'fullWidth' | 'title' | 'titleProps'> {
   modalProps?: ModalProps,
   /**
    * @deprecated 不再使用,请使用modalProps

@@ -115,7 +115,7 @@ export interface CarouselProps extends ICarouselProps {
   width?: number | string,
 }
 
-export interface ImageCarouselProps extends CarouselProps {
+export interface ImageCarouselProps extends Partial<CarouselProps> {
   /** images的优先级低于children */
   images?: ImageItem[],
 }
