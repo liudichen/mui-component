@@ -21,6 +21,8 @@ export const ContentCard = forwardRef((props, ref) => {
     iconColor,
     unmountOnExit,
     title,
+    titleProps,
+    dividerProps,
     CollapseIcon,
     ...others
   } = props;
@@ -33,8 +35,8 @@ export const ContentCard = forwardRef((props, ref) => {
   const renderAction = (
     <>
       {secondary ?? null}
-      {!!collapsible && <>&nbsp;</>}
-      { !!collapsible && (
+      { collapsible && <>&nbsp;</>}
+      { collapsible && (
         <IconButton
           onClick={() => setCollapsed((s) => !s)}
           style={{
@@ -63,28 +65,59 @@ export const ContentCard = forwardRef((props, ref) => {
       }}
       {...others}
     >
-      {/* card header and action */}
-      {!darkTitle && title && <CardHeader sx={{ p: 1.5, ...headerSx }} title={<Typography variant="h5">{title}</Typography>} action={renderAction} />}
-      {darkTitle && title && <CardHeader sx={{ p: 1.5, ...headerSx }} title={<Typography variant="h4">{title}</Typography>} action={renderAction} />}
-      <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
-        {/* content & header divider */}
-        {title && (
-          <Divider
-            sx={{
-              opacity: 1,
-              borderColor: theme.palette.primary.light,
-            }}
-          />
-        )}
+      { !!title && (
+        <CardHeader
+          sx={{ p: 1.5, ...headerSx }}
+          title={
+            <Typography
+              variant={darkTitle ? 'h4' : 'h5'}
+              {...(titleProps || {})}
+            >
+              {title}
+            </Typography>
+          }
+          action={renderAction} />
+      )}
 
-        {/* card content */}
-        {content && (
-          <CardContent sx={{ p: 2.5, ...contentSx }} className={contentClass || ''}>
-            {children}
-          </CardContent>
-        )}
-        {!content && children}
-      </Collapse>
+      { collapsible && (
+        <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
+          { !!title && (
+            <Divider
+              sx={{
+                opacity: 1,
+                borderColor: theme.palette.primary.light,
+              }}
+              {...(dividerProps || {})}
+            />
+          )}
+
+          { content && (
+            <CardContent
+              sx={{ p: 2.5, ...contentSx }}
+              className={contentClass}
+            >
+              {children}
+            </CardContent>
+          )}
+          {!content && children}
+        </Collapse>
+      )}
+
+      {!collapsible && !!title && (
+        <Divider
+          sx={{ opacity: 1, borderColor: theme.primary.light }}
+          {...(dividerProps || {})}
+        />
+      )}
+      { !collapsible && content && (
+        <CardContent
+          sx={{ p: 2.5, ...contentSx }}
+          className={contentClass}
+        >
+          {children}
+        </CardContent>
+      )}
+      { !collapsible && !content && children }
     </Card>
   );
 });

@@ -35,22 +35,21 @@ export const PageContainer = forwardRef((
         ...sx,
       }}
     >
-      {/* card header and action */}
-      {!darkTitle && !!title && <CardHeader sx={headerSx} title={title} action={secondary} />}
-      {darkTitle && !!title && (
+      { !darkTitle && !!title && (
+        <CardHeader sx={headerSx} title={title} action={secondary} />
+      )}
+      { darkTitle && !!title && (
         <CardHeader sx={headerSx} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
       )}
 
-      {/* content & header divider */}
       {!!title && <Divider />}
 
-      {/* card content */}
-      {content && (
+      { content && (
         <CardContent sx={contentSx} className={contentClass}>
           {children}
         </CardContent>
       )}
-      {!content && children}
+      { !content && children}
     </Card>
   );
 });
