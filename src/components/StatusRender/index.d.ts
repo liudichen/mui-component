@@ -1,6 +1,6 @@
 import React from 'react';
 
-type shownType = 'success' | 'success2' | 'warning' | 'error' | 'process' | 'default';
+type shownType = 'success' | 'success2' | 'warning' | 'error' | 'process' | 'process0' | 'default' | 'edit';
 
 export interface IStatusConvertRelateProps {
   /** 指定状态颜色 */
