@@ -86,19 +86,19 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
         ':hover': {
           boxShadow: '0 2px 14px 0 rgb(32 40 45 / 8%)',
         },
-        ...sx,
+        ...(sx || {}),
       }}
       {...others}
     >
-      { !!title && (
+      { (!!title || collapsible) && (
         <CardHeader
-          sx={{ p: 1.5, ...headerSx }}
+          sx={{ p: 1.5, ...(headerSx || {}) }}
           title={
             <Typography
               variant={darkTitle ? 'h4' : 'h5'}
               {...(titleProps || {})}
             >
-              {title}
+              {title || ' '}
             </Typography>
           }
           action={renderAction} />
@@ -118,7 +118,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
 
           { content && (
             <CardContent
-              sx={{ p: 2.5, ...contentSx }}
+              sx={{ p: 2.5, ...(contentSx || {}) }}
               className={contentClass}
             >
               {children}
@@ -136,7 +136,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
       )}
       { !collapsible && content && (
         <CardContent
-          sx={{ p: 2.5, ...contentSx }}
+          sx={{ p: 2.5, ...(contentSx || {}) }}
           className={contentClass}
         >
           {children}
