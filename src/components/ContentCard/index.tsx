@@ -33,7 +33,7 @@ export interface ContentCardProps extends Omit<CardProps, 'title'> {
 export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>((props, ref) => {
   const {
     children,
-    content,
+    content = true,
     contentClass,
     darkTitle,
     secondary,
