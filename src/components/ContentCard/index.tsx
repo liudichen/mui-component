@@ -1,11 +1,36 @@
 // this component origin from https://berrydashboard.io
 import React, { forwardRef, useEffect } from 'react';
+import type { ReactNode, Dispatch, SetStateAction, PropsWithChildren } from 'react';
 import { useControllableValue } from 'ahooks';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
-import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
+import type { CardProps, SxProps, TypographyProps, DividerProps } from '@mui/material';
+import { ExpandCircleDownOutlined as ExpandCircleDownOutlinedIcon } from '@mui/icons-material';
 
-export const ContentCard = forwardRef((props, ref) => {
+export interface ContentCardProps extends Omit<CardProps, 'title'> {
+  content?: boolean, // true
+  contentClass?: string,
+  darkTitle?: boolean,
+  secondary?: ReactNode,
+  sx?: SxProps,
+  title?: ReactNode,
+  /** 传递给标题Typography的props */
+  titleProps?: TypographyProps,
+  defaultCollapsed?: boolean,
+  collapsible?: boolean,
+  /** 受控属性 ，与setCollapsed配合使用*/
+  collapsed?: boolean,
+  /** 受控属性 ，与collapsed配合使用*/
+  setCollapsed?: Dispatch<SetStateAction<boolean>>,
+  headerSx?: SxProps,
+  contentSx?: SxProps,
+  iconColor?: 'primary' | 'secondary' | 'error' | 'info' | 'success' |'warning' | 'inherit' | 'action' | 'disabled',
+  CollapseIcon?: typeof ExpandCircleDownOutlinedIcon,
+  unmountOnExit?: boolean,
+  dividerProps?: DividerProps,
+}
+
+export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>((props, ref) => {
   const {
     children,
     content,
@@ -15,15 +40,15 @@ export const ContentCard = forwardRef((props, ref) => {
     sx,
     contentSx,
     headerSx,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     collapsed: collapsedProp, setCollapsed: setCollapsedProp, defaultCollapsed,
     collapsible,
-    iconColor,
+    iconColor = 'secondary',
     unmountOnExit,
     title,
     titleProps,
     dividerProps,
-    CollapseIcon,
+    CollapseIcon = ExpandCircleDownOutlinedIcon,
     ...others
   } = props;
   const theme = useTheme();
@@ -36,7 +61,7 @@ export const ContentCard = forwardRef((props, ref) => {
     <>
       {secondary ?? null}
       { collapsible && <>&nbsp;</>}
-      { collapsible && (
+      { collapsible && !!CollapseIcon && (
         <IconButton
           onClick={() => setCollapsed((s) => !s)}
           style={{
@@ -122,15 +147,5 @@ export const ContentCard = forwardRef((props, ref) => {
   );
 });
 
-ContentCard.defaultProps = {
-  collapsible: false,
-  defaultCollapsed: false,
-  content: true,
-  headerSx: {},
-  contentSx: {},
-  sx: {},
-  iconColor: 'secondary',
-  CollapseIcon: ExpandCircleDownOutlinedIcon,
-};
 
 ContentCard.displayName = 'iimm.Mui.ContentCard';
