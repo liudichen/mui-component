@@ -1,8 +1,8 @@
 import React from 'react';
-import { TableProps, BoxProps, TableFooterProps } from '@mui/material';
+import type { TableProps, BoxProps, TableFooterProps } from '@mui/material';
 
-import { PaginationProps } from '../Pagination';
-import { IStatusConvertRelateProps } from '../StatusRender';
+import type { PaginationProps } from '../Pagination';
+import type { IStatusConvertRelateProps } from '../StatusRender';
 
 interface RowItem {
   [key: string]: any;
@@ -84,7 +84,10 @@ export interface SimpleTableProps<R extends RowItem = any> extends TableProps {
   pageSizeOptions?: number[];
   onPageChange?: (current: number) => void;
   onPageSizeChange?: (pageSize: number) => void;
-  paginationProps?: Omit< Omit< Omit<Omit<Omit<PaginationProps, 'total'>, 'current'>, 'onPageChange'>, 'onPageSizeChange' >, 'pageSizeOptions' >;
+  /** 传递给Pagination组件的props
+   * @default { siblingCount: 1 }
+   */
+  paginationProps?: Omit<PaginationProps, 'total' | 'current' | 'onPageChange' | 'onPageSizeChange' | 'pageSizeOptions' >,
 
   /** 可展开行? */
   expandable?: boolean;

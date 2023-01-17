@@ -160,6 +160,7 @@ SimpleTable.defaultProps = {
   showExpandColumn: true,
   expandColumnWidth: 45,
   columnDefaultWidth: 100,
+  paginationProps: { siblingCount: 1 },
 };
 
 SimpleTable.displayName = 'iimm.Mui.SimpleTable';
