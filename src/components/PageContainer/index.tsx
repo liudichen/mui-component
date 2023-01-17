@@ -23,6 +23,10 @@ export interface PageContainerProps extends Omit<CardProps, 'title'> {
   title?:ReactNode,
   /** 传递给CardHeader，即title的外层的sx */
   headerSx?: SxProps
+  /** 显示分割线
+   * @default true
+   */
+  divider?: boolean,
 }
 
 
@@ -40,6 +44,7 @@ export const PageContainer = forwardRef<any, PropsWithChildren<PageContainerProp
     sx = {},
     title,
     headerSx: headerSxProps,
+    divider = true,
     ...otherProps
   },
   ref,
@@ -67,7 +72,7 @@ export const PageContainer = forwardRef<any, PropsWithChildren<PageContainerProp
         <CardHeader sx={headerSx} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
       )}
 
-      {!!title && <Divider />}
+      { divider && !!title && <Divider />}
 
       { content && (
         <CardContent sx={contentSx} className={contentClass}>

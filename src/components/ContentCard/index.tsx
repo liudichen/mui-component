@@ -28,6 +28,10 @@ export interface ContentCardProps extends Omit<CardProps, 'title'> {
   CollapseIcon?: typeof ExpandCircleDownOutlinedIcon,
   unmountOnExit?: boolean,
   dividerProps?: DividerProps,
+  /** 显示分割线
+   * @default true
+   */
+  divider?: boolean,
 }
 
 export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>((props, ref) => {
@@ -49,6 +53,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
     titleProps,
     dividerProps,
     CollapseIcon = ExpandCircleDownOutlinedIcon,
+    divider = true,
     ...others
   } = props;
   const theme = useTheme();
@@ -106,7 +111,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
 
       { collapsible && (
         <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
-          { !!title && (
+          { divider && !!title && (
             <Divider
               sx={{
                 opacity: 1,
@@ -128,7 +133,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
         </Collapse>
       )}
 
-      {!collapsible && !!title && (
+      { divider && !collapsible && !!title && (
         <Divider
           sx={{ opacity: 1, borderColor: theme.palette.primary.light }}
           {...(dividerProps || {})}
