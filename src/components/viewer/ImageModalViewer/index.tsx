@@ -5,7 +5,7 @@ import { Download } from '@mui/icons-material';
 import { IconMaximize, IconMinimize } from '@tabler/icons';
 import { generateFileDownload } from '@iimm/shared';
 
-import { Modal, ModalProps } from '../Modal';
+import { Modal, ModalProps } from '../../feedback';
 
 interface ImageModalViewerProps extends ModalProps {
   imgSrc: string,

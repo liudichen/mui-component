@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip } from '@mui/material';
 
-import { Modal, ModalProps } from '../Modal';
+import { Modal, ModalProps } from '../../feedback';
 import { AttachmentViewer, AttachmentViewerProps } from '../AttachmentViewer';
 
 export interface AttachmentModalViewerProps extends ModalProps, AttachmentViewerProps {

@@ -8,7 +8,7 @@ import clsx from 'classnames';
 
 import { getFileInfo } from '../util';
 import { FileViewRender, FileViewRenderProps } from './FileViewRender';
-import { ModalProps } from '../../Modal';
+import { ModalProps } from '../../../feedback';
 
 export interface ItemBarProps {
   file: string,

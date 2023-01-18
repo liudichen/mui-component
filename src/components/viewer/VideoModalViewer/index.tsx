@@ -5,7 +5,7 @@ import { Player, PlayerProps } from 'video-react';
 import { generateFileDownload } from '@iimm/shared';
 import 'video-react/dist/video-react.css';
 
-import { Modal, ModalProps } from '../Modal';
+import { Modal, ModalProps } from '../../feedback';
 
 export interface VideoModalViewerProps extends PlayerProps {
   showDownload?: boolean,
