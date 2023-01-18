@@ -61,4 +61,3 @@ export type LoadingButtonProps<
   P = {},
 > = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
 
-export default LoadingButton;

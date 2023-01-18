@@ -7,8 +7,9 @@ import { generateFileDownload } from '@iimm/shared';
 import clsx from 'classnames';
 
 import { getFileInfo } from '../util';
-import { FileViewRender, FileViewRenderProps } from './FileViewRender';
-import { ModalProps } from '../../../feedback';
+import { FileViewRender } from './FileViewRender';
+import type { FileViewRenderProps } from './FileViewRender';
+import type { ModalProps } from '../../../feedback';
 
 export interface ItemBarProps {
   file: string,

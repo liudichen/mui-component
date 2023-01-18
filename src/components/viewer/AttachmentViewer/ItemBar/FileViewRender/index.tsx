@@ -2,7 +2,8 @@ import React from 'react';
 import { Alert, Button } from '@mui/material';
 import { Download } from '@mui/icons-material';
 
-import { Modal, ModalProps } from '../../../../feedback';
+import { Modal } from '../../../../feedback';
+import type { ModalProps } from '../../../../feedback';
 import { PdfModalViewer } from '../../../PdfModalViewer';
 import { VideoModalViewer } from '../../../VideoModalViewer';
 import { ImageModalViewer } from '../../../ImageModalViewer';

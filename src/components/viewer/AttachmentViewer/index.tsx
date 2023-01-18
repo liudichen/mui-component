@@ -1,8 +1,10 @@
 import React from 'react';
-import { Box, BoxProps } from '@mui/material';
+import { Box } from '@mui/material';
+import type { BoxProps } from '@mui/material';
 import clsx from 'classnames';
 
-import { ItemBar, ItemBarProps } from './ItemBar';
+import { ItemBar } from './ItemBar';
+import type { ItemBarProps } from './ItemBar';
 import './style.scss';
 
 export interface AttachmentViewerProps extends Omit<ItemBarProps, 'file'> {

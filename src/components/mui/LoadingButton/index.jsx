@@ -5,7 +5,7 @@ import { styled, useThemeProps } from '@mui/material/styles';
 import { Button, CircularProgress } from '@mui/material';
 import { useId } from '@iimm/shared';
 
-import { composeClasses } from '../../mui-utils';
+import { composeClasses } from '../mui-utils';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -180,7 +180,5 @@ export const LoadingButton = React.forwardRef(function LoadingButton(inProps, re
     </LoadingButtonRoot>
   );
 });
-
-export default LoadingButton;
 
 LoadingButton.displayName = 'iimm.Mui.LoadingButton';

@@ -187,7 +187,7 @@ export function DateRangePickerViewDesktop<TDate>(inProps: DesktopDateRangeCalen
   });
 
   const handleSelectedDayChange = React.useCallback<DayPickerProps<TDate>['onSelectedDaysChange']>(
-    day => {
+    (day) => {
       setRangePreviewDay(null);
       onSelectedDaysChange(day);
     },

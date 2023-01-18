@@ -12,6 +12,6 @@ export * from './Pagination';
 
 export * from './Result';
 
-export * from './StatusRender';
-
 export * from './SimpleTable';
+
+export * from './StatusRender';

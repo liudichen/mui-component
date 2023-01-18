@@ -35,7 +35,7 @@ export const validateDateRange: Validator<any, DateRangeValidationProps<any, any
       value: start,
       props: {
         ...otherProps,
-        shouldDisableDate: day => !!shouldDisableDate?.(day, 'start'),
+        shouldDisableDate: (day) => !!shouldDisableDate?.(day, 'start'),
       },
     }),
     validateDate({
@@ -43,7 +43,7 @@ export const validateDateRange: Validator<any, DateRangeValidationProps<any, any
       value: end,
       props: {
         ...otherProps,
-        shouldDisableDate: day => !!shouldDisableDate?.(day, 'end'),
+        shouldDisableDate: (day) => !!shouldDisableDate?.(day, 'end'),
       },
     }),
   ];

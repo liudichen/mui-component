@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '../../mui-utils';
+import { generateUtilityClass, generateUtilityClasses } from '../mui-utils';
 
 export interface LoadingButtonClasses {
   /** Styles applied to the root element. */

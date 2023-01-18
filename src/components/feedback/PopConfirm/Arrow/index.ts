@@ -1,6 +1,5 @@
 import { styled } from '@mui/material';
 
-// @ts-ignore
 export const Arrow = styled('div')({
   position: 'absolute',
   fontSize: 7,
