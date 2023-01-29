@@ -67,7 +67,7 @@ export const initColumn = (col: DataGridTableColumn, prefix: Partial<DataGridTab
   return { ...initInfo, ...restCol, ...(suffix || {}) } as GridColDef;
 };
 
-export const DataGridTable = (props: DataGridTableProps) => {
+export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTableProps) => {
   const {
     columns: columnsProp, paginationProps, initialState, initialPageSize, components, componentsProps, paginationMode, autoHeight, getRowId,
     height, rowKey = 'id', rootProps, sx, autoRowHeight, getRowHeight, useDefaultPagination, sortable,

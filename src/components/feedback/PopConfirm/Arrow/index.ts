@@ -13,4 +13,4 @@ export const Arrow = styled('div')({
     height: 0,
     borderStyle: 'solid',
   },
-});
+}) as unknown as HTMLDivElement;
