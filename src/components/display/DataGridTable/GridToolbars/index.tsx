@@ -17,25 +17,37 @@ const GridToolbarFty = (params?: GridToolbarFtyParams) => {
     showExport = false,
     ExportRender = undefined,
   } = (params || {});
-  return () => (
-    <GridToolbarContainer >
-      { showColumn && (
-        <GridToolbarColumnsButton />
-      )}
-      { showFilter && (
-        <GridToolbarFilterButton />
-      )}
-      { showDensity && (
-        <GridToolbarDensitySelector />
-      )}
-      { showExport && (
-        ExportRender ? (
+  return (props: any) => {
+    const { csvOptions, printOptions } = props;
+    return (
+      <GridToolbarContainer >
+        { showColumn && (
+          <GridToolbarColumnsButton />
+        )}
+        { showFilter && (
+          <GridToolbarFilterButton />
+        )}
+        { showDensity && (
+          <GridToolbarDensitySelector />
+        )}
+        { showExport && (
+          ExportRender ? (
           // @ts-ignore
-          <ExportRender />
-        ) : <GridToolbarExport />
-      )}
-    </GridToolbarContainer>
-  );
+            <ExportRender />
+          ) : <GridToolbarExport
+            printOptions={{
+              disableToolbarButton: true,
+              ...(printOptions || {}),
+            }}
+            csvOptions={{
+              utf8WithBom: true,
+              ...(csvOptions || {}),
+            }}
+          />
+        )}
+      </GridToolbarContainer>
+    );
+  };
 };
 
 /** 只显示列和间距的工具条GridToolbar */
