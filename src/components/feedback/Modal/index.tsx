@@ -2,7 +2,7 @@ import React from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, useMediaQuery, Tooltip } from '@mui/material';
 import classNames from 'classnames';
-import { IconCircleX } from '@tabler/icons';
+import { IconCircleX } from '@tabler/icons-react';
 import type { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsProps, LinkProps, ButtonProps, IconButtonProps, BoxProps } from '@mui/material';
 
 import { DraggablePaper } from '../../container';

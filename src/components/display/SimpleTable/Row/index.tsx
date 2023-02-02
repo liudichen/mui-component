@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCreation, useSafeState } from 'ahooks';
 import { Collapse, TableCell, TableRow } from '@mui/material';
-import { IconSquarePlus as OpenIcon, IconSquareMinus as CloseIcon } from '@tabler/icons';
+import { IconSquarePlus as OpenIcon, IconSquareMinus as CloseIcon } from '@tabler/icons-react';
 
 import { Cell } from './Cell';
 import type { SimpleTableColumn } from '../index';
@@ -15,7 +15,7 @@ export const Row = (props: any) => {
     return cols;
   }, [ columns?.length, showExpandColumn ]);
   return (
-    <>
+    <React.Fragment>
       <TableRow>
         {expandable && showExpandColumn && (
           <TableCell
@@ -78,7 +78,7 @@ export const Row = (props: any) => {
           </TableCell>
         </TableRow>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

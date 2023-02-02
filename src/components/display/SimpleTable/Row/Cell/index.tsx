@@ -2,7 +2,7 @@ import React from 'react';
 import { useCreation, useMemoizedFn } from 'ahooks';
 import { TableCell, Tooltip } from '@mui/material';
 import type { SxProps } from '@mui/material';
-import { IconCheck, IconX } from '@tabler/icons';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 
 import { StatusRender } from '../../../StatusRender';

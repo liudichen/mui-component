@@ -2,7 +2,7 @@ import React from 'react';
 import { useSafeState } from 'ahooks';
 import { Box, Button, Dialog, IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
-import { IconMaximize, IconMinimize } from '@tabler/icons';
+import { IconMaximize, IconMinimize } from '@tabler/icons-react';
 import { generateFileDownload } from '@iimm/shared';
 
 import { Modal } from '../../feedback';
