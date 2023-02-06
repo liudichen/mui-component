@@ -17,7 +17,7 @@ export interface FileViewRenderProps {
   showDownload?: boolean,
   onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
   onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
-  modalProps?: ModalProps
+  modalProps?: Omit<ModalProps, 'onReset'>
 }
 
 // const ViewList = [ 'pdf', 'image', 'video' ];
