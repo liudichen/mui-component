@@ -24,6 +24,7 @@ export const Pagination = (props: PaginationProps) => {
   return (
     <Box
       marginTop={1}
+      marginLeft={0.5}
       {...(paginationBoxProps || {})}
     >
       <Stack
@@ -32,11 +33,11 @@ export const Pagination = (props: PaginationProps) => {
         spacing={0.5}
         {...(paginationStackProps || {})}
       >
-        {showItemRange && !!totalProp && (
+        {showItemRange && typeof totalProp !== 'undefined' && (
           <Typography
             variant='h5'
           >
-            第{(current - 1) * pageSize + 1}-{Math.min(totalProp, current * pageSize)}项/共{totalProp}项&ensp;
+            第{totalProp ? `${(current - 1) * pageSize + 1}-${Math.min(totalProp, current * pageSize)}` : '0'}项/共{totalProp}项&ensp;
           </Typography>
         )}
         {showPageSize && (
@@ -83,7 +84,9 @@ Pagination.defaultProps = {
 Pagination.displayName = 'iimm.Mui.Pagination';
 
 export interface PaginationProps extends Partial<MuiPaginationProps> {
-  /** 包裹在外部的Box的props */
+  /** 包裹在外部的Box的props
+   * @default {marginLeft:0.5,marginTop:1}
+   */
   paginationBoxProps?: BoxProps,
   /** 包裹在次外层的Stack的Props
    * @default {direction:'row',alignItems:'center',spacing:0.5}
