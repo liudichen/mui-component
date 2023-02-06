@@ -7,6 +7,9 @@ import type { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsPr
 
 import { DraggablePaper } from '../../container';
 
+const ModalOpenContentext = React.createContext<{open: boolean}>(null);
+export const useModalOpen = React.useContext(ModalOpenContentext);
+
 export const Modal = React.forwardRef<any, React.PropsWithChildren<ModalProps>>((props, ref) => {
   const {
     trigger, triggerProps,
@@ -99,13 +102,15 @@ export const Modal = React.forwardRef<any, React.PropsWithChildren<ModalProps>>(
             )}
           </DialogTitle>
         )}
-        {withDialogContentWrapper ? (
-          <DialogContent {...(contentProps || {})}>
-            {content ?? children}
-          </DialogContent>
-        ) : (
-          content ?? children
-        )}
+        <ModalOpenContentext.Provider value={{ open }}>
+          {withDialogContentWrapper ? (
+            <DialogContent {...(contentProps || {})}>
+              {content ?? children}
+            </DialogContent>
+          ) : (
+            content ?? children
+          )}
+        </ModalOpenContentext.Provider>
         {showActions && (
           <DialogActions {...(actionsProps || {})}>
             {extraActions}
