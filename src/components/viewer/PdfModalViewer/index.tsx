@@ -6,7 +6,7 @@ import { FirstPage, LastPage, NavigateBefore, NavigateNext, Rotate90DegreesCcwOu
 import { useGlobalId, generateFileDownload, scrollToElement } from '@iimm/shared';
 import classNames from 'classnames';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+// import 'react-pdf/dist/esm/Page/TextLayer.css';
 import type { DocumentProps } from 'react-pdf';
 
 import { Modal } from '../../feedback';
