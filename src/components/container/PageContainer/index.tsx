@@ -50,7 +50,7 @@ export const PageContainer = forwardRef<any, PropsWithChildren<PageContainerProp
   ref,
 ) => {
   const theme = useTheme();
-  const headerSx = { '& .MuiCardHeader-action': { mr: 0 }, ...(headerSxProps || {}) };
+  const headerSx = { '& .MuiCardHeader-action': { mr: 0 }, py: 1.5, ...(headerSxProps || {}) };
   const showHeader = Boolean(title || secondary);
   return (
     <Card
