@@ -61,7 +61,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
   useEffect(() => {
     setCollapsed(!!defaultCollapsed);
   }, [ !defaultCollapsed ]);
-
+  const showHeader = Boolean(title || collapsible || secondary);
   const renderAction = (
     <>
       {secondary ?? null}
@@ -95,7 +95,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
       }}
       {...others}
     >
-      { (!!title || collapsible) && (
+      { showHeader && (
         <CardHeader
           sx={{ p: 1.5, ...(headerSx || {}) }}
           title={
@@ -111,7 +111,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
 
       { collapsible && (
         <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
-          { divider && !!title && (
+          { divider && showHeader && (
             <Divider
               sx={{
                 opacity: 1,
@@ -133,7 +133,7 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
         </Collapse>
       )}
 
-      { divider && !collapsible && !!title && (
+      { divider && !collapsible && showHeader && (
         <Divider
           sx={{ opacity: 1, borderColor: theme.palette.primary.light }}
           {...(dividerProps || {})}
