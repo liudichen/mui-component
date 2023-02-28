@@ -22,7 +22,7 @@ export interface PageContainerProps extends Omit<CardProps, 'title'> {
   sx?: SxProps,
   title?:ReactNode,
   /** 传递给CardHeader，即title的外层的sx */
-  headerSx?: SxProps
+  headerSx?: SxProps,
   /** 显示分割线
    * @default true
    */
@@ -51,6 +51,7 @@ export const PageContainer = forwardRef<any, PropsWithChildren<PageContainerProp
 ) => {
   const theme = useTheme();
   const headerSx = { '& .MuiCardHeader-action': { mr: 0 }, ...(headerSxProps || {}) };
+  const showHeader = Boolean(title || secondary);
   return (
     <Card
       ref={ref}
@@ -65,14 +66,10 @@ export const PageContainer = forwardRef<any, PropsWithChildren<PageContainerProp
         ...(sx || {}),
       }}
     >
-      { !darkTitle && !!title && (
-        <CardHeader sx={headerSx} title={title} action={secondary} />
+      { showHeader && (
+        <CardHeader sx={headerSx} title={darkTitle ? <Typography variant="h3">{title}</Typography> : title} action={secondary} />
       )}
-      { darkTitle && !!title && (
-        <CardHeader sx={headerSx} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
-      )}
-
-      { divider && !!title && <Divider />}
+      { divider && showHeader && <Divider />}
 
       { content && (
         <CardContent sx={contentSx} className={contentClass}>
