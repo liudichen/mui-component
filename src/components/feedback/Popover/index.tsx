@@ -2,7 +2,7 @@ import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
 import type { PopoverProps as MuiPopoverProps } from '@mui/material';
-import { useId } from '@iimm/shared';
+import { useId } from '@iimm/react-shared';
 
 export interface PopoverProps extends Omit<MuiPopoverProps, 'onClose'> {
   /** 触发弹出的操作,鼠标悬停或点击 */

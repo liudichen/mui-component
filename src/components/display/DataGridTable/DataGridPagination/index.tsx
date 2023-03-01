@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuItem, Pagination as MuiPagination, Select, Box, Stack } from '@mui/material';
 import { useGridApiContext, useGridSelector, gridPageCountSelector, gridPageSizeSelector, gridPageSelector, gridRowCountSelector } from '@mui/x-data-grid';
-import { useId } from '@iimm/shared';
+import { useId } from '@iimm/react-shared';
 import type { PaginationProps as MuiPaginationProps } from '@mui/material';
 
 export interface DataGridPaginationProps extends Omit<MuiPaginationProps, 'onChange'> {

@@ -3,7 +3,7 @@ import React from 'react';
 import { capitalize } from '@mui/material/utils';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { Button, CircularProgress } from '@mui/material';
-import { useId } from '@iimm/shared';
+import { useId } from '@iimm/react-shared';
 
 import { composeClasses } from '../mui-utils';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
