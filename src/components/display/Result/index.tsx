@@ -8,11 +8,9 @@ import {
   Warning as WarningIcon,
   Block as BlockIcon,
 } from '@mui/icons-material';
+import { Space, type SpaceProps } from '@iimm/react-shared';
 
-import { ContentCard } from '../../container';
-import { Space } from '../../layout';
-import type { ContentCardProps } from '../../container';
-import type { SpaceProps } from '../../layout';
+import { ContentCard, type ContentCardProps } from '../../container';
 
 const iconMap = {
   success: <CheckCircleIcon color='success' sx={{ fontSize: 70 }} />,
