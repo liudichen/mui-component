@@ -57,7 +57,6 @@ export * from './components/NoData';
 
 
 // ======== Layout组件 ==========
-export * from './components/Space';
 
 export * from './components/GridLayout';
 

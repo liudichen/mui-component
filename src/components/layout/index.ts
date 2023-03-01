@@ -2,4 +2,4 @@ export * from './GridLayout';
 
 export * from './ScrollToTop';
 
-export * from './Space';
+// export * from './Space';
