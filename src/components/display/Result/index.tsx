@@ -78,7 +78,7 @@ export const Result = (props: ResultProps) => {
           </div>
         )}
         { !!actions && (
-          <Space {...(spaceProps || {})}>
+          <Space justify='center' {...(spaceProps || {})}>
             { actions }
           </Space>
         )}
