@@ -5,7 +5,7 @@ import clsx from 'classnames';
 import PropTypes from 'prop-types';
 import { styled, useTheme, useThemeProps } from '@mui/material/styles';
 import { useControlled, useForkRef, ownerDocument } from '@mui/material/utils';
-import { useId } from '@iimm/shared';
+import { useId } from '@iimm/react-shared';
 
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
