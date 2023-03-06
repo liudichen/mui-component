@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -13,6 +13,7 @@
     "prepublishOnly": "npm run build"
   },
   "module": "es/index.js",
+  "types": "es/index.d.ts",
   "author": {
     "name": "liudichen",
     "email": "liudichen@foxmail.com",
@@ -97,7 +98,7 @@
   "dependencies": {
     "@iimm/icons": "^1.1.0",
     "@iimm/react-shared": "^0.1.1",
-    "@iimm/shared": "^2.1.0",
+    "@iimm/shared": "^2.1.2",
     "@tabler/icons-react": "^2.7.0",
     "ahooks": "^3.7.5",
     "classnames": "^2.3.2",

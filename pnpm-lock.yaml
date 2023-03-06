@@ -8,7 +8,7 @@ specifiers:
   '@emotion/styled': ^11.10.6
   '@iimm/icons': ^1.1.0
   '@iimm/react-shared': ^0.1.1
-  '@iimm/shared': ^2.1.0
+  '@iimm/shared': ^2.1.2
   '@mui/icons-material': ^5.11.11
   '@mui/material': ^5.11.11
   '@mui/x-data-grid': ^5.17.26
@@ -47,7 +47,7 @@ specifiers:
 dependencies:
   '@iimm/icons': 1.1.0_react@18.2.0
   '@iimm/react-shared': 0.1.1_react@18.2.0
-  '@iimm/shared': 2.1.0
+  '@iimm/shared': 2.1.2
   '@tabler/icons-react': 2.7.0_react@18.2.0
   ahooks: 3.7.5_react@18.2.0
   classnames: 2.3.2
@@ -2868,8 +2868,8 @@ packages:
       smooth-scroll-into-view-if-needed: 1.1.33
     dev: false
 
-  /@iimm/shared/2.1.0:
-    resolution: {integrity: sha512-YeN0opGwDhm3npXcBlsi+t0hWgfIsu8hOEt5rxcoPs7/ZyJzTXyeoBMu5AhVQim4VMRBVAc9gstGslj8k0CJ7g==}
+  /@iimm/shared/2.1.2:
+    resolution: {integrity: sha512-j1S0stsKkNJCXkKqtky31B3SDl4wd253yjSXpAYfKqX2xYhUuFGJ2/RbQZVBO+MFEvrgel60FGJyTc8YBRg78A==}
     dependencies:
       htmlparser2: 8.0.1
       lodash: 4.17.21
@@ -4384,7 +4384,7 @@ packages:
       '@typescript-eslint/parser': 5.54.0_jofidmxrjzhj7l6vknpw5ecvfe
       chalk: 4.1.2
       eslint: 7.32.0
-      eslint-config-prettier: 8.6.0_eslint@7.32.0
+      eslint-config-prettier: 8.7.0_eslint@7.32.0
       eslint-formatter-pretty: 4.1.0
       eslint-plugin-babel: 5.3.1_eslint@7.32.0
       eslint-plugin-jest: 24.7.0_bcbodfmozsqerge3lz6ptn3nrm
@@ -4438,7 +4438,7 @@ packages:
       core-js-pure: 3.29.0
       error-stack-parser: 2.1.4
       es-module-lexer: 0.7.1
-      es5-imcompatible-versions: 0.1.79
+      es5-imcompatible-versions: 0.1.80
       history-with-query: 4.10.4
       html-entities: 2.3.3
       mime: 1.4.1
@@ -7391,8 +7391,8 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
-  /es5-imcompatible-versions/0.1.79:
-    resolution: {integrity: sha512-+/iKpxmlQmx7M4zWzq9f4UB/5ezI+0bwt0dQTrTDQaWFUooMGf2B+BctkWx38SbDqDYkldrJHGbM3yEQn+HeJA==}
+  /es5-imcompatible-versions/0.1.80:
+    resolution: {integrity: sha512-i3Uc3hzDalYmBMwX3Z5LDPbuoPqFCR7SCo8tXLU1w7UvR8Awr3Hgfdi7L/bsqj2mMCGqkCxu6tx7VdZz7hW5CQ==}
     dev: true
 
   /es6-promise/4.2.8:
@@ -7473,8 +7473,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-config-prettier/8.6.0_eslint@7.32.0:
-    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+  /eslint-config-prettier/8.7.0_eslint@7.32.0:
+    resolution: {integrity: sha512-HHVXLSlVUhMSmyW4ZzEuvjpwqamgmlfkutD53cYXLikh4pt/modINRcCIApJ84czDxM4GZInwUrromsDdTImTA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -8164,7 +8164,7 @@ packages:
       babel-plugin-react-require: 3.1.1
       chalk: 2.4.2
       chokidar: 3.5.3
-      es5-imcompatible-versions: 0.1.79
+      es5-imcompatible-versions: 0.1.80
       glob: 7.2.3
       gulp-if: 2.0.2
       gulp-less: 4.0.1
