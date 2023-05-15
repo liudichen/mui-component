@@ -3,7 +3,7 @@ import { useCreation } from 'ahooks';
 import { Box, Tooltip } from '@mui/material';
 import type { BoxProps, TooltipProps } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
-import type { GridAlignment, GridActionsColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
+import type { GridAlignment, GridActionsColDef, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 
 import { NoData as NoRowsOverlay } from '../NoData';
