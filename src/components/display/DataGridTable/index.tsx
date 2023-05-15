@@ -3,7 +3,7 @@ import { useCreation } from 'ahooks';
 import { Box, Tooltip } from '@mui/material';
 import type { BoxProps, TooltipProps } from '@mui/material';
 import { DataGrid, zhCN } from '@mui/x-data-grid';
-import type { GridAlignment, GridColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
+import type { GridAlignment, GridActionsColDef, GridColumnHeaderClassNamePropType, GridColumnHeaderParams, DataGridProps, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 
 import { NoData as NoRowsOverlay } from '../NoData';
@@ -156,7 +156,7 @@ DataGridTable.defaultProps = {
 DataGridTable.displayName = 'iimm.Mui.DataGridTable';
 
 /** 自定义的GridTableColumn条目类型 */
-export interface DataGridTableColumn extends Omit<GridColDef, 'type'>, IStatusConvertRelateProps {
+export interface DataGridTableColumn extends Partial<Omit<GridActionsColDef, 'type'>>, IStatusConvertRelateProps {
   type?: 'string' | 'number' | 'date' | 'dateTime' | 'boolean' | 'singleSelect' | 'actions' | 'status',
   title?: string,
   titleClassName?: GridColumnHeaderClassNamePropType,
