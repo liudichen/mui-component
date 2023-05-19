@@ -153,7 +153,7 @@ Modal.defaultProps = {
 
 Modal.displayName = 'iimm.Mui.Modal';
 
-export interface ModalProps extends Omit<DialogProps, 'open' | 'title'> {
+export interface ModalProps extends Omit<DialogProps, 'open' | 'title' | 'content'> {
   /** 受控属性,控制是否开启 */
   open?: boolean,
   /** 受控属性 */

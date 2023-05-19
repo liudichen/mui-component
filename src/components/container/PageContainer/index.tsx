@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 import type { CardProps, SxProps } from '@mui/material';
 
-export interface PageContainerProps extends Omit<CardProps, 'title'> {
+export interface PageContainerProps extends Omit<CardProps, 'title' | 'content'> {
   /** 显示边框?
    * @default true
    */

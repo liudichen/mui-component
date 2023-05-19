@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typograph
 import type { CardProps, SxProps, TypographyProps, DividerProps } from '@mui/material';
 import { ExpandCircleDownOutlined as ExpandCircleDownOutlinedIcon } from '@mui/icons-material';
 
-export interface ContentCardProps extends Omit<CardProps, 'title'> {
+export interface ContentCardProps extends Omit<CardProps, 'title'|'content'> {
   content?: boolean, // true
   contentClass?: string,
   darkTitle?: boolean,

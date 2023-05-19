@@ -197,7 +197,7 @@ function DateRangePickerViewRaw<TInputDate, TDate>(
   }, [currentlySelectingRangeEnd, parsedValue]); // eslint-disable-line
 
   const handleSelectedDayChange = React.useCallback<DayPickerProps<TDate>['onSelectedDaysChange']>(
-    newDate => {
+    (newDate) => {
       const { nextSelection, newRange } = calculateRangeChange({
         newDate,
         utils,

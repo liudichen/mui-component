@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { Popper as MuiPopper, styled } from '@mui/material';
 import type { PopperProps as MuiPopperProps } from '@mui/material';

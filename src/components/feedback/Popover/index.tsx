@@ -4,7 +4,7 @@ import { Popover as MuiPopover } from '@mui/material';
 import type { PopoverProps as MuiPopoverProps } from '@mui/material';
 import { useId } from '@iimm/react-shared';
 
-export interface PopoverProps extends Omit<MuiPopoverProps, 'onClose'> {
+export interface PopoverProps extends Omit<MuiPopoverProps, 'onClose' | 'content'> {
   /** 触发弹出的操作,鼠标悬停或点击 */
   triggerType?: 'hover' | 'click',
   disabled?: boolean,

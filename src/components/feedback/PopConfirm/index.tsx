@@ -90,7 +90,12 @@ export const PopConfirm = React.forwardRef<any, React.PropsWithChildren<PopConfi
   }, [ width, maxWidth, rootProps ]);
   return (
     <>
-      <Popper ref={ref} open={open} anchorEl={anchorEl} sx={{ zIndex: theme.zIndex.modal, ...(sx || {}) }} {...restProps}
+      <Popper
+        ref={ref}
+        open={open}
+        anchorEl={anchorEl}
+        sx={{ zIndex: theme.zIndex.modal, ...(sx || {}) }}
+        {...restProps as any}
         placement={placement}
         // @ts-ignore
         arrow={arrow}
