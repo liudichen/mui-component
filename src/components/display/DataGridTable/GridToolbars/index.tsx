@@ -52,8 +52,10 @@ const GridToolbarFty = (params?: GridToolbarFtyParams) => {
 
 /** 只显示列和间距的工具条GridToolbar */
 const DefaultGridToolbar = GridToolbarFty();
+const DefaultGridToolbarWithDownlaod = GridToolbarFty({ showColumn: true, showDensity: true, showExport: true });
 export {
   GridToolbar,
   GridToolbarFty,
   DefaultGridToolbar,
+  DefaultGridToolbarWithDownlaod,
 };
