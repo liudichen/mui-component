@@ -10,6 +10,7 @@ import { getFileInfo } from '../util';
 import { FileViewRender } from './FileViewRender';
 import type { FileViewRenderProps } from './FileViewRender';
 import type { ModalProps } from '../../../feedback';
+import type { PdfModalViewerProps } from '../../PdfModalViewer';
 
 export interface ItemBarProps {
   file: string,
@@ -59,7 +60,7 @@ export interface ItemBarProps {
   /** 点击预览按钮后的弹窗Modal的props */
   previewModalProps?: ModalProps
 
-  showFullScreen?: boolean
+  pdfViewerProps?: PdfModalViewerProps
 }
 
 export const ItemBar = (props: ItemBarProps) => {
@@ -67,7 +68,7 @@ export const ItemBar = (props: ItemBarProps) => {
     onFileDownload, onFileDownloadStart,
     previewIcon = <PreviewOutlined />, previewTooltip, showPreview = true,
     downloadIcon = <CloudDownloadOutlined />, downloadTooltip, showDownload = true,
-    FilePreviewRender = FileViewRender, previewModalProps, showFullScreen
+    FilePreviewRender = FileViewRender, previewModalProps, pdfViewerProps,
   } = props;
   const fileInfo = useCreation(() => fileInfoParser(file, fileTypeIconSize), [ file ]);
   const { run: download } = useDebounceFn((file) => {
@@ -104,10 +105,10 @@ export const ItemBar = (props: ItemBarProps) => {
           <FilePreviewRender
             fileSrc={file}
             modalProps={previewModalProps}
+            pdfViewerProps={pdfViewerProps}
             type={fileInfo.type}
             fileName={fileInfo.fileName}
             view={fileInfo.view}
-            showFullScreen={showFullScreen}
             trigger={(
               <Tooltip
                 arrow

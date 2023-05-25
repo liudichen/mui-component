@@ -166,7 +166,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 export const PdfModalViewer = (props: PdfModalViewerProps) => {
   const { file, fileName: fileNameProp, trigger, title,
     showToolbar, toolbarClassName,
-    showFullScreen, defaultFullScreen: fullScreenProp, responsive, breakpoint = 'sm', fullWidth,
+    showFullScreen, defaultFullScreen, responsive, breakpoint = 'sm', fullWidth, fullScreen: fullScreenProp,
     showRotate, onRotateChange, defaultRotate,
     showScale, onScaleChange, maxScale = 10, minScale = 0.1, defaultScale, showScaleStep,
     showReset, onReset,
@@ -193,7 +193,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
   const [ numPages, setNumPages ] = useSafeState<number>();
   const [ pageNumber, setPageNumber ] = useSafeState<number>();
   const [ searchText, setSearchText ] = useSafeState('');
-  const [ fullScreen, setFullScreen ] = useSafeState(() => !!((fullScreenProp === true || fullScreenProp === false) ? fullScreenProp : props?.fullScreen));
+  const [ fullScreen, setFullScreen ] = useSafeState(() => !!(defaultFullScreen));
   const [ rotate, setRotate ] = useSafeState(defaultRotate || 0);
   const [ scale, setScale ] = useSafeState(defaultScale || 1);
   useImperativeHandle(setOpenRef, () => ({ setOpen }), [ setOpen ]);
@@ -368,9 +368,9 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       trigger={trigger}
       withDialogContentWrapper={false}
       responsive={false}
-      PaperProps={{ className: classNames({ 'pdf-viewer-modal-paper': !fullScreen }) }}
+      PaperProps={{ className: classNames({ 'pdf-viewer-modal-paper': !(fullScreenProp ?? fullScreen) }) }}
+      fullScreen={fullScreenProp ?? fullScreen}
       {...restProps}
-      fullScreen={fullScreen}
     >
       {showToolbar && !fetchLoading && (
         <DialogContent {...(pdfToolbarProps || {})} className={classNames('pdf-viewer-toolbar', toolbarClassName, pdfToolbarProps?.className)}>

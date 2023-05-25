@@ -4,7 +4,7 @@ import { Download } from '@mui/icons-material';
 
 import { Modal } from '../../../../feedback';
 import type { ModalProps } from '../../../../feedback';
-import { PdfModalViewer } from '../../../PdfModalViewer';
+import { PdfModalViewer, type PdfModalViewerProps } from '../../../PdfModalViewer';
 import { VideoModalViewer } from '../../../VideoModalViewer';
 import { ImageModalViewer } from '../../../ImageModalViewer';
 
@@ -18,7 +18,7 @@ export interface FileViewRenderProps {
   onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
   onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
   modalProps?: Omit<ModalProps, 'onReset'>
-  showFullScreen?: boolean
+  pdfViewerProps?: PdfModalViewerProps
 }
 
 // const ViewList = [ 'pdf', 'image', 'video' ];
@@ -53,7 +53,7 @@ const FallbackModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) 
 FallbackModalViewer.displayName = 'iimm.Mui.AttachmentViewer.FallbackModalViewer';
 
 export const FileViewRender = (props: FileViewRenderProps) => {
-  const { fileSrc, fileName, view, trigger, type, showDownload, onFileDownload, onFileDownloadStart, modalProps, showFullScreen } = props;
+  const { fileSrc, fileName, view, trigger, type, showDownload, onFileDownload, onFileDownloadStart, modalProps, pdfViewerProps } = props;
   if (!view) return null;
   if (type === 'pdf') {
     return (
@@ -66,8 +66,8 @@ export const FileViewRender = (props: FileViewRenderProps) => {
         onDownloadStart={onFileDownloadStart}
         // @ts-ignore
         onDownloadSuccess={onFileDownload}
-        showFullScreen={showFullScreen}
         {...(modalProps || {})}
+        {...(pdfViewerProps || {})}
       />
     );
   } else if (type === 'image') {
