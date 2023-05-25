@@ -193,7 +193,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
   const [ numPages, setNumPages ] = useSafeState<number>();
   const [ pageNumber, setPageNumber ] = useSafeState<number>();
   const [ searchText, setSearchText ] = useSafeState('');
-  const [ fullScreen, setFullScreen ] = useSafeState(() => fullScreenProp);
+  const [ fullScreen, setFullScreen ] = useSafeState(() => !!((fullScreenProp === true || fullScreenProp === false) ? fullScreenProp : props?.fullScreen));
   const [ rotate, setRotate ] = useSafeState(defaultRotate || 0);
   const [ scale, setScale ] = useSafeState(defaultScale || 1);
   useImperativeHandle(setOpenRef, () => ({ setOpen }), [ setOpen ]);
@@ -522,6 +522,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
                   // @ts-ignore
                   rootRef={contentRef}
                   handlePageChange={handlePageChange}
+                  // @ts-ignore
                   key={`${key}_${index + 1}`}
                   pageNumber={index + 1}
                   customTextRenderer={customTextRenderer}

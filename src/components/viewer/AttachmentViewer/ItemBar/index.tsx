@@ -58,6 +58,8 @@ export interface ItemBarProps {
   FilePreviewRender?: React.ComponentType<FileViewRenderProps>,
   /** 点击预览按钮后的弹窗Modal的props */
   previewModalProps?: ModalProps
+
+  showFullScreen?: boolean
 }
 
 export const ItemBar = (props: ItemBarProps) => {
@@ -65,7 +67,7 @@ export const ItemBar = (props: ItemBarProps) => {
     onFileDownload, onFileDownloadStart,
     previewIcon = <PreviewOutlined />, previewTooltip, showPreview = true,
     downloadIcon = <CloudDownloadOutlined />, downloadTooltip, showDownload = true,
-    FilePreviewRender = FileViewRender, previewModalProps,
+    FilePreviewRender = FileViewRender, previewModalProps, showFullScreen
   } = props;
   const fileInfo = useCreation(() => fileInfoParser(file, fileTypeIconSize), [ file ]);
   const { run: download } = useDebounceFn((file) => {
@@ -105,6 +107,7 @@ export const ItemBar = (props: ItemBarProps) => {
             type={fileInfo.type}
             fileName={fileInfo.fileName}
             view={fileInfo.view}
+            showFullScreen={showFullScreen}
             trigger={(
               <Tooltip
                 arrow
