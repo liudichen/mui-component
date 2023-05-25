@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
-import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery } from '@mui/material';
+import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery, type DialogContentProps } from '@mui/material';
 import { Document, pdfjs } from 'react-pdf';
 import { FirstPage, LastPage, NavigateBefore, NavigateNext, Rotate90DegreesCcwOutlined, Rotate90DegreesCwTwoTone, CloudDownloadOutlined, RestartAlt, ZoomInMapOutlined, ZoomOutMapOutlined, ZoomInOutlined, ZoomOutOutlined, Cached } from '@mui/icons-material';
 import { generateFileDownload } from '@iimm/shared';
@@ -148,6 +148,8 @@ export interface PdfModalViewerProps extends ModalProps {
   onPdfFetchError?: (file: IPdf | (() => IPdf) | (() => Promise<IPdf>), fileName?: string) => void,
 
   defaultRotate?: number,
+
+  pdfToolbarProps?: DialogContentProps
 }
 
 export { pdfjs };
@@ -175,7 +177,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     open: openProp, setOpen: setOpenProp, setOpenRef,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    content, children, withDialogContentWrapper,
+    content, children, withDialogContentWrapper, pdfToolbarProps,
     ...restProps
   } = props;
   const theme = useTheme();
@@ -191,7 +193,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
   const [ numPages, setNumPages ] = useSafeState<number>();
   const [ pageNumber, setPageNumber ] = useSafeState<number>();
   const [ searchText, setSearchText ] = useSafeState('');
-  const [ fullScreen, setFullScreen ] = useSafeState(fullScreenProp);
+  const [ fullScreen, setFullScreen ] = useSafeState(() => fullScreenProp);
   const [ rotate, setRotate ] = useSafeState(defaultRotate || 0);
   const [ scale, setScale ] = useSafeState(defaultScale || 1);
   useImperativeHandle(setOpenRef, () => ({ setOpen }), [ setOpen ]);
@@ -361,7 +363,6 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     <Modal
       open={open}
       fullWidth={fullWidth}
-      fullScreen={fullScreen}
       setOpen={setOpen}
       title={title ?? `文件查看:${fileName || ''}`}
       trigger={trigger}
@@ -369,9 +370,10 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       responsive={false}
       PaperProps={{ className: classNames({ 'pdf-viewer-modal-paper': !fullScreen }) }}
       {...restProps}
+      fullScreen={fullScreen}
     >
       {showToolbar && !fetchLoading && (
-        <DialogContent className={classNames('pdf-viewer-toolbar', toolbarClassName)}>
+        <DialogContent {...(pdfToolbarProps || {})} className={classNames('pdf-viewer-toolbar', toolbarClassName, pdfToolbarProps?.className)}>
           {showFirstPage && !down && !!numPages && (
             <Tooltip arrow placement='top' title='跳转到首页'>
               <IconButton
