@@ -11,6 +11,7 @@
 /es
 /lib
 /docs-dist
+dist
 
 # misc
 .DS_Store
