@@ -1,4 +1,4 @@
-import React from 'react';
+import type { HTMLAttributes } from 'react';
 import { useSafeState } from 'ahooks';
 import { Box, Button, Dialog, IconButton } from '@mui/material';
 import { Download } from '@mui/icons-material';
@@ -14,7 +14,7 @@ interface ImageModalViewerProps extends ModalProps {
   onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
   /** 点击文件下载后的回调 */
   onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
-  imgProps?: React.HTMLAttributes<HTMLImageElement>
+  imgProps?: HTMLAttributes<HTMLImageElement>
 }
 
 export const ImageModalViewer = (props: ImageModalViewerProps) => {
@@ -103,4 +103,4 @@ ImageModalViewer.defaultProps = {
   cancelText: '关闭',
 };
 
-ImageModalViewer.displayName = 'iimm.Mui.ImageModalViewer';
+// ImageModalViewer.displayName = 'iimm.Mui.ImageModalViewer';

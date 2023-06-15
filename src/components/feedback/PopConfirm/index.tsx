@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef, type ReactNode, type PropsWithChildren } from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, Button, ClickAwayListener, DialogActions, DialogContent, Fade, Link, Paper, useTheme } from '@mui/material';
 import type { PopperProps, ButtonProps, PaperProps, LinkProps } from '@mui/material';
@@ -8,6 +8,7 @@ import { Arrow } from './Arrow';
 import { Popper } from './Popper';
 
 export interface PopConfirmProps extends Omit<PopperProps, 'open' | 'title'> {
+  open?: boolean
   arrow?: boolean,
   timeout?: number,
   preventOverflow?: boolean,
@@ -16,23 +17,23 @@ export interface PopConfirmProps extends Omit<PopperProps, 'open' | 'title'> {
   disabled?: boolean,
   closeOnClickAway?: boolean,
   showConfirm?: boolean,
-  confirmText?: React.ReactNode | React.ReactNode[],
+  confirmText?: ReactNode | ReactNode[],
   confirmProps?: Omit<ButtonProps, 'onClick'>,
   onConfirm?: (() => any) | (()=> Promise<any>),
   showCancel?: boolean,
-  cancelText?: React.ReactNode | React.ReactNode[],
+  cancelText?: ReactNode | ReactNode[],
   cancelProps?: Omit<ButtonProps, 'onClick'>,
   onCancel?: (() => any) | (()=> Promise<any>),
   showTitle?: boolean,
-  title?: React.ReactNode | React.ReactNode[],
+  title?: ReactNode | ReactNode[],
   showIcon?: boolean,
-  icon?: React.ReactNode,
-  extraContent?: React.ReactNode | React.ReactNode[],
+  icon?: ReactNode,
+  extraContent?: ReactNode | ReactNode[],
   width?: number,
   maxWidth?: number,
 }
 
-export const PopConfirm = React.forwardRef<any, React.PropsWithChildren<PopConfirmProps>>((props, ref) => {
+export const PopConfirm = forwardRef<any, PropsWithChildren<PopConfirmProps>>((props, ref) => {
   const { children, triggerProps, disabled, rootProps,
     onCancel, onConfirm, arrow, closeOnClickAway, placement, timeout, modifiers: modifiersProp, sx,
     maxWidth, width, preventOverflow,

@@ -1,16 +1,16 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Button } from '@mui/material';
 import { Download } from '@mui/icons-material';
-import { Player, PlayerProps } from 'video-react';
+import { Player, type PlayerProps } from 'video-react';
 import { generateFileDownload } from '@iimm/shared';
-import 'video-react/dist/video-react.css';
+import 'video-react/dist/video-css';
 
 import { Modal } from '../../feedback';
 import type { ModalProps } from '../../feedback';
 
 export interface VideoModalViewerProps extends PlayerProps {
   showDownload?: boolean,
-  trigger: React.ReactNode,
+  trigger: ReactNode,
   fileName?: string,
   fileSrc: string,
   modalProps?: ModalProps,

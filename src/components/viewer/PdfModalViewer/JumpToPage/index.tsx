@@ -1,11 +1,11 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { useSafeState } from 'ahooks';
 import { InputBase, Stack } from '@mui/material';
 
 import { Modal } from '../../../feedback';
 
 interface IProps {
-  trigger?: React.ReactNode,
+  trigger?: ReactNode,
   handlePageChange?: (pg: number) => void,
 }
 

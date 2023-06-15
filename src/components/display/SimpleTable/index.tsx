@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode, type CSSProperties } from 'react';
 import { useControllableValue, useCreation } from 'ahooks';
 import { Box, Table, TableBody, TableFooter, TableHead } from '@mui/material';
 import type { TableProps, BoxProps, TableFooterProps } from '@mui/material';
@@ -186,11 +186,11 @@ interface ITitleRenderParams {
 
 export interface SimpleTableColumn<R extends RowItem = any> extends IStatusConvertRelateProps {
   field?: string;
-  title?: React.ReactNode;
-  renderTitle?: (parmas: ITitleRenderParams) => React.ReactNode;
+  title?: ReactNode;
+  renderTitle?: (parmas: ITitleRenderParams) => ReactNode;
   titleAlign?: 'center' | 'left' | 'right';
   align?: 'center' | 'left' | 'right';
-  renderCell?: (params: IGetterParams<R>) => React.ReactNode;
+  renderCell?: (params: IGetterParams<R>) => ReactNode;
   type?: 'string' | 'number' | 'date' | 'select' | 'actions' | 'status' | 'dateTime' | 'boolean';
   width?: number | string;
   maxWidth?: number | string;
@@ -211,8 +211,8 @@ export interface SimpleTableProps<R extends RowItem = any> extends Omit<TablePro
   rowKey?: string;
   columns?: SimpleTableColumn<R>[];
   /** 表格的caption标题内容 */
-  title?: React.ReactNode;
-  titleStyle?: React.CSSProperties,
+  title?: ReactNode;
+  titleStyle?: CSSProperties,
   /** 表格标题caption的位置
    * @default 'top'
    */
@@ -235,7 +235,7 @@ export interface SimpleTableProps<R extends RowItem = any> extends Omit<TablePro
   /** 表格TalbleFooter的props */
   tableFooterProps?: TableFooterProps,
   /** tableFoot的内容 */
-  tableFooter?: React.ReactNode,
+  tableFooter?: ReactNode,
   /** 隐藏表格页码区域? */
   hidePagination?: boolean,
   /** 自动隐藏页码区域? */
@@ -262,7 +262,7 @@ export interface SimpleTableProps<R extends RowItem = any> extends Omit<TablePro
    */
   showExpandColumn?: boolean;
   /** 展开行的按钮 */
-  expandIcon?: [React.ReactNode, React.ReactNode];
+  expandIcon?: [ReactNode, ReactNode];
   /** 可通过点击行的内容展开行?
    * @default false
    */
@@ -275,7 +275,7 @@ export interface SimpleTableProps<R extends RowItem = any> extends Omit<TablePro
     row: R,
     index?: number,
     open?: boolean
-  ) => React.ReactNode;
+  ) => ReactNode;
   getRowExpandable?: (row: R, index?: number) => boolean;
   /** 展开行内容关闭时卸载组件?
    * @default false

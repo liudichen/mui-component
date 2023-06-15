@@ -1,4 +1,4 @@
-import React from 'react';
+import type { CSSProperties, ReactNode, SVGProps } from 'react';
 import { Box, styled } from '@mui/material';
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
@@ -29,13 +29,13 @@ export interface NoDataProps {
   /** 外层div的className */
   className?: string,
   /** 外层div的style */
-  style?: React.CSSProperties,
+  style?: CSSProperties,
   /** 无数据文案，优先级高于children */
-  noDataText?: React.ReactNode,
+  noDataText?: ReactNode,
   /** 无数据文案，优先级低于noDataText */
-  children?: React.ReactNode,
+  children?: ReactNode,
   /** 传递给svg的props */
-  svgProps?: React.SVGProps<SVGSVGElement>,
+  svgProps?: SVGProps<SVGSVGElement>,
 }
 
 export const NoData = (props: NoDataProps) => {

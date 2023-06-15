@@ -1,4 +1,4 @@
-import React from 'react';
+import { Children, type ReactNode } from 'react';
 import { Box } from '@mui/material';
 import type { SxProps, BoxProps } from '@mui/material';
 
@@ -26,7 +26,7 @@ export interface SpaceProps extends BoxProps {
   size?: sizeProp;
   /** 子元素排列方向 */
   direction?: 'row' | 'column';
-  split?: React.ReactNode;
+  split?: ReactNode;
   /**
    * sx add to root Box
    * @default {justifyContent:'center'}
@@ -48,13 +48,13 @@ export const Space = (props: SpaceProps) => {
       flexDirection={direction}
       {...restProps}
     >
-      {React.Children.map(children, (child, index) => {
+      {Children.map(children, (child, index) => {
         if (!child) {
           return null;
         }
         let style = {};
         if (direction === 'column') {
-          if (index < React.Children.count(children) - 1) {
+          if (index < Children.count(children) - 1) {
             style = { marginBottom: columnSpace / (split ? 2 : 1) };
           }
         } else {
@@ -67,7 +67,7 @@ export const Space = (props: SpaceProps) => {
             <div style={style}>
               {child}
             </div>
-            {index < React.Children.count(children) - 1 && !!split && (
+            {index < Children.count(children) - 1 && !!split && (
               <span style={style}>
                 {split}
               </span>

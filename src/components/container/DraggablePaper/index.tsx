@@ -1,6 +1,5 @@
-import React from 'react';
-import { Paper, PaperProps } from '@mui/material';
-import Draggable, { DraggableProps } from 'react-draggable';
+import { Paper, type PaperProps } from '@mui/material';
+import Draggable, { type DraggableProps } from 'react-draggable';
 
 export interface DraggablePaperProps extends PaperProps {
   /** react-draggable的Draggable组件的Props

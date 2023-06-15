@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode, type ComponentType } from 'react';
 import { useCreation, useDebounceFn } from 'ahooks';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { BoxProps } from '@mui/material';
@@ -37,13 +37,13 @@ export interface ItemBarProps {
   /** 点击文件下载后的回调 */
   onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
   /** 预览按钮Tooltip的title*/
-  previewTooltip?: React.ReactNode | ((fileUrl: string) => React.ReactNode),
+  previewTooltip?: ReactNode | ((fileUrl: string) => ReactNode),
   /** 下载按钮Tooltip的title*/
-  downloadTooltip?: React.ReactNode | ((fileUrl: string) => React.ReactNode),
+  downloadTooltip?: ReactNode | ((fileUrl: string) => ReactNode),
   /** @default <PreviewOutlined /> */
-  previewIcon?: React.ReactNode,
+  previewIcon?: ReactNode,
   /** @default <CloudDownloadOutlined /> */
-  downloadIcon?: React.ReactNode,
+  downloadIcon?: ReactNode,
   /** 显示下载?
    * @default true
    */
@@ -56,7 +56,7 @@ export interface ItemBarProps {
    * @default false
    */
   fileNameWrap?: boolean,
-  FilePreviewRender?: React.ComponentType<FileViewRenderProps>,
+  FilePreviewRender?: ComponentType<FileViewRenderProps>,
   /** 点击预览按钮后的弹窗Modal的props */
   previewModalProps?: ModalProps
 
@@ -146,4 +146,4 @@ export const ItemBar = (props: ItemBarProps) => {
   );
 };
 
-ItemBar.displayName = 'iimm.Mui.AttachmentViewer.ItemBar';
+// ItemBar.displayName = 'iimm.Mui.AttachmentViewer.ItemBar';

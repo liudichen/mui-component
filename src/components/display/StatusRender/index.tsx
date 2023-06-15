@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 
 const TypeColor = {
   success: '#52c41a',
@@ -59,7 +59,7 @@ const getColor = (color?: string, rawStatus?: string, type?: shownType, statusCo
   return TypeColor.default;
 };
 
-const getText = (text?: React.ReactNode, rawStatus?: string, statusConvert?: IStatusConvertRelateProps['statusConvert'], statusTextConvert?: IStatusConvertRelateProps['statusTextConvert']) => {
+const getText = (text?: ReactNode, rawStatus?: string, statusConvert?: IStatusConvertRelateProps['statusConvert'], statusTextConvert?: IStatusConvertRelateProps['statusTextConvert']) => {
   if (text) {
     return text;
   }
@@ -122,7 +122,7 @@ export interface IStatusConvertRelateProps {
   /** 指定状态-> success等显示态的对应关系 */
   statusTypeConvert?: (status?: string) => shownType,
   /** 指定状态对应的显示文本 */
-  statusTextConvert?: (status?: string) => React.ReactNode,
+  statusTextConvert?: (status?: string) => ReactNode,
   /** 状态转换（原始状态转化为内置的状态） */
   statusConvert?: (status?: string) => string,
 }
@@ -131,13 +131,13 @@ export interface StatusRenderProps extends IStatusConvertRelateProps {
   color?: string,
   status?: string,
   type?: shownType,
-  text?: React.ReactNode,
+  text?: ReactNode,
   /** 状态文本的span的style */
-  textSpanStyle?: React.CSSProperties,
+  textSpanStyle?: CSSProperties,
   /** 状态文本前的点的span的style */
-  dotSpanStyle?: React.CSSProperties,
+  dotSpanStyle?: CSSProperties,
   /** 当不存在status文本时显示的内容
    * @default '-''
    */
-  noStatusText?: React.ReactNode,
+  noStatusText?: ReactNode,
 }

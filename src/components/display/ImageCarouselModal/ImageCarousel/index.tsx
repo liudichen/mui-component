@@ -1,4 +1,3 @@
-import React from 'react';
 import type { PropsWithChildren } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import type { CarouselProps as ICarouselProps } from 'react-responsive-carousel';

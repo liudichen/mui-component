@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Stack } from '@mui/material';
 import type { SxProps } from '@mui/material';
 import {
@@ -94,14 +94,14 @@ Result.defaultProps = {
 Result.displayName = 'iimm.Mui.Result';
 
 export interface ResultProps extends Omit<ContentCardProps, 'content'> {
-  icon?: React.ReactNode,
-  title?: React.ReactNode,
-  subTitle?: React.ReactNode,
-  actions?: React.ReactNode | React.ReactNode[],
+  icon?: ReactNode,
+  title?: ReactNode,
+  subTitle?: ReactNode,
+  actions?: ReactNode | ReactNode[],
   /** @default 'info' */
   status?: 'success' | 'error' | 'info' | 'warning' | '404',
   sx?: SxProps,
   spaceProps?: SpaceProps,
   /** children的别名，优先级高于children */
-  content?: React.ReactNode,
+  content?: ReactNode,
 }

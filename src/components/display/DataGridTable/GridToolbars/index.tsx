@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ComponentType } from 'react';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton } from '@mui/x-data-grid';
 
 export interface GridToolbarFtyParams {
@@ -6,7 +6,7 @@ export interface GridToolbarFtyParams {
   showFilter?: boolean,
   showDensity?: boolean,
   showExport?: boolean,
-  ExportRender?: React.FunctionComponent | React.Component | typeof GridToolbarExport,
+  ExportRender?: ComponentType<any> | typeof GridToolbarExport,
 }
 
 const GridToolbarFty = (params?: GridToolbarFtyParams) => {

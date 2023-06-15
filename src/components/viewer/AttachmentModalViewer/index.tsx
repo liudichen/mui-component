@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Tooltip } from '@mui/material';
 
 import { Modal, ModalProps } from '../../feedback';
@@ -10,9 +10,9 @@ export interface AttachmentModalViewerProps extends ModalProps, AttachmentViewer
   /** 当 urls列表为空时，显示的内容
    * @default '-''
   */
-  fallback?: React.ReactNode,
-  triggerTooltip?: React.ReactNode,
-  triggerText?: React.ReactNode,
+  fallback?: ReactNode,
+  triggerTooltip?: ReactNode,
+  triggerText?: ReactNode,
 }
 
 export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.Element => {
@@ -73,4 +73,4 @@ AttachmentModalViewer.defaultProps = {
   fileListBoxProps: { mt: 0.5 },
 };
 
-AttachmentModalViewer.displayName = 'iimm.Mui.AttachmentModalViewer';
+// AttachmentModalViewer.displayName = 'iimm.Mui.AttachmentModalViewer';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext, forwardRef, useImperativeHandle, type PropsWithChildren, type ReactNode } from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, useTheme, useMediaQuery, Tooltip } from '@mui/material';
 import classNames from 'classnames';
@@ -7,10 +7,10 @@ import type { DialogProps, DialogTitleProps, DialogContentProps, DialogActionsPr
 
 import { DraggablePaper } from '../../container';
 
-const ModalOpenContentext = React.createContext<boolean>(null);
-export const useModalOpen = () => React.useContext(ModalOpenContentext);
+const ModalOpenContentext = createContext<boolean>(null);
+export const useModalOpen = () => useContext(ModalOpenContentext);
 
-export const Modal = React.forwardRef<any, React.PropsWithChildren<ModalProps>>((props, ref) => {
+export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref) => {
   const {
     trigger, triggerProps,
     onConfirm: onConfirmProp, onCancel: onCancelProp,
@@ -47,7 +47,7 @@ export const Modal = React.forwardRef<any, React.PropsWithChildren<ModalProps>>(
       onClose();
     }
   });
-  React.useImperativeHandle(ref, () => ({ onClose }), [ onClose ]);
+  useImperativeHandle(ref, () => ({ onClose }), [ onClose ]);
   return (
     <>
       {!!trigger && (
@@ -163,7 +163,7 @@ export interface ModalProps extends Omit<DialogProps, 'open' | 'title' | 'conten
   /** 显示右上角的关闭按钮? */
   showCloseIcon?: boolean,
   /** 自定义右上角按钮图标 */
-  CloseIcon?: React.ReactNode,
+  CloseIcon?: ReactNode,
   /** 传递给关闭按钮包裹的IconButton的props
    * @default 原始状态{sx:{px:0.25,py:0.5}}
    */
@@ -171,23 +171,23 @@ export interface ModalProps extends Omit<DialogProps, 'open' | 'title' | 'conten
   /** 显示取消按钮? */
   showCancel?: boolean,
   onCancel?: (() => any) | (() => Promise<any>),
-  cancelText?: React.ReactNode | React.ReactNode[],
+  cancelText?: ReactNode | ReactNode[],
   /** 取消按钮的Props? */
   cancelProps?: Omit<ButtonProps, 'onClick'>,
   /** 显示确认按钮? */
   showConfirm?: boolean,
   onConfirm?: (() => any) | (() => Promise<any>),
-  confirmText?: React.ReactNode | React.ReactNode[],
+  confirmText?: ReactNode | ReactNode[],
   /** 确认按钮的Props? */
   confirmProps?: Omit<ButtonProps, 'onClick'>,
   /** 底部额外的按钮等,会显示在取消/重置按钮左侧   */
-  extraActions?: React.ReactNode | React.ReactNode[],
+  extraActions?: ReactNode | ReactNode[],
   /** 点击触发弹窗打开的ReactNode，如果不传递此prop，则open使用外部受控模式 */
-  trigger?: React.ReactNode,
+  trigger?: ReactNode,
   /** trigger包裹的Link组件的props */
   triggerProps?: LinkProps,
   /** 对话框标题 */
-  title?: React.ReactNode,
+  title?: ReactNode,
   /** 标题包裹的DialogTitle的props
    * @default 原始状态{display:'flex',alginItems:'start',bgcolor:'#f5f5f5',sx:{padding:0}}
   */
@@ -216,5 +216,5 @@ export interface ModalProps extends Omit<DialogProps, 'open' | 'title' | 'conten
   */
   breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number,
   /** 内容，优先级高于children */
-  content?: React.ReactNode | React.ReactNode[],
+  content?: ReactNode | ReactNode[],
 }

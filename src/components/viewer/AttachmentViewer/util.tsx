@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconExcelColorful, IconFileColorful, IconImageColorful, IconPdfColorful, IconPptColorful, IconVideoColorful, IconWordColorful, IconZipColorful } from '@iimm/icons';
 
 export const getFileInfo = (file: string, iconSize = 24) => {

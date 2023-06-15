@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode, type MouseEvent } from 'react';
 import { Box, Fab, useScrollTrigger, Zoom } from '@mui/material';
 import type { SxProps } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -25,7 +25,7 @@ export interface ScrollToTopProps {
     </Fab>
    * ```
    */
-  content?: React.ReactNode,
+  content?: ReactNode,
 }
 
 /** 回到顶部组件(通过sx属性可以控制位置) */
@@ -37,7 +37,7 @@ export const ScrollToTop = (props: ScrollToTopProps) => {
     threshold,
   });
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     if (anchorId) {
       // @ts-ignore
       const anchor = (e.target?.ownerDocument || document).querySelector(`#${anchorId}`);

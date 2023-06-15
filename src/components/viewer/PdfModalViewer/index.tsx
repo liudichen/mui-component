@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useImperativeHandle } from 'react';
+import { useEffect, useRef, useImperativeHandle, type MutableRefObject } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery, type DialogContentProps } from '@mui/material';
 import { Document, pdfjs } from 'react-pdf';
@@ -30,7 +30,7 @@ export interface PdfModalViewerProps extends ModalProps {
   fullScreen?: boolean,
 
   /** 获取内部setOpen操作方法的ref */
-  setOpenRef?: React.MutableRefObject<{setOpen: (open: boolean) => void}>,
+  setOpenRef?: MutableRefObject<{setOpen: (open: boolean) => void}>,
   /** 传递给react-pdf的Document组件的props */
   documentProps?: DocumentProps,
   /** 显示顶部工具条?

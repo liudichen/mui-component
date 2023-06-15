@@ -1,20 +1,21 @@
-import React from 'react';
+import { type ReactNode, type PropsWithChildren, forwardRef } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
 import type { PopoverProps as MuiPopoverProps } from '@mui/material';
 import { useId } from '@iimm/react-shared';
 
-export interface PopoverProps extends Omit<MuiPopoverProps, 'onClose' | 'content'> {
+export interface PopoverProps extends Omit<MuiPopoverProps, 'onClose' | 'content' | 'open'> {
   /** 触发弹出的操作,鼠标悬停或点击 */
   triggerType?: 'hover' | 'click',
   disabled?: boolean,
-  trigger: React.ReactNode,
-  content?: React.ReactNode,
+  trigger: ReactNode,
+  content?: ReactNode,
   onClose?: () => void,
+  open?: boolean
 }
 
 
-export const Popover = React.forwardRef<any, React.PropsWithChildren<PopoverProps>>((props, ref) => {
+export const Popover = forwardRef<any, PropsWithChildren<PopoverProps>>((props, ref) => {
   const {
     onClose: onCloseProp,
     triggerType, disabled,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn, useUpdateEffect } from 'ahooks';
 import { Pagination as MuiPagination, Box, Stack, Select, MenuItem, Typography } from '@mui/material';
 import type { BoxProps, StackProps, SelectProps, PaginationProps as MuiPaginationProps } from '@mui/material';

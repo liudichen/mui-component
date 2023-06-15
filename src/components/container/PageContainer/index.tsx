@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import type { ReactNode, PropsWithChildren } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
@@ -20,7 +20,7 @@ export interface PageContainerProps extends Omit<CardProps, 'title' | 'content'>
   secondary?: ReactNode,
   shadow?: string,
   sx?: SxProps,
-  title?:ReactNode,
+  title?: ReactNode,
   /** 传递给CardHeader，即title的外层的sx */
   headerSx?: SxProps,
   /** 显示分割线

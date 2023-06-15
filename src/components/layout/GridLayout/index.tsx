@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, GridProps } from '@mui/material';
+import { Children } from 'react';
+import { Grid, type GridProps } from '@mui/material';
 
 export interface GridLayoutProps extends Omit<GridProps, 'container'> {
   /** 其他传递给子组件<Grid item>的props
@@ -33,7 +33,7 @@ export const GridLayout = (props: GridLayoutProps) => {
   const parentCols = { xs, sm, md, lg, xl };
   return (
     <Grid spacing={1} {...restProps} container>
-      { React.Children.map(children, (child) => {
+      { Children.map(children, (child) => {
         if (!child) { return null; }
         // @ts-ignore
         if ([ 'Grid', 'Grid2' ].includes(child?.type?.displayName || child?.type?.render?.name)) {

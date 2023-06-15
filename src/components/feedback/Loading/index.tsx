@@ -1,4 +1,4 @@
-import React from 'react';
+import type{ ReactNode, PropsWithChildren } from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
 import type { CircularProgressProps, SxProps, BoxProps, TypographyProps } from '@mui/material';
 
@@ -13,7 +13,7 @@ export interface LoadingProps extends CircularProgressProps {
   */
   containerProps?: BoxProps,
   /** CircularProgress组件中心的文本label(优先级：value>label>children)*/
-  label?: React.ReactNode,
+  label?: ReactNode,
   /** 包裹 CircularProgress组件中心内容的Box组件的props
    * @default {top:0,left:0,right:0,bottom:0,position:'absolute',display:'flex',alignItems:'center',justifyContent:'center'}
   */
@@ -25,7 +25,7 @@ export interface LoadingProps extends CircularProgressProps {
 }
 
 
-export const Loading = (props: React.PropsWithChildren<LoadingProps>) => {
+export const Loading = (props: PropsWithChildren<LoadingProps>) => {
   const { label, value, color, size, variant, sx, containerSx, containerProps, labelBoxProps, labelTypographyProps, children, ...restProps } = props;
   return (
     <Box

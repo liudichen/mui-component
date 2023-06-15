@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Alert, Button } from '@mui/material';
 import { Download } from '@mui/icons-material';
 
@@ -12,7 +12,7 @@ export interface FileViewRenderProps {
   fileSrc: string,
   fileName?: string,
   view?: boolean,
-  trigger: React.ReactNode,
+  trigger: ReactNode,
   type: 'pdf' | 'image' | 'video' | string,
   showDownload?: boolean,
   onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
@@ -110,4 +110,4 @@ export const FileViewRender = (props: FileViewRenderProps) => {
 
 };
 
-FileViewRender.displayName = 'iimm.Mui.AttachmentViewer.ItemBar.FileViewRender';
+// FileViewRender.displayName = 'iimm.Mui.AttachmentViewer.ItemBar.FileViewRender';

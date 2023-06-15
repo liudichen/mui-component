@@ -1,4 +1,4 @@
-import { LegacyRef, ReactNode } from 'react';
+import type { LegacyRef, ReactNode } from 'react';
 
 export interface PlayerState {
   /**

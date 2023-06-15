@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import type { BoxProps } from '@mui/material';
 import clsx from 'classnames';
@@ -38,4 +37,4 @@ export const AttachmentViewer = (props: AttachmentViewerProps) => {
   );
 };
 
-AttachmentViewer.displayName = 'iimm.Mui.AttachmentViewer';
+// AttachmentViewer.displayName = 'iimm.Mui.AttachmentViewer';

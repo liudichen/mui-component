@@ -1,4 +1,3 @@
-import React from 'react';
 import { MenuItem, Pagination as MuiPagination, Select, Box, Stack } from '@mui/material';
 import { useGridApiContext, useGridSelector, gridPageCountSelector, gridPageSizeSelector, gridPageSelector, gridRowCountSelector } from '@mui/x-data-grid';
 import { useId } from '@iimm/react-shared';
