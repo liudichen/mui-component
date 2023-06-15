@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { Download } from '@mui/icons-material';
 import { Player, type PlayerProps } from 'video-react';
 import { generateFileDownload } from '@iimm/shared';
-import 'video-react/dist/video-css';
+import 'video-react/dist/video-react.css';
 
 import { Modal } from '../../feedback';
 import type { ModalProps } from '../../feedback';
