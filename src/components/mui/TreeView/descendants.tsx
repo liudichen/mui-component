@@ -1,8 +1,9 @@
+//@ts-nocheck
 /* eslint-disable jsdoc/require-param-type */
 /* eslint-disable jsdoc/require-param-description */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useEnhancedEffect } from '../mui-utils';
+import React from "react";
+import PropTypes from "prop-types";
+import { useEnhancedEffect } from "../mui-utils";
 
 /** Credit: https://github.com/reach/reach-ui/blob/86a046f54d53b6420e392b3fa56dd991d9d4e458/packages/descendants/README.md
  *  Modified slightly to suit our purposes.
@@ -43,15 +44,15 @@ function binaryFindElement(array, element) {
 
 const DescendantContext = React.createContext({});
 
-if (process.env.NODE_ENV !== 'production') {
-  DescendantContext.displayName = 'DescendantContext';
+if (process.env.NODE_ENV !== "production") {
+  DescendantContext.displayName = "DescendantContext";
 }
 
 function usePrevious(value) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     ref.current = value;
-  }, [ value ]);
+  }, [value]);
   return ref.current;
 }
 
@@ -79,7 +80,7 @@ const noop = () => {};
  * @param descendant
  */
 export function useDescendant(descendant) {
-  const [ , forceUpdate ] = React.useState();
+  const [, forceUpdate] = React.useState();
   const {
     registerDescendant = noop,
     unregisterDescendant = noop,
@@ -122,7 +123,7 @@ export function useDescendant(descendant) {
     forceUpdate({});
 
     return undefined;
-  }, [ registerDescendant, unregisterDescendant, index, someDescendantsHaveChanged, descendant ]);
+  }, [registerDescendant, unregisterDescendant, index, someDescendantsHaveChanged, descendant]);
 
   return { parentId, index };
 }
@@ -130,7 +131,7 @@ export function useDescendant(descendant) {
 export function DescendantProvider(props) {
   const { children, id } = props;
 
-  const [ items, set ] = React.useState([]);
+  const [items, set] = React.useState([]);
 
   const registerDescendant = React.useCallback(({ element, ...other }) => {
     set((oldItems) => {
@@ -193,7 +194,7 @@ export function DescendantProvider(props) {
       unregisterDescendant,
       parentId: id,
     }),
-    [ items, registerDescendant, unregisterDescendant, id ]
+    [items, registerDescendant, unregisterDescendant, id]
   );
 
   return <DescendantContext.Provider value={value}>{children}</DescendantContext.Provider>;

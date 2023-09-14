@@ -1,49 +1,55 @@
-import React from 'react';
-import clsx from 'classnames';
-import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import Collapse from '@mui/material/Collapse';
-import { alpha, styled, useThemeProps } from '@mui/material/styles';
-import { ownerDocument, useForkRef, unsupportedProp } from '@mui/material/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+//@ts-nocheck
+import React from "react";
+import clsx from "classnames";
+import Collapse from "@mui/material/Collapse";
+import { alpha, styled, useThemeProps } from "@mui/material/styles";
+import { ownerDocument, useForkRef } from "@mui/material/utils";
+import { unstable_composeClasses as composeClasses } from "@mui/base";
 
-import TreeViewContext from '../TreeView/TreeViewContext';
-import { DescendantProvider, useDescendant } from '../TreeView/descendants';
-import { TreeItemContent } from './TreeItemContent';
-import { treeItemClasses, getTreeItemUtilityClass } from './treeItemClasses';
+import type { InternalStandardProps as StandardProps, Theme } from "@mui/material";
+import type { TransitionProps } from "@mui/material/transitions";
+import type { SxProps } from "@mui/system";
+
+import type { TreeItemContentProps } from "./TreeItemContent";
+import type { TreeItemClasses } from "./treeItemClasses";
+
+import TreeViewContext from "../TreeView/TreeViewContext";
+import { DescendantProvider, useDescendant } from "../TreeView/descendants";
+import { TreeItemContent } from "./TreeItemContent";
+import { treeItemClasses, getTreeItemUtilityClass } from "./treeItemClasses";
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
   const slots = {
-    root: [ 'root' ],
-    content: [ 'content' ],
-    expanded: [ 'expanded' ],
-    selected: [ 'selected' ],
-    focused: [ 'focused' ],
-    disabled: [ 'disabled' ],
-    iconContainer: [ 'iconContainer' ],
-    label: [ 'label' ],
-    group: [ 'group' ],
+    root: ["root"],
+    content: ["content"],
+    expanded: ["expanded"],
+    selected: ["selected"],
+    focused: ["focused"],
+    disabled: ["disabled"],
+    iconContainer: ["iconContainer"],
+    label: ["label"],
+    group: ["group"],
   };
 
   return composeClasses(slots, getTreeItemUtilityClass, classes);
 };
 
-const TreeItemRoot = styled('li', {
-  name: 'MuiTreeItem',
-  slot: 'Root',
+const TreeItemRoot = styled("li", {
+  name: "MuiTreeItem",
+  slot: "Root",
   overridesResolver: (props, styles) => styles.root,
 })({
-  listStyle: 'none',
+  listStyle: "none",
   margin: 0,
   padding: 0,
   outline: 0,
 });
 
 const StyledTreeItemContent = styled(TreeItemContent, {
-  name: 'MuiTreeItem',
-  slot: 'Content',
+  name: "MuiTreeItem",
+  slot: "Content",
   overridesResolver: (props, styles) => {
     return [
       styles.content,
@@ -56,22 +62,22 @@ const StyledTreeItemContent = styled(TreeItemContent, {
     ];
   },
 })(({ theme }) => ({
-  padding: '0 8px',
-  width: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  cursor: 'pointer',
-  WebkitTapHighlightColor: 'transparent',
-  '&:hover': {
+  padding: "0 8px",
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  WebkitTapHighlightColor: "transparent",
+  "&:hover": {
     backgroundColor: (theme.vars || theme).palette.action.hover,
     // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+    "@media (hover: none)": {
+      backgroundColor: "transparent",
     },
   },
   [`&.${treeItemClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   [`&.${treeItemClasses.focused}`]: {
     backgroundColor: (theme.vars || theme).palette.action.focus,
@@ -80,15 +86,12 @@ const StyledTreeItemContent = styled(TreeItemContent, {
     backgroundColor: theme.vars
       ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    '&:hover': {
+    "&:hover": {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-        : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity
-        ),
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      "@media (hover: none)": {
         backgroundColor: theme.vars
           ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
           : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
@@ -97,35 +100,32 @@ const StyledTreeItemContent = styled(TreeItemContent, {
     [`&.${treeItemClasses.focused}`]: {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-        : alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity
-        ),
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity),
     },
   },
   [`& .${treeItemClasses.iconContainer}`]: {
     marginRight: 4,
     width: 15,
-    display: 'flex',
+    display: "flex",
     flexShrink: 0,
-    justifyContent: 'center',
-    '& svg': {
+    justifyContent: "center",
+    "& svg": {
       fontSize: 18,
     },
   },
   [`& .${treeItemClasses.label}`]: {
-    width: '100%',
+    width: "100%",
     // fixes overflow - see https://github.com/mui/material-ui/issues/27372
     minWidth: 0,
     paddingLeft: 4,
-    position: 'relative',
+    position: "relative",
     ...theme.typography.body1,
   },
 }));
 
 const TreeItemGroup = styled(Collapse, {
-  name: 'MuiTreeItem',
-  slot: 'Group',
+  name: "MuiTreeItem",
+  slot: "Group",
   overridesResolver: (props, styles) => styles.group,
 })({
   margin: 0,
@@ -133,8 +133,8 @@ const TreeItemGroup = styled(Collapse, {
   marginLeft: 17,
 });
 
-export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTreeItem' });
+export const TreeItem = React.forwardRef(function TreeItem(inProps: TreeItemProps, ref) {
+  const props = useThemeProps({ props: inProps, name: "MuiTreeItem" });
   const {
     children,
     className,
@@ -179,7 +179,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
     id = `${treeId}-${nodeId}`;
   }
 
-  const [ treeitemElement, setTreeitemElement ] = React.useState(null);
+  const [treeitemElement, setTreeitemElement] = React.useState(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(setTreeitemElement, ref);
 
@@ -188,7 +188,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
       element: treeitemElement,
       id: nodeId,
     }),
-    [ nodeId, treeitemElement ]
+    [nodeId, treeitemElement]
   );
 
   const { index, parentId } = useDescendant(descendant);
@@ -244,7 +244,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
     }
 
     return undefined;
-  }, [ registerNode, unregisterNode, parentId, index, nodeId, expandable, disabledProp, id ]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, disabledProp, id]);
 
   React.useEffect(() => {
     if (mapFirstChar && unMapFirstChar && label) {
@@ -254,7 +254,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
         unMapFirstChar(nodeId);
       };
     }
-  }, [ mapFirstChar, unMapFirstChar, nodeId, label ]);
+  }, [mapFirstChar, unMapFirstChar, nodeId, label]);
 
   let ariaSelected;
   if (multiSelect) {
@@ -288,6 +288,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
       aria-disabled={disabled || null}
+      //@ts-ignore
       ref={handleRef}
       id={id}
       tabIndex={-1}
@@ -314,6 +315,7 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
         icon={icon}
         expansionIcon={expansionIcon}
         displayIcon={displayIcon}
+        //@ts-ignore
         ownerState={ownerState}
         {...ContentProps}
       />
@@ -336,96 +338,73 @@ export const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
   );
 });
 
-TreeItem.displayName = 'MuiTreeItem';
+TreeItem.displayName = "MuiTreeItem";
 
-TreeItem.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+export interface TreeItemProps
+  extends React.PropsWithChildren<StandardProps<React.HTMLAttributes<HTMLLIElement>, "onFocus">> {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
+  classes?: Partial<TreeItemClasses>;
   /**
    * The icon used to collapse the node.
    */
-  collapseIcon: PropTypes.node,
+  collapseIcon?: React.ReactNode;
   /**
    * The component used for the content node.
    * @default TreeItemContent
    */
-  ContentComponent: elementTypeAcceptingRef,
+  ContentComponent?: React.JSXElementConstructor<TreeItemContentProps>;
   /**
    * Props applied to ContentComponent
    */
-  ContentProps: PropTypes.object,
+  ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
    * If `true`, the node is disabled.
    */
-  disabled: PropTypes.bool,
+  disabled?: boolean;
   /**
    * The icon displayed next to a end node.
    */
-  endIcon: PropTypes.node,
+  endIcon?: React.ReactNode;
   /**
    * The icon used to expand the node.
    */
-  expandIcon: PropTypes.node,
+  expandIcon?: React.ReactNode;
   /**
    * The icon to display next to the tree node's label.
    */
-  icon: PropTypes.node,
-  /**
-   * @ignore
-   */
-  id: PropTypes.string,
-  /**
-   * The tree node label.
-   */
-  label: PropTypes.node,
-  /**
-   * The id of the node.
-   */
-  nodeId: PropTypes.string.isRequired,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
+  icon?: React.ReactNode;
   /**
    * This prop isn't supported.
    * Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus.
    */
-  onFocus: unsupportedProp,
+  onFocus?: null;
   /**
-   * @ignore
+   * The tree node label.
    */
-  onMouseDown: PropTypes.func,
+  label?: React.ReactNode;
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
+   * The id of the node.
    */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.func, PropTypes.object, PropTypes.bool ])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
+  nodeId: string;
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  TransitionComponent: PropTypes.elementType,
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
-  TransitionProps: PropTypes.object,
-};
+  TransitionProps?: TransitionProps;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
