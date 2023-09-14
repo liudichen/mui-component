@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
