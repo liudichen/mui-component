@@ -1,6 +1,6 @@
 import { useCreation, useSafeState } from "ahooks";
 import { Collapse, TableCell, TableRow } from "@mui/material";
-import { createReactComponent, IconSquareMinus as CloseIcon } from "@tabler/icons-react";
+import { createReactComponent } from "@tabler/icons-react";
 
 const OpenIcon = createReactComponent("square-plus", "IconSquarePlus", [
   [
@@ -12,6 +12,17 @@ const OpenIcon = createReactComponent("square-plus", "IconSquarePlus", [
   ],
   ["path", { d: "M9 12l6 0", key: "svg-1" }],
   ["path", { d: "M12 9l0 6", key: "svg-2" }],
+]);
+
+const CloseIcon = createReactComponent("square-minus", "IconSquarePlus", [
+  [
+    "path",
+    {
+      d: "M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z",
+      key: "svg-0",
+    },
+  ],
+  ["path", { d: "M9 12l6 0", key: "svg-1" }],
 ]);
 
 import { Cell } from "./Cell";
