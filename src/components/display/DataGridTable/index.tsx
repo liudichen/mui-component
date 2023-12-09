@@ -39,6 +39,7 @@ export const initColumn = (
     statusConvert,
     showTooltip,
     tooltipProps,
+    statusDeleteLine,
     ...restCol
   } = col;
   const initInfo = {
@@ -57,6 +58,7 @@ export const initColumn = (
           statusTextConvert={statusTextConvert}
           statusTypeConvert={statusTypeConvert}
           statusConvert={statusConvert}
+          deleteLine={statusDeleteLine}
         />
       );
       if (typeof initInfo.width === "undefined") {
@@ -233,6 +235,8 @@ DataGridTable.displayName = "iimm.Mui.DataGridTable";
 export interface DataGridTableColumn<Row extends object = any>
   extends Partial<Omit<GridActionsColDef<Row>, "type">>,
     IStatusConvertRelateProps {
+  /**type=status时删除线? */
+  statusDeleteLine?: boolean;
   type?: "string" | "number" | "date" | "dateTime" | "boolean" | "singleSelect" | "actions" | "status";
   title?: string;
   titleClassName?: GridColumnHeaderClassNamePropType;
