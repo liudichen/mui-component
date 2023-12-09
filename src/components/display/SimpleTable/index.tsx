@@ -195,6 +195,7 @@ interface ITitleRenderParams {
 }
 
 export interface SimpleTableColumn<R extends RowItem = any> extends IStatusConvertRelateProps {
+  statusDeleteLine?: boolean;
   field?: string;
   title?: ReactNode;
   renderTitle?: (parmas: ITitleRenderParams) => ReactNode;
