@@ -1,8 +1,30 @@
 import { useEffect, useRef, useImperativeHandle, type MutableRefObject } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
-import { Box, DialogContent, IconButton, Tooltip, useTheme, useMediaQuery, type DialogContentProps } from '@mui/material';
+import {
+  Box,
+  DialogContent,
+  IconButton,
+  Tooltip,
+  useTheme,
+  useMediaQuery,
+  type DialogContentProps,
+} from '@mui/material';
 import { Document, pdfjs } from 'react-pdf';
-import { FirstPage, LastPage, NavigateBefore, NavigateNext, Rotate90DegreesCcwOutlined, Rotate90DegreesCwTwoTone, CloudDownloadOutlined, RestartAlt, ZoomInMapOutlined, ZoomOutMapOutlined, ZoomInOutlined, ZoomOutOutlined, Cached } from '@mui/icons-material';
+import {
+  FirstPage,
+  LastPage,
+  NavigateBefore,
+  NavigateNext,
+  Rotate90DegreesCcwOutlined,
+  Rotate90DegreesCwTwoTone,
+  CloudDownloadOutlined,
+  RestartAlt,
+  ZoomInMapOutlined,
+  ZoomOutMapOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+  Cached,
+} from '@mui/icons-material';
 import { generateFileDownload } from '@iimm/shared';
 import { useGlobalId, scrollToElement } from '@iimm/react-shared';
 import classNames from 'classnames';
@@ -21,135 +43,135 @@ type IPdf = string | File | Blob | ArrayBuffer;
 
 export interface PdfModalViewerProps extends ModalProps {
   /** 必要，传入的文件,支持url/base64/File/ArrayBuffer */
-  file: IPdf | (() => IPdf) | (() => Promise<IPdf>),
+  file: IPdf | (() => IPdf) | (() => Promise<IPdf>);
 
   /** 手动指定的文件名(用于标题展示和下载) */
-  fileName?: string,
+  fileName?: string;
 
   /** 全屏（仅初始值有效,改变不会更新,应由内部工具栏控制）?  */
-  fullScreen?: boolean,
+  fullScreen?: boolean;
 
   /** 获取内部setOpen操作方法的ref */
-  setOpenRef?: MutableRefObject<{setOpen: (open: boolean) => void}>,
+  setOpenRef?: MutableRefObject<{ setOpen: (open: boolean) => void }>;
   /** 传递给react-pdf的Document组件的props */
-  documentProps?: DocumentProps,
+  documentProps?: DocumentProps;
   /** 显示顶部工具条?
    * @default true
    */
-  showToolbar?: boolean,
+  showToolbar?: boolean;
   /** 传递给toolbar顶层的className(拥有1个默认cls:pdf-viewer-toolbar) */
-  toolbarClassName?: string,
+  toolbarClassName?: string;
   /** 显示控制全屏的按钮?
    * @default true
    */
-  showFullScreen?: boolean,
+  showFullScreen?: boolean;
   /** 初始fullScreen状态 */
-  defaultFullScreen?: boolean,
+  defaultFullScreen?: boolean;
   /** 响应式全屏?(低于断点自动全屏，高于断点自动退出全屏)
    * @default true
-  */
-  responsive?: boolean,
+   */
+  responsive?: boolean;
   /** 响应式断点
    * @default 'sm'
    */
-  breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number,
+  breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
 
   /** 显示旋转页面按钮?
    * @default true
    */
-  showRotate?: boolean,
+  showRotate?: boolean;
   /** 默认旋转角度
    * @default 0
    */
-  defaulRotate?: number,
+  defaulRotate?: number;
   /** 角度变化时触发 */
-  onRotateChange?: (rawRotate: number, newRotate: number) => void,
+  onRotateChange?: (rawRotate: number, newRotate: number) => void;
 
   /** 显示当前缩放比例?
    * @default true
    */
-  showScale?: boolean,
+  showScale?: boolean;
   /** 默认缩放比例
    * @default 1
    */
-  defaultScale?: number,
+  defaultScale?: number;
   /** 最大放大比例
    * @default 10
    */
-  maxScale?: number,
+  maxScale?: number;
   /** 最小缩小比例
    * @default 1
    */
-  minScale?: number,
+  minScale?: number;
   /** 显示旋转角度的步进按钮?
    * @default true
    */
-  showScaleStep?: boolean,
+  showScaleStep?: boolean;
   /** 缩放比例时触发 */
-  onScaleChange?: (rawScale: number, newScale: number) => void,
+  onScaleChange?: (rawScale: number, newScale: number) => void;
 
   /** 显示当前页码?
    * @default true,
    */
-  showPagination?: boolean,
+  showPagination?: boolean;
   /** 初始页码 */
-  defaultPageNumber?: number,
+  defaultPageNumber?: number;
   /** 显示跳转到首页按钮?
    * @default true
    */
-  showFirstPage?: boolean,
+  showFirstPage?: boolean;
   /** 显示跳转到尾页按钮
    * @default true
    */
-  showLastPage?: boolean,
+  showLastPage?: boolean;
   /** 显示上一页/下一页按钮?
    * @default true
    */
-  showPageStep?: boolean,
+  showPageStep?: boolean;
   /** 页码变动时触发 */
-  onPageNumberChange?: (rawPageNumber: number, newPageNubmer: number) => void,
+  onPageNumberChange?: (rawPageNumber: number, newPageNubmer: number) => void;
   /** 滚动页面时更新页码显示?
    * @default true
    */
-  updatePageOnScroll?: boolean,
+  updatePageOnScroll?: boolean;
 
   /** 显示重置设置按钮?
    * @default true
    */
-  showReset?: boolean,
+  showReset?: boolean;
   /** 点击重置触发 */
-  onReset?: () => void,
+  onReset?: () => void;
 
   /** 显示重载文件按钮?
    * @default true
    */
-  showReload?: boolean,
+  showReload?: boolean;
   /** 重载文件后触发 */
-  onReload?: () => void,
+  onReload?: () => void;
   /** 当该值变化时会触发文件重载(因为只要获取了文件，默认不会再触发重载了,此prop为了实现外部自动触发文件重载)
    * @default 0
-  */
-  shouldReload?: any,
+   */
+  shouldReload?: any;
 
   /** 显示下载按钮?
    * @default true
    */
-  showDownload?: boolean,
+  showDownload?: boolean;
   /** 下载成功时触发 */
-  onDownloadSuccess?: (pdf: IPdf, fileName?: string) => void | Promise<void>,
+  onDownloadSuccess?: (pdf: IPdf, fileName?: string) => void | Promise<void>;
   /** 现在失败时触发 */
-  onDownloadFail?: (pdf: IPdf, fileName?: string) => void | Promise<void>,
+  onDownloadFail?: (pdf: IPdf, fileName?: string) => void | Promise<void>;
   /** 点击下载开始时触发,可以处理一些消息提醒之类的(如果返回值是false则不会开始下载) */
-  onDownloadStart?: (pdf: IPdf, fileName?: string) => void | boolean,
+  onDownloadStart?: (pdf: IPdf, fileName?: string) => void | boolean;
 
   /** React-pdf的Document加载成功后触发，可以用来处理记录文件已阅等操作 */
-  onPdfLoadSuccess?: (pdf: IPdf, fileName?: string) => void,
+  onPdfLoadSuccess?: (pdf: IPdf, fileName?: string) => void;
   /** 从file-prop获取pdf资源错误时触发 */
-  onPdfFetchError?: (file: IPdf | (() => IPdf) | (() => Promise<IPdf>), fileName?: string) => void,
+  onPdfFetchError?: (file: IPdf | (() => IPdf) | (() => Promise<IPdf>), fileName?: string) => void;
 
-  defaultRotate?: number,
+  defaultRotate?: number;
 
-  pdfToolbarProps?: DialogContentProps
+  pdfToolbarProps?: DialogContentProps;
 }
 
 export { pdfjs };
@@ -164,20 +186,57 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
  * ```
  */
 export const PdfModalViewer = (props: PdfModalViewerProps) => {
-  const { file, fileName: fileNameProp, trigger, title,
-    showToolbar, toolbarClassName,
-    showFullScreen, defaultFullScreen, responsive, breakpoint = 'sm', fullWidth, fullScreen: fullScreenProp,
-    showRotate, onRotateChange, defaultRotate,
-    showScale, onScaleChange, maxScale = 10, minScale = 0.1, defaultScale, showScaleStep,
-    showReset, onReset,
-    showReload, onReload, shouldReload,
-    showDownload, onDownloadSuccess, onDownloadFail, onDownloadStart,
-    defaultPageNumber, showPagination, showFirstPage, showLastPage, showPageStep, updatePageOnScroll, onPageNumberChange, onPdfLoadSuccess, onPdfFetchError,
-    documentProps, contentProps,
+  const {
+    file,
+    fileName: fileNameProp,
+    trigger,
+    title,
+    showToolbar,
+    toolbarClassName,
+    showFullScreen,
+    defaultFullScreen,
+    responsive,
+    breakpoint = 'sm',
+    fullWidth,
+    fullScreen: fullScreenProp,
+    showRotate,
+    onRotateChange,
+    defaultRotate,
+    showScale,
+    onScaleChange,
+    maxScale = 10,
+    minScale = 0.1,
+    defaultScale,
+    showScaleStep,
+    showReset,
+    onReset,
+    showReload,
+    onReload,
+    shouldReload,
+    showDownload,
+    onDownloadSuccess,
+    onDownloadFail,
+    onDownloadStart,
+    defaultPageNumber,
+    showPagination,
+    showFirstPage,
+    showLastPage,
+    showPageStep,
+    updatePageOnScroll,
+    onPageNumberChange,
+    onPdfLoadSuccess,
+    onPdfFetchError,
+    documentProps,
+    contentProps,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    open: openProp, setOpen: setOpenProp, setOpenRef,
+    open: openProp,
+    setOpen: setOpenProp,
+    setOpenRef,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    content, children, withDialogContentWrapper, pdfToolbarProps,
+    content,
+    children,
+    withDialogContentWrapper,
+    pdfToolbarProps,
     ...restProps
   } = props;
   const theme = useTheme();
@@ -186,14 +245,18 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
   const shouldReloadRef = useRef(0);
   const id = useGlobalId();
   const [ key, setKey ] = useSafeState<number>(0);
-  const [ open, setOpen ] = useControllableValue(props, { defaultValue: false, valuePropName: 'open', trigger: 'setOpen' });
+  const [ open, setOpen ] = useControllableValue(props, {
+    defaultValue: false,
+    valuePropName: 'open',
+    trigger: 'setOpen',
+  });
   const [ fetchLoading, setFetchLoading ] = useSafeState<boolean>(false);
   const [ pdf, setPdf ] = useSafeState<IPdf>();
   const [ fileName, setFileName ] = useSafeState<string>(fileNameProp || '');
   const [ numPages, setNumPages ] = useSafeState<number>();
   const [ pageNumber, setPageNumber ] = useSafeState<number>();
   const [ searchText, setSearchText ] = useSafeState('');
-  const [ fullScreen, setFullScreen ] = useSafeState(() => !!(defaultFullScreen));
+  const [ fullScreen, setFullScreen ] = useSafeState(() => !!defaultFullScreen);
   const [ rotate, setRotate ] = useSafeState(defaultRotate || 0);
   const [ scale, setScale ] = useSafeState(defaultScale || 1);
   useImperativeHandle(setOpenRef, () => ({ setOpen }), [ setOpen ]);
@@ -206,7 +269,9 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       setFullScreen(false);
     }
   });
-  useEffect(() => { handleResponsive(down); }, [ down ]);
+  useEffect(() => {
+    handleResponsive(down);
+  }, [ down ]);
   const handleRotate = useMemoizedFn((direction) => {
     let newRotate = rotate;
     if (direction === 'reset') {
@@ -234,8 +299,12 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     if (scale !== (defaultScale || 1)) {
       setScale(defaultScale || 1);
     }
-    if (searchText) { setSearchText(''); }
-    if (rotate !== (defaultRotate || 0)) { setRotate(defaultRotate || 0); }
+    if (searchText) {
+      setSearchText('');
+    }
+    if (rotate !== (defaultRotate || 0)) {
+      setRotate(defaultRotate || 0);
+    }
     if (manual) onReset?.();
   });
   const fetchPdf = useMemoizedFn(async (manual = false) => {
@@ -264,8 +333,8 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       if (!pdfName) {
         if (typeof pdfFile === 'string' && !pdfFile.startsWith('data') && pdfFile.includes('/')) {
           pdfName = pdfFile.slice(pdfFile.lastIndexOf('/') + 1).split(/[?#]/)[0];
-        } else if ((pdfFile instanceof File || pdfFile instanceof Blob) && pdfFile?.name) {
-          pdfName = pdfFile.name;
+        } else if ((pdfFile instanceof File || pdfFile instanceof Blob) && (pdfFile as any)?.name) {
+          pdfName = (pdfFile as any).name;
         }
       }
       setKey((s) => s + 1);
@@ -279,11 +348,15 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     setFetchLoading(false);
     onReload?.();
   });
-  useEffect(() => { if (open) { fetchPdf(); } }, [ file, open, shouldReload ]);
+  useEffect(() => {
+    if (open) {
+      fetchPdf();
+    }
+  }, [ file, open, shouldReload ]);
   const onLoadSuccess = useMemoizedFn((pdfInfo) => {
     const { numPages } = pdfInfo;
     setNumPages(numPages);
-    setPageNumber((defaultPageNumber && defaultPageNumber <= numPages) ? defaultPageNumber : 1);
+    setPageNumber(defaultPageNumber && defaultPageNumber <= numPages ? defaultPageNumber : 1);
     // @ts-ignore
     onPdfLoadSuccess?.(pdf, fileName);
     if (documentProps?.onLoadSuccess) {
@@ -291,9 +364,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     }
   });
   const highlightPattern = useMemoizedFn((text, searchText) => {
-    return searchText
-      ? text.replace(new RegExp(searchText, 'g'), `<mark>${searchText}</mark>`)
-      : text;
+    return searchText ? text.replace(new RegExp(searchText, 'g'), `<mark>${searchText}</mark>`) : text;
   });
   const customTextRenderer = useMemoizedFn((textItem) => highlightPattern(textItem.str, searchText));
   const handlePageChange = useMemoizedFn((num, scrollTo = true) => {
@@ -352,8 +423,12 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     }
     const min = Math.round(minScale * 100 || 10);
     const max = Math.round(maxScale * 100 || 1000);
-    if (newScale <= min) { newScale = min; }
-    if (newScale >= max) { newScale = max; }
+    if (newScale <= min) {
+      newScale = min;
+    }
+    if (newScale >= max) {
+      newScale = max;
+    }
     if (newScale !== rawScale) {
       setScale(newScale / 100);
       onScaleChange?.(rawScale / 100, newScale / 100);
@@ -373,34 +448,31 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       {...restProps}
     >
       {showToolbar && !fetchLoading && (
-        <DialogContent {...(pdfToolbarProps || {})} className={classNames('pdf-viewer-toolbar', toolbarClassName, pdfToolbarProps?.className)}>
+        <DialogContent
+          {...(pdfToolbarProps || {})}
+          className={classNames('pdf-viewer-toolbar', toolbarClassName, pdfToolbarProps?.className)}
+        >
           {showFirstPage && !down && !!numPages && (
-            <Tooltip arrow placement='top' title='跳转到首页'>
-              <IconButton
-                size='small' color='primary'
-                onClick={() => handlePageChange(1)}
-              >
+            <Tooltip arrow placement="top" title="跳转到首页">
+              <IconButton size="small" color="primary" onClick={() => handlePageChange(1)}>
                 <FirstPage />
               </IconButton>
             </Tooltip>
           )}
           {showPageStep && !!numPages && (
-            <Tooltip arrow placement='top' title='上一页'>
-              <IconButton
-                size='small' color='primary'
-                onClick={() => handlePageChange('previous')}
-              >
+            <Tooltip arrow placement="top" title="上一页">
+              <IconButton size="small" color="primary" onClick={() => handlePageChange('previous')}>
                 <NavigateBefore />
               </IconButton>
             </Tooltip>
           )}
           {showPagination && !!numPages && (
-            <Box className='pdf-viewer-toolbar-pages'>
+            <Box className="pdf-viewer-toolbar-pages">
               <JumpToPage
                 handlePageChange={handlePageChange}
                 // numPages={numPages}
                 trigger={
-                  <Tooltip arrow placement='top' title='跳转页面'>
+                  <Tooltip arrow placement="top" title="跳转页面">
                     <Box
                       children={pageNumber}
                       sx={{ border: '1px solid #2196f3', minWidth: '2em', textAlign: 'center' }}
@@ -412,100 +484,88 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
             </Box>
           )}
           {showPageStep && !!numPages && (
-            <Tooltip arrow placement='top' title='下一页'>
-              <IconButton
-                size='small' color='primary'
-                onClick={() => handlePageChange('next')}
-              >
+            <Tooltip arrow placement="top" title="下一页">
+              <IconButton size="small" color="primary" onClick={() => handlePageChange('next')}>
                 <NavigateNext />
               </IconButton>
             </Tooltip>
           )}
           {showLastPage && !down && !!numPages && (
-            <Tooltip arrow placement='top' title='跳转到最后1页'>
-              <IconButton
-                size='small' color='primary'
-                onClick={() => handlePageChange(numPages)}
-              >
+            <Tooltip arrow placement="top" title="跳转到最后1页">
+              <IconButton size="small" color="primary" onClick={() => handlePageChange(numPages)}>
                 <LastPage />
               </IconButton>
             </Tooltip>
           )}
           {showRotate && !!numPages && (
-            <Tooltip arrow placement='top' title='顺时针旋转'>
-              <IconButton size='small' color='primary' onClick={() => handleRotate('right')}>
+            <Tooltip arrow placement="top" title="顺时针旋转">
+              <IconButton size="small" color="primary" onClick={() => handleRotate('right')}>
                 <Rotate90DegreesCwTwoTone />
               </IconButton>
             </Tooltip>
           )}
           {showRotate && !down && !!numPages && (
-            <Box
-              sx={{ border: '0.5px solid #2196f3', minWidth: '2em', textAlign: 'center' }}
-              children={`${rotate}°`}
-            />
+            <Box sx={{ border: '0.5px solid #2196f3', minWidth: '2em', textAlign: 'center' }} children={`${rotate}°`} />
           )}
           {showRotate && !!numPages && (
-            <Tooltip arrow placement='top' title='逆时针旋转'>
-              <IconButton size='small' color='primary' onClick={() => handleRotate('left')}>
+            <Tooltip arrow placement="top" title="逆时针旋转">
+              <IconButton size="small" color="primary" onClick={() => handleRotate('left')}>
                 <Rotate90DegreesCcwOutlined />
               </IconButton>
             </Tooltip>
           )}
           {showScaleStep && !!numPages && (
-            <Tooltip arrow placement='top' title='缩小视图'>
-              <IconButton size='small' color='primary' onClick={() => handleScale('in')}>
+            <Tooltip arrow placement="top" title="缩小视图">
+              <IconButton size="small" color="primary" onClick={() => handleScale('in')}>
                 <ZoomOutOutlined />
               </IconButton>
             </Tooltip>
           )}
           {showScale && !down && !!numPages && (
             <Box
-            // @ts-ignore
+              // @ts-ignore
               children={`${parseInt(scale * 100)}%`}
               sx={{ border: '0.5px solid #2196f3', minWidth: '3em', textAlign: 'center' }}
             />
           )}
           {showScaleStep && !!numPages && (
-            <Tooltip arrow placement='top' title='放大视图'>
-              <IconButton size='small' color='primary' onClick={() => handleScale('out')}>
+            <Tooltip arrow placement="top" title="放大视图">
+              <IconButton size="small" color="primary" onClick={() => handleScale('out')}>
                 <ZoomInOutlined />
               </IconButton>
             </Tooltip>
           )}
           {showDownload && !!numPages && (
-            <Tooltip arrow placement='top' title='文档下载'>
+            <Tooltip arrow placement="top" title="文档下载">
               <IconButton
-                size='small' color='primary'
+                size="small"
+                color="primary"
                 // @ts-ignore
-                onClick={() => generateFileDownload(pdf, fileName, '.pdf', { onDownloadSuccess, onDownloadFail, onDownloadStart })}
+                onClick={() =>
+                  generateFileDownload(pdf, fileName, '.pdf', { onDownloadSuccess, onDownloadFail, onDownloadStart })
+                }
               >
                 <CloudDownloadOutlined />
               </IconButton>
             </Tooltip>
           )}
           {showReload && (
-            <Tooltip arrow placement='top' title='文件重载'>
-              <IconButton size='small' color='secondary'
-                onClick={() => fetchPdf(true)}
-              >
+            <Tooltip arrow placement="top" title="文件重载">
+              <IconButton size="small" color="secondary" onClick={() => fetchPdf(true)}>
                 <Cached />
               </IconButton>
             </Tooltip>
           )}
           {showFullScreen && (
-            <Tooltip arrow placement='top' title={fullScreen ? '取消全屏' : '全屏'}>
-              <IconButton
-                size='small'
-                color='primary'
-                onClick={() => setFullScreen((s) => !s)}
-              >
+            <Tooltip arrow placement="top" title={fullScreen ? '取消全屏' : '全屏'}>
+              <IconButton size="small" color="primary" onClick={() => setFullScreen((s) => !s)}>
                 {fullScreen ? <ZoomInMapOutlined /> : <ZoomOutMapOutlined />}
               </IconButton>
             </Tooltip>
           )}
           {showReset && !!numPages && (
-            <Tooltip arrow placement='top' title='状态重置'>
-              <IconButton size='small' color='primary' onClick={handleReset}>
+            <Tooltip arrow placement="top" title="状态重置">
+              <IconButton size="small" color="primary" onClick={handleReset}>
                 <RestartAlt />
               </IconButton>
             </Tooltip>
@@ -515,7 +575,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       <DialogContent {...contentProps} sx={{ px: 0, py: '8px', ...(contentProps?.sx || {}), flex: 1 }} ref={contentRef}>
         {pdf ? (
           <Document {...(documentProps || {})} key={key} file={pdf} onLoadSuccess={onLoadSuccess} rotate={rotate}>
-            <Box className='pdf-pages-container'>
+            <Box className="pdf-pages-container">
               {new Array(numPages || 0).fill('').map((el, index) => (
                 <ExtendedPage
                   inViewRef={inViewRef}
@@ -535,11 +595,11 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
           </Document>
         ) : (
           <Box>
-            <NoData noDataText='文件不存在' />
+            <NoData noDataText="文件不存在" />
           </Box>
         )}
       </DialogContent>
-    </Modal >
+    </Modal>
   );
 };
 
