@@ -33,7 +33,7 @@ import type {
   IconButtonProps,
   BoxProps,
 } from "@mui/material";
-import { useId } from "@iimm/react-shared";
+import { useGlobalId } from "@iimm/react-shared";
 import Draggable from "react-draggable";
 
 const ModalOpenContentext = createContext<boolean>(null);
@@ -77,7 +77,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     ...restProps
   } = props;
   const theme = useTheme();
-  const tId = useId();
+  const tId = useGlobalId();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   const draggable = draggableProp && !fullScreen;
@@ -156,7 +156,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               marginLeft={1.5}
               marginY={0.5}
               {...(titleBoxProps || {})}
-              className={classNames(tId, titleBoxProps?.className)}
+              id={tId}
               sx={draggable ? { cursor: "move", ...(titleBoxProps?.sx || {}) } : titleBoxProps?.sx}
             >
               {title}
