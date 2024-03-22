@@ -107,7 +107,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
   const Commponent = useCreation(() => {
     if (!draggable) return undefined;
     return (props: any) => (
-      <Draggable handle={`#${tId}`}>
+      <Draggable handle={`.${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
         <Paper {...props} />
       </Draggable>
     );
@@ -145,11 +145,9 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
             alignItems="start"
             bgcolor="#f5f5f5"
             {...(titleProps || {})}
-            className={classNames("dialog-draggable-title", titleProps?.className)}
             sx={{ padding: 0, ...(titleProps?.sx || {}) }}
           >
             <Box
-              id={tId}
               flex={1}
               fontSize="16px"
               height="100%"
@@ -158,6 +156,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               marginLeft={1.5}
               marginY={0.5}
               {...(titleBoxProps || {})}
+              className={classNames(tId, titleBoxProps?.className)}
               sx={draggable ? { cursor: "move", ...(titleBoxProps?.sx || {}) } : titleBoxProps?.sx}
             >
               {title}
