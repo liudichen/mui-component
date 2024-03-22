@@ -107,7 +107,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
   const Commponent = useCreation(() => {
     if (!draggable) return undefined;
     return (props: any) => (
-      <Draggable handle={`.${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+      <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
         <Paper {...props} />
       </Draggable>
     );
