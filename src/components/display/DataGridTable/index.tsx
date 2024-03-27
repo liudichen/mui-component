@@ -69,8 +69,8 @@ export const initColumn = (
     } else {
       initInfo.type = type;
       initInfo.width = type === "date" ? 100 : 160;
-      initInfo.renderCell = ({ value }) =>
-        value ? dayjs(value).format(type === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm:ss") : "-";
+      initInfo.valueGetter = ({ value }) =>
+        value ? dayjs(value).format(type === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm:ss") : null;
     }
   }
   if (titleAlign) {
