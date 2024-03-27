@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import React from "react";
+import React, { ReactNode } from "react";
 import { useCreation } from "ahooks";
 import { Box, Tooltip } from "@mui/material";
 import type { BoxProps, TooltipProps } from "@mui/material";
@@ -20,7 +20,9 @@ import { NoData as NoRowsOverlay } from "../NoData";
 import { DataGridPagination } from "./DataGridPagination";
 import { StatusRender } from "../StatusRender";
 import type { DataGridPaginationProps } from "./DataGridPagination";
-import type { IStatusConvertRelateProps } from "../StatusRender";
+import type { shownType } from "../StatusRender";
+
+const statusRelateFnConvert = (fn: Function, row: any) => (fn ? (status?: string) => fn(status, row) : undefined);
 
 export const initColumn = (
   col: DataGridTableColumn,
@@ -51,13 +53,13 @@ export const initColumn = (
     if (!["status", "date", "dateTime"].includes(type)) {
       initInfo.type = type;
     } else if (type === "status") {
-      initInfo.renderCell = ({ value }) => (
+      initInfo.renderCell = ({ value, row }) => (
         <StatusRender
           status={value}
-          statusColorConvert={statusColorConvert}
-          statusTextConvert={statusTextConvert}
-          statusTypeConvert={statusTypeConvert}
-          statusConvert={statusConvert}
+          statusColorConvert={statusRelateFnConvert(statusColorConvert, row)}
+          statusTextConvert={statusRelateFnConvert(statusTextConvert, row)}
+          statusTypeConvert={statusRelateFnConvert(statusTypeConvert, row)}
+          statusConvert={statusRelateFnConvert(statusConvert, row)}
           deleteLine={statusDeleteLine}
         />
       );
@@ -231,10 +233,21 @@ DataGridTable.defaultProps = {
 
 DataGridTable.displayName = "iimm.Mui.DataGridTable";
 
+interface StatusConvertRelateProps<Row extends object> {
+  /** 指定状态颜色 */
+  statusColorConvert?: (status?: string, row?: Row) => string;
+  /** 指定状态-> success等显示态的对应关系 */
+  statusTypeConvert?: (status?: string, row?: Row) => shownType;
+  /** 指定状态对应的显示文本 */
+  statusTextConvert?: (status?: string, row?: Row) => ReactNode;
+  /** 状态转换（原始状态转化为内置的状态） */
+  statusConvert?: (status?: string, row?: Row) => string;
+}
+
 /** 自定义的GridTableColumn条目类型 */
 export interface DataGridTableColumn<Row extends object = any>
   extends Partial<Omit<GridActionsColDef<Row>, "type">>,
-    IStatusConvertRelateProps {
+    StatusConvertRelateProps<Row> {
   /**type=status时删除线? */
   statusDeleteLine?: boolean;
   type?: "string" | "number" | "date" | "dateTime" | "boolean" | "singleSelect" | "actions" | "status";

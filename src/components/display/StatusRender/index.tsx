@@ -126,7 +126,7 @@ export const StatusRender = (props: StatusRenderProps) => {
 
 StatusRender.displayName = "iimm.Mui.StatusRender";
 
-type shownType = "success" | "success2" | "warning" | "error" | "process" | "process0" | "default" | "edit";
+export type shownType = "success" | "success2" | "warning" | "error" | "process" | "process0" | "default" | "edit";
 
 export interface IStatusConvertRelateProps {
   /** 指定状态颜色 */
@@ -152,6 +152,6 @@ export interface StatusRenderProps extends IStatusConvertRelateProps {
    * @default '-''
    */
   noStatusText?: ReactNode;
-  /**废弃/作废/无效/禁用是否显示删除线 */
+  /** 废弃/作废/无效/禁用是否显示删除线 */
   deleteLine?: boolean;
 }
