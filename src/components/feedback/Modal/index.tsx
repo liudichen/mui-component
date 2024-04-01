@@ -1,10 +1,12 @@
-import React, {
+import {
   createContext,
   useContext,
   forwardRef,
   useImperativeHandle,
   type PropsWithChildren,
   type ReactNode,
+  type Dispatch,
+  type SetStateAction,
 } from "react";
 import { useCreation, useControllableValue, useMemoizedFn } from "ahooks";
 import {
@@ -21,7 +23,6 @@ import {
   Paper,
   Tooltip,
 } from "@mui/material";
-import classNames from "classnames";
 import { IconCircleX } from "@tabler/icons-react";
 import type {
   DialogProps,
@@ -228,7 +229,7 @@ export interface ModalProps extends Omit<DialogProps, "open" | "title" | "conten
   /** 受控属性,控制是否开启 */
   open?: boolean;
   /** 受控属性 */
-  setOpen?: (open: boolean) => void;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
   /** 显示底部按钮区域? */
   showActions?: boolean;
   /** 显示右上角的关闭按钮? */
