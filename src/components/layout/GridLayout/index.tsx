@@ -1,22 +1,22 @@
-import { Children } from 'react';
-import { Grid, type GridProps } from '@mui/material';
+import { Children } from "react";
+import { Grid, type GridProps } from "@mui/material";
 
-export interface GridLayoutProps extends Omit<GridProps, 'container'> {
+export interface GridLayoutProps extends Omit<GridProps, "container"> {
   /** 其他传递给子组件<Grid item>的props
    * @default {alignItems:'center',justityContent:'center'}
    */
-  itemProps?: Omit<GridProps, 'container' | 'item'>,
+  itemProps?: Omit<GridProps, "container" | "item">;
 }
 
-interface Cols {
-  xs?: GridProps['xs'],
-  sm?: GridProps['xs'],
-  md?: GridProps['xs'],
-  lg?: GridProps['xs'],
-  xl?: GridProps['xs'],
+export interface GridLayoutCols {
+  xs?: GridProps["xs"];
+  sm?: GridProps["xs"];
+  md?: GridProps["xs"];
+  lg?: GridProps["xs"];
+  xl?: GridProps["xs"];
 }
 
-const getMixCols = (parentCols: Cols, childProps?: Cols) => {
+const getMixCols = (parentCols: GridLayoutCols, childProps?: GridLayoutCols) => {
   const cols = { ...parentCols };
   const { xs, sm, md, lg, xl } = childProps || {};
   if (xs !== undefined) cols.xs = xs;
@@ -33,15 +33,23 @@ export const GridLayout = (props: GridLayoutProps) => {
   const parentCols = { xs, sm, md, lg, xl };
   return (
     <Grid spacing={1} {...restProps} container>
-      { Children.map(children, (child) => {
-        if (!child) { return null; }
+      {Children.map(children, (child) => {
+        if (!child) {
+          return null;
+        }
         // @ts-ignore
-        if ([ 'Grid', 'Grid2' ].includes(child?.type?.displayName || child?.type?.render?.name)) {
+        if (["Grid", "Grid2"].includes(child?.type?.displayName || child?.type?.render?.name)) {
           return child;
         }
         return (
-        // @ts-ignore
-          <Grid alignItems='center' justifyContent='center' {...(itemProps || {})} {...getMixCols(parentCols, child?.props)} item>
+          // @ts-ignore
+          <Grid
+            alignItems="center"
+            justifyContent="center"
+            {...(itemProps || {})}
+            {...getMixCols(parentCols, (child as any)?.props)}
+            item
+          >
             {child}
           </Grid>
         );
