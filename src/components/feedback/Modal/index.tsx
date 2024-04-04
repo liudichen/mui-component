@@ -220,7 +220,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
           </DialogTitle>
         )}
         {withDialogContentWrapper ? (
-          <DialogContent onClick={stopPropagationOnClick} sx={{ px: 0.75, mt: 0.75 }} {...(contentProps || {})}>
+          <DialogContent onClick={stopPropagationOnClick} sx={{ px: 1.5, mt: 0.75 }} {...(contentProps || {})}>
             {content ?? children}
           </DialogContent>
         ) : (
