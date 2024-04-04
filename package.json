@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.15.1",
+  "version": "1.16.0",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -59,8 +59,8 @@
   "devDependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.14",
-    "@mui/material": "^5.15.14",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
     "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
     "@types/react": "^18.2.74",
