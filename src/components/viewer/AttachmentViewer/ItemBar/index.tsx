@@ -2,6 +2,7 @@ import { type ReactNode, type ComponentType } from "react";
 import { useCreation, useDebounceFn } from "ahooks";
 import { Box, IconButton, Tooltip, type BoxProps } from "@mui/material";
 import { CloudDownloadOutlined, PreviewOutlined } from "@mui/icons-material";
+import { IconError404 } from "@tabler/icons-react";
 import { generateFileDownload } from "@iimm/shared";
 import clsx from "classnames";
 
@@ -93,7 +94,8 @@ export const ItemBar = (props: ItemBarProps) => {
   const fileInfo = useCreation(() => fileInfoParser(file, fileTypeIconSize), [file]);
   const { run: download } = useDebounceFn(
     (file) => {
-      const start = onFileDownloadStart?.(fileInfo.url, fileInfo?.fileName);
+      if (!fileInfo) return;
+      const start = onFileDownloadStart?.(fileInfo?.url, fileInfo?.fileName);
       if (start !== false) {
         generateFileDownload(file);
         onFileDownload?.(file);
@@ -110,7 +112,11 @@ export const ItemBar = (props: ItemBarProps) => {
       {...itemBarBoxProps}
       className={clsx("attachmentViewer-itemBar", itemBarClassName)}
     >
-      {showFileTypeIcon && <Box className="attachmentViewer-itemBar-fileIcon">{fileInfo.icon}</Box>}
+      {showFileTypeIcon && (
+        <Box className="attachmentViewer-itemBar-fileIcon">
+          {fileInfo?.icon || <IconError404 color="red" size={24} />}
+        </Box>
+      )}
       <Box
         flex={1}
         className={clsx({
@@ -118,43 +124,49 @@ export const ItemBar = (props: ItemBarProps) => {
           "text-ellipsis": !fileNameWrap,
         })}
       >
-        <Tooltip title={fileInfo.fileName} arrow placement="top">
-          <span>{fileInfo.fileName}</span>
-        </Tooltip>
-      </Box>
-      <Box className="attachmentViewer-itemBar-action">
-        {!!fileInfo.view && showPreview && (
-          <FilePreviewRender
-            fileSrc={fileInfo.url}
-            modalProps={previewModalProps}
-            pdfViewerProps={pdfViewerProps}
-            type={fileInfo.type}
-            fileName={fileInfo.fileName}
-            view={fileInfo.view}
-            trigger={
-              <Tooltip
-                arrow
-                placement="top"
-                title={typeof previewTooltip === "function" ? previewTooltip(fileInfo.url) : previewTooltip}
-              >
-                <IconButton color="info">{previewIcon}</IconButton>
-              </Tooltip>
-            }
-            showDownload={showDownload}
-          />
-        )}
-        {!fileInfo.view && showDownload && (
-          <Tooltip
-            arrow
-            placement="top"
-            title={typeof downloadTooltip === "function" ? downloadTooltip(fileInfo.url) : downloadTooltip}
-          >
-            <IconButton color="secondary" onClick={() => download(file)}>
-              {downloadIcon}
-            </IconButton>
+        {!!fileInfo?.fileName ? (
+          <Tooltip title={fileInfo.fileName} arrow placement="top">
+            <span>{fileInfo.fileName}</span>
           </Tooltip>
+        ) : (
+          <span style={{ color: "red", fontWeight: "bold" }}>获取文件信息出错了</span>
         )}
       </Box>
+      {!!fileInfo?.url && (
+        <Box className="attachmentViewer-itemBar-action">
+          {!!fileInfo?.view && showPreview && (
+            <FilePreviewRender
+              fileSrc={fileInfo.url}
+              modalProps={previewModalProps}
+              pdfViewerProps={pdfViewerProps}
+              type={fileInfo.type}
+              fileName={fileInfo.fileName}
+              view={fileInfo.view}
+              trigger={
+                <Tooltip
+                  arrow
+                  placement="top"
+                  title={typeof previewTooltip === "function" ? previewTooltip(fileInfo.url) : previewTooltip}
+                >
+                  <IconButton color="info">{previewIcon}</IconButton>
+                </Tooltip>
+              }
+              showDownload={showDownload}
+            />
+          )}
+          {!fileInfo?.view && showDownload && (
+            <Tooltip
+              arrow
+              placement="top"
+              title={typeof downloadTooltip === "function" ? downloadTooltip(fileInfo.url) : downloadTooltip}
+            >
+              <IconButton color="secondary" onClick={() => download(file)}>
+                {downloadIcon}
+              </IconButton>
+            </Tooltip>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };

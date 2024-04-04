@@ -11,7 +11,8 @@ import {
 import { type UrlItem } from "./ItemBar";
 
 export const getFileInfo = (file: UrlItem, iconSize = 24) => {
-  const url = typeof file === "string" ? file : file.url;
+  const url = typeof file === "string" ? file : file?.url;
+  if (!url || typeof url !== "string") return null;
   const urlPure = url.replace(/\?.*$/, "");
   const fileName = typeof file === "object" && !!file?.name ? file.name : null;
 
