@@ -1,12 +1,10 @@
 import {
-  createContext,
-  useContext,
   forwardRef,
-  useImperativeHandle,
   type PropsWithChildren,
   type ReactNode,
   type Dispatch,
   type SetStateAction,
+  useEffect,
 } from "react";
 import { useCreation, useControllableValue, useMemoizedFn } from "ahooks";
 import {
@@ -23,7 +21,7 @@ import {
   Paper,
   Tooltip,
 } from "@mui/material";
-import { IconCircleX } from "@tabler/icons-react";
+import { IconArrowsMaximize, IconArrowsMinimize, IconCircleX } from "@tabler/icons-react";
 import type {
   DialogProps,
   DialogTitleProps,
@@ -33,12 +31,12 @@ import type {
   ButtonProps,
   IconButtonProps,
   BoxProps,
+  PaperProps,
 } from "@mui/material";
-import { useGlobalId } from "@iimm/react-shared";
+import { Space, useGlobalId } from "@iimm/react-shared";
 import Draggable from "react-draggable";
 
-const ModalOpenContentext = createContext<boolean>(null);
-export const useModalOpen = () => useContext(ModalOpenContentext);
+const stopPropagationOnClick = (e?: React.MouseEvent<HTMLElement>) => e?.stopPropagation();
 
 export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref) => {
   const {
@@ -46,17 +44,17 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     triggerProps,
     onConfirm: onConfirmProp,
     onCancel: onCancelProp,
-    cancelText,
-    confirmText,
-    showConfirm,
-    showCancel,
+    cancelText = "取消",
+    confirmText = "确认",
+    showConfirm = true,
+    showCancel = true,
     cancelProps,
     confirmProps,
     extraActions,
-    showCloseIcon,
+    showCloseIcon = true,
     closeIconButtonProps,
     CloseIcon,
-    showActions,
+    showActions = true,
     title,
     titleProps,
     titleBoxProps,
@@ -69,52 +67,81 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     children,
     disabled,
     content,
-    withDialogContentWrapper,
+    withDialogContentWrapper = true,
     PaperComponent,
     fullScreen: fullScreenProp,
+    setFullScreen: setFullScreenProp,
+    showFullScreen,
     draggable: draggableProp,
     responsive,
     breakpoint = "md",
+    fullWidth = true,
     ...restProps
   } = props;
+
   const theme = useTheme();
   const tId = useGlobalId();
+
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
-  const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
-  const draggable = draggableProp && !fullScreen;
+
+  const [fullScreen, setFullScreen] = useControllableValue(props, {
+    trigger: "setFullScreen",
+    valuePropName: "fullScreen",
+    defaultValue: false,
+  });
+
+  const draggable = !!draggableProp && !fullScreen;
+
   const [open, setOpen] = useControllableValue(props, {
     defaultValue: false,
     valuePropName: "open",
     trigger: "setOpen",
   });
+
   const onClose = useMemoizedFn(async (e?: any, reason?: any) => {
     const res = (await onCloseProp?.(e, reason)) as any;
     if (res !== false) {
       setOpen(false);
     }
   });
+
+  const onFullScreenClick = useCreation(() => () => setFullScreen((f) => !f), [setFullScreen]);
+
+  const syncResponsiveFullScreen = useMemoizedFn(() => {
+    if (!responsive) return;
+    if (down && !fullScreen) {
+      setFullScreen(true);
+    } else if (!down && fullScreen) {
+      setFullScreen(false);
+    }
+  });
+
+  useEffect(() => {
+    syncResponsiveFullScreen();
+  }, [responsive, down]);
+
   const onConfirm = useMemoizedFn(async () => {
     const res = await onConfirmProp?.();
     if (res !== false) {
       onClose();
     }
   });
+
   const onCancel = useMemoizedFn(async () => {
     const res = await onCancelProp?.();
     if (res !== false) {
       onClose();
     }
   });
+
   const Commponent = useCreation(() => {
     if (!draggable) return undefined;
-    return (props: any) => (
+    return (props: PaperProps) => (
       <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
         <Paper {...props} />
       </Draggable>
     );
   }, [draggable, tId]);
-
-  useImperativeHandle(ref, () => ({ onClose }), [onClose]);
 
   return (
     <>
@@ -134,17 +161,20 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
         </Link>
       )}
       <Dialog
+        ref={ref}
         {...restProps}
+        fullWidth={fullWidth}
         fullScreen={fullScreen}
         PaperComponent={PaperComponent ?? Commponent}
         open={!!open}
         onClose={onClose}
       >
-        {(!!title || showCloseIcon) && (
+        {(!!title || showCloseIcon || showFullScreen) && (
           <DialogTitle
             display="flex"
             alignItems="start"
             bgcolor="#f5f5f5"
+            onClick={stopPropagationOnClick}
             {...(titleProps || {})}
             sx={{ padding: 0, ...(titleProps?.sx || {}) }}
           >
@@ -158,33 +188,46 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               marginY={0.5}
               {...(titleBoxProps || {})}
               id={tId}
-              sx={draggable ? { cursor: "move", ...(titleBoxProps?.sx || {}) } : titleBoxProps?.sx}
+              sx={{ minHeight: 24, ...(draggable ? { cursor: "move" } : {}), ...(titleBoxProps?.sx || {}) }}
             >
               {title}
             </Box>
-            {showCloseIcon && (
-              <Tooltip arrow placement="top" title="关闭">
-                <IconButton
-                  sx={{ px: 0.25, py: 0.5 }}
-                  {...(closeIconButtonProps || {})}
-                  aria-label="close"
-                  onClick={onClose}
-                >
-                  {CloseIcon || <IconCircleX size="1.5em" stroke="1.5px" color="#8c8c8c" />}
-                </IconButton>
-              </Tooltip>
-            )}
+            <Space size={4} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              {showFullScreen && (
+                <Tooltip arrow placement="top" title={fullScreen ? "退出全屏" : "全屏"}>
+                  <IconButton color="primary" sx={{ px: 0.25, py: 0.5 }} onClick={onFullScreenClick}>
+                    {fullScreen ? (
+                      <IconArrowsMinimize size="1em" stroke="1.5px" />
+                    ) : (
+                      <IconArrowsMaximize size="1em" stroke="1.5px" />
+                    )}
+                  </IconButton>
+                </Tooltip>
+              )}
+              {showCloseIcon && (
+                <Tooltip arrow placement="top" title="关闭">
+                  <IconButton
+                    sx={{ px: 0.25, py: 0.5 }}
+                    {...(closeIconButtonProps || {})}
+                    aria-label="close"
+                    onClick={onClose}
+                  >
+                    {CloseIcon || <IconCircleX size="1.5em" stroke="1.5px" color="#8c8c8c" />}
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Space>
           </DialogTitle>
         )}
-        <ModalOpenContentext.Provider value={open}>
-          {withDialogContentWrapper ? (
-            <DialogContent {...(contentProps || {})}>{content ?? children}</DialogContent>
-          ) : (
-            content ?? children
-          )}
-        </ModalOpenContentext.Provider>
+        {withDialogContentWrapper ? (
+          <DialogContent onClick={stopPropagationOnClick} sx={{ px: 0.75, mt: 0.75 }} {...(contentProps || {})}>
+            {content ?? children}
+          </DialogContent>
+        ) : (
+          content ?? children
+        )}
         {showActions && (
-          <DialogActions {...(actionsProps || {})}>
+          <DialogActions onClick={stopPropagationOnClick} {...(actionsProps || {})}>
             {extraActions}
             {showCancel && (
               <Button
@@ -210,20 +253,6 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     </>
   );
 });
-
-Modal.defaultProps = {
-  fullWidth: true,
-  showCloseIcon: true,
-  showCancel: true,
-  cancelText: "取消",
-  showConfirm: true,
-  confirmText: "确认",
-  showActions: true,
-  breakpoint: "md",
-  withDialogContentWrapper: true,
-};
-
-Modal.displayName = "iimm.Mui.Modal";
 
 export interface ModalProps extends Omit<DialogProps, "open" | "title" | "content"> {
   /** 受控属性,控制是否开启 */
@@ -289,4 +318,7 @@ export interface ModalProps extends Omit<DialogProps, "open" | "title" | "conten
   breakpoint?: "xs" | "sm" | "md" | "lg" | "xl" | number;
   /** 内容，优先级高于children */
   content?: ReactNode | ReactNode[];
+  setFullScreen?: Dispatch<SetStateAction<boolean>>;
+  /**显示全屏按钮? */
+  showFullScreen?: boolean;
 }
