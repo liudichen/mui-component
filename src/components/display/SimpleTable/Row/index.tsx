@@ -46,6 +46,7 @@ export const Row = (props: any) => {
     columnDefaultWidth,
   } = props;
   const [open, setOpen] = useSafeState(false);
+
   const colSpans = useCreation(() => {
     let cols = columns?.length ?? 0;
     if (showExpandColumn) {
@@ -53,6 +54,7 @@ export const Row = (props: any) => {
     }
     return cols;
   }, [columns?.length, showExpandColumn]);
+
   return (
     <>
       <TableRow>
@@ -88,7 +90,7 @@ export const Row = (props: any) => {
         )}
         {columns?.map((item: SimpleTableColumn, index: number) => (
           <Cell
-            key={index}
+            key={item?.field ?? index}
             row={row}
             rowIndex={rowIndex}
             hideHeader={hideHeader}
