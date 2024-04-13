@@ -63,14 +63,14 @@
     "@mui/material": "^5.15.15",
     "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "@types/react-pdf": "^6.2.0",
     "@types/video-react": "^0.15.6",
     "father": "^4.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
