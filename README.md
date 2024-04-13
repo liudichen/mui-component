@@ -19,78 +19,55 @@ $ npm i mui-component
 
 ```javascript
 // ================容器组件==================
-export * from './components/ContentCard';
+export * from './components/container/ContentCard';
 
-export * from './components/PageContainer';
+export * from './components/container/PageContainer';
 
-export * from './components/Modal/DraggablePaper';
+export * from './components/container/DraggablePaperRender';
 // ====================================
 
 
 // ============ 交互 ===============
-export * from './components/PopConfirm';
+export * from './components/feedback/PopConfirm';
 
-export * from './components/Modal';
+export * from './components/feedback/Modal';
 
-export * from './components/Popover';
+export * from './components/feedback/Popover';
+
+export * from './components/feedback/Loading';
 // =============================
 
 
 // ============ 展示 ==============
-export * from './components/Loading';
-
-export * from './components/Pagination';
-
-export * from './components/DataGridTable';
-export * from './components/DataGridTable/GridToolbars';
-
-export * from './components/StatusRender';
-
-export * from './components/SimpleTable';
-
-export * from './components/ImageCarouselModal';
-
-export * from './components/Result';
-
-export * from './components/NoData';
+export * from './components/display/Pagination';
+export * from './components/display/DataGridTable';
+export * from './components/display/DataGridTable/GridToolbars';
+export * from './components/display/StatusRender';
+export * from './components/display/SimpleTable';
+export * from './components/display/ImageCarouselModal';
+export * from './components/display/Result';
+export * from './components/display/NoData';
 // ===============================
 
 
 // ======== Layout组件 ==========
 
-export * from './components/GridLayout';
+export * from './components/layout/GridLayout';
 
-export * from './components/ScrollToTop';
+export * from './components/layout/ScrollToTop';
 // ==========================
 
 
 // ============= viewer ===============
-export * from './components/PdfModalViewer';
+export * from './components/viewer/PdfModalViewer';
 
-export * from './components/ImageModalViewer';
+export * from './components/viewer/ImageModalViewer';
 
-export * from './components/VideoModalViewer';
+export * from './components/viewer/VideoModalViewer';
 
-export * from './components/AttachmentViewer';
+export * from './components/viewer/AttachmentViewer';
 
-export * from './components/AttachmentModalViewer';
+export * from './components/viewer/AttachmentModalViewer';
 // =========================================
 ```
 
-Build documentation,
-
-```bash
-$ npm run docs:build
-```
-
-Run test,
-
-```bash
-$ npm test
-```
-
-Build library via `father-build`,
-
-```bash
-$ npm run build
-```
