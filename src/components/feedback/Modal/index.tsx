@@ -5,6 +5,7 @@ import {
   type Dispatch,
   type SetStateAction,
   useEffect,
+  type MouseEvent,
 } from "react";
 import { useCreation, useControllableValue, useMemoizedFn } from "ahooks";
 import {
@@ -19,6 +20,7 @@ import {
   useTheme,
   useMediaQuery,
   Tooltip,
+  Paper,
 } from "@mui/material";
 import type {
   DialogProps,
@@ -29,13 +31,13 @@ import type {
   ButtonProps,
   IconButtonProps,
   BoxProps,
+  PaperProps,
 } from "@mui/material";
 import { IconArrowsMaximize, IconArrowsMinimize, IconCircleX } from "@tabler/icons-react";
 import { Space, useGlobalId } from "@iimm/react-shared";
+import Draggable from "react-draggable";
 
-import { DraggablePaperRender } from "../../container";
-
-const stopPropagationOnClick = (e?: React.MouseEvent<HTMLElement>) => e?.stopPropagation();
+const stopPropagationOnClick = (e?: MouseEvent<HTMLElement>) => e?.stopPropagation();
 
 export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref) => {
   const {
@@ -134,15 +136,13 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
   });
 
   const Commponent = useCreation(() => {
-    const ele = !draggable
-      ? undefined
-      : DraggablePaperRender({
-          handle: `${tId}`,
-          cancel: '[class*="MuiDialogContent-root"]',
-        });
-    return ele;
+    if (!draggable) return undefined;
+    return (props: PaperProps) => (
+      <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper {...props} />
+      </Draggable>
+    );
   }, [draggable, tId]);
-
   return (
     <>
       {!!trigger && (
