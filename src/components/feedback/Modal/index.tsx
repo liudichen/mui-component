@@ -143,6 +143,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
       </Draggable>
     );
   }, [draggable, tId]);
+
   return (
     <>
       {!!trigger && (
