@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.16.3",
+  "version": "1.16.4",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -63,7 +63,7 @@
     "@mui/material": "^5.15.15",
     "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/react-pdf": "^6.2.0",
     "@types/video-react": "^0.15.6",
@@ -76,7 +76,7 @@
   "dependencies": {
     "@iimm/icons": "^1.1.0",
     "@iimm/react-shared": "^0.1.2",
-    "@iimm/shared": "^2.4.1",
+    "@iimm/shared": "^2.5.0",
     "@tabler/icons-react": "^2.47.0",
     "ahooks": "^3.7.11",
     "classnames": "^2.5.1",

@@ -8,24 +8,26 @@ import {
   IconWordColorful,
   IconZipColorful,
 } from "@iimm/icons";
+import { getFileNameFromUrl } from "@iimm/shared";
+
 import { type UrlItem } from "./ItemBar";
 
 export const getFileInfo = (file: UrlItem, iconSize = 24) => {
   const url = typeof file === "string" ? file : file?.url;
   if (!url || typeof url !== "string") return null;
-  const urlPure = url.replace(/\?.*$/, "");
-  const fileName = typeof file === "object" && !!file?.name ? file.name : null;
+  let fileName = typeof file === "object" && file?.name ? file.name : null;
+  if (!fileName) fileName = getFileNameFromUrl(url);
 
   const info = {
-    fileName: fileName || urlPure.slice(urlPure.lastIndexOf("/") + 1),
+    fileName,
     icon: <IconFileColorful size={iconSize} />,
     view: false,
     type: "file",
     url,
   };
-  const last = urlPure.lastIndexOf(".");
+  const last = fileName.lastIndexOf(".");
   if (last !== -1) {
-    const ext = urlPure.slice(last + 1).toLowerCase();
+    const ext = fileName.slice(last + 1).toLowerCase();
     switch (ext) {
       case "pdf":
         info.type = "pdf";

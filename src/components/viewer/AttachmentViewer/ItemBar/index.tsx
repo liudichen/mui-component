@@ -40,9 +40,9 @@ export interface ItemBarProps {
   /** 点击文件下载时的回调，可以用来传入消息条等
    * (如果返回false则不会进行后续下载操作)
    */
-  onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean;
+  onFileDownloadStart?: (file: UrlItem, fileName?: string) => void | boolean;
   /** 点击文件下载后的回调 */
-  onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>;
+  onFileDownload?: (file: UrlItem, fileName?: string) => void | Promise<void>;
   /** 预览按钮Tooltip的title*/
   previewTooltip?: ReactNode | ((fileUrl: string) => ReactNode);
   /** 下载按钮Tooltip的title*/
@@ -92,17 +92,19 @@ export const ItemBar = (props: ItemBarProps) => {
     pdfViewerProps,
   } = props;
   const fileInfo = useCreation(() => fileInfoParser(file, fileTypeIconSize), [file]);
+
   const { run: download } = useDebounceFn(
     (file) => {
       if (!fileInfo) return;
-      const start = onFileDownloadStart?.(fileInfo?.url, fileInfo?.fileName);
+      const start = onFileDownloadStart?.(file, fileInfo?.fileName);
       if (start !== false) {
-        generateFileDownload(file);
-        onFileDownload?.(file);
+        generateFileDownload(fileInfo?.url, fileInfo?.fileName);
+        onFileDownload?.(file, fileInfo?.fileName);
       }
     },
     { leading: true, trailing: false }
   );
+
   return (
     <Box
       display="flex"
