@@ -4,6 +4,7 @@ import { Box, IconButton, Tooltip, type BoxProps } from "@mui/material";
 import { CloudDownloadOutlined, PreviewOutlined } from "@mui/icons-material";
 import { IconError404 } from "@tabler/icons-react";
 import { generateFileDownload } from "@iimm/shared";
+import { Space, type SpaceProps } from "@iimm/react-shared";
 import clsx from "classnames";
 
 import { getFileInfo } from "../util";
@@ -20,6 +21,8 @@ interface ObjectUrlItem {
 export type UrlItem = string | ObjectUrlItem;
 
 export interface ItemBarProps {
+  extraAction?: ReactNode;
+  actionSpace?: SpaceProps;
   file: UrlItem;
   /** 文件类型svg图标的大小
    * @default 24
@@ -90,6 +93,8 @@ export const ItemBar = (props: ItemBarProps) => {
     FilePreviewRender = FileViewRender,
     previewModalProps,
     pdfViewerProps,
+    extraAction,
+    actionSpace,
   } = props;
   const fileInfo = useCreation(() => fileInfoParser(file, fileTypeIconSize), [file]);
 
@@ -135,7 +140,7 @@ export const ItemBar = (props: ItemBarProps) => {
         )}
       </Box>
       {!!fileInfo?.url && (
-        <Box className="attachmentViewer-itemBar-action">
+        <Space className="attachmentViewer-itemBar-action" {...(actionSpace || {})}>
           {!!fileInfo?.view && showPreview && (
             <FilePreviewRender
               fileSrc={fileInfo.url}
@@ -167,10 +172,9 @@ export const ItemBar = (props: ItemBarProps) => {
               </IconButton>
             </Tooltip>
           )}
-        </Box>
+          {extraAction || null}
+        </Space>
       )}
     </Box>
   );
 };
-
-// ItemBar.displayName = 'iimm.Mui.AttachmentViewer.ItemBar';

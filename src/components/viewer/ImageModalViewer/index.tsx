@@ -1,54 +1,61 @@
-import type { HTMLAttributes } from 'react';
-import { useSafeState } from 'ahooks';
-import { Box, Button, Dialog, IconButton } from '@mui/material';
-import { Download } from '@mui/icons-material';
-import { IconMaximize, IconMinimize } from '@tabler/icons-react';
-import { generateFileDownload } from '@iimm/shared';
+import type { HTMLAttributes } from "react";
+import { useSafeState } from "ahooks";
+import { Box, Button, Dialog, IconButton } from "@mui/material";
+import { Download } from "@mui/icons-material";
+import { IconMaximize, IconMinimize } from "@tabler/icons-react";
+import { generateFileDownload } from "@iimm/shared";
 
-import { Modal } from '../../feedback';
-import type { ModalProps } from '../../feedback';
+import { Modal } from "../../feedback";
+import type { ModalProps } from "../../feedback";
 
 interface ImageModalViewerProps extends ModalProps {
-  imgSrc: string,
-  showDownload?: boolean,
-  onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
+  imgSrc: string;
+  showDownload?: boolean;
+  onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean;
   /** 点击文件下载后的回调 */
-  onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
-  imgProps?: HTMLAttributes<HTMLImageElement>
+  onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>;
+  imgProps?: HTMLAttributes<HTMLImageElement>;
 }
 
 export const ImageModalViewer = (props: ImageModalViewerProps) => {
   const { imgSrc, showDownload, imgProps, onFileDownload, onFileDownloadStart, ...restProps } = props;
-  const [ fullScreen, setFullScreen ] = useSafeState(false);
+  const [fullScreen, setFullScreen] = useSafeState(false);
   return (
     <Modal
       {...restProps}
-      extraActions={showDownload ? (
-        <Button
-          variant="outlined"
-          startIcon={<Download />}
-          // @ts-ignore
-          onClick={() => generateFileDownload(imgSrc, undefined, undefined, { onDownloadSuccess: onFileDownload, onDownloadStart: onFileDownloadStart })}
-        >
-          下载
-        </Button>
-      ) : undefined}
+      extraActions={
+        showDownload ? (
+          <Button
+            variant="outlined"
+            startIcon={<Download />}
+            // @ts-ignore
+            onClick={() =>
+              generateFileDownload(imgSrc, undefined, undefined, {
+                onDownloadSuccess: onFileDownload,
+                onDownloadStart: onFileDownloadStart,
+              })
+            }
+          >
+            下载
+          </Button>
+        ) : undefined
+      }
     >
-      <Box display='flex' justifyContent='center' overflow='hidden' alignItems='center' height='100%'>
-        <Box position='relative'>
+      <Box display="flex" justifyContent="center" overflow="hidden" alignItems="center" height="100%">
+        <Box position="relative">
           <img
             src={imgSrc}
             style={{
-              maxHeight: '100%',
-              maxWidth: '100%',
-              objectFit: 'contain',
+              maxHeight: "100%",
+              maxWidth: "100%",
+              objectFit: "contain",
             }}
             {...(imgProps || {})}
           />
           <IconButton
             onClick={() => setFullScreen((s) => !s)}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               right: 0,
               bottom: 0,
             }}
@@ -62,25 +69,25 @@ export const ImageModalViewer = (props: ImageModalViewerProps) => {
         onClose={() => setFullScreen(false)}
         fullWidth
         fullScreen
-        sx={{ '& .MuiDialog-paper': { backgroundColor: 'transparent' } }}
+        sx={{ "& .MuiDialog-paper": { backgroundColor: "transparent" } }}
       >
-        <Box display='flex' justifyContent='center' overflow='hidden' alignItems='center' height='100vh'>
-          <Box position='relative'>
+        <Box display="flex" justifyContent="center" overflow="hidden" alignItems="center" height="100vh">
+          <Box position="relative">
             <img
               src={imgSrc}
               style={{
-                maxHeight: '100vh',
-                maxWidth: '100vw',
-                objectFit: 'contain',
+                maxHeight: "100vh",
+                maxWidth: "100vw",
+                objectFit: "contain",
               }}
               {...(imgProps || {})}
             />
             <IconButton
-              color='primary'
-              size='large'
+              color="primary"
+              size="large"
               onClick={() => setFullScreen((s) => !s)}
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 right: 0,
                 bottom: 0,
               }}
@@ -97,10 +104,8 @@ export const ImageModalViewer = (props: ImageModalViewerProps) => {
 ImageModalViewer.defaultProps = {
   fullWidth: true,
   responsive: true,
-  maxWidth: 'md',
-  title: '图片预览',
+  maxWidth: "md",
+  title: "图片预览",
   showConfirm: false,
-  cancelText: '关闭',
+  cancelText: "关闭",
 };
-
-// ImageModalViewer.displayName = 'iimm.Mui.ImageModalViewer';
