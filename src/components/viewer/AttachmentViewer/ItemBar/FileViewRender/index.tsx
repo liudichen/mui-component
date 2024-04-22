@@ -1,29 +1,30 @@
-import { type ReactNode } from 'react';
-import { Alert, Button } from '@mui/material';
-import { Download } from '@mui/icons-material';
+import { type ReactNode } from "react";
+import { Alert, Button } from "@mui/material";
+import { Download } from "@mui/icons-material";
+import { generateFileDownload } from "@iimm/shared";
 
-import { Modal } from '../../../../feedback';
-import type { ModalProps } from '../../../../feedback';
-import { PdfModalViewer, type PdfModalViewerProps } from '../../../PdfModalViewer';
-import { VideoModalViewer } from '../../../VideoModalViewer';
-import { ImageModalViewer } from '../../../ImageModalViewer';
+import { Modal } from "../../../../feedback";
+import type { ModalProps } from "../../../../feedback";
+import { PdfModalViewer, type PdfModalViewerProps } from "../../../PdfModalViewer";
+import { VideoModalViewer } from "../../../VideoModalViewer";
+import { ImageModalViewer } from "../../../ImageModalViewer";
 
 export interface FileViewRenderProps {
-  fileSrc: string,
-  fileName?: string,
-  view?: boolean,
-  trigger: ReactNode,
-  type: 'pdf' | 'image' | 'video' | string,
-  showDownload?: boolean,
-  onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean,
-  onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>,
-  modalProps?: Omit<ModalProps, 'onReset'>
-  pdfViewerProps?: PdfModalViewerProps
+  fileSrc: string;
+  fileName?: string;
+  view?: boolean;
+  trigger: ReactNode;
+  type: "pdf" | "image" | "video" | string;
+  showDownload?: boolean;
+  onFileDownloadStart?: (fileUrl: string, fileName?: string) => void | boolean;
+  onFileDownload?: (fileUrl: string, fileName?: string) => void | Promise<void>;
+  modalProps?: Omit<ModalProps, "onReset">;
+  pdfViewerProps?: PdfModalViewerProps;
 }
 
 // const ViewList = [ 'pdf', 'image', 'video' ];
 
-const FallbackModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) => {
+const FallbackModalViewer = (props: Omit<FileViewRenderProps, "view" | "type">) => {
   const { fileSrc, fileName, trigger, showDownload, onFileDownload, onFileDownloadStart, modalProps } = props;
   return (
     <Modal
@@ -31,31 +32,45 @@ const FallbackModalViewer = (props: Omit<FileViewRenderProps, 'view' | 'type'>) 
       title={fileName}
       fullWidth
       responsive
-      extraActions={showDownload ? (
-        <Button
-          variant="outlined"
-          startIcon={<Download />}
-          // @ts-ignore
-          onClick={() => generateFileDownload(fileSrc, undefined, undefined, { onDownloadSuccess: onFileDownload, onDownloadStart: onFileDownloadStart })}
-        >
-          下载
-        </Button>
-      ) : undefined}
+      extraActions={
+        showDownload ? (
+          <Button
+            variant="outlined"
+            startIcon={<Download />}
+            // @ts-ignore
+            onClick={() =>
+              generateFileDownload(fileSrc, fileName, undefined, {
+                onDownloadSuccess: onFileDownload,
+                onDownloadStart: onFileDownloadStart,
+              })
+            }
+          >
+            下载
+          </Button>
+        ) : undefined
+      }
       {...modalProps}
     >
-      <Alert severity='info'>
-        此文件格式暂不支持预览
-      </Alert>
+      <Alert severity="info">此文件格式暂不支持预览</Alert>
     </Modal>
   );
 };
 
-FallbackModalViewer.displayName = 'iimm.Mui.AttachmentViewer.FallbackModalViewer';
-
 export const FileViewRender = (props: FileViewRenderProps) => {
-  const { fileSrc, fileName, view, trigger, type, showDownload, onFileDownload, onFileDownloadStart, modalProps, pdfViewerProps } = props;
+  const {
+    fileSrc,
+    fileName,
+    view,
+    trigger,
+    type,
+    showDownload,
+    onFileDownload,
+    onFileDownloadStart,
+    modalProps,
+    pdfViewerProps,
+  } = props;
   if (!view) return null;
-  if (type === 'pdf') {
+  if (type === "pdf") {
     return (
       <PdfModalViewer
         file={fileSrc}
@@ -70,20 +85,20 @@ export const FileViewRender = (props: FileViewRenderProps) => {
         {...(pdfViewerProps || {})}
       />
     );
-  } else if (type === 'image') {
+  } else if (type === "image") {
     return (
       <ImageModalViewer
         trigger={trigger}
         showDownload={showDownload}
         imgSrc={fileSrc}
         // @ts-ignore
-        title={fileName }
+        title={fileName}
         onFileDownload={onFileDownload}
         onFileDownloadStart={onFileDownloadStart}
-        {...modalProps || {}}
+        {...(modalProps || {})}
       />
     );
-  } else if (type === 'video') {
+  } else if (type === "video") {
     return (
       <VideoModalViewer
         trigger={trigger}
@@ -107,7 +122,4 @@ export const FileViewRender = (props: FileViewRenderProps) => {
       onFileDownloadStart={onFileDownloadStart}
     />
   );
-
 };
-
-// FileViewRender.displayName = 'iimm.Mui.AttachmentViewer.ItemBar.FileViewRender';
