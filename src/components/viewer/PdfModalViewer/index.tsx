@@ -25,7 +25,7 @@ import {
   ZoomOutOutlined,
   Cached,
 } from "@mui/icons-material";
-import { generateFileDownload, getFileExtensionFromUrl } from "@iimm/shared";
+import { generateFileDownload, getFileExtensionFromUrl, getFileNameFromUrl } from "@iimm/shared";
 import { useGlobalId, scrollToElement } from "@iimm/react-shared";
 import classNames from "classnames";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -331,7 +331,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       }
       if (!pdfName) {
         if (typeof pdfFile === "string" && !pdfFile.startsWith("data") && pdfFile.includes("/")) {
-          pdfName = getFileExtensionFromUrl(pdfFile);
+          pdfName = getFileNameFromUrl(pdfFile);
         } else if ((pdfFile instanceof File || pdfFile instanceof Blob) && (pdfFile as any)?.name) {
           pdfName = (pdfFile as any).name;
         }
