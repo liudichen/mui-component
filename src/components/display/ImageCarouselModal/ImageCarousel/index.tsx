@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import type { CarouselProps as ICarouselProps } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import type { PropsWithChildren } from "react";
+import { Carousel } from "react-responsive-carousel";
+import type { CarouselProps as ICarouselProps } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export const ImageCarousel = (props: PropsWithChildren<ImageCarouselProps>) => {
   const { images, children, ...restProps } = props;
@@ -9,30 +9,23 @@ export const ImageCarousel = (props: PropsWithChildren<ImageCarouselProps>) => {
     return <></>;
   }
   return (
-    <Carousel
-      {...restProps}
-    >
-      { children || images?.map((item, index) => (
-        <div key={index}>
-          <img src={item?.src ?? item?.url} />
-          <p className='legend'>{item?.title ?? item?.name ?? ''}</p>
-        </div>
-      ))}
+    <Carousel axis="horizontal" {...restProps}>
+      {children ||
+        images?.map((item, index) => (
+          <div key={index}>
+            <img src={item?.src ?? item?.url} />
+            <p className="legend">{item?.title ?? item?.name ?? ""}</p>
+          </div>
+        ))}
     </Carousel>
   );
 };
 
-ImageCarousel.displayName = 'iimm.Mui.ImageCarousel';
-
-ImageCarousel.defaultProps = {
-  axis: 'horizontal',
-};
-
 export interface ImageItem {
-  src?: string,
-  title?: string,
-  name?: string,
-  url?: string,
+  src?: string;
+  title?: string;
+  name?: string;
+  url?: string;
 }
 
 export interface CarouselProps extends Partial<ICarouselProps> {
@@ -139,10 +132,10 @@ export interface CarouselProps extends Partial<ICarouselProps> {
   //  * @default 'standard'
   //  */
   // verticalSwipe?: 'natural' | 'standard',
-  width?: number | string,
+  width?: number | string;
 }
 
 export interface ImageCarouselProps extends Partial<CarouselProps> {
   /** images的优先级低于children */
-  images?: ImageItem[],
+  images?: ImageItem[];
 }

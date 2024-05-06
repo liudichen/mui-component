@@ -34,7 +34,7 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
     FilePreviewRender,
     previewModalProps,
     urls,
-    fileListBoxProps,
+    fileListBoxProps = { mt: 0.5 },
     fileListBoxClassName,
     urlPrefix,
     fallback,
@@ -55,6 +55,11 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
           </span>
         </Tooltip>
       }
+      fullWidth
+      responsive
+      title="附件列表"
+      showConfirm={false}
+      cancelText="关闭"
       {...restProps}
     >
       <AttachmentViewer
@@ -87,16 +92,3 @@ export const AttachmentModalViewer = (props: AttachmentModalViewerProps): JSX.El
     </Modal>
   );
 };
-
-AttachmentModalViewer.defaultProps = {
-  fullWidth: true,
-  responsive: true,
-  title: "附件列表",
-  fallback: <span>-</span>,
-  showConfirm: false,
-  cancelText: "关闭",
-  contentProps: { sx: { p: 0.5 } },
-  fileListBoxProps: { mt: 0.5 },
-};
-
-// AttachmentModalViewer.displayName = 'iimm.Mui.AttachmentModalViewer';

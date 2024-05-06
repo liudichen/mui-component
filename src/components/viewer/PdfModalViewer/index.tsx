@@ -191,38 +191,38 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
     fileName: fileNameProp,
     trigger,
     title,
-    showToolbar,
+    showToolbar = true,
     toolbarClassName,
-    showFullScreen,
+    showFullScreen = true,
     defaultFullScreen,
     responsive,
     breakpoint = "sm",
-    fullWidth,
+    fullWidth = true,
     fullScreen: fullScreenProp,
-    showRotate,
+    showRotate = true,
     onRotateChange,
     defaultRotate,
-    showScale,
+    showScale = true,
     onScaleChange,
     maxScale = 10,
     minScale = 0.1,
     defaultScale,
-    showScaleStep,
-    showReset,
+    showScaleStep = true,
+    showReset = true,
     onReset,
-    showReload,
+    showReload = true,
     onReload,
     shouldReload,
-    showDownload,
+    showDownload = true,
     onDownloadSuccess,
     onDownloadFail,
     onDownloadStart,
     defaultPageNumber,
-    showPagination,
-    showFirstPage,
-    showLastPage,
-    showPageStep,
-    updatePageOnScroll,
+    showPagination = true,
+    showFirstPage = true,
+    showLastPage = true,
+    showPageStep = true,
+    updatePageOnScroll = true,
     onPageNumberChange,
     onPdfLoadSuccess,
     onPdfFetchError,
@@ -435,13 +435,17 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
   });
   return (
     <Modal
+      maxWidth="lg"
       open={open}
       fullWidth={fullWidth}
       setOpen={setOpen}
       title={title ?? `文件查看:${fileName || ""}`}
       trigger={trigger}
       withDialogContentWrapper={false}
-      responsive={false}
+      responsive
+      breakpoint="sm"
+      showConfirm={false}
+      cancelText="关闭"
       PaperProps={{ className: classNames({ "pdf-viewer-modal-paper": !(fullScreenProp ?? fullScreen) }) }}
       fullScreen={fullScreenProp ?? fullScreen}
       {...restProps}
@@ -600,29 +604,4 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
       </DialogContent>
     </Modal>
   );
-};
-
-PdfModalViewer.displayName = "iimm.Mui.PdfModalViewer";
-
-PdfModalViewer.defaultProps = {
-  showToolbar: true,
-  showFullScreen: true,
-  showRotate: true,
-  showScale: true,
-  showScaleStep: true,
-  maxWidth: "lg",
-  showDownload: true,
-  showReload: true,
-  shouldReload: 0,
-  showReset: true,
-  showFirstPage: true,
-  showLastPage: true,
-  showPagination: true,
-  showPageStep: true,
-  responsive: true,
-  breakpoint: "sm",
-  updatePageOnScroll: true,
-  fullWidth: true,
-  showConfirm: false,
-  cancelText: "关闭",
 };

@@ -22,6 +22,12 @@ export const ImageModalViewer = (props: ImageModalViewerProps) => {
   const [fullScreen, setFullScreen] = useSafeState(false);
   return (
     <Modal
+      fullWidth
+      responsive
+      maxWidth="md"
+      title="图片预览"
+      showConfirm={false}
+      cancelText="关闭"
       {...restProps}
       extraActions={
         showDownload ? (
@@ -99,13 +105,4 @@ export const ImageModalViewer = (props: ImageModalViewerProps) => {
       </Dialog>
     </Modal>
   );
-};
-
-ImageModalViewer.defaultProps = {
-  fullWidth: true,
-  responsive: true,
-  maxWidth: "md",
-  title: "图片预览",
-  showConfirm: false,
-  cancelText: "关闭",
 };

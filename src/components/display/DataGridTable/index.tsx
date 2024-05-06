@@ -112,16 +112,19 @@ export const initColumn = (
   return { ...initInfo, ...restCol, ...(suffix || {}) } as GridColDef;
 };
 
+const defaultPageSizes = [10, 20, 50, 100];
+
 export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTableProps) => {
   const {
     columns: columnsProp,
     paginationProps,
     initialState,
-    initialPageSize,
+    rowsPerPageOptions = defaultPageSizes,
+    initialPageSize = 10,
     components,
     componentsProps,
     paginationMode,
-    autoHeight,
+    autoHeight = true,
     getRowId,
     height,
     rowKey = "id",
@@ -149,6 +152,11 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
       }}
     >
       <DataGrid
+        localeText={zhCN.components.MuiDataGrid.defaultProps.localeText}
+        disableColumnFilter
+        disableColumnMenu
+        disableSelectionOnClick
+        rowsPerPageOptions={rowsPerPageOptions}
         columns={columns}
         getRowId={getRowId ?? ((row) => row[rowKey])}
         paginationMode={paginationMode ?? (typeof props.rowCount === "undefined" ? "client" : "server")}
@@ -192,7 +200,7 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
                 },
                 pagination: {
                   ...(paginationProps || {}),
-                  rowsPerPageOptions: props.rowsPerPageOptions,
+                  rowsPerPageOptions,
                   onChange: props.onPageChange,
                   onPageSizeChange: props.onPageSizeChange,
                   ...(pagination || {}),
@@ -219,19 +227,6 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
     </Box>
   );
 };
-
-DataGridTable.defaultProps = {
-  localeText: zhCN.components.MuiDataGrid.defaultProps.localeText,
-  rowKey: "id",
-  rowsPerPageOptions: [10, 20, 50, 100],
-  disableColumnFilter: true,
-  disableColumnMenu: true,
-  disableSelectionOnClick: true,
-  autoHeight: true,
-  initialPageSize: 10,
-};
-
-DataGridTable.displayName = "iimm.Mui.DataGridTable";
 
 interface StatusConvertRelateProps<Row extends object> {
   /** 指定状态颜色 */

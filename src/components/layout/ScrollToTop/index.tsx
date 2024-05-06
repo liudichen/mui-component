@@ -1,18 +1,18 @@
-import { type ReactNode, type MouseEvent } from 'react';
-import { Box, Fab, useScrollTrigger, Zoom } from '@mui/material';
-import type { SxProps } from '@mui/material';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { type ReactNode, type MouseEvent } from "react";
+import { Box, Fab, useScrollTrigger, Zoom } from "@mui/material";
+import type { SxProps } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 export interface ScrollToTopProps {
   /** 锚点元素的 id,如果不设置则默认回到页头 */
-  anchorId?: string,
-  window?: (() => Node) | (() => Window),
+  anchorId?: string;
+  window?: (() => Node) | (() => Window);
   /** 传递给外层Box的
    * @default {position:'fixed',bottom:'70px',right:'16px'}
-  */
-  sx?: SxProps,
+   */
+  sx?: SxProps;
   /** 滚动多少举例触发显示 */
-  threshold?: number,
+  threshold?: number;
   /** 内部的内容
    * @default
    * ```
@@ -25,12 +25,18 @@ export interface ScrollToTopProps {
     </Fab>
    * ```
    */
-  content?: ReactNode,
+  content?: ReactNode;
 }
+
+const defaultContent = (
+  <Fab color="secondary" size="small" aria-label="scroll back to top">
+    <KeyboardArrowUpIcon />
+  </Fab>
+);
 
 /** 回到顶部组件(通过sx属性可以控制位置) */
 export const ScrollToTop = (props: ScrollToTopProps) => {
-  const { sx, anchorId, threshold, content } = props;
+  const { sx, anchorId, threshold, content = defaultContent } = props;
   const trigger = useScrollTrigger({
     target: props.window ? props.window() : undefined,
     disableHysteresis: true,
@@ -43,15 +49,15 @@ export const ScrollToTop = (props: ScrollToTopProps) => {
       const anchor = (e.target?.ownerDocument || document).querySelector(`#${anchorId}`);
       if (anchor) {
         anchor.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
+          behavior: "smooth",
+          block: "center",
         });
       }
     } else {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -59,11 +65,11 @@ export const ScrollToTop = (props: ScrollToTopProps) => {
     <Zoom in={trigger}>
       <Box
         onClick={handleClick}
-        role='presentation'
+        role="presentation"
         sx={{
-          position: 'fixed',
-          bottom: '70px',
-          right: '16px',
+          position: "fixed",
+          bottom: "70px",
+          right: "16px",
           ...sx,
         }}
       >
@@ -71,16 +77,4 @@ export const ScrollToTop = (props: ScrollToTopProps) => {
       </Box>
     </Zoom>
   );
-};
-
-ScrollToTop.defaultProps = {
-  content: (
-    <Fab
-      color='secondary'
-      size='small'
-      aria-label="scroll back to top"
-    >
-      <KeyboardArrowUpIcon />
-    </Fab>
-  ),
 };

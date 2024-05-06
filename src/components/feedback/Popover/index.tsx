@@ -15,7 +15,16 @@ export interface PopoverProps extends Omit<MuiPopoverProps, "onClose" | "content
 }
 
 export const Popover = forwardRef<any, PropsWithChildren<PopoverProps>>((props, ref) => {
-  const { onClose: onCloseProp, triggerType, disabled, trigger, id: idProp, content, children, ...restProps } = props;
+  const {
+    onClose: onCloseProp,
+    triggerType = "hover",
+    disabled,
+    trigger,
+    id: idProp,
+    content,
+    children,
+    ...restProps
+  } = props;
   const [anchorE1, setAnchorE1] = useSafeState(null);
   const id = useId(idProp);
   const handleColse = useMemoizedFn(() => {
@@ -47,6 +56,9 @@ export const Popover = forwardRef<any, PropsWithChildren<PopoverProps>>((props, 
         id={id}
         onClose={handleColse}
         anchorEl={anchorE1}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        transformOrigin={{ vertical: "bottom", horizontal: "center" }}
+        slotProps={{ paper: { sx: { p: 0.5, borderRadius: 2 } } }}
         // @ts-ignore
         open={open}
         disableRestoreFocus={triggerType === "hover"}
@@ -61,12 +73,3 @@ export const Popover = forwardRef<any, PropsWithChildren<PopoverProps>>((props, 
     </>
   );
 });
-
-Popover.defaultProps = {
-  anchorOrigin: { vertical: "top", horizontal: "center" },
-  transformOrigin: { vertical: "bottom", horizontal: "center" },
-  PaperProps: { sx: { p: 0.5, borderRadius: 2 } },
-  triggerType: "hover",
-};
-
-Popover.displayName = "iimm.Mui.Popover";

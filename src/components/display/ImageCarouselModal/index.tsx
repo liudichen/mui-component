@@ -6,22 +6,23 @@ import { Modal } from "../../feedback";
 import type { CarouselProps, ImageItem } from "./ImageCarousel";
 import type { ModalProps } from "../../feedback";
 
+const defaultTitleProps: ModalProps["titleProps"] = { variant: "h4", component: "div", fontSize: undefined };
+
 export const ImageCarouselModal = (props: PropsWithChildren<ImageCarouselModalProps>) => {
   const {
     trigger,
     triggerProps,
     showCloseIcon,
     CloseIcon,
-    fullWidth,
+    fullWidth = true,
     fullScreen,
-    maxWidth,
+    maxWidth = "md",
     draggable,
-    responsive,
+    responsive = true,
     breakpoint,
-    title,
-    titleProps,
+    title = "图片预览",
+    titleProps = defaultTitleProps,
     modalProps,
-    DialogProps,
     open,
     onClose,
     images: imagesProps,
@@ -69,22 +70,12 @@ export const ImageCarouselModal = (props: PropsWithChildren<ImageCarouselModalPr
       breakpoint={breakpoint}
       showConfirm={false}
       cancelText="关闭"
-      {...((modalProps ?? DialogProps) || {})}
+      {...(modalProps || {})}
     >
       <ImageCarousel images={images} {...restProps} />
     </Modal>
   );
 };
-ImageCarouselModal.defaultProps = {
-  fullWidth: true,
-  maxWidth: "md",
-  title: "图片预览",
-  titleProps: { variant: "h4", component: "div", fontSize: undefined },
-  responsive: true,
-};
-
-ImageCarouselModal.displayName = "iimm.Mui.ImageCarouselModal";
-
 export interface ImageCarouselModalProps
   extends Partial<CarouselProps>,
     Pick<
@@ -105,10 +96,6 @@ export interface ImageCarouselModalProps
       | "titleProps"
     > {
   modalProps?: ModalProps;
-  /**
-   * @deprecated 不再使用,请使用modalProps
-   */
-  DialogProps?: ModalProps;
   /** images的优先级低于children */
   images?: ImageItem[] | (() => ImageItem[]) | (() => ImageItem)[] | ImageItem;
 }

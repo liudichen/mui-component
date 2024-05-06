@@ -9,6 +9,8 @@ import type { PaginationProps } from "../Pagination";
 import type { IStatusConvertRelateProps } from "../StatusRender";
 import { NoData } from "../NoData";
 
+const defaultPageSizes = [10, 25, 50, 100, 200];
+
 export const SimpleTable = (props: SimpleTableProps) => {
   const {
     tableContainerBoxProps,
@@ -21,7 +23,7 @@ export const SimpleTable = (props: SimpleTableProps) => {
     pageSize,
     onPageChange,
     onPageSizeChange,
-    pageSizeOptions,
+    pageSizeOptions = defaultPageSizes,
     initPageSize = 10,
     paginationProps,
     hideHeader,
@@ -31,15 +33,15 @@ export const SimpleTable = (props: SimpleTableProps) => {
     hidePagination: hidePaginationProp,
     autoHidePagination,
     title,
-    titlePosition,
+    titlePosition = "top",
     titleStyle,
     bordered,
-    columnDefaultWidth,
+    columnDefaultWidth = 100,
     expandable,
-    showExpandColumn,
+    showExpandColumn = true,
     expandIcon,
     expandRowByClick,
-    expandColumnWidth,
+    expandColumnWidth = 45,
     expandRowRender,
     getRowExpandable,
     unmountOnExit,
@@ -159,6 +161,7 @@ export const SimpleTable = (props: SimpleTableProps) => {
             onPageSizeChange={setRowsPerPage}
             color="secondary"
             pageSizeOptions={pageSizeOptions}
+            siblingCount={1}
             {...(paginationProps || {})}
           />
         )}
@@ -166,18 +169,6 @@ export const SimpleTable = (props: SimpleTableProps) => {
     </Box>
   );
 };
-
-SimpleTable.defaultProps = {
-  titlePosition: "top",
-  initPageSize: 10,
-  pageSizeOptions: [10, 25, 50, 100, 200],
-  showExpandColumn: true,
-  expandColumnWidth: 45,
-  columnDefaultWidth: 100,
-  paginationProps: { siblingCount: 1 },
-};
-
-SimpleTable.displayName = "iimm.Mui.SimpleTable";
 
 interface RowItem {
   [key: string]: any;
