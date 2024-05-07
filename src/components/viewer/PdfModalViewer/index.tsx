@@ -538,7 +538,7 @@ export const PdfModalViewer = (props: PdfModalViewerProps) => {
               </IconButton>
             </Tooltip>
           )}
-          {showDownload && !!numPages && (
+          {showDownload && (
             <Tooltip arrow placement="top" title="文档下载">
               <IconButton
                 size="small"
