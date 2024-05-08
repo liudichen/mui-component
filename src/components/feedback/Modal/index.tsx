@@ -6,6 +6,7 @@ import {
   type SetStateAction,
   useEffect,
   type MouseEvent,
+  useRef,
 } from "react";
 import { useCreation, useControllableValue, useMemoizedFn } from "ahooks";
 import {
@@ -82,6 +83,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
 
   const theme = useTheme();
   const tId = useGlobalId();
+  const nodeRef = useRef();
 
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
 
@@ -138,7 +140,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
   const Commponent = useCreation(() => {
     if (!draggable) return undefined;
     return (props: PaperProps) => (
-      <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+      <Draggable nodeRef={nodeRef} handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
         <Paper {...props} />
       </Draggable>
     );
