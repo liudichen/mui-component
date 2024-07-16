@@ -89,7 +89,7 @@ export const ItemBar = (props: ItemBarProps) => {
     showPreview = true,
     downloadIcon = <CloudDownloadOutlined />,
     downloadTooltip,
-    showDownload = true,
+    showDownload,
     FilePreviewRender = FileViewRender,
     previewModalProps,
     pdfViewerProps,
@@ -161,7 +161,7 @@ export const ItemBar = (props: ItemBarProps) => {
               showDownload={showDownload}
             />
           )}
-          {!fileInfo?.view && showDownload && (
+          {showDownload && (
             <Tooltip
               arrow
               placement="top"

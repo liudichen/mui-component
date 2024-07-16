@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -59,18 +59,18 @@
   "devDependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.16",
-    "@mui/material": "^5.15.16",
+    "@mui/icons-material": "^5.16.1",
+    "@mui/material": "^5.16.1",
     "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
-    "@types/react": "^18.3.1",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-pdf": "^6.2.0",
-    "@types/video-react": "^0.15.6",
-    "father": "^4.4.0",
+    "@types/video-react": "^0.15.8",
+    "father": "^4.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.77.0",
+    "sass": "^1.77.8",
     "typescript": "^4.9.5"
   },
   "dependencies": {
@@ -78,7 +78,7 @@
     "@iimm/react-shared": "^0.1.2",
     "@iimm/shared": "^2.5.0",
     "@tabler/icons-react": "^2.47.0",
-    "ahooks": "^3.7.11",
+    "ahooks": "^3.8.0",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
     "react-draggable": "^4.4.6",

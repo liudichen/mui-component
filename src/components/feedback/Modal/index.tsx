@@ -73,6 +73,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     PaperComponent,
     fullScreen: fullScreenProp,
     setFullScreen: setFullScreenProp,
+    defaultFullScreen,
     showFullScreen,
     draggable: draggableProp,
     responsive,
@@ -91,6 +92,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     trigger: "setFullScreen",
     valuePropName: "fullScreen",
     defaultValue: false,
+    defaultValuePropName: "defaultFullScreen",
   });
 
   const draggable = !!draggableProp && !fullScreen;
@@ -324,4 +326,5 @@ export interface ModalProps extends Omit<DialogProps, "open" | "title" | "conten
   setFullScreen?: Dispatch<SetStateAction<boolean>>;
   /**显示全屏按钮? */
   showFullScreen?: boolean;
+  defaultFullScreen?: boolean;
 }

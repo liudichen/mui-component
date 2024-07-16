@@ -1,37 +1,37 @@
 // this component origin from https://berrydashboard.io
-import { forwardRef, useEffect } from 'react';
-import type { ReactNode, Dispatch, SetStateAction, PropsWithChildren } from 'react';
-import { useControllableValue } from 'ahooks';
-import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from '@mui/material';
-import type { CardProps, SxProps, TypographyProps, DividerProps } from '@mui/material';
-import { ExpandCircleDownOutlined as ExpandCircleDownOutlinedIcon } from '@mui/icons-material';
+import { forwardRef, useEffect } from "react";
+import type { ReactNode, Dispatch, SetStateAction, PropsWithChildren } from "react";
+import { useControllableValue } from "ahooks";
+import { useTheme } from "@mui/material/styles";
+import { Card, CardContent, CardHeader, Collapse, Divider, IconButton, Typography } from "@mui/material";
+import type { CardProps, SxProps, TypographyProps, DividerProps } from "@mui/material";
+import { ExpandCircleDownOutlined as ExpandCircleDownOutlinedIcon } from "@mui/icons-material";
 
-export interface ContentCardProps extends Omit<CardProps, 'title'|'content'> {
-  content?: boolean, // true
-  contentClass?: string,
-  darkTitle?: boolean,
-  secondary?: ReactNode,
-  sx?: SxProps,
-  title?: ReactNode,
+export interface ContentCardProps extends Omit<CardProps, "title" | "content"> {
+  content?: boolean; // true
+  contentClass?: string;
+  darkTitle?: boolean;
+  secondary?: ReactNode;
+  sx?: SxProps;
+  title?: ReactNode;
   /** 传递给标题Typography的props */
-  titleProps?: TypographyProps,
-  defaultCollapsed?: boolean,
-  collapsible?: boolean,
+  titleProps?: TypographyProps;
+  defaultCollapsed?: boolean;
+  collapsible?: boolean;
   /** 受控属性 ，与setCollapsed配合使用*/
-  collapsed?: boolean,
+  collapsed?: boolean;
   /** 受控属性 ，与collapsed配合使用*/
-  setCollapsed?: Dispatch<SetStateAction<boolean>>,
-  headerSx?: SxProps,
-  contentSx?: SxProps,
-  iconColor?: 'primary' | 'secondary' | 'error' | 'info' | 'success' |'warning' | 'inherit' | 'action' | 'disabled',
-  CollapseIcon?: typeof ExpandCircleDownOutlinedIcon,
-  unmountOnExit?: boolean,
-  dividerProps?: DividerProps,
+  setCollapsed?: Dispatch<SetStateAction<boolean>>;
+  headerSx?: SxProps;
+  contentSx?: SxProps;
+  iconColor?: "primary" | "secondary" | "error" | "info" | "success" | "warning" | "inherit" | "action" | "disabled";
+  CollapseIcon?: typeof ExpandCircleDownOutlinedIcon;
+  unmountOnExit?: boolean;
+  dividerProps?: DividerProps;
   /** 显示分割线
    * @default true
    */
-  divider?: boolean,
+  divider?: boolean;
 }
 
 export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>((props, ref) => {
@@ -45,9 +45,11 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
     contentSx,
     headerSx,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    collapsed: collapsedProp, setCollapsed: setCollapsedProp, defaultCollapsed,
+    collapsed: collapsedProp,
+    setCollapsed: setCollapsedProp,
+    defaultCollapsed,
     collapsible,
-    iconColor = 'secondary',
+    iconColor = "secondary",
     unmountOnExit,
     title,
     titleProps,
@@ -57,20 +59,25 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
     ...others
   } = props;
   const theme = useTheme();
-  const [ collapsed, setCollapsed ] = useControllableValue(props, { valuePropName: 'collapsed', trigger: 'setCollapsed', defaultValue: false, defaultValuePropName: 'defaultCollapsed' });
+  const [collapsed, setCollapsed] = useControllableValue(props, {
+    valuePropName: "collapsed",
+    trigger: "setCollapsed",
+    defaultValue: false,
+    defaultValuePropName: "defaultCollapsed",
+  });
   useEffect(() => {
     setCollapsed(!!defaultCollapsed);
-  }, [ !defaultCollapsed ]);
+  }, [!defaultCollapsed]);
   const showHeader = Boolean(title || collapsible || secondary);
   const renderAction = (
     <>
       {secondary ?? null}
-      { collapsible && <>&nbsp;</>}
-      { collapsible && !!CollapseIcon && (
+      {collapsible && <>&nbsp;</>}
+      {collapsible && !!CollapseIcon && (
         <IconButton
           onClick={() => setCollapsed((s) => !s)}
           style={{
-            transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
+            transform: collapsed ? "rotate(180deg)" : "rotate(0deg)",
           }}
           sx={{
             mb: -1,
@@ -82,36 +89,35 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
       )}
     </>
   );
+
   return (
     <Card
       ref={ref}
       sx={{
-        border: '1px solid',
+        border: "1px solid",
         borderColor: theme.palette.primary.light,
-        ':hover': {
-          boxShadow: '0 2px 14px 0 rgb(32 40 45 / 8%)',
+        ":hover": {
+          boxShadow: "0 2px 14px 0 rgb(32 40 45 / 8%)",
         },
         ...(sx || {}),
       }}
       {...others}
     >
-      { showHeader && (
+      {showHeader && (
         <CardHeader
           sx={{ p: 1.5, ...(headerSx || {}) }}
           title={
-            <Typography
-              variant={darkTitle ? 'h4' : 'h5'}
-              {...(titleProps || {})}
-            >
-              {title || ' '}
+            <Typography variant={darkTitle ? "h4" : "h5"} {...(titleProps || {})}>
+              {title || " "}
             </Typography>
           }
-          action={renderAction} />
+          action={renderAction}
+        />
       )}
 
-      { collapsible && (
-        <Collapse in={!collapsed} timeout='auto' unmountOnExit={unmountOnExit}>
-          { divider && showHeader && (
+      {collapsible && (
+        <Collapse in={!collapsed} timeout="auto" unmountOnExit={unmountOnExit}>
+          {divider && showHeader && (
             <Divider
               sx={{
                 opacity: 1,
@@ -121,11 +127,8 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
             />
           )}
 
-          { content && (
-            <CardContent
-              sx={{ p: 2.5, ...(contentSx || {}) }}
-              className={contentClass}
-            >
+          {content && (
+            <CardContent sx={{ p: 2.5, ...(contentSx || {}) }} className={contentClass}>
               {children}
             </CardContent>
           )}
@@ -133,24 +136,17 @@ export const ContentCard = forwardRef<any, PropsWithChildren<ContentCardProps>>(
         </Collapse>
       )}
 
-      { divider && !collapsible && showHeader && (
-        <Divider
-          sx={{ opacity: 1, borderColor: theme.palette.primary.light }}
-          {...(dividerProps || {})}
-        />
+      {divider && !collapsible && showHeader && (
+        <Divider sx={{ opacity: 1, borderColor: theme.palette.primary.light }} {...(dividerProps || {})} />
       )}
-      { !collapsible && content && (
-        <CardContent
-          sx={{ p: 2.5, ...(contentSx || {}) }}
-          className={contentClass}
-        >
+      {!collapsible && content && (
+        <CardContent sx={{ p: 2.5, ...(contentSx || {}) }} className={contentClass}>
           {children}
         </CardContent>
       )}
-      { !collapsible && !content && children }
+      {!collapsible && !content && children}
     </Card>
   );
 });
 
-
-ContentCard.displayName = 'iimm.Mui.ContentCard';
+ContentCard.displayName = "iimm.Mui.ContentCard";
