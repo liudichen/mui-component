@@ -191,6 +191,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               maxHeight="60px"
               marginLeft={1.5}
               marginY={0.5}
+              title={typeof title==='string' ? title: undefined}
               {...(titleBoxProps || {})}
               id={tId}
               sx={{ minHeight: 24, ...(draggable ? { cursor: "move" } : {}), ...(titleBoxProps?.sx || {}) }}
