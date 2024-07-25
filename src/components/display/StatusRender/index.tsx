@@ -111,13 +111,19 @@ export const StatusRender = (props: StatusRenderProps) => {
           borderRadius: "50%",
           backgroundColor: getColor(color, status, type, statusColorConvert, statusTypeConvert, statusConvert),
           ...(dotSpanStyle || {}),
+        }}
+      />
+      <span
+        style={{
           ...(deleteLine &&
           (status === "废弃" || status === "作废" || status === "已作废" || status === "禁用" || status === "无效")
             ? { textDecoration: "line-through" }
             : {}),
+          ...(textSpanStyle || {}),
         }}
-      />
-      <span style={textSpanStyle}>{txt}</span>
+      >
+        {txt}
+      </span>
     </span>
   ) : (
     <span>{noStatusText}</span>
