@@ -3,13 +3,12 @@
 import React from "react";
 import { capitalize } from "@mui/material/utils";
 import { styled, useThemeProps } from "@mui/material/styles";
-import { Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress, type SxProps } from "@mui/material";
 import { useId } from "@iimm/react-shared";
 
-import type { ExtendButton, ExtendButtonTypeMap, ButtonClasses } from "@mui/material/Button";
+import type { ExtendButtonTypeMap, ButtonClasses } from "@mui/material/Button";
 import type { OverrideProps } from "@mui/material/OverridableComponent";
 import type { Theme } from "@mui/material/styles";
-import type { SxProps } from "@mui/system";
 
 import { composeClasses } from "../mui-utils";
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from "./loadingButtonClasses";

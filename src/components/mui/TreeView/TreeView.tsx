@@ -7,9 +7,8 @@ import PropTypes from "prop-types";
 import { styled, useTheme, useThemeProps } from "@mui/material/styles";
 import { useControlled, useForkRef, ownerDocument } from "@mui/material/utils";
 import { useId } from "@iimm/react-shared";
-import { type InternalStandardProps as StandardProps } from "@mui/material";
+import { type InternalStandardProps as StandardProps, type SxProps } from "@mui/material";
 import { type Theme } from "@mui/material/styles";
-import { type SxProps } from "@mui/system";
 
 import TreeViewContext from "./TreeViewContext";
 import { DescendantProvider } from "./descendants";

@@ -4,11 +4,10 @@ import clsx from "classnames";
 import Collapse from "@mui/material/Collapse";
 import { alpha, styled, useThemeProps } from "@mui/material/styles";
 import { ownerDocument, useForkRef } from "@mui/material/utils";
-import { unstable_composeClasses as composeClasses } from "@mui/base";
+import { unstable_composeClasses as composeClasses } from "@mui/material";
 
-import type { InternalStandardProps as StandardProps, Theme } from "@mui/material";
+import type { InternalStandardProps as StandardProps, Theme, SxProps } from "@mui/material";
 import type { TransitionProps } from "@mui/material/transitions";
-import type { SxProps } from "@mui/system";
 
 import type { TreeItemContentProps } from "./TreeItemContent";
 import type { TreeItemClasses } from "./treeItemClasses";
