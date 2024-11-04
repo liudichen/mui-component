@@ -8,7 +8,7 @@ import {
   type MouseEvent,
   useRef,
 } from "react";
-import { useCreation, useControllableValue, useMemoizedFn } from "ahooks";
+import { useCreation, useControllableValue, useMemoizedFn, useSafeState } from "ahooks";
 import {
   Box,
   Button,
@@ -38,6 +38,8 @@ import { IconArrowsMaximize, IconArrowsMinimize, IconCircleX } from "@tabler/ico
 import { Space, useGlobalId } from "@iimm/react-shared";
 import Draggable from "react-draggable";
 
+import { LoadingButton, type LoadingButtonProps } from "../../mui";
+
 const stopPropagationOnClick = (e?: MouseEvent<HTMLElement>) => e?.stopPropagation();
 
 export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref) => {
@@ -50,6 +52,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     confirmText = "确认",
     showConfirm = true,
     showCancel = true,
+    showLoading = true,
     cancelProps,
     confirmProps,
     extraActions,
@@ -103,6 +106,8 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
     trigger: "setOpen",
   });
 
+  const [loading, setLoading] = useSafeState(false);
+
   const onClose = useMemoizedFn(async (e?: any, reason?: any) => {
     const res = (await onCloseProp?.(e, reason)) as any;
     if (res !== false) {
@@ -126,7 +131,9 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
   }, [responsive, down]);
 
   const onConfirm = useMemoizedFn(async () => {
+    setLoading(true);
     const res = await onConfirmProp?.();
+    setLoading(false);
     if (res !== false) {
       onClose();
     }
@@ -191,7 +198,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               maxHeight="60px"
               marginLeft={1.5}
               marginY={0.5}
-              title={typeof title==='string' ? title: undefined}
+              title={typeof title === "string" ? title : undefined}
               {...(titleBoxProps || {})}
               id={tId}
               sx={{ minHeight: 24, ...(draggable ? { cursor: "move" } : {}), ...(titleBoxProps?.sx || {}) }}
@@ -245,7 +252,8 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               />
             )}
             {showConfirm && (
-              <Button
+              <LoadingButton
+                loading={showLoading && loading}
                 variant="contained"
                 color="primary"
                 children={confirmText}
@@ -261,6 +269,10 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
 });
 
 export interface ModalProps extends Omit<DialogProps, "open" | "title" | "content"> {
+  /** Confirm时是否显示loading
+   * @default true
+   */
+  showLoading?: boolean;
   /** 受控属性,控制是否开启 */
   open?: boolean;
   /** 受控属性 */
@@ -286,7 +298,7 @@ export interface ModalProps extends Omit<DialogProps, "open" | "title" | "conten
   onConfirm?: (() => any) | (() => Promise<any>);
   confirmText?: ReactNode | ReactNode[];
   /** 确认按钮的Props? */
-  confirmProps?: Omit<ButtonProps, "onClick">;
+  confirmProps?: Omit<LoadingButtonProps, "onClick">;
   /** 底部额外的按钮等,会显示在取消/重置按钮左侧   */
   extraActions?: ReactNode | ReactNode[];
   /** 点击触发弹窗打开的ReactNode，如果不传递此prop，则open使用外部受控模式 */
