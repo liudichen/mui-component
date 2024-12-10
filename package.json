@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.18.0",
+  "version": "1.19.0",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -49,10 +49,10 @@
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
-    "@mui/icons-material": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "@mui/x-data-grid": "^5.10.0",
-    "@mui/x-date-pickers": "^5.0.0",
+    "@mui/icons-material": "^5.0.0 || ^6.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0",
+    "@mui/x-data-grid": "^5.10.0 || ^6.0.0",
+    "@mui/x-date-pickers": "^5.0.0 || ^6.0.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
