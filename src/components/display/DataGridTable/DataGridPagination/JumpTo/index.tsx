@@ -1,5 +1,5 @@
-import { ChangeEvent, useRef, type MouseEvent } from "react";
-import { useKeyPress, useMemoizedFn, useSafeState } from "ahooks";
+import { type ChangeEvent, useState, type MouseEvent } from "react";
+import { useKeyPress, useMemoizedFn } from "ahooks";
 import { useId } from "@iimm/react-shared";
 import { Button, Card, CardActions, CardContent, IconButton, Popover, TextField } from "@mui/material";
 import { IconCornerUpRightDouble } from "@tabler/icons-react";
@@ -13,9 +13,9 @@ interface IProps {
 
 export const JumpTo = ({ total, onPageChange, color, size }: IProps) => {
   const id = useId();
-  const ref = useRef<HTMLInputElement>(null);
-  const [anchorEl, setAnchorEl] = useSafeState<HTMLButtonElement | null>(null);
-  const [value, setValue] = useSafeState<string>("");
+  const inputId = useId();
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [value, setValue] = useState<string>("");
 
   const onClick = useMemoizedFn((e: MouseEvent<HTMLButtonElement>) => {
     setValue("");
@@ -42,14 +42,16 @@ export const JumpTo = ({ total, onPageChange, color, size }: IProps) => {
     onClose();
   });
 
-  const onEnter = useMemoizedFn(() => {
+  const onEnter = useMemoizedFn((e) => {
+    e?.preventDefault();
     if (!value) return;
     onJump();
   });
 
-  useKeyPress("enter", onEnter, { target: ref });
+  useKeyPress("enter", onEnter, { target: document.getElementById(inputId) });
 
   const open = Boolean(anchorEl);
+
   const popoverId = open ? id : undefined;
 
   let wh = !size || size === "small" ? 26 : size === "large" ? 40 : 32;
@@ -90,7 +92,7 @@ export const JumpTo = ({ total, onPageChange, color, size }: IProps) => {
         <Card sx={{ px: 0, minWidth: 180, maxWidth: 250 }}>
           <CardContent>
             <TextField
-              ref={ref}
+              id={inputId}
               label="输入要跳转的页码"
               size="small"
               placeholder="目标页码"
