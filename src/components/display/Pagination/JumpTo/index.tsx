@@ -5,7 +5,7 @@ import { Button, Card, CardActions, CardContent, IconButton, Popover, TextField 
 import { IconCornerUpRightDouble } from "@tabler/icons-react";
 
 interface IProps {
-  onPageChange: (e: any, value: number) => void;
+  onPageChange: (pageNumberBase1: number) => void;
   total: number;
   color?: any;
   size?: "small" | "medium" | "large";
@@ -38,7 +38,7 @@ export const JumpTo = ({ total, onPageChange, color, size }: IProps) => {
     } else if (v > total) {
       v = total || 1;
     }
-    onPageChange?.(undefined, v);
+    onPageChange?.(v);
     onClose();
   });
 

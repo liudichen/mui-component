@@ -2,6 +2,8 @@ import { useControllableValue, useCreation, useMemoizedFn, useUpdateEffect } fro
 import { Pagination as MuiPagination, Box, Stack, Select, MenuItem, Typography } from "@mui/material";
 import type { BoxProps, StackProps, SelectProps, PaginationProps as MuiPaginationProps } from "@mui/material";
 
+import { JumpTo } from "./JumpTo";
+
 const defaultPageSizes = [10, 25, 50, 100, 200];
 
 export const Pagination = (props: PaginationProps) => {
@@ -20,6 +22,7 @@ export const Pagination = (props: PaginationProps) => {
     pageSize: pageSizeProp,
     total: totalProp,
     showItemRange = true,
+    showJumpTo,
     ...restProps
   } = props;
   const [current, onPageChange] = useControllableValue(props, {
@@ -71,6 +74,9 @@ export const Pagination = (props: PaginationProps) => {
             ))}
           </Select>
         )}
+        {Boolean(showJumpTo || (total > 9 && showJumpTo !== false)) && (
+          <JumpTo total={total} size={restProps.size} color={restProps.color} onPageChange={onPageChange} />
+        )}
         <MuiPagination
           page={current}
           count={total}
@@ -112,4 +118,5 @@ export interface PaginationProps extends Partial<MuiPaginationProps> {
    * @default [ 10, 25, 50, 100, 200 ]
    */
   pageSizeOptions?: number[];
+  showJumpTo?: boolean;
 }
