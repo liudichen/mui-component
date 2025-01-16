@@ -137,6 +137,7 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
     ...restProps
   } = props;
   const { toolbar, pagination, ...restComponentsProps } = componentsProps || {};
+
   const columns = useCreation(
     () =>
       (columnsProp || []).map((item) =>
@@ -144,6 +145,7 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
       ),
     [columnsProp, sortable]
   );
+  
   return (
     <Box
       {...{
