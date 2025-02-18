@@ -3,7 +3,8 @@ import React, { ReactNode } from "react";
 import { useCreation } from "ahooks";
 import { Box, Tooltip } from "@mui/material";
 import type { BoxProps, TooltipProps } from "@mui/material";
-import { DataGrid, zhCN } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
+import { zhCN } from "@mui/x-data-grid/locales";
 import type {
   GridAlignment,
   GridActionsColDef,
@@ -145,7 +146,7 @@ export const DataGridTable: React.FC<DataGridTableProps> = (props: DataGridTable
       ),
     [columnsProp, sortable]
   );
-  
+
   return (
     <Box
       {...{
