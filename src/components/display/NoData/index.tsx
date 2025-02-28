@@ -1,64 +1,52 @@
-import type { CSSProperties, ReactNode, SVGProps } from 'react';
-import { Box, styled } from '@mui/material';
+import type { CSSProperties, ReactNode, SVGProps } from "react";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const StyledGridOverlay = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '100%',
-  '& .ant-empty-img-1': {
-    fill: theme.palette.mode === 'light' ? '#aeb8c2' : '#262626',
+const StyledGridOverlay = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100%",
+  "& .ant-empty-img-1": {
+    fill: theme.palette.mode === "light" ? "#aeb8c2" : "#262626",
   },
-  '& .ant-empty-img-2': {
-    fill: theme.palette.mode === 'light' ? '#f5f5f7' : '#595959',
+  "& .ant-empty-img-2": {
+    fill: theme.palette.mode === "light" ? "#f5f5f7" : "#595959",
   },
-  '& .ant-empty-img-3': {
-    fill: theme.palette.mode === 'light' ? '#dce0e6' : '#434343',
+  "& .ant-empty-img-3": {
+    fill: theme.palette.mode === "light" ? "#dce0e6" : "#434343",
   },
-  '& .ant-empty-img-4': {
-    fill: theme.palette.mode === 'light' ? '#fff' : '#1c1c1c',
+  "& .ant-empty-img-4": {
+    fill: theme.palette.mode === "light" ? "#fff" : "#1c1c1c",
   },
-  '& .ant-empty-img-5': {
-    fillOpacity: theme.palette.mode === 'light' ? '0.8' : '0.08',
-    fill: theme.palette.mode === 'light' ? '#f5f5f5' : '#fff',
+  "& .ant-empty-img-5": {
+    fillOpacity: theme.palette.mode === "light" ? "0.8" : "0.08",
+    fill: theme.palette.mode === "light" ? "#f5f5f5" : "#fff",
   },
 }));
 
 export interface NoDataProps {
   /** 外层div的className */
-  className?: string,
+  className?: string;
   /** 外层div的style */
-  style?: CSSProperties,
+  style?: CSSProperties;
   /** 无数据文案，优先级高于children */
-  noDataText?: ReactNode,
+  noDataText?: ReactNode;
   /** 无数据文案，优先级低于noDataText */
-  children?: ReactNode,
+  children?: ReactNode;
   /** 传递给svg的props */
-  svgProps?: SVGProps<SVGSVGElement>,
+  svgProps?: SVGProps<SVGSVGElement>;
 }
 
 export const NoData = (props: NoDataProps) => {
   const { noDataText, children, svgProps, ...restProps } = props;
   return (
     <StyledGridOverlay {...restProps}>
-      <svg
-        width="120"
-        height="100"
-        viewBox="0 0 184 152"
-        aria-hidden
-        focusable="false"
-        {...(svgProps || {})}
-      >
+      <svg width="120" height="100" viewBox="0 0 184 152" aria-hidden focusable="false" {...(svgProps || {})}>
         <g fill="none" fillRule="evenodd">
           <g transform="translate(24 31.67)">
-            <ellipse
-              className="ant-empty-img-5"
-              cx="67.797"
-              cy="106.89"
-              rx="67.797"
-              ry="12.668"
-            />
+            <ellipse className="ant-empty-img-5" cx="67.797" cy="106.89" rx="67.797" ry="12.668" />
             <path
               className="ant-empty-img-1"
               d="M122.034 69.674L98.109 40.229c-1.148-1.386-2.826-2.225-4.593-2.225h-51.44c-1.766 0-3.444.839-4.592 2.225L13.56 69.674v15.383h108.475V69.674z"
@@ -82,7 +70,7 @@ export const NoData = (props: NoDataProps) => {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>{noDataText ?? children ?? 'No Data'}</Box>
+      <Box sx={{ mt: 1 }}>{noDataText ?? children ?? "No Data"}</Box>
     </StyledGridOverlay>
   );
 };

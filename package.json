@@ -1,6 +1,6 @@
 {
   "name": "mui-component",
-  "version": "1.21.2",
+  "version": "2.0.0",
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -51,7 +51,6 @@
     "@emotion/styled": "^11.0.0",
     "@mui/icons-material": "^5.0.0 || ^6.0.0",
     "@mui/material": "^5.0.0 || ^6.0.0",
-    "@mui/x-data-grid": "^5.10.0 || ^6.0.0",
     "@mui/x-date-pickers": "^5.0.0 || ^6.0.0",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
@@ -61,7 +60,6 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^5.16.14",
     "@mui/material": "^5.16.14",
-    "@mui/x-data-grid": "^5.17.26",
     "@mui/x-date-pickers": "^5.0.20",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
@@ -70,14 +68,14 @@
     "father": "^4.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.85.0",
+    "sass": "^1.85.1",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "@iimm/icons": "^1.1.0",
     "@iimm/react-shared": "^0.1.2",
     "@iimm/shared": "^2.5.0",
-    "@tabler/icons-react": "^2.47.0",
+    "@tabler/icons-react": "^2.0.0||^3.30.0",
     "ahooks": "^3.8.4",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",

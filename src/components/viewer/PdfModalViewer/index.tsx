@@ -25,7 +25,7 @@ import {
   ZoomOutOutlined,
   Cached,
 } from "@mui/icons-material";
-import { generateFileDownload, getFileExtensionFromUrl, getFileNameFromUrl } from "@iimm/shared";
+import { generateFileDownload,  getFileNameFromUrl } from "@iimm/shared";
 import { useGlobalId, scrollToElement } from "@iimm/react-shared";
 import classNames from "classnames";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -37,6 +37,7 @@ import type { ModalProps } from "../../feedback";
 import { NoData } from "../../display";
 import { ExtendedPage } from "./ExtendedPage";
 import { JumpToPage } from "./JumpToPage";
+
 import "./index.scss";
 
 type IPdf = string | File | Blob | ArrayBuffer;

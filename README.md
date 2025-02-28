@@ -40,8 +40,6 @@ export * from './components/feedback/Loading';
 
 // ============ 展示 ==============
 export * from './components/display/Pagination';
-export * from './components/display/DataGridTable';
-export * from './components/display/DataGridTable/GridToolbars';
 export * from './components/display/StatusRender';
 export * from './components/display/SimpleTable';
 export * from './components/display/ImageCarouselModal';

@@ -1,8 +1,11 @@
 import { useCreation, useSafeState } from "ahooks";
 import { Collapse, TableCell, TableRow } from "@mui/material";
-import { createReactComponent } from "@tabler/icons-react";
 
-const OpenIcon = createReactComponent("square-plus", "IconSquarePlus", [
+import { createReactComponent } from "./tabler";
+import { Cell } from "./Cell";
+import type { SimpleTableColumn } from "../index";
+
+const OpenIcon = createReactComponent("outline", "square-plus", "IconSquarePlus", [
   [
     "path",
     {
@@ -14,7 +17,7 @@ const OpenIcon = createReactComponent("square-plus", "IconSquarePlus", [
   ["path", { d: "M12 9l0 6", key: "svg-2" }],
 ]);
 
-const CloseIcon = createReactComponent("square-minus", "IconSquarePlus", [
+const CloseIcon = createReactComponent("outline", "square-minus", "IconSquarePlus", [
   [
     "path",
     {
@@ -24,9 +27,6 @@ const CloseIcon = createReactComponent("square-minus", "IconSquarePlus", [
   ],
   ["path", { d: "M9 12l6 0", key: "svg-1" }],
 ]);
-
-import { Cell } from "./Cell";
-import type { SimpleTableColumn } from "../index";
 
 export const Row = (props: any) => {
   const {
