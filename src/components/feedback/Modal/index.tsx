@@ -181,7 +181,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
         open={!!open}
         onClose={onClose}
       >
-        {(!!title || showCloseIcon || showFullScreen) && (
+        {(!!title || showCloseIcon || showFullScreen || (!down && showFullScreen !== false)) && (
           <DialogTitle
             display="flex"
             alignItems="start"
@@ -206,7 +206,7 @@ export const Modal = forwardRef<any, PropsWithChildren<ModalProps>>((props, ref)
               {title}
             </Box>
             <Space size={4} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {showFullScreen && (
+              {(showFullScreen || (!down && showFullScreen !== false)) && (
                 <Tooltip arrow placement="top" title={fullScreen ? "退出全屏" : "全屏"}>
                   <IconButton color="primary" sx={{ px: 0.25, py: 0.5 }} onClick={onFullScreenClick}>
                     {fullScreen ? (
